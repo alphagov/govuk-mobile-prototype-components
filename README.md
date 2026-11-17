@@ -9,7 +9,7 @@ Documentation: <https://alphagov.github.io/govuk-mobile-prototype-components/>, 
 
 ## Running the docs locally
 
-You need Node.js 22.16 or later (`nvm use` picks it up from `.nvmrc`).
+You need Node.js 26, the version in `.nvmrc` (`nvm use` picks it up). Anything from 22.16 works.
 
 ```sh
 npm install

@@ -53,7 +53,7 @@ python3 -m http.server 8000
 
 ## Run this site locally
 
-To work on the components or this site, you need Node.js 22.16 or later:
+To work on the components or this site, you need Node.js 26, the version in `.nvmrc`. Anything from 22.16 works:
 
 ```sh
 npm install
