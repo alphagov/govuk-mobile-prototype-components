@@ -39,7 +39,7 @@ eleventyComputed:
 
 <h2 class="govuk-heading-l" id="examples">Examples</h2>
 {% for example in component.examples %}
-{{ componentExample(example) }}
+{{ componentExample(example, "example-" + loop.index) }}
 {% endfor %}
 
 <div class="app-prose-scope">

@@ -1,15 +1,27 @@
-{#- One of a component's examples: drawn live in light and dark, and the HTML
-    that draws it. The HTML is the component's own definition file's. -#}
-{% macro componentExample(example) %}
+{#- One of a component's examples, in one box: drawn live in light and dark,
+    and below that the HTML that draws it, to copy. The HTML is the
+    component's own definition file's. -#}
+{% macro componentExample(example, id) %}
 <div class="docs-example">
-  <h3 class="govuk-heading-s">{{ example.name }}</h3>
-  <div class="docs-example__frames">
-    {% for scheme in ["light", "dark"] %}
-    <govuk-app class="docs-example__frame" colour-scheme="{{ scheme }}">
-      {{ example.html | safe }}
-    </govuk-app>
-    {% endfor %}
+  <h3 class="govuk-heading-s" id="{{ id }}">{{ example.name }}</h3>
+  <div class="docs-example__box" role="group" aria-labelledby="{{ id }}">
+    <div class="docs-example__preview">
+      <div class="docs-example__frames">
+        {% for scheme in ["light", "dark"] %}
+        <govuk-app class="docs-example__frame" colour-scheme="{{ scheme }}">
+          {{ example.html | safe }}
+        </govuk-app>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="docs-example__code">
+      <div class="docs-example__code-header">
+        <p class="docs-example__label">HTML</p>
+        <button type="button" class="govuk-button govuk-button--secondary docs-example__copy">Copy code</button>
+      </div>
+      <span class="govuk-visually-hidden docs-example__copy-status" role="status"></span>
+      {{ example.html | highlightHtml | safe }}
+    </div>
   </div>
-  <pre class="docs-example__code"><code>{{ example.html | escape }}</code></pre>
 </div>
 {% endmacro %}

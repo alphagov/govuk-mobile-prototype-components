@@ -8,6 +8,7 @@
   {{ super() }}
   <link rel="stylesheet" href="/assets/docs.css">
   <script type="module" src="/components/{{ component.slug }}/{{ component.slug }}.js"></script>
+  <script type="module" src="/assets/docs.js"></script>
 {% endblock %}
 
 {#- The base layout adds "(page 2 of 3)" to a paginated page's title. Each

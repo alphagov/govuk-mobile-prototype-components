@@ -1,5 +1,6 @@
 import { RenderPlugin } from '@11ty/eleventy'
 import { govukEleventyPlugin } from '@x-govuk/govuk-eleventy-plugin'
+import highlight from 'markdown-it-govuk/highlight'
 
 // Builds the documentation site from docs/. The components themselves have
 // no build step: components/ and foundation/ are copied into the site as they
@@ -44,6 +45,14 @@ export default async function (eleventyConfig) {
   eleventyConfig.addWatchTarget('components/')
   eleventyConfig.addWatchTarget('foundation/')
   eleventyConfig.addWatchTarget('component.schema.json')
+
+  // The docs' own script, for the examples' "Copy code" buttons.
+  eleventyConfig.addPassthroughCopy({ 'docs/assets/docs.js': 'assets/docs.js' })
+
+  // An example's HTML, highlighted as the site's Markdown code blocks are,
+  // with a class of our own to style it by.
+  eleventyConfig.addFilter('highlightHtml', code =>
+    highlight(code, 'html').replace('<pre class="', '<pre class="docs-example__pre '))
 
   // Every component's page links to every other in its sidebar. Fail the build
   // if one doesn't: Eleventy leaves all but the first page of a paginated
