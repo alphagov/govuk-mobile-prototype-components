@@ -45,6 +45,19 @@ export default async function (eleventyConfig) {
   eleventyConfig.addWatchTarget('foundation/')
   eleventyConfig.addWatchTarget('component.schema.json')
 
+  // Every component's page links to every other in its sidebar. Fail the build
+  // if one doesn't: Eleventy leaves all but the first page of a paginated
+  // template out of collections, and so out of the sidebar, unless told not to.
+  eleventyConfig.on('eleventy.after', ({ results }) => {
+    const pages = results.filter(result => /^\/components\/[^/]+\/$/.test(result.url))
+    for (const page of pages) {
+      const missing = pages.filter(other => !page.content.includes(`${other.url}"`))
+      if (missing.length) {
+        throw new Error(`${page.url} doesn't link to ${missing.map(other => other.url).join(', ')} in its sidebar`)
+      }
+    }
+  })
+
   return {
     dir: {
       input: 'docs',
