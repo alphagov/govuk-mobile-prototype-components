@@ -47,13 +47,13 @@ There is no build step for components. `foundation/component.js` fetches the tem
 
 These are the same as in Shaun’s kit in the app prototyping system (`exploration-2/kit`), which this structure is based on.
 
-`foundation/` holds what every component relies on: `tokens.css` (the app’s colours and type, from GovKit, each naming the GovKit token it comes from), `base.css` (the `<govuk-app>` root) and `component.js`.
+`foundation/` holds what every component relies on: `tokens.css` (the app’s colours, type, spacing and sizes, each naming where it comes from), `base.css` (the `<govuk-app>` root) and `component.js`.
 
 ## Building one
 
 1. Find the component in `COMPONENTS.md`, and read its iOS and Android source.
 2. Copy its reference screenshots into `reference/`.
-3. Write the four files. Use only `--app-*` tokens for colour and type; add any missing ones to `foundation/tokens.css`, naming the GovKit token they come from.
+3. Write the four files. Use only `--app-*` tokens for colour, type and spacing; add any missing ones to `foundation/tokens.css`, naming where they come from. Spacing is on the 8pt grid (`--app-space-extra-small` to `--app-space-extra-large`: 4, 8, 16, 24 and 32). Keep a value off the grid only where the app itself has it, and say so in a comment.
 4. Run `npm start` and open its page. Check every example against the references, in each state.
 
 ## Styles stay apart
@@ -61,7 +61,7 @@ These are the same as in Shaun’s kit in the app prototyping system (`explorati
 There is no shadow DOM. Components are kept apart from each other and from the page by convention:
 
 - A component styles only its own classes (`govuk-app-NAME`, `govuk-app-NAME__part`) and its own element, never another component’s classes or a bare element.
-- Its element is `display: contents`, so it takes no part in layout.
+- Its element is `display: contents`, so it takes no part in layout. `component.js` sets that for every component, so its stylesheet doesn’t.
 - `<govuk-app>` resets spacing, colour, font, background, shadow and underline for everything inside it, so a page’s styles for `p`, `button` and so on stop at it.
 - Components’ styles, and the root’s, aren’t in a cascade layer. A page’s styles that are in one never win over them, however specific. This site loads GOV.UK Frontend into a layer, `govuk-frontend`, for that reason (see `docs/assets/application.scss`).
 
