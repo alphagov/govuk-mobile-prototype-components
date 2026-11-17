@@ -50,7 +50,7 @@ govuk-app-tab-bar-item {
   pointer-events: auto;
 }
 
-.govuk-app-tab-bar-item {
+:is(a, button).govuk-app-tab-bar-item {
   display: flex;
   /* A width, not a flex-basis, so the capsule is sized from it. */
   flex: 0 1 auto;
@@ -71,17 +71,17 @@ govuk-app-tab-bar-item {
   -webkit-tap-highlight-color: transparent;
 }
 
-.govuk-app-tab-bar-item[aria-current] {
+:is(a, button).govuk-app-tab-bar-item[aria-current] {
   background: var(--app-tab-bar-selected);
   color: var(--app-text-link-secondary);
 }
 
-.govuk-app-tab-bar-item:active:not([aria-current]) {
+:is(a, button).govuk-app-tab-bar-item:active:not([aria-current]) {
   background: var(--app-tab-bar-pressed);
 }
 
 /* Inside the capsule, so the bar doesn't cut it off. */
-.govuk-app-tab-bar-item:focus-visible {
+:is(a, button).govuk-app-tab-bar-item:focus-visible {
   outline-offset: -3px;
 }
 

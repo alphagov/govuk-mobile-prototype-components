@@ -40,6 +40,18 @@ govuk-app *::after {
   font: inherit;
 }
 
+/* A page's styles for its links' states, such as GOV.UK Frontend's a:visited
+   and a:focus, are more specific than the reset above: one element and one
+   pseudo-class. This is just as specific, so wins over them the same way.
+   It's more specific than a single class, too, so a component styles its
+   links as an element and a class (`a.govuk-app-NAME`) to win over this. */
+govuk-app :where(a):is(:link, :visited, :hover, :active, :focus) {
+  background: none;
+  box-shadow: none;
+  color: inherit;
+  text-decoration: none;
+}
+
 govuk-app :focus-visible {
   outline: 3px solid var(--app-focus);
 }

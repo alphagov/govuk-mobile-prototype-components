@@ -63,5 +63,6 @@ There is no shadow DOM. Components are kept apart from each other and from the p
 - A component styles only its own classes (`govuk-app-NAME`, `govuk-app-NAME__part`) and its own element, never another component’s classes or a bare element.
 - Its element is `display: contents`, so it takes no part in layout.
 - `<govuk-app>` resets spacing, colour and font for everything inside it, so a page’s styles for `p`, `button` and so on stop at it.
+- It also resets links in every state, so a page’s styles for `a:visited`, `a:focus` and so on stop at it too. That reset is more specific than one class, so a component that draws a link selects it as an element and a class, `a.govuk-app-NAME`, or `:is(a, button).govuk-app-NAME` if it may be either.
 
 This keeps the page’s ordinary styles out, but not all of them. A page rule more specific than the reset (`#main button { … }`), or for an inherited property the reset doesn’t cover (`letter-spacing`), still reaches in. Prototype pages shouldn’t style anything inside `<govuk-app>`.
