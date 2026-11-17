@@ -8,7 +8,8 @@
    Each role names the GovKit token it comes from. The roles down to
    --app-illustration-shadow, and the type, are carried over from Shaun's kit
    (app-prototyping-system, exploration-2/kit/tokens.css); the button roles
-   were added for components/button.
+   were added for components/button. The tab bar roles are the system's, not
+   GovKit's, and were added for components/tab-bar.
 
    light-dark() picks a value by the root's color-scheme, which base.css
    sets from the colour-scheme attribute, or the device's setting. */
@@ -75,6 +76,19 @@ govuk-app {
   --app-surface-button-destructive-pressed: light-dark(#982828, #ca3535); /* fills.surfaceButtonDestructiveHighlight */
   --app-shadow-button-destructive: light-dark(#651b1b, #ca3535);          /* strokes.buttonDestructiveDefault */
   --app-shadow-button-destructive-pressed: light-dark(#280b0b, #651b1b);  /* strokes.buttonDestructiveHighlight */
+
+  /* Tab bar: iOS 26's Liquid Glass, approximated. The app sets none of these,
+     only the tabs' colours (text.linkSecondary, and the label colour) */
+  --app-tab-bar-glass: light-dark(rgb(255 255 255 / 0.6), rgb(255 255 255 / 0.12));
+  --app-tab-bar-glass-edge: light-dark(rgb(255 255 255 / 0.8), rgb(255 255 255 / 0.18));
+  --app-tab-bar-shadow: light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.4));
+  --app-tab-bar-selected: light-dark(rgb(0 0 0 / 0.07), rgb(0 0 0 / 0.3));
+  --app-tab-bar-pressed: light-dark(rgb(0 0 0 / 0.04), rgb(0 0 0 / 0.15));
+
+  /* Type: the tab bar's labels, the system's own size, which doesn't scale */
+  --app-font-tab-bar-size: 10px;
+  --app-font-tab-bar-weight: 600;
+  --app-font-tab-bar-leading: 12px;
 
   /* Type: iOS Dynamic Type at the default size, scaled by --app-text-scale */
   --app-font-large-title-size: calc(34px * var(--app-text-scale));
