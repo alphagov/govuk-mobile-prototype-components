@@ -1,11 +1,14 @@
 import { RenderPlugin } from '@11ty/eleventy'
 import { govukEleventyPlugin } from '@x-govuk/govuk-eleventy-plugin'
+import highlight from 'markdown-it-govuk/highlight'
 
 // Builds the documentation site from docs/. The components themselves have
 // no build step: components/ and foundation/ are copied into the site as they
 // are, so each page draws the real thing.
 export default async function (eleventyConfig) {
   await eleventyConfig.addPlugin(govukEleventyPlugin, {
+    // The plugin's styles, in a cascade layer: see assets/application.scss.
+    stylesheets: ['/assets/application.css'],
     header: {
       productName: 'App prototype components',
       phaseBanner: {
@@ -42,6 +45,27 @@ export default async function (eleventyConfig) {
   eleventyConfig.addWatchTarget('components/')
   eleventyConfig.addWatchTarget('foundation/')
   eleventyConfig.addWatchTarget('component.schema.json')
+
+  // The docs' own script, for the examples' "Copy code" buttons.
+  eleventyConfig.addPassthroughCopy({ 'docs/assets/docs.js': 'assets/docs.js' })
+
+  // An example's HTML, highlighted as the site's Markdown code blocks are,
+  // with a class of our own to style it by.
+  eleventyConfig.addFilter('highlightHtml', code =>
+    highlight(code, 'html').replace('<pre class="', '<pre class="docs-example__pre '))
+
+  // Every component's page links to every other in its sidebar. Fail the build
+  // if one doesn't: Eleventy leaves all but the first page of a paginated
+  // template out of collections, and so out of the sidebar, unless told not to.
+  eleventyConfig.on('eleventy.after', ({ results }) => {
+    const pages = results.filter(result => /^\/components\/[^/]+\/$/.test(result.url))
+    for (const page of pages) {
+      const missing = pages.filter(other => !page.content.includes(`${other.url}"`))
+      if (missing.length) {
+        throw new Error(`${page.url} doesn't link to ${missing.map(other => other.url).join(', ')} in its sidebar`)
+      }
+    }
+  })
 
   return {
     dir: {

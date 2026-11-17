@@ -1,14 +1,16 @@
-/* The app's colours and type, as --app-* custom properties, in light and dark.
+/* The app's colours, type, spacing and sizes, as --app-* custom properties,
+   in light and dark.
 
    Declared on <govuk-app> and nowhere else, so they exist only inside it.
-   Components reference these roles and never a colour of their own.
+   Components reference these and never a colour or spacing of their own.
 
    Source: govuk-once/govuk-mobile-ios-gov-kit, GovKitUI/Sources/Colors
    (GOVUKColors+Fills, +Text, +Strokes), read at ad8590b on 2026-11-17.
    Each role names the GovKit token it comes from. The roles down to
    --app-illustration-shadow, and the type, are carried over from Shaun's kit
    (app-prototyping-system, exploration-2/kit/tokens.css); the button roles
-   were added for components/button.
+   were added for components/button. The tab bar roles are the system's, not
+   GovKit's, and were added for components/tab-bar.
 
    light-dark() picks a value by the root's color-scheme, which base.css
    sets from the colour-scheme attribute, or the device's setting. */
@@ -75,6 +77,34 @@ govuk-app {
   --app-surface-button-destructive-pressed: light-dark(#982828, #ca3535); /* fills.surfaceButtonDestructiveHighlight */
   --app-shadow-button-destructive: light-dark(#651b1b, #ca3535);          /* strokes.buttonDestructiveDefault */
   --app-shadow-button-destructive-pressed: light-dark(#280b0b, #651b1b);  /* strokes.buttonDestructiveHighlight */
+
+  /* Tab bar: iOS 26's Liquid Glass, approximated. The app sets none of these,
+     only the tabs' colours (text.linkSecondary, and the label colour) */
+  --app-tab-bar-glass: light-dark(rgb(255 255 255 / 0.6), rgb(255 255 255 / 0.12));
+  --app-tab-bar-glass-edge: light-dark(rgb(255 255 255 / 0.8), rgb(255 255 255 / 0.18));
+  --app-tab-bar-shadow: light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.4));
+  --app-tab-bar-selected: light-dark(rgb(0 0 0 / 0.07), rgb(0 0 0 / 0.3));
+  --app-tab-bar-pressed: light-dark(rgb(0 0 0 / 0.04), rgb(0 0 0 / 0.15));
+
+  /* Spacing: the 8pt grid, with a 4pt half step. The Android app's
+     GovUkSpacing (design/.../theme/Spacing.kt); GovKit has no scale of its own.
+     Use these for padding, margins and gaps. A component keeps a value off the
+     grid only where the app itself has it, and says where it comes from */
+  --app-space-extra-small: 4px;
+  --app-space-small: 8px;
+  --app-space-medium: 16px;
+  --app-space-large: 24px;
+  --app-space-extra-large: 32px;
+
+  /* Sizes */
+  --app-size-touch-target: 44px;   /* the smallest a control can be: Apple's Human Interface Guidelines */
+  --app-focus-width: 3px;          /* the focus outline's width */
+  --app-radius-capsule: 9999px;    /* round ends, however tall it is */
+
+  /* Type: the tab bar's labels, the system's own size, which doesn't scale */
+  --app-font-tab-bar-size: 10px;
+  --app-font-tab-bar-weight: 600;
+  --app-font-tab-bar-leading: 12px;
 
   /* Type: iOS Dynamic Type at the default size, scaled by --app-text-scale */
   --app-font-large-title-size: calc(34px * var(--app-text-scale));

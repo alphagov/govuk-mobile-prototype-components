@@ -5,12 +5,16 @@ description: Each component, drawn live from its definition file, beside the app
 sectionKey: Components
 order: 2
 ---
+{#- Grouped by kind, as in the sidebar. -#}
+{% for kind, group in components | groupby("kind.many") %}
+<h2 class="govuk-heading-l">{{ kind }}</h2>
 <ul class="govuk-list">
-  {% for component in components %}
+  {% for component in group %}
   <li class="govuk-!-margin-bottom-6">
-    <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link" href="/components/{{ component.slug }}/">{{ component.name | escape }}</a></h2>
+    <h3 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link" href="/components/{{ component.slug }}/">{{ component.name | escape }}</a></h3>
     <p class="govuk-body-s govuk-!-margin-bottom-1"><code>&lt;{{ component.element }}&gt;</code></p>
     <p class="govuk-body govuk-!-margin-bottom-0">{{ component.purpose | escape }}</p>
   </li>
   {% endfor %}
 </ul>
+{% endfor %}

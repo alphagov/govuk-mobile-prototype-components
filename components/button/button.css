@@ -1,15 +1,13 @@
 /* GovKit's GOVUKButton: GovKitUI/Sources/Components/Buttons.
 
    Every variant shares its shape: 15pt corners, 13pt above and below the
-   label and 16pt either side, a 0.5pt border, drawn inside it, where the variant has one, and
-   a solid shadow 3pt below where it has one. Each state has its own colours:
+   label and 16pt either side, a 0.5pt border, drawn inside it, where the
+   variant has one, and a solid shadow 3pt below where it has one. The 15pt,
+   13pt and 3pt are GovKit's own, off the 8pt grid, and kept to match the app.
+   Each state has its own colours:
      pressed   :active        GovKit's "highlighted"
      focused   :focus-visible yellow, with black text, as VoiceOver focus is
      disabled  :disabled      no border and no shadow */
-
-govuk-app-button {
-  display: contents;
-}
 
 .govuk-app-button {
   /* What each variant sets, below. */
@@ -20,8 +18,8 @@ govuk-app-button {
 
   display: block;
   width: 100%;
-  min-height: 44px;
-  padding: 13px 16px;
+  min-height: var(--app-size-touch-target);
+  padding: 13px var(--app-space-medium);
   border: 0;
   border-radius: 15px;
   background: var(--surface);

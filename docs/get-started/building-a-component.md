@@ -15,7 +15,7 @@ Each component is one folder, `components/<name>/`:
 | `<name>.html` | Its template: the markup it draws, in a `<template>` |
 | `<name>.css` | Its styles |
 | `<name>.js` | Defines its element, `<govuk-app-NAME>`, and works out anything the template can’t say for itself, such as defaults |
-| `<name>.json` | Its definition: what it is for, whether it mirrors something native or is the GOV.UK app’s own, its inputs and outputs, rules for its use, its sources (Figma, iOS, Android), and examples. It follows `component.schema.json` |
+| `<name>.json` | Its definition: what it is for, whether it’s a native component or a GOV.UK app component, its inputs and outputs, rules for its use, its sources (Figma, iOS, Android), and examples. It follows `component.schema.json` |
 | `<name>.md` | Optional. Prose for its page that the definition can’t say well, such as longer guidance or known differences from the app |
 | `reference/` | Screenshots of the app’s own component, to compare it with |
 
@@ -47,13 +47,13 @@ There is no build step for components. `foundation/component.js` fetches the tem
 
 These are the same as in Shaun’s kit in the app prototyping system (`exploration-2/kit`), which this structure is based on.
 
-`foundation/` holds what every component relies on: `tokens.css` (the app’s colours and type, from GovKit, each naming the GovKit token it comes from), `base.css` (the `<govuk-app>` root) and `component.js`.
+`foundation/` holds what every component relies on: `tokens.css` (the app’s colours, type, spacing and sizes, each naming where it comes from), `base.css` (the `<govuk-app>` root) and `component.js`.
 
 ## Building one
 
 1. Find the component in `COMPONENTS.md`, and read its iOS and Android source.
 2. Copy its reference screenshots into `reference/`.
-3. Write the four files. Use only `--app-*` tokens for colour and type; add any missing ones to `foundation/tokens.css`, naming the GovKit token they come from.
+3. Write the four files. Use only `--app-*` tokens for colour, type and spacing; add any missing ones to `foundation/tokens.css`, naming where they come from. Spacing is on the 8pt grid (`--app-space-extra-small` to `--app-space-extra-large`: 4, 8, 16, 24 and 32). Keep a value off the grid only where the app itself has it, and say so in a comment.
 4. Run `npm start` and open its page. Check every example against the references, in each state.
 
 ## Styles stay apart
@@ -61,7 +61,10 @@ These are the same as in Shaun’s kit in the app prototyping system (`explorati
 There is no shadow DOM. Components are kept apart from each other and from the page by convention:
 
 - A component styles only its own classes (`govuk-app-NAME`, `govuk-app-NAME__part`) and its own element, never another component’s classes or a bare element.
-- Its element is `display: contents`, so it takes no part in layout.
-- `<govuk-app>` resets spacing, colour and font for everything inside it, so a page’s styles for `p`, `button` and so on stop at it.
+- Its element is `display: contents`, so it takes no part in layout. `component.js` sets that for every component, so its stylesheet doesn’t.
+- `<govuk-app>` resets spacing, colour, font, background, shadow and underline for everything inside it, so a page’s styles for `p`, `button` and so on stop at it.
+- Components’ styles, and the root’s, aren’t in a cascade layer. A page’s styles that are in one never win over them, however specific. This site loads GOV.UK Frontend into a layer, `govuk-frontend`, for that reason (see `docs/assets/application.scss`).
 
-This keeps the page’s ordinary styles out, but not all of them. A page rule more specific than the reset (`#main button { … }`), or for an inherited property the reset doesn’t cover (`letter-spacing`), still reaches in. Prototype pages shouldn’t style anything inside `<govuk-app>`.
+The reset keeps a page’s ordinary styles out, but not all of them. A page rule more specific than the reset (`#main button { … }`, or GOV.UK Frontend’s `a:visited` and `a:focus`), or for an inherited property the reset doesn’t cover (`letter-spacing`), still reaches in, unless the page’s styles are in a layer. Prototype pages shouldn’t style anything inside `<govuk-app>`, and should load any stylesheets of their own into a layer.
+
+Don’t put a component’s styles in a layer: a page’s styles that aren’t in one would win over them all.

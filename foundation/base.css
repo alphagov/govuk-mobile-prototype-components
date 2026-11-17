@@ -26,22 +26,29 @@ govuk-app {
 }
 
 /* A page's own styles for its elements stop here: everything inside starts
-   from the app's colour and type, and no spacing. A component's own styles
-   are a class, so they win over these. Load kit.css after the page's own
-   stylesheets, so that a page's rule for a bare element (`p { margin: … }`)
-   does not win over these, which are just as specific. */
+   from the app's colour and type, no spacing, and nothing drawn behind or
+   under it, such as a link's focus style. A component's own styles are a
+   class, so they win over these.
+
+   These aren't in a cascade layer, so if the page's styles are in one, these
+   win over all of them, however specific. If they aren't, these win only over
+   a page's rules that are just as specific (`p { margin: … }`), and only
+   because the components' stylesheets are added after the page's. */
 govuk-app *,
 govuk-app *::before,
 govuk-app *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  background: none;
+  box-shadow: none;
   color: inherit;
   font: inherit;
+  text-decoration: none;
 }
 
 govuk-app :focus-visible {
-  outline: 3px solid var(--app-focus);
+  outline: var(--app-focus-width) solid var(--app-focus);
 }
 
 /* How iOS sets text, for any component to use: lines of a paragraph are the

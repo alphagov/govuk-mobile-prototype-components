@@ -1,0 +1,104 @@
+/* The iOS 26 tab bar, UITabBar, as the app's BaseTabBarController draws it:
+   GovKitUI has no tab bar of its own. The app sets only its colours
+   (UITabBarAppearance+GOVUK, UITabBarItemAppearance+GOVUK); the shape is the
+   system's.
+
+   A capsule of Liquid Glass floating above the bottom of the screen, with
+   4pt inside it. Each tab is a capsule 56pt tall, holding a 28pt icon over a
+   10pt label, so the bar is 64pt tall: on the 8pt grid, where iOS's is about
+   62pt. The selected tab is in text.linkSecondary, on a capsule of its own;
+   the others are in the label colour, as iOS 26 draws them, rather than the
+   text.secondary the app asks for.
+
+   The glass is an approximation: a translucent fill that blurs and saturates
+   what is behind it, a hairline highlight and a soft shadow. The lensing and
+   the light it catches at its edges are left out.
+
+   Icons are Material Symbols Rounded, filled, in place of SF Symbols, which
+   may only be used on Apple's platforms. */
+
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0&display=block");
+
+/* It sticks to the bottom of the screen, so the content scrolls under it,
+   just above the home indicator on a phone with one, as iOS places it. Only
+   the capsule takes presses, not the space either side of it. */
+.govuk-app-tab-bar {
+  position: sticky;
+  bottom: max(var(--app-space-small), calc(var(--govuk-app-inset-bottom) - var(--app-space-small)));
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.govuk-app-tab-bar__bar {
+  display: flex;
+  max-width: 100%;
+  padding: var(--app-space-extra-small);
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-tab-bar-glass);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  box-shadow:
+    inset 0 0 0 0.5px var(--app-tab-bar-glass-edge),
+    0 8px 24px var(--app-tab-bar-shadow);
+  pointer-events: auto;
+}
+
+.govuk-app-tab-bar-item {
+  display: flex;
+  /* A width, not a flex-basis, so the capsule is sized from it. */
+  flex: 0 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  min-width: 64px;
+  height: 56px;
+  padding: 0 var(--app-space-small);
+  border: 0;
+  border-radius: var(--app-radius-capsule);
+  background: transparent;
+  color: var(--app-text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.govuk-app-tab-bar-item[aria-current] {
+  background: var(--app-tab-bar-selected);
+  color: var(--app-text-link-secondary);
+}
+
+.govuk-app-tab-bar-item:active:not([aria-current]) {
+  background: var(--app-tab-bar-pressed);
+}
+
+/* Inside the capsule, so the bar doesn't cut it off. */
+.govuk-app-tab-bar-item:focus-visible {
+  outline-offset: calc(-1 * var(--app-focus-width));
+}
+
+.govuk-app-tab-bar-item__icon {
+  font-family: "Material Symbols Rounded";
+  font-size: 28px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The system's label: it doesn't grow with Dynamic Type. iOS shows a larger
+   copy of the tab while it is held down instead. */
+.govuk-app-tab-bar-item__label {
+  overflow: hidden;
+  max-width: 100%;
+  font-size: var(--app-font-tab-bar-size);
+  font-weight: var(--app-font-tab-bar-weight);
+  line-height: var(--app-font-tab-bar-leading);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

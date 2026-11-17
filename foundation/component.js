@@ -6,8 +6,9 @@
  * every time one of them changes.
  *
  * Light DOM, no shadow DOM: the component's stylesheet styles what it draws,
- * and the element itself is `display: contents`, so it takes no part in
- * layout. Components send no events of their own: they draw the browser's own
+ * and the element itself is `display: contents`, set here for every element,
+ * so it takes no part in layout. Components send no events of their own: they
+ * draw the browser's own
  * controls, whose events (click, input, change) bubble as usual.
  *
  * A template is plain HTML inside <template>, with attributes that say how
@@ -31,6 +32,14 @@ const stylesheets = new Map()
 
 /** The foundation every component relies on: the tokens, and the root. */
 const foundation = [new URL('./tokens.css', import.meta.url), new URL('./base.css', import.meta.url)]
+
+/**
+ * One rule for each component's element, `govuk-app-NAME { display: contents }`,
+ * added as it is defined, so no component's stylesheet has to say it. CSS has
+ * no selector for every element whose name starts govuk-app-.
+ */
+const elements = new CSSStyleSheet()
+document.adoptedStyleSheets = [...document.adoptedStyleSheets, elements]
 
 /**
  * Adds the stylesheet at `url` to the page once, at the end of <head> so it
@@ -90,6 +99,7 @@ export async function defineComponent({ name, template, styles, attributes = [],
   ])
   if (customElements.get(tag)) return
 
+  elements.insertRule(`${tag} { display: contents; }`)
   customElements.define(tag, class extends HTMLElement {
     static observedAttributes = attributes
     #content = null

@@ -3,12 +3,17 @@ pagination:
   data: components
   size: 1
   alias: component
+  # Every component's page, not only the first, so each is in the sidebar.
+  addAllPagesToCollections: true
 permalink: "/components/{{ component.slug }}/"
 layout: component
 sectionKey: Components
 eleventyNavigation:
   parent: Components
 eleventyComputed:
+  # The sidebar groups components under their kind, in this order.
+  theme: "{{ component.kind.many }}"
+  order: "{{ component.order }}"
   title: "{{ component.name }}"
   caption: "&lt;{{ component.element }}&gt;"
   description: "{{ component.purpose | escape }}"
@@ -22,11 +27,10 @@ eleventyComputed:
 <div class="app-prose-scope">
   <p class="govuk-body">
     {{ govukTag({
-      text: "Mirrors a native control" if component.origin.kind == "native" else "GOV.UK app component",
+      text: component.kind.one,
       classes: "docs-tag " + ("govuk-tag--grey" if component.origin.kind == "native" else "govuk-tag--blue")
     }) }}
   </p>
-  <p class="govuk-body">{{ component.origin.notes | escape }}</p>
 
   {% if component.prose %}
   {% renderFile component.prose %}
@@ -35,7 +39,7 @@ eleventyComputed:
 
 <h2 class="govuk-heading-l" id="examples">Examples</h2>
 {% for example in component.examples %}
-{{ componentExample(example) }}
+{{ componentExample(example, "example-" + loop.index) }}
 {% endfor %}
 
 <div class="app-prose-scope">
