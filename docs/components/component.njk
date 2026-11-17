@@ -28,7 +28,6 @@ eleventyComputed:
       classes: "docs-tag " + ("govuk-tag--grey" if component.origin.kind == "native" else "govuk-tag--blue")
     }) }}
   </p>
-  <p class="govuk-body">{{ component.origin.notes | escape }}</p>
 
   {% if component.prose %}
   {% renderFile component.prose %}

@@ -10,6 +10,13 @@
   <script type="module" src="/components/{{ component.slug }}/{{ component.slug }}.js"></script>
 {% endblock %}
 
+{#- The base layout adds "(page 2 of 3)" to a paginated page's title. Each
+    component's page is one of those pages, but stands on its own. -#}
+{% block pageTitle %}
+  {{- title -}}
+  {{- " - " + options.titleSuffix if options.titleSuffix -}}
+{% endblock %}
+
 {% block beforeContent %}
   {{ govukBreadcrumbs({
     classes: "govuk-!-display-none-print",
