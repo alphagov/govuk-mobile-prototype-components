@@ -26,29 +26,24 @@ govuk-app {
 }
 
 /* A page's own styles for its elements stop here: everything inside starts
-   from the app's colour and type, and no spacing. A component's own styles
-   are a class, so they win over these. Load kit.css after the page's own
-   stylesheets, so that a page's rule for a bare element (`p { margin: … }`)
-   does not win over these, which are just as specific. */
+   from the app's colour and type, no spacing, and nothing drawn behind or
+   under it, such as a link's focus style. A component's own styles are a
+   class, so they win over these.
+
+   These aren't in a cascade layer, so if the page's styles are in one, these
+   win over all of them, however specific. If they aren't, these win only over
+   a page's rules that are just as specific (`p { margin: … }`), and only
+   because the components' stylesheets are added after the page's. */
 govuk-app *,
 govuk-app *::before,
 govuk-app *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: inherit;
-  font: inherit;
-}
-
-/* A page's styles for its links' states, such as GOV.UK Frontend's a:visited
-   and a:focus, are more specific than the reset above: one element and one
-   pseudo-class. This is just as specific, so wins over them the same way.
-   It's more specific than a single class, too, so a component styles its
-   links as an element and a class (`a.govuk-app-NAME`) to win over this. */
-govuk-app :where(a):is(:link, :visited, :hover, :active, :focus) {
   background: none;
   box-shadow: none;
   color: inherit;
+  font: inherit;
   text-decoration: none;
 }
 

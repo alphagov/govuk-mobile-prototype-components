@@ -1,0 +1,12 @@
+// GOV.UK Frontend and the GOV.UK Eleventy Plugin's styles: what the plugin's
+// own application.scss loads. application.scss loads this into a cascade
+// layer.
+
+@use "pkg:govuk-frontend/dist/govuk" with (
+  // Relative to the stylesheet, which is in assets/ with the fonts and
+  // images, so they load from under the path prefix the site is built with.
+  $govuk-assets-path: "",
+  $govuk-global-styles: true
+);
+
+@forward "pkg:@x-govuk/govuk-eleventy-plugin";

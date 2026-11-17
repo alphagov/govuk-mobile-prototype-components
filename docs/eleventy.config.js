@@ -6,6 +6,8 @@ import { govukEleventyPlugin } from '@x-govuk/govuk-eleventy-plugin'
 // are, so each page draws the real thing.
 export default async function (eleventyConfig) {
   await eleventyConfig.addPlugin(govukEleventyPlugin, {
+    // The plugin's styles, in a cascade layer: see assets/application.scss.
+    stylesheets: ['/assets/application.css'],
     header: {
       productName: 'App prototype components',
       phaseBanner: {

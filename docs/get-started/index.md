@@ -28,7 +28,15 @@ The app’s colours and type exist only inside `<govuk-app>`.
 - `colour-scheme="light"` or `"dark"` fixes the scheme. Otherwise it follows the device.
 - Its size and position are the page’s to set.
 
-Prototype pages shouldn’t style anything inside `<govuk-app>`. See [styles stay apart](/get-started/building-a-component/#styles-stay-apart) for why.
+Prototype pages shouldn’t style anything inside `<govuk-app>`. If a page loads stylesheets of its own, such as GOV.UK Frontend, load them into a cascade layer, so none of their styles reach the components:
+
+```html
+<style>
+  @import url("/assets/govuk-frontend.min.css") layer(page);
+</style>
+```
+
+See [styles stay apart](/get-started/building-a-component/#styles-stay-apart) for why.
 
 ## Inputs and outputs
 

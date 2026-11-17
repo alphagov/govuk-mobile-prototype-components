@@ -1,0 +1,12 @@
+// The site's styles, in place of the plugin's own application.css.
+//
+// The same styles, but in a cascade layer, so that none of them reach the
+// live components inside <govuk-app>: the components' styles aren't in a
+// layer, and a style in no layer wins over one in a layer, however specific
+// that one is. Without it, GOV.UK Frontend's styles for links (a:visited,
+// a:focus) would win over a component's own.
+@use "sass:meta";
+
+@layer govuk-frontend {
+  @include meta.load-css("govuk-frontend");
+}
