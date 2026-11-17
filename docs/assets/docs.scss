@@ -52,3 +52,8 @@
 .docs-tag {
   max-width: none;
 }
+
+// Space between the iOS and Android groups of screenshots.
+.docs-references + .govuk-heading-m {
+  @include govuk-responsive-margin(6, "top");
+}
