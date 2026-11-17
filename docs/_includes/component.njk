@@ -1,0 +1,37 @@
+{#- A component's page. Like the sub-navigation layout, but the content isn't
+    all wrapped in the prose scope, whose styles for bare elements (p, img,
+    figure) would reach into the live examples inside <govuk-app>. The page
+    wraps its own prose in it instead. -#}
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/assets/docs.css">
+  <script type="module" src="/components/{{ component.slug }}/{{ component.slug }}.js"></script>
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    classes: "govuk-!-display-none-print",
+    items: breadcrumbItems
+  }) if showBreadcrumbs }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter-from-desktop">
+      {{ xGovukSubNavigation({
+        items: collections.navigation | eleventyNavigation(sectionKey or options.homeKey) | itemsFromNavigation(page.url, true)
+      }) }}
+    </div>
+    <div class="govuk-grid-column-three-quarters-from-desktop">
+      {{ appDocumentHeader({
+        caption: caption,
+        title: title,
+        description: description
+      }) }}
+
+      {{ content }}
+    </div>
+  </div>
+{% endblock %}

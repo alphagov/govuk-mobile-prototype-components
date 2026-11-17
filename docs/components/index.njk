@@ -1,0 +1,16 @@
+---
+layout: sub-navigation
+title: Components
+description: Each component, drawn live from its definition file, beside the app's own screenshots.
+sectionKey: Components
+order: 2
+---
+<ul class="govuk-list">
+  {% for component in components %}
+  <li class="govuk-!-margin-bottom-6">
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link" href="/components/{{ component.slug }}/">{{ component.name | escape }}</a></h2>
+    <p class="govuk-body-s govuk-!-margin-bottom-1"><code>&lt;{{ component.element }}&gt;</code></p>
+    <p class="govuk-body govuk-!-margin-bottom-0">{{ component.purpose | escape }}</p>
+  </li>
+  {% endfor %}
+</ul>
