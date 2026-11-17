@@ -1,0 +1,1215 @@
+{
+ "Buttons|Primary button": {
+  "ios": [
+   {
+    "src": "screenshots/ios-govukbuttonsnapshottests-test-primary-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-gov-kit@main:GovKitExample/ReferenceImages_64/GovKitUISnapshotTests.GOVUKButtonSnapshotTests/test_primary_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-buttonscreenshottests-primarybuttonscreenshots-primarybutton-19e057b9-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ButtonScreenshotTests/PrimaryButtonScreenshots_PrimaryButton_19e057b9_0.png"
+   }
+  ]
+ },
+ "Buttons|Secondary button": {
+  "ios": [
+   {
+    "src": "screenshots/ios-govukbuttonsnapshottests-test-secondary-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-gov-kit@main:GovKitExample/ReferenceImages_64/GovKitUISnapshotTests.GOVUKButtonSnapshotTests/test_secondary_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-buttonscreenshottests-secondarybuttonscreenshots-secondarybutton-643fa126-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ButtonScreenshotTests/SecondaryButtonScreenshots_SecondaryButton_643fa126_0.png"
+   }
+  ]
+ },
+ "Buttons|Compact button": {
+  "ios": [
+   {
+    "src": "screenshots/ios-govukbuttonsnapshottests-test-compact-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-gov-kit@main:GovKitExample/ReferenceImages_64/GovKitUISnapshotTests.GOVUKButtonSnapshotTests/test_compact_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-buttonscreenshottests-compactbuttonscreenshots-compactbutton-9d4598f4-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ButtonScreenshotTests/CompactButtonScreenshots_CompactButton_9d4598f4_0.png"
+   },
+   {
+    "src": "screenshots/android-buttonscreenshottests-compactprimarywithiconbuttonscreenshots-compactprimarywithic.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ButtonScreenshotTests/CompactPrimaryWithIconButtonScreenshots_CompactPrimaryWithIconButton_7e5b6ede_0.png"
+   }
+  ]
+ },
+ "Buttons|Destructive button": {
+  "ios": [
+   {
+    "src": "screenshots/ios-govukbuttonsnapshottests-test-destructive-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-gov-kit@main:GovKitExample/ReferenceImages_64/GovKitUISnapshotTests.GOVUKButtonSnapshotTests/test_destructive_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-buttonscreenshottests-destructivebuttonscreenshots-destructivebutton-9ea09141-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ButtonScreenshotTests/DestructiveButtonScreenshots_DestructiveButton_9ea09141_0.png"
+   }
+  ]
+ },
+ "Buttons|Overflow (⋯) button": {
+  "android": [
+   {
+    "src": "screenshots/android-buttonscreenshottests-overflowbuttonscreenshots-overflowbutton-893a0f80-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ButtonScreenshotTests/OverflowButtonScreenshots_OverflowButton_893a0f80_0.png"
+   }
+  ]
+ },
+ "Buttons|Account connection button": {
+  "android": [
+   {
+    "src": "screenshots/android-buttonscreenshottests-accountconnectionbuttonscreenshots-accountconnectionbutton-a.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ButtonScreenshotTests/AccountConnectionButtonScreenshots_AccountConnectionButton_a01f8af1_0.png"
+   }
+  ]
+ },
+ "Buttons|Connected button": {
+  "android": [
+   {
+    "src": "screenshots/android-buttonscreenshottests-connectedactivebuttonscreenshots-connectedactivebutton-182f5.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ButtonScreenshotTests/ConnectedActiveButtonScreenshots_ConnectedActiveButton_182f56db_0.png"
+   }
+  ]
+ },
+ "Buttons|Button stack / group": {
+  "ios": [
+   {
+    "src": "screenshots/ios-govukuicomponentssnapshottests-test-buttons-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-gov-kit@main:GovKitExample/ReferenceImages_64/GovKitUISnapshotTests.GOVUKUIComponentsSnapshotTests/test_buttons_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-buttongroupscreenshottests-verticalbuttongroupscreenshots-verticalbuttongroup-2bb2ccc2-.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ButtonGroupScreenshotTests/VerticalButtonGroupScreenshots_VerticalButtonGroup_2bb2ccc2_0.png"
+   },
+   {
+    "src": "screenshots/android-buttongroupscreenshottests-horizontalconnectedbuttongroupscreenshots-horizontalconnecte.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ButtonGroupScreenshotTests/HorizontalConnectedButtonGroupScreenshots_HorizontalConnectedButtonGroup_a4b4c931_0.png"
+   }
+  ]
+ },
+ "Buttons|Fixed bottom buttons": {
+  "android": [
+   {
+    "src": "screenshots/android-buttongroupscreenshottests-fixedprimarybuttonscreenshots-fixedprimarybutton-f1f4e8af-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ButtonGroupScreenshotTests/FixedPrimaryButtonScreenshots_FixedPrimaryButton_f1f4e8af_0.png"
+   }
+  ]
+ },
+ "Cards|Non-tappable card": {
+  "ios": [
+   {
+    "src": "screenshots/ios-nontappablecardviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.NonTappableCardViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-cardscreenshottests-nontappablecardscreenshots-nontappablecard-b59dbafe-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/CardScreenshotTests/NonTappableCardScreenshots_NonTappableCard_b59dbafe_0.png"
+   }
+  ]
+ },
+ "Cards|Centred card with icon": {
+  "ios": [
+   {
+    "src": "screenshots/ios-centrecardviewsnapshottests-test-primaryandsecondarytextprovided-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-gov-kit@main:GovKitExample/ReferenceImages_64/GovKitUISnapshotTests.CentreCardViewSnapshotTests/test_primaryAndSecondaryTextProvided_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-cardscreenshottests-centredcardwithiconwithtitleanddescriptionscreenshots-centre.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/CardScreenshotTests/CentredCardWithIconWithTitleAndDescriptionScreenshots_CentredCardWithIconWithTitleAndDescription_71a0a62e_0.png"
+   }
+  ]
+ },
+ "Cards|Icon + action card": {
+  "ios": [
+   {
+    "src": "screenshots/ios-iconactioncardviewsnapshottests-test-withtitleanddescription-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.IconActionCardViewSnapshotTests/test_withTitleAndDescription_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Cards|Navigation card": {
+  "android": [
+   {
+    "src": "screenshots/android-cardscreenshottests-navigationcardwithtitleanddescriptionscreenshots-navigationc.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/CardScreenshotTests/NavigationCardWithTitleAndDescriptionScreenshots_NavigationCardWithTitleAndDescription_fb5fbf91_0.png"
+   }
+  ]
+ },
+ "Cards|Drill-in card": {
+  "android": [
+   {
+    "src": "screenshots/android-cardscreenshottests-drillincarddescriptionscreenshots-drillincarddescription-514.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/CardScreenshotTests/DrillInCardDescriptionScreenshots_DrillInCardDescription_514a96e4_0.png"
+   }
+  ]
+ },
+ "Cards|Search result card": {
+  "android": [
+   {
+    "src": "screenshots/android-cardscreenshottests-searchresultwithdescriptionscreenshots-searchresultwithdescr.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/CardScreenshotTests/SearchResultWithDescriptionScreenshots_SearchResultWithDescription_eac28c9e_0.png"
+   }
+  ]
+ },
+ "Cards|Home banner card": {
+  "android": [
+   {
+    "src": "screenshots/android-cardscreenshottests-homeinformationemergencybannercardscreenshots-homeinformatio.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/CardScreenshotTests/HomeInformationEmergencyBannerCardScreenshots_HomeInformationEmergencyBannerCard_50986dad_0.png"
+   }
+  ]
+ },
+ "Cards|Quarterly feedback card": {
+  "android": [
+   {
+    "src": "screenshots/android-cardscreenshottests-quarterlyfeedbackcardscreenshots-quarterlyfeedbackcard-3aff0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/CardScreenshotTests/QuarterlyFeedbackCardScreenshots_QuarterlyFeedbackCard_3aff0dc6_0.png"
+   }
+  ]
+ },
+ "Cards|Account connection card": {
+  "ios": [
+   {
+    "src": "screenshots/ios-serviceaccountlinkcardviewsnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.ServiceAccountLinkCardViewSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-cardscreenshottests-accountconnectioncardscreenshots-accountconnectioncard-9db94.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/CardScreenshotTests/AccountConnectionCardScreenshots_AccountConnectionCard_9db943e6_0.png"
+   }
+  ]
+ },
+ "Cards|Loader card": {
+  "android": [
+   {
+    "src": "screenshots/android-cardscreenshottests-loadercardscreenshots-loadercard-da975df2-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/CardScreenshotTests/LoaderCardScreenshots_LoaderCard_da975df2_0.png"
+   }
+  ]
+ },
+ "Lists|Grouped list": {
+  "ios": [
+   {
+    "src": "screenshots/ios-groupedlistsnapshottests-test-defaultbackgroundcolor-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-gov-kit@main:GovKitExample/ReferenceImages_64/GovKitUISnapshotTests.GroupedListSnapshotTests/test_defaultBackgroundColor_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Lists|Internal link row": {
+  "android": [
+   {
+    "src": "screenshots/android-listscreenshottests-internallinklistitemdescriptionscreenshots-internallinklisti.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ListScreenshotTests/InternalLinkListItemDescriptionScreenshots_InternalLinkListItemDescription_c0ea6c3b_0.png"
+   }
+  ]
+ },
+ "Lists|External link row": {
+  "android": [
+   {
+    "src": "screenshots/android-listscreenshottests-externallinklistitemdefaultscreenshots-externallinklistitemd.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ListScreenshotTests/ExternalLinkListItemDefaultScreenshots_ExternalLinkListItemDefault_80d151a0_0.png"
+   }
+  ]
+ },
+ "Lists|Toggle row": {
+  "android": [
+   {
+    "src": "screenshots/android-listscreenshottests-togglelistitemscreenshots-togglelistitem-19c6a3f3-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ListScreenshotTests/ToggleListItemScreenshots_ToggleListItem_19c6a3f3_0.png"
+   }
+  ]
+ },
+ "Lists|Status row": {
+  "ios": [
+   {
+    "src": "screenshots/ios-statusrowviewsnapshottests-teststatusrowview-plaintext-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.StatusRowViewSnapshotTests/testStatusRowView_PlainText_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-listscreenshottests-statuslistitemscreenshots-statuslistitem-3e974d1c-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ListScreenshotTests/StatusListItemScreenshots_StatusListItem_3e974d1c_0.png"
+   }
+  ]
+ },
+ "Lists|Address row": {
+  "android": [
+   {
+    "src": "screenshots/android-listscreenshottests-addresslistitemscreenshots-addresslistitem-650418a0-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ListScreenshotTests/AddressListItemScreenshots_AddressListItem_650418a0_0.png"
+   }
+  ]
+ },
+ "Lists|Countdown bar row": {
+  "android": [
+   {
+    "src": "screenshots/android-listscreenshottests-countdownbaritemlistitemscreenshots-countdownbaritemlistitem.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ListScreenshotTests/CountdownBarItemListItemScreenshots_CountdownBarItemListItem_1ee350a1_0.png"
+   }
+  ]
+ },
+ "Lists|Count row": {
+  "android": [
+   {
+    "src": "screenshots/android-listscreenshottests-countlistitemscreenshots-countlistitem-3914783e-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ListScreenshotTests/CountListItemScreenshots_CountListItem_3914783e_0.png"
+   }
+  ]
+ },
+ "Lists|Topic list item": {
+  "ios": [
+   {
+    "src": "screenshots/ios-topiclistitemviewsnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.TopicListItemViewSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Headers, titles and text|Screen headers": {
+  "android": [
+   {
+    "src": "screenshots/android-headerscreenshottests-fullscreenheaderbackandactionscreenshots-fullscreenheaderbac.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/HeaderScreenshotTests/FullScreenHeaderBackAndActionScreenshots_FullScreenHeaderBackAndAction_33a7ce62_0.png"
+   },
+   {
+    "src": "screenshots/android-headerscreenshottests-childpageheaderbackandactionscreenshots-childpageheaderbacka.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/HeaderScreenshotTests/ChildPageHeaderBackAndActionScreenshots_ChildPageHeaderBackAndAction_516135be_0.png"
+   },
+   {
+    "src": "screenshots/android-headerscreenshottests-modalheaderwithclosescreenshots-modalheaderwithclose-55950b8.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/HeaderScreenshotTests/ModalHeaderWithCloseScreenshots_ModalHeaderWithClose_55950b84_0.png"
+   }
+  ]
+ },
+ "Headers, titles and text|Section heading": {
+  "ios": [
+   {
+    "src": "screenshots/ios-sectionheaderlabelviewsnapshottests-test-withbutton-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-gov-kit@main:GovKitExample/ReferenceImages_64/GovKitUISnapshotTests.SectionHeaderLabelViewSnapshotTests/test_withButton_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-labelscreenshottests-sectionheadinglabeltitle1screenshots-sectionheadinglabeltitl.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/LabelScreenshotTests/SectionHeadingLabelTitle1Screenshots_SectionHeadingLabelTitle1_7dc997c6_0.png"
+   }
+  ]
+ },
+ "Headers, titles and text|Text styles": {
+  "ios": [
+   {
+    "src": "screenshots/ios-govukuicomponentssnapshottests-test-font-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-gov-kit@main:GovKitExample/ReferenceImages_64/GovKitUISnapshotTests.GOVUKUIComponentsSnapshotTests/test_font_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-labelscreenshottests-title1boldscreenshots-title1bold-a4de9bb5-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/LabelScreenshotTests/Title1BoldScreenshots_Title1Bold_a4de9bb5_0.png"
+   },
+   {
+    "src": "screenshots/android-labelscreenshottests-bodyregularscreenshots-bodyregular-bff57acd-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/LabelScreenshotTests/BodyRegularScreenshots_BodyRegular_bff57acd_0.png"
+   }
+  ]
+ },
+ "Forms and inputs|Search bar": {
+  "android": [
+   {
+    "src": "screenshots/android-textfieldscreenshottests-searchheaderscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/search/src/screenshotTestDebug/reference/uk/gov/govuk/search/ui/component/TextFieldScreenshotTests/SearchHeaderScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Forms and inputs|Toggle switch": {
+  "android": [
+   {
+    "src": "screenshots/android-switchscreenshottests-toggleswitchonscreenshots-toggleswitchon-74412e4b-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/SwitchScreenshotTests/ToggleSwitchOnScreenshots_ToggleSwitchOn_74412e4b_0.png"
+   }
+  ]
+ },
+ "Forms and inputs|Inline action error": {
+  "ios": [
+   {
+    "src": "screenshots/ios-inlineactionerrorviewsnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.InlineActionErrorViewSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Feedback, status and errors|Info alert": {
+  "android": [
+   {
+    "src": "screenshots/android-alertscreenshottests-infoalertscreenshots-infoalert-3f68f9b2-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/AlertScreenshotTests/InfoAlertScreenshots_InfoAlert_3f68f9b2_0.png"
+   }
+  ]
+ },
+ "Feedback, status and errors|App error view": {
+  "ios": [
+   {
+    "src": "screenshots/ios-apperrorviewsnapshottests-test-genericerror-withbutton-lightmode-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-gov-kit@main:GovKitExample/ReferenceImages_64/GovKitUISnapshotTests.AppErrorViewSnapshotTests/test_genericError_withButton_lightMode_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-errorpagescreenshottests-errorpagewithadditionalcontentscreenshots-errorpagewithaddit.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/error/ErrorPageScreenshotTests/ErrorPageWithAdditionalContentScreenshots_ErrorPageWithAdditionalContent_02de7584_0.png"
+   }
+  ]
+ },
+ "Feedback, status and errors|Problem message": {
+  "android": [
+   {
+    "src": "screenshots/android-problemmessagescreenshottests-problemmessagescreenshots-problemmessage-c0e4aa07-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/error/ProblemMessageScreenshotTests/ProblemMessageScreenshots_ProblemMessage_c0e4aa07_0.png"
+   }
+  ]
+ },
+ "Feedback, status and errors|Offline message / screen": {
+  "android": [
+   {
+    "src": "screenshots/android-deviceofflinescreenscreenshottests-deviceofflinescreenscreenshots-deviceofflinescreen-bbdc34a1-.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/error/DeviceOfflineScreenScreenshotTests/DeviceOfflineScreenScreenshots_DeviceOfflineScreen_bbdc34a1_0.png"
+   }
+  ]
+ },
+ "Feedback, status and errors|App unavailable": {
+  "ios": [
+   {
+    "src": "screenshots/ios-appunavailableviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.AppUnavailableViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-appunavailablescreenscreenshottests-appunavailablescreenscreenshots-appunavailablescreen-7ff1235.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/error/AppUnavailableScreenScreenshotTests/AppUnavailableScreenScreenshots_AppUnavailableScreen_7ff12356_0.png"
+   }
+  ]
+ },
+ "Feedback, status and errors|Forced update": {
+  "ios": [
+   {
+    "src": "screenshots/ios-appforcedupdateviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.AppForcedUpdateViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-forcedupdatescreenscreenshottests-forcedupdatepreviewscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:app/src/screenshotTestDebug/reference/uk/gov/govuk/ui/ForcedUpdateScreenScreenshotTests/ForcedUpdatePreviewScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Feedback, status and errors|Recommended update": {
+  "ios": [
+   {
+    "src": "screenshots/ios-apprecommendupdateviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.AppRecommendUpdateViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-recommendupdatescreenscreenshottests-recommendupdatepreviewscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:app/src/screenshotTestDebug/reference/uk/gov/govuk/ui/RecommendUpdateScreenScreenshotTests/RecommendUpdatePreviewScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Feedback, status and errors|Countdown / expiry bar": {
+  "ios": [
+   {
+    "src": "screenshots/ios-expiryprogressviewsnapshottests-test-halffull-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.ExpiryProgressViewSnapshotTests/test_halfFull_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Feedback, status and errors|Loading screen": {
+  "ios": [
+   {
+    "src": "screenshots/ios-travelloadingviewsnapshottests-test-travelloadingview-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.TravelLoadingViewSnapshotTests/test_travelLoadingView_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Screen templates and layout|Bookend screens": {
+  "android": [
+   {
+    "src": "screenshots/android-screenscreenshottests-bookendtowebscreenscreenshots-bookendtowebscreen-755b7547-0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ScreenScreenshotTests/BookendToWebScreenScreenshots_BookendToWebScreen_755b7547_0.png"
+   }
+  ]
+ },
+ "Screen templates and layout|Onboarding slide": {
+  "ios": [
+   {
+    "src": "screenshots/ios-welcomeonboardingviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.WelcomeOnboardingViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-onboardingpageonescreenshottests-onboardingpageonescreenscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/chat/src/screenshotTestDebug/reference/uk/gov/govuk/chat/ui/OnboardingPageOneScreenshotTests/OnboardingPageOneScreenScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Screen templates and layout|Privacy policy link": {
+  "ios": [
+   {
+    "src": "screenshots/ios-privacyviewcontrollersnapshottests-test-loadinnavigationcontroller-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.PrivacyViewControllerSnapshotTests/test_loadInNavigationController_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Screen templates and layout|Terms and conditions": {
+  "ios": [
+   {
+    "src": "screenshots/ios-termsandconditionsviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.TermsAndConditionsViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-termsscreenscreenshottests-termsnewuserpreviewscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:app/src/screenshotTestDebug/reference/uk/gov/govuk/terms/ui/TermsScreenScreenshotTests/TermsNewUserPreviewScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Screen templates and layout|Analytics consent": {
+  "ios": [
+   {
+    "src": "screenshots/ios-analyticsconsentviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.AnalyticsConsentViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Screen templates and layout|Specification icons": {
+  "android": [
+   {
+    "src": "screenshots/android-specificationsiconsscreenshottests-horizontalspecificationsiconsscreenshots-horizontalspecifica.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/SpecificationsIconsScreenshotTests/HorizontalSpecificationsIconsScreenshots_HorizontalSpecificationsIcons_4eedf623_0.png"
+   }
+  ]
+ },
+ "Theme|Colours": {
+  "ios": [
+   {
+    "src": "screenshots/ios-govukuicomponentssnapshottests-test-colours-fills-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-gov-kit@main:GovKitExample/ReferenceImages_64/GovKitUISnapshotTests.GOVUKUIComponentsSnapshotTests/test_colours_fills_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Theme|Typography": {
+  "ios": [
+   {
+    "src": "screenshots/ios-govukuicomponentssnapshottests-test-font-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-gov-kit@main:GovKitExample/ReferenceImages_64/GovKitUISnapshotTests.GOVUKUIComponentsSnapshotTests/test_font_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Home and widgets|Homepage widget container": {
+  "ios": [
+   {
+    "src": "screenshots/ios-homeviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.HomeViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-homescreenscreenshottests-homescreenscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/home/src/screenshotTestDebug/reference/uk/gov/govuk/home/ui/HomeScreenScreenshotTests/HomeScreenScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Home and widgets|Emergency banner": {
+  "ios": [
+   {
+    "src": "screenshots/ios-emergencybannersnapshottests-test-nationalemergency-light-link-nodismissal-renderscorrect.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.EmergencyBannerSnapshotTests/test_nationalEmergency_light_link_noDismissal_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-cardscreenshottests-homenationalemergencybannercardscreenshots-homenationalemerg.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/CardScreenshotTests/HomeNationalEmergencyBannerCardScreenshots_HomeNationalEmergencyBannerCard_6f4e4eff_0.png"
+   }
+  ]
+ },
+ "Home and widgets|Quarterly survey banner": {
+  "android": [
+   {
+    "src": "screenshots/android-cardscreenshottests-quarterlyfeedbackcardscreenshots-quarterlyfeedbackcard-3aff0.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/CardScreenshotTests/QuarterlyFeedbackCardScreenshots_QuarterlyFeedbackCard_3aff0dc6_0.png"
+   }
+  ]
+ },
+ "Home and widgets|Recent activity / visited": {
+  "ios": [
+   {
+    "src": "screenshots/ios-recentactivitywidgetviewsnapshottests-test-loadinnavigationcontroller-activities-light-rendercorre.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.RecentActivityWidgetViewSnapshotTests/test_loadInNavigationController_activities_light_renderCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-visitedwidgetscreenshottests-visiteditemsscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/visited/src/screenshotTestDebug/reference/uk/gov/govuk/visited/ui/widget/VisitedWidgetScreenshotTests/VisitedItemsScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Home and widgets|Search widget": {
+  "android": [
+   {
+    "src": "screenshots/android-searchwidgetscreenshottests-searchwidgetscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/search/src/screenshotTestDebug/reference/uk/gov/govuk/search/ui/widget/SearchWidgetScreenshotTests/SearchWidgetScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Home and widgets|Topics widget": {
+  "ios": [
+   {
+    "src": "screenshots/ios-topicswidgetviewsnapshottests-test-loadinnavigationcontroller-populated-light-renderscorre.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.TopicsWidgetViewSnapshotTests/test_loadInNavigationController_populated_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-topicswidgetscreenshottests-topicswidgetscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/topics/src/screenshotTestDebug/reference/uk/gov/govuk/topics/ui/widget/TopicsWidgetScreenshotTests/TopicsWidgetScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Home and widgets|Travel alerts widget": {
+  "android": [
+   {
+    "src": "screenshots/android-travelalertswidgetscreenshottests-travelalertswidgetloadedscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/travelalerts/src/screenshotTestDebug/reference/uk/gov/govuk/travelalerts/ui/widget/TravelAlertsWidgetScreenshotTests/TravelAlertsWidgetLoadedScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Home and widgets|Local authority widget": {
+  "ios": [
+   {
+    "src": "screenshots/ios-storedlocalauthoritywidgetviewsnapshottests-test-loadinnavigationcontroller-twotier-light-renderscorrect.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.StoredLocalAuthorityWidgetViewSnapshotTests/test_loadInNavigationController_twoTier_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-localwidgetscreenshottests-unitarylocalauthorityscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/local/src/screenshotTestDebug/reference/uk/govuk/app/local/ui/LocalWidgetScreenshotTests/UnitaryLocalAuthorityScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Home and widgets|DVLA account widget": {
+  "ios": [
+   {
+    "src": "screenshots/ios-dvlaaccountwidgetviewsnapshottests-test-accountsummaryview-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.DVLAAccountWidgetViewSnapshotTests/test_accountSummaryView_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Home and widgets|Check vehicle widget": {
+  "android": [
+   {
+    "src": "screenshots/android-checkvehiclewidgetscreenshottests-searchvehiclecardscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/component/CheckVehicleWidgetScreenshotTests/SearchVehicleCardScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Search|Search history": {
+  "ios": [
+   {
+    "src": "screenshots/ios-searchhistoryviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.SearchHistoryViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Search|Suggestions": {
+  "ios": [
+   {
+    "src": "screenshots/ios-searchsuggestionsviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.SearchSuggestionsViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-searchautocompletescreenshottests-highlightdoublesearchterm1screenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/search/src/screenshotTestDebug/reference/uk/gov/govuk/search/ui/SearchAutocompleteScreenshotTests/HighlightDoubleSearchTerm1Screenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Search|Results": {
+  "ios": [
+   {
+    "src": "screenshots/ios-searchviewcontrollersnapshottests-test-search-successresponse-withresults-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.SearchViewControllerSnapshotTests/test_search_successResponse_withResults_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Topics|Topic detail": {
+  "ios": [
+   {
+    "src": "screenshots/ios-topicdetailviewsnapshottests-test-topicdetail-fetched-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.TopicDetailViewSnapshotTests/test_topicDetail_fetched_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Topics|Edit topics": {
+  "ios": [
+   {
+    "src": "screenshots/ios-edittopicsviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.EditTopicsViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Topics|Topics onboarding": {
+  "ios": [
+   {
+    "src": "screenshots/ios-topiconboardingviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.TopicOnboardingViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Local services|Explainer": {
+  "ios": [
+   {
+    "src": "screenshots/ios-localauthorityexplainerviewsnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.LocalAuthorityExplainerViewSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-localexplainerscreenscreenshottests-localexplainerscreenscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/local/src/screenshotTestDebug/reference/uk/govuk/app/local/ui/LocalExplainerScreenScreenshotTests/LocalExplainerScreenScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Local services|Postcode entry": {
+  "ios": [
+   {
+    "src": "screenshots/ios-localauthoritypostcodeentryviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.LocalAuthorityPostcodeEntryViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-locallookupscreenscreenshottests-locallookupscreenscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/local/src/screenshotTestDebug/reference/uk/govuk/app/local/ui/LocalLookupScreenScreenshotTests/LocalLookupScreenScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Local services|Address / authority picker": {
+  "ios": [
+   {
+    "src": "screenshots/ios-ambiguousaddressselectionviewsnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.AmbiguousAddressSelectionViewSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-localaddressselectscreenscreenshottests-localaddressselectscreenscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/local/src/screenshotTestDebug/reference/uk/govuk/app/local/ui/LocalAddressSelectScreenScreenshotTests/LocalAddressSelectScreenScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Local services|Confirmation": {
+  "ios": [
+   {
+    "src": "screenshots/ios-localauthorityconfirmationviewcontrollersnapshottests-test-loadinnavigationcontroller-twotier-light-renderscorrect.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.LocalAuthorityConfirmationViewControllerSnapshotTests/test_loadInNavigationController_twoTier_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-localconfirmationscreenscreenshottests-twotierauthoritylocalconfirmationscreenshots-light-b29dc7a7-.webp",
+    "from": "govuk-mobile-android-app@main:feature/local/src/screenshotTestDebug/reference/uk/govuk/app/local/ui/LocalConfirmationScreenScreenshotTests/TwoTierAuthorityLocalConfirmationScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Chat (GOV.UK Chat)|Chat screen": {
+  "ios": [
+   {
+    "src": "screenshots/ios-chatviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.ChatViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-chatscreenscreenshottests-chatscreenscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/chat/src/screenshotTestDebug/reference/uk/gov/govuk/chat/ui/ChatScreenScreenshotTests/ChatScreenScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Chat (GOV.UK Chat)|Example questions": {
+  "ios": [
+   {
+    "src": "screenshots/ios-chatexamplequestionsviewsnapshottests-test-loadinnavigationcontroller-examplequestions-light-rende.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.ChatExampleQuestionsViewSnapshotTests/test_loadInNavigationController_exampleQuestions_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-intromessagesscreenshottests-messagescreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/chat/src/screenshotTestDebug/reference/uk/gov/govuk/chat/ui/component/IntroMessagesScreenshotTests/MessageScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Chat (GOV.UK Chat)|Feedback": {
+  "ios": [
+   {
+    "src": "screenshots/ios-chatfeedbackviewsnapshottests-test-loadinnavigationcontroller-helpful-light-renderscorrect.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.ChatFeedbackViewSnapshotTests/test_loadInNavigationController_helpful_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Chat (GOV.UK Chat)|Action menu": {
+  "ios": [
+   {
+    "src": "screenshots/ios-chatactionviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.ChatActionViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Chat (GOV.UK Chat)|Onboarding": {
+  "android": [
+   {
+    "src": "screenshots/android-onboardingpageonescreenshottests-onboardingpageonescreenscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-ios-app@main:feature/chat/src/screenshotTestDebug/reference/uk/gov/govuk/chat/ui/OnboardingPageOneScreenshotTests/OnboardingPageOneScreenScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "DVLA (driving licence and vehicles)|Account summary": {
+  "ios": [
+   {
+    "src": "screenshots/ios-dvlaaccountsummaryviewsnapshottests-test-licencetabselected-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.DVLAAccountSummaryViewSnapshotTests/test_licenceTabSelected_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-licencesummarycardscreenshottests-licenceheaderscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/component/LicenceSummaryCardScreenshotTests/LicenceHeaderScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "DVLA (driving licence and vehicles)|Driving licence": {
+  "ios": [
+   {
+    "src": "screenshots/ios-drivinglicenceviewsnapshottests-test-drivinglicencesummaryview-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.DrivingLicenceViewSnapshotTests/test_drivingLicenceSummaryView_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-licencenotavailablecardscreenshottests-licencenotavailablecardscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/component/LicenceNotAvailableCardScreenshotTests/LicenceNotAvailableCardScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "DVLA (driving licence and vehicles)|Driving record": {
+  "android": [
+   {
+    "src": "screenshots/android-drivingrecordsectionscreenshottests-drivingrecordsectionscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/component/DrivingRecordSectionScreenshotTests/DrivingRecordSectionScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "DVLA (driving licence and vehicles)|Licence categories": {
+  "ios": [
+   {
+    "src": "screenshots/ios-licencecategorydetailviewsnapshottests-test-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.LicenceCategoryDetailViewSnapshotTests/test_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-licencecategoriesroutescreenshottest-licencecategoriesscreenscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/LicenceCategoriesRouteScreenshotTest/LicenceCategoriesScreenScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "DVLA (driving licence and vehicles)|Vehicles list / summary": {
+  "ios": [
+   {
+    "src": "screenshots/ios-vehiclesviewsnapshottests-test-vehiclesummaryview-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.VehiclesViewSnapshotTests/test_vehicleSummaryView_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-vehiclesummarycardscreenshottests-vehicleheaderscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/component/VehicleSummaryCardScreenshotTests/VehicleHeaderScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "DVLA (driving licence and vehicles)|Vehicle detail": {
+  "ios": [
+   {
+    "src": "screenshots/ios-vehicledetailviewsnapshottests-test-fullypopulatedvehicle-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.VehicleDetailViewSnapshotTests/test_fullyPopulatedVehicle_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-vehicledetailsroutescreenshottests-vehicledetailsscreenscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/VehicleDetailsRouteScreenshotTests/VehicleDetailsScreenScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "DVLA (driving licence and vehicles)|Vehicle check": {
+  "ios": [
+   {
+    "src": "screenshots/ios-vehiclecheckresultviewsnapshottests-test-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.VehicleCheckResultViewSnapshotTests/test_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-checkvehiclesheetscreenshottests-checkvehiclesheetemptyscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/component/CheckVehicleSheetScreenshotTests/CheckVehicleSheetEmptyScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "DVLA (driving licence and vehicles)|Add vehicle": {
+  "android": [
+   {
+    "src": "screenshots/android-addvehiclelistitemscreenshottests-addvehiclelistitemscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/component/AddVehicleListItemScreenshotTests/AddVehicleListItemScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "DVLA (driving licence and vehicles)|Registration number": {
+  "ios": [
+   {
+    "src": "screenshots/ios-registrationnumberformmodalsnapshottests-test-modal-lightmode-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.RegistrationNumberFormModalSnapshotTests/test_modal_lightMode@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-registrationplatescreenshottests-registrationplatescreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/component/RegistrationPlateScreenshotTests/RegistrationPlateScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "DVLA (driving licence and vehicles)|Status label / row": {
+  "ios": [
+   {
+    "src": "screenshots/ios-statusrowviewsnapshottests-teststatusrowview-withlinkaction-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.StatusRowViewSnapshotTests/testStatusRowView_WithLinkAction_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-infostatusitemscreenshottests-infostatusitemscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/component/InfoStatusItemScreenshotTests/InfoStatusItemScreenshots_Light_b29dc7a7_0.png"
+   },
+   {
+    "src": "screenshots/android-linkstatusitemscreenshottests-linkstatusitemscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/component/LinkStatusItemScreenshotTests/LinkStatusItemScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "DVLA (driving licence and vehicles)|Validity status (tax / MOT)": {
+  "ios": [
+   {
+    "src": "screenshots/ios-validitystatusviewsnapshottests-test-statuswithbuttonandfooter-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.ValidityStatusViewSnapshotTests/test_statusWithButtonAndFooter_light_rendersCorrectly@3x.png"
+   },
+   {
+    "src": "screenshots/ios-taxvaliditystatusviewsnapshottests-test-sornstatus-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.TaxValidityStatusViewSnapshotTests/test_sornStatus_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "DVLA (driving licence and vehicles)|Account linking": {},
+ "DVLA (driving licence and vehicles)|Error card": {
+  "android": [
+   {
+    "src": "screenshots/android-summaryerrorcardscreenshottests-summaryerrorcardscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/dvla/src/screenshotTestDebug/reference/uk/gov/govuk/dvla/ui/component/SummaryErrorCardScreenshotTests/SummaryErrorCardScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Service accounts|Consent": {
+  "ios": [
+   {
+    "src": "screenshots/ios-serviceaccountconsentviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.ServiceAccountConsentViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Service accounts|Linking / unlinking": {
+  "ios": [
+   {
+    "src": "screenshots/ios-serviceaccountlinkingviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.ServiceAccountLinkingViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-screenscreenshottests-bookendconnectingscreenscreenshots-bookendconnectingscreen-7.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ScreenScreenshotTests/BookendConnectingScreenScreenshots_BookendConnectingScreen_7e37fbb0_0.png"
+   }
+  ]
+ },
+ "Service accounts|Link success": {
+  "ios": [
+   {
+    "src": "screenshots/ios-serviceaccountlinksuccessviewsnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.ServiceAccountLinkSuccessViewSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-screenscreenshottests-accountconnectionsuccessscreenscreenshots-accountconnections.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/ScreenScreenshotTests/AccountConnectionSuccessScreenScreenshots_AccountConnectionSuccessScreen_41f2e3eb_0.png"
+   }
+  ]
+ },
+ "Service accounts|Link card": {
+  "ios": [
+   {
+    "src": "screenshots/ios-serviceaccountlinkcardviewsnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.ServiceAccountLinkCardViewSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-cardscreenshottests-accountconnectioncardscreenshots-accountconnectioncard-9db94.webp",
+    "from": "govuk-mobile-android-app@GOVUKAPP-4072-screenshot-test:design/src/screenshotTestDebug/reference/uk/gov/govuk/design/ui/component/CardScreenshotTests/AccountConnectionCardScreenshots_AccountConnectionCard_9db943e6_0.png"
+   }
+  ]
+ },
+ "Travel alerts|Country list": {
+  "ios": [
+   {
+    "src": "screenshots/ios-countrylistviewsnapshottests-test-loadinnavigationcontroller-loaded-light-renderscorrectl.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.CountryListViewSnapshotTests/test_loadInNavigationController_loaded_light_rendersCorrectlyWithCompletionHandler_@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-countrylistscreenscreenshottests-countrylistloadedscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/travelalerts/src/screenshotTestDebug/reference/uk/gov/govuk/travelalerts/ui/countrylist/CountryListScreenScreenshotTests/CountryListLoadedScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Travel alerts|Edit countries": {
+  "android": [
+   {
+    "src": "screenshots/android-editcountriesscreenscreenshottests-editcountriesloadedscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/travelalerts/src/screenshotTestDebug/reference/uk/gov/govuk/travelalerts/ui/editcountries/EditCountriesScreenScreenshotTests/EditCountriesLoadedScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Travel alerts|Country options sheet": {
+  "ios": [
+   {
+    "src": "screenshots/ios-countryoptionsbottomsheetsnapshottests-test-unfollowing-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.CountryOptionsBottomSheetSnapshotTests/test_unfollowing_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-countryoptionsbottomsheetscreenshottests-countryoptionsbottomsheetcontentscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/travelalerts/src/screenshotTestDebug/reference/uk/gov/govuk/travelalerts/ui/editcountries/CountryOptionsBottomSheetScreenshotTests/CountryOptionsBottomSheetContentScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Travel alerts|Notifications rationale": {
+  "ios": [
+   {
+    "src": "screenshots/ios-notificationsrationaleviewsnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.NotificationsRationaleViewSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-notificationsrationalescreenscreenshottests-notificationsrationalescreencontentscreenshots-light-b29dc7a.webp",
+    "from": "govuk-mobile-android-app@main:feature/travelalerts/src/screenshotTestDebug/reference/uk/gov/govuk/travelalerts/ui/notificationsprompt/NotificationsRationaleScreenScreenshotTests/NotificationsRationaleScreenContentScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Travel alerts|Notification preference sheet": {
+  "android": [
+   {
+    "src": "screenshots/android-notificationspreferencebottomsheetscreenshottests-notificationspreferencebottomsheetcontentscreenshots-light-b.webp",
+    "from": "govuk-mobile-android-app@main:feature/travelalerts/src/screenshotTestDebug/reference/uk/gov/govuk/travelalerts/ui/countrylist/NotificationsPreferenceBottomSheetScreenshotTests/NotificationsPreferenceBottomSheetContentScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Notifications and messages|Notification centre / messages list": {
+  "ios": [
+   {
+    "src": "screenshots/ios-notificationcentreviewsnapshottests-test-loaded-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.NotificationCentreViewSnapshotTests/test_loaded_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-messagesscreenscreenshottests-messagesloadedscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/messages/src/screenshotTestDebug/reference/uk/gov/govuk/messages/ui/MessagesScreenScreenshotTests/MessagesLoadedScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Notifications and messages|Message detail": {
+  "ios": [
+   {
+    "src": "screenshots/ios-notificationcentredetailviewsnapshottests-test-loaded-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.NotificationCentreDetailViewSnapshotTests/test_loaded_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-messagesdetailscreenscreenshottests-messagesdetailloadedscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/messages/src/screenshotTestDebug/reference/uk/gov/govuk/messages/ui/MessagesDetailScreenScreenshotTests/MessagesDetailLoadedScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Notifications and messages|Errors": {
+  "ios": [
+   {
+    "src": "screenshots/ios-notificationcentreerrorviewssnapshottests-test-error-loadinnavigationcontroller-light-renderscorrectly.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.NotificationCentreErrorViewsSnapshotTests/test_error_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Notifications and messages|Notifications onboarding": {
+  "ios": [
+   {
+    "src": "screenshots/ios-notificationsonboardingviewsnapshottests-test-notificationsettings-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.NotificationsOnboardingViewSnapshotTests/test_notificationSettings_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-notificationsscreenscreenshottests-notificationsscreenscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:notifications/src/screenshotTestDebug/reference/uk/gov/govuk/notifications/ui/NotificationsScreenScreenshotTests/NotificationsScreenScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Settings, account and sign-in|Settings": {
+  "ios": [
+   {
+    "src": "screenshots/ios-faceidsettingsviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.FaceIdSettingsViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-settingsscreenscreenshottests-manageloginscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/settings/src/screenshotTestDebug/reference/uk/gov/govuk/settings/ui/SettingsScreenScreenshotTests/ManageLoginScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Settings, account and sign-in|Your accounts": {
+  "ios": [
+   {
+    "src": "screenshots/ios-youraccountsviewcontrollersnapshottests-test-loadinnavigationcontroller-success-light-renderscorrect.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.YourAccountsViewControllerSnapshotTests/test_loadInNavigationController_success_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-youraccountsscreenscreenshottests-youraccountsscreenscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/settings/src/screenshotTestDebug/reference/uk/gov/govuk/settings/ui/YourAccountsScreenScreenshotTests/YourAccountsScreenScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Settings, account and sign-in|Remove / unlink account error": {
+  "ios": [
+   {
+    "src": "screenshots/ios-unlinkaccounterrorviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.UnlinkAccountErrorViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "Settings, account and sign-in|Sign out confirmation": {
+  "ios": [
+   {
+    "src": "screenshots/ios-signoutconfirmationviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.SignOutConfirmationViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-signoutscreenscreenshottests-signoutscreenscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:feature/settings/src/screenshotTestDebug/reference/uk/gov/govuk/settings/ui/SignOutScreenScreenshotTests/SignOutScreenScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Settings, account and sign-in|Biometrics": {
+  "ios": [
+   {
+    "src": "screenshots/ios-faceidsettingsviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-android-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.FaceIdSettingsViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ],
+  "android": [
+   {
+    "src": "screenshots/android-biometricsettingsscreenscreenshottests-biometricsettingspreviewscreenshots-light-b29dc7a7-0.webp",
+    "from": "govuk-mobile-android-app@main:app/src/screenshotTestDebug/reference/uk/gov/govuk/login/ui/BiometricSettingsScreenScreenshotTests/BiometricSettingsPreviewScreenshots_Light_b29dc7a7_0.png"
+   }
+  ]
+ },
+ "Settings, account and sign-in|Subject access request": {
+  "ios": [
+   {
+    "src": "screenshots/ios-sarexplainerviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@main:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.SARExplainerViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "branch|feature/dwp-benefits@ios": {
+  "ios": [
+   {
+    "src": "screenshots/ios-dwpwidgetviewsnapshottests-test-linkaccountcard-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@feature/dwp-benefits:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.DWPWidgetViewSnapshotTests/test_linkAccountCard_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "branch|feature/govukapp-4147-build-child-categories-page": {
+  "ios": [
+   {
+    "src": "screenshots/ios-licencecategorieslistviewsnapshottests-test-fulllist-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@feature/govukapp-4147-build-child-categories-page:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.LicenceCategoriesListViewSnapshotTests/test_fullList_light_rendersCorrectly@3x.png"
+   }
+  ]
+ },
+ "branch|feature/waste-home": {
+  "ios": [
+   {
+    "src": "screenshots/ios-localwastewidgetviewcontrollersnapshots-test-loadinnavigationcontroller-light-renderscorrectlywithco.webp",
+    "from": "govuk-mobile-ios-app@feature/waste-home:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.LocalWasteWidgetViewControllerSnapshots/test_loadInNavigationController_light_rendersCorrectlyWithCompletionHandler_@3x.png"
+   },
+   {
+    "src": "screenshots/ios-localwastescheduleviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "from": "govuk-mobile-ios-app@feature/waste-home:Tests/govuk_ios/govuk_ios_snapshot_tests/ReferenceImages_64/govuk_ios_snapshot_tests.LocalWasteScheduleViewControllerSnapshotTests/test_loadInNavigationController_light_rendersCorrectly@3x.png"
+   }
+  ]
+ }
+}
