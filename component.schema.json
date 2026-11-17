@@ -23,13 +23,13 @@
       "minLength": 1
     },
     "origin": {
-      "description": "Whether it mirrors something native to the platform, or is the GOV.UK app's own.",
+      "description": "Whether it is a native component, mirroring something native to the platform, or a GOV.UK app component, the app's own.",
       "type": "object",
       "required": ["kind", "notes"],
       "additionalProperties": false,
       "properties": {
         "kind": {
-          "description": "native: mirrors a platform control or pattern (a modal, a navigation bar), and should behave as the platform's does. govuk: the GOV.UK app's own component.",
+          "description": "native: a native component, which mirrors a platform control or pattern (a modal, a tab bar) and should behave as the platform's does. govuk: a GOV.UK app component, the app's own.",
           "enum": ["native", "govuk"]
         },
         "notes": {

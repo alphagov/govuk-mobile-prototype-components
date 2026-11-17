@@ -20,7 +20,7 @@ Each component has a JSON definition that describes:
 - **Outputs:** the events it emits.
 - **Rules:** guidance on when and how to use it, and when not to.
 - **Source material:** links to Figma, the iOS and Android source, and anything else it was built from.
-- **Native or GOV.UK-specific:** whether the component mirrors something native to the platform (such as a modal or a navigation bar) or is a component specific to the GOV.UK app.
+- **Native component or GOV.UK app component:** whether the component mirrors something native to the platform (such as a modal or a tab bar), a native component, or is specific to the GOV.UK app, a GOV.UK app component.
 
 An illustrative example of the shape (the exact schema is still to be agreed):
 

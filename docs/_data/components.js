@@ -12,6 +12,14 @@ const directory = path.join(root, 'components')
 
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'))
 
+// What the site calls each kind of component (its origin.kind), one and many,
+// in the order they're listed.
+const kinds = {
+  govuk: { one: 'GOV.UK app component', many: 'GOV.UK app components' },
+  native: { one: 'Native component', many: 'Native components' }
+}
+const kindOrder = Object.keys(kinds)
+
 export default function () {
   const ajv = new Ajv2020({ allErrors: true, allowUnionTypes: true })
   addFormats(ajv)
@@ -35,9 +43,16 @@ export default function () {
     components.push({
       ...definition,
       slug,
+      kind: kinds[definition.origin.kind],
       prose: fs.existsSync(path.join(root, prose)) ? prose : undefined
     })
   }
 
-  return components.sort((a, b) => a.name.localeCompare(b.name))
+  // By kind, then by name. Each one's place is its order in the sidebar, which
+  // groups them by kind.
+  return components
+    .sort((a, b) =>
+      kindOrder.indexOf(a.origin.kind) - kindOrder.indexOf(b.origin.kind) ||
+      a.name.localeCompare(b.name))
+    .map((component, index) => ({ ...component, order: index }))
 }

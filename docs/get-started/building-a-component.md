@@ -15,7 +15,7 @@ Each component is one folder, `components/<name>/`:
 | `<name>.html` | Its template: the markup it draws, in a `<template>` |
 | `<name>.css` | Its styles |
 | `<name>.js` | Defines its element, `<govuk-app-NAME>`, and works out anything the template can’t say for itself, such as defaults |
-| `<name>.json` | Its definition: what it is for, whether it mirrors something native or is the GOV.UK app’s own, its inputs and outputs, rules for its use, its sources (Figma, iOS, Android), and examples. It follows `component.schema.json` |
+| `<name>.json` | Its definition: what it is for, whether it’s a native component or a GOV.UK app component, its inputs and outputs, rules for its use, its sources (Figma, iOS, Android), and examples. It follows `component.schema.json` |
 | `<name>.md` | Optional. Prose for its page that the definition can’t say well, such as longer guidance or known differences from the app |
 | `reference/` | Screenshots of the app’s own component, to compare it with |
 

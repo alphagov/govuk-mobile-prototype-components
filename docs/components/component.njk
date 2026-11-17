@@ -11,6 +11,9 @@ sectionKey: Components
 eleventyNavigation:
   parent: Components
 eleventyComputed:
+  # The sidebar groups components under their kind, in this order.
+  theme: "{{ component.kind.many }}"
+  order: "{{ component.order }}"
   title: "{{ component.name }}"
   caption: "&lt;{{ component.element }}&gt;"
   description: "{{ component.purpose | escape }}"
@@ -24,7 +27,7 @@ eleventyComputed:
 <div class="app-prose-scope">
   <p class="govuk-body">
     {{ govukTag({
-      text: "Mirrors a native control" if component.origin.kind == "native" else "GOV.UK app component",
+      text: component.kind.one,
       classes: "docs-tag " + ("govuk-tag--grey" if component.origin.kind == "native" else "govuk-tag--blue")
     }) }}
   </p>
