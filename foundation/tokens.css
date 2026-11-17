@@ -1,0 +1,102 @@
+/* The app's colours and type, as --app-* custom properties, in light and dark.
+
+   Declared on <govuk-app> and nowhere else, so they exist only inside it.
+   Components reference these roles and never a colour of their own.
+
+   Source: govuk-once/govuk-mobile-ios-gov-kit, GovKitUI/Sources/Colors
+   (GOVUKColors+Fills, +Text, +Strokes), read at ad8590b on 2026-11-17.
+   Each role names the GovKit token it comes from. The roles down to
+   --app-illustration-shadow, and the type, are carried over from Shaun's kit
+   (app-prototyping-system, exploration-2/kit/tokens.css); the button roles
+   were added for components/button.
+
+   light-dark() picks a value by the root's color-scheme, which base.css
+   sets from the colour-scheme attribute, or the device's setting. */
+
+govuk-app {
+  color-scheme: light dark;
+  --app-text-scale: 1;
+
+  /* Surfaces */
+  --app-surface-page: light-dark(#e8f1f8, #061625);         /* fills.surfaceBackground */
+  --app-surface-modal: light-dark(#ffffff, #061625);        /* fills.surfaceModal */
+  --app-surface-input: light-dark(#ffffff, #263d54);        /* fills.surfaceSearch */
+
+  /* Text */
+  --app-text-primary: light-dark(#000000, #ffffff);         /* text.primary */
+  --app-text-secondary: light-dark(#4d4d4d, #b2b2b2);       /* text.secondary */
+  --app-text-link: light-dark(#1d70b8, #ffffff);            /* text.link */
+  --app-text-link-secondary: light-dark(#1d70b8, #11e0f1);
+  --app-text-error: light-dark(#ca3535, #ff5e5e);           /* text.buttonDestructive */
+
+  /* Borders and other parts */
+  --app-border-input: light-dark(#d2e2f1, #263d54);         /* strokes.listDivider */
+  --app-border-button-stack: light-dark(rgb(0 0 0 / 0.3), rgb(255 255 255 / 0.3)); /* strokes.fixedContainer */
+  --app-border-row: light-dark(rgb(60 60 67 / 0.29), rgb(84 84 88 / 0.6));
+  --app-border-nav-bar: light-dark(rgb(0 0 0 / 0.3), rgb(255 255 255 / 0.15));
+  --app-radio-selected: light-dark(#11875a, #66f39e);
+  --app-radio-unselected: light-dark(#808080, #b2b2b2);
+  --app-focus: light-dark(#ffdd00, #ffdd00);
+  --app-illustration-mark: light-dark(#1d70b8, #1d70b8);
+  --app-illustration-shadow: light-dark(#8eb8dc, #11e0f1);
+
+  /* Buttons: shared */
+  --app-surface-button-focussed: #ffdd00;                   /* fills.surfaceButton{Primary,Secondary,Compact}Focussed */
+  --app-text-button-focussed: #000000;                      /* text.button{Primary,Secondary,Compact}Focussed */
+  --app-shadow-button-focussed: light-dark(#000000, #806f00); /* strokes.buttonFocused */
+  --app-surface-button-disabled: light-dark(#e5e5e5, #999999); /* fills.surfaceButtonPrimaryDisabled */
+
+  /* Buttons: primary */
+  --app-surface-button-primary: light-dark(#0f7a52, #66f39e);         /* fills.surfaceButtonPrimary */
+  --app-surface-button-primary-pressed: light-dark(#0b5c3e, #4b9b7d); /* fills.surfaceButtonPrimaryHighlight */
+  --app-surface-button-primary-disabled: var(--app-surface-button-disabled);
+  --app-text-button-primary: light-dark(#ffffff, #000000);            /* text.buttonPrimary */
+  --app-text-button-primary-disabled: light-dark(#666666, #000000);   /* text.buttonPrimaryDisabled */
+  --app-shadow-button-primary: light-dark(#083d29, #0f7a52);          /* strokes.buttonPrimaryDefault */
+  --app-shadow-button-primary-pressed: light-dark(#031b12, #083d29);  /* strokes.buttonPrimaryHighlight */
+
+  /* Buttons: secondary and grouped secondary */
+  --app-text-button-secondary: light-dark(#1d70b8, #11e0f1);          /* text.buttonSecondary */
+  --app-text-button-secondary-pressed: light-dark(#0f385c, #5694ca);  /* text.buttonSecondaryHighlight */
+  --app-text-button-secondary-disabled: light-dark(#4d4d4d, #b2b2b2); /* text.buttonSecondaryDisabled */
+  --app-border-button-secondary: light-dark(#1d70b8, #11e0f1);        /* strokes.buttonSecondaryDefault */
+  --app-border-button-secondary-pressed: light-dark(#0f385c, #5694ca); /* strokes.buttonSecondaryHighlight */
+
+  /* Buttons: compact */
+  --app-surface-button-compact: light-dark(#f4f8fb, #061625);         /* fills.surfaceButtonCompact (and its Highlight, the same) */
+  --app-text-button-compact: light-dark(#1d70b8, #11e0f1);            /* text.buttonCompact */
+  --app-text-button-compact-pressed: light-dark(#0f385c, #5694ca);    /* text.buttonCompactHighlight */
+  --app-text-button-compact-disabled: light-dark(#666666, #000000);   /* text.buttonCompactDisabled */
+  --app-border-button-compact: light-dark(#8eb8dc, #1d70b8);          /* strokes.cardBlue */
+  --app-border-button-compact-pressed: light-dark(#5694ca, #16548a);  /* strokes.buttonCompactHighlight */
+
+  /* Buttons: destructive */
+  --app-surface-button-destructive: light-dark(#ca3535, #ff5e5e);         /* fills.surfaceButtonDestructive */
+  --app-surface-button-destructive-pressed: light-dark(#982828, #ca3535); /* fills.surfaceButtonDestructiveHighlight */
+  --app-shadow-button-destructive: light-dark(#651b1b, #ca3535);          /* strokes.buttonDestructiveDefault */
+  --app-shadow-button-destructive-pressed: light-dark(#280b0b, #651b1b);  /* strokes.buttonDestructiveHighlight */
+
+  /* Type: iOS Dynamic Type at the default size, scaled by --app-text-scale */
+  --app-font-large-title-size: calc(34px * var(--app-text-scale));
+  --app-font-large-title-weight: 700;
+  --app-font-large-title-leading: calc(41px * var(--app-text-scale));
+  --app-font-title-1-size: calc(28px * var(--app-text-scale));
+  --app-font-title-1-weight: 700;
+  --app-font-title-1-leading: calc(34px * var(--app-text-scale));
+  --app-font-title-2-size: calc(22px * var(--app-text-scale));
+  --app-font-title-2-weight: 700;
+  --app-font-title-2-leading: calc(28px * var(--app-text-scale));
+  --app-font-body-size: calc(17px * var(--app-text-scale));
+  --app-font-body-weight: 400;
+  --app-font-body-leading: calc(22px * var(--app-text-scale));
+  --app-font-body-emphasis-size: calc(17px * var(--app-text-scale));
+  --app-font-body-emphasis-weight: 600;
+  --app-font-body-emphasis-leading: calc(22px * var(--app-text-scale));
+  --app-font-subheadline-emphasis-size: calc(15px * var(--app-text-scale));
+  --app-font-subheadline-emphasis-weight: 600;
+  --app-font-subheadline-emphasis-leading: calc(20px * var(--app-text-scale));
+}
+
+govuk-app[colour-scheme="light"] { color-scheme: light; }
+govuk-app[colour-scheme="dark"] { color-scheme: dark; }
+govuk-app[text-size="accessibility-xxxl"] { --app-text-scale: 3.12; }

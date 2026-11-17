@@ -1,0 +1,121 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Button",
+  "element": "govuk-app-button",
+  "purpose": "Lets the user take an action, such as continuing a journey, confirming a choice or removing something. It is the app's own button, in five variants: primary, secondary, grouped secondary, compact and destructive.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "The GOV.UK app's own button, GovKit's GOVUKButton. It is built on the platform's button (UIButton on iOS, a Compose Button on Android) and behaves like one: it can be pressed, focused and disabled. Its look is GOV.UK's own: the colours, the 15pt corners and the solid shadow under primary and destructive buttons are not the platform's. Drawn here as it looks on iOS."
+  },
+  "inputs": {
+    "attributes": {
+      "variant": {
+        "type": "enum",
+        "values": ["primary", "secondary", "grouped-secondary", "compact", "destructive"],
+        "default": "primary",
+        "description": "Which kind of button. Anything else draws a primary button."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false,
+        "description": "Greys the button out, and stops it being pressed or focused."
+      },
+      "name": {
+        "type": "string",
+        "description": "Set on the button, so a page listening for clicks can tell one button from another."
+      },
+      "value": {
+        "type": "string",
+        "description": "Set on the button, alongside name, to say which of several choices was pressed."
+      }
+    },
+    "content": "The button's label, as text. Keep it to a few words."
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "click",
+        "description": "From the <button> it draws, when it is pressed, and not when it is disabled. It bubbles, so a page can listen once for every button and use event.target.closest('button').name and .value to tell which was pressed."
+      }
+    ]
+  },
+  "rules": [
+    "Use a primary button for the main action on a screen, and use at most one.",
+    "Use a grouped secondary button for an alternative to the primary action, directly below it in the same group, as ButtonStackView does.",
+    "Use a secondary button, with its outline, for an alternative action that stands on its own, away from a primary button.",
+    "Use a compact button for a lighter action within the content of a screen, such as on a card, rather than to move the journey on.",
+    "Use a destructive button only for an action that deletes or removes something, such as signing out or removing an account, and usually on a screen that asks the user to confirm it.",
+    "Write the label as a verb that says what will happen: 'Continue', 'Confirm postcode', 'Remove account'. Do not use 'Click here' or 'Submit'.",
+    "A button fills the width of what it sits in. Put it in a container to make it narrower.",
+    "Disable a button only while the screen is waiting for something the user has to give first, such as a postcode, and make it clear what that is."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Components/Buttons/GOVUKButton.swift",
+        "symbol": "GOVUKButton",
+        "ref": "ad8590b"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Components/Buttons/ButtonConfiguration+Convenience.swift",
+        "symbol": "ButtonConfiguration .primary, .secondary, .groupedSecondary, .compact, .destructive",
+        "ref": "ad8590b"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Components/Buttons/SwiftUIButton.swift",
+        "symbol": "SwiftUIButton",
+        "ref": "ad8590b"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SwiftUIViews/ButtonStackView.swift",
+        "symbol": "ButtonStackView",
+        "ref": "1e520fc1"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "design/src/main/kotlin/uk/gov/govuk/design/ui/component/Button.kt",
+        "symbol": "PrimaryButton, SecondaryButton, CompactButton, DestructiveButton",
+        "ref": "16621861"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "design/src/main/kotlin/uk/gov/govuk/design/ui/component/ButtonGroup.kt",
+        "symbol": "DoubleButtonGroup, FixedPrimaryButton",
+        "ref": "16621861"
+      }
+    ],
+    "other": [
+      {
+        "title": "Shaun's button in the app prototyping system's kit (PR #64)",
+        "url": "https://github.com/thip/app-prototyping-system/pull/64"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-primary.webp", "description": "Primary: default, pressed, disabled, focused", "from": "GovKitUISnapshotTests.GOVUKButtonSnapshotTests/test_primary_rendersCorrectly" },
+    { "platform": "ios", "image": "reference/ios-secondary.webp", "description": "Secondary: default, pressed, disabled, focused", "from": "GovKitUISnapshotTests.GOVUKButtonSnapshotTests/test_secondary_rendersCorrectly" },
+    { "platform": "ios", "image": "reference/ios-grouped-secondary.webp", "description": "Grouped secondary: default, pressed, disabled, focused", "from": "GovKitUISnapshotTests.GOVUKButtonSnapshotTests/test_groupedSecondary_rendersCorrectly" },
+    { "platform": "ios", "image": "reference/ios-compact.webp", "description": "Compact: default, pressed, disabled, focused", "from": "GovKitUISnapshotTests.GOVUKButtonSnapshotTests/test_compact_rendersCorrectly" },
+    { "platform": "ios", "image": "reference/ios-destructive.webp", "description": "Destructive: default, pressed, disabled, focused", "from": "GovKitUISnapshotTests.GOVUKButtonSnapshotTests/test_destructive_rendersCorrectly" },
+    { "platform": "android", "image": "reference/android-primary.webp", "description": "Primary", "from": "ButtonScreenshotTests/PrimaryButtonScreenshots, branch GOVUKAPP-4072-screenshot-test" },
+    { "platform": "android", "image": "reference/android-secondary.webp", "description": "Secondary", "from": "ButtonScreenshotTests/SecondaryButtonScreenshots, branch GOVUKAPP-4072-screenshot-test" },
+    { "platform": "android", "image": "reference/android-compact.webp", "description": "Compact", "from": "ButtonScreenshotTests/CompactButtonScreenshots, branch GOVUKAPP-4072-screenshot-test" },
+    { "platform": "android", "image": "reference/android-destructive.webp", "description": "Destructive", "from": "ButtonScreenshotTests/DestructiveButtonScreenshots, branch GOVUKAPP-4072-screenshot-test" }
+  ],
+  "examples": [
+    { "name": "Primary", "html": "<govuk-app-button name=\"continue\">Continue</govuk-app-button>" },
+    { "name": "Primary, disabled until there is something to confirm", "html": "<govuk-app-button disabled>Confirm postcode</govuk-app-button>" },
+    { "name": "Secondary", "html": "<govuk-app-button variant=\"secondary\">Select your address instead</govuk-app-button>" },
+    { "name": "Grouped secondary, under a primary button", "html": "<govuk-app-button name=\"continue\">Continue</govuk-app-button>\n<govuk-app-button variant=\"grouped-secondary\" name=\"skip\">Skip</govuk-app-button>" },
+    { "name": "Compact", "html": "<govuk-app-button variant=\"compact\">Add a vehicle</govuk-app-button>" },
+    { "name": "Destructive", "html": "<govuk-app-button variant=\"destructive\" name=\"remove\">Remove account</govuk-app-button>" },
+    { "name": "Destructive, disabled", "html": "<govuk-app-button variant=\"destructive\" disabled>Remove account</govuk-app-button>" }
+  ]
+}

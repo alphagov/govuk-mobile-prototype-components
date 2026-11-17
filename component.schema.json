@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "A component's definition",
+  "description": "What every components/<name>/<name>.json says about its component. See PLAN.md.",
+  "type": "object",
+  "required": ["name", "element", "purpose", "origin", "inputs", "outputs", "rules", "sources", "examples"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": {
+      "description": "What a designer calls it.",
+      "type": "string",
+      "minLength": 1
+    },
+    "element": {
+      "description": "Its custom element's tag.",
+      "type": "string",
+      "pattern": "^govuk-app-[a-z][a-z0-9-]*$"
+    },
+    "purpose": {
+      "description": "What it is for, in a sentence or two.",
+      "type": "string",
+      "minLength": 1
+    },
+    "origin": {
+      "description": "Whether it mirrors something native to the platform, or is the GOV.UK app's own.",
+      "type": "object",
+      "required": ["kind", "notes"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "description": "native: mirrors a platform control or pattern (a modal, a navigation bar), and should behave as the platform's does. govuk: the GOV.UK app's own component.",
+          "enum": ["native", "govuk"]
+        },
+        "notes": {
+          "description": "What it is built on, and how it differs from the platform, if at all.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "inputs": {
+      "description": "What it takes from the HTML that uses it.",
+      "type": "object",
+      "required": ["attributes", "content"],
+      "additionalProperties": false,
+      "properties": {
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["type", "description"],
+            "additionalProperties": false,
+            "properties": {
+              "type": { "enum": ["string", "boolean", "enum"] },
+              "values": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+              "default": { "type": ["string", "boolean"] },
+              "required": { "type": "boolean" },
+              "description": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "content": {
+          "description": "What may be written between its tags, or null if nothing.",
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "outputs": {
+      "description": "What it tells the page. Components send no events of their own; these are the browser's events, from the controls it draws.",
+      "type": "object",
+      "required": ["events"],
+      "additionalProperties": false,
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "description"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "description": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "rules": {
+      "description": "How and when to use it, and when not to.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "sources": {
+      "description": "What it was built from.",
+      "type": "object",
+      "required": ["figma", "ios", "android"],
+      "additionalProperties": false,
+      "properties": {
+        "figma": { "type": "array", "items": { "$ref": "#/$defs/link" } },
+        "ios": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+        "android": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+        "other": { "type": "array", "items": { "$ref": "#/$defs/link" } }
+      }
+    },
+    "references": {
+      "description": "Screenshots of the app's own component, kept in the component's reference/ folder, to compare it with.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["platform", "image", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "platform": { "enum": ["ios", "android"] },
+          "image": { "type": "string", "pattern": "^reference/" },
+          "description": { "type": "string", "minLength": 1 },
+          "from": { "type": "string" }
+        }
+      }
+    },
+    "examples": {
+      "description": "Its states, as the HTML that draws them.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "html"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "html": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "link": {
+      "type": "object",
+      "required": ["title", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["repo", "path", "symbol"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": { "type": "string", "minLength": 1 },
+        "path": { "type": "string", "minLength": 1 },
+        "symbol": { "type": "string", "minLength": 1 },
+        "ref": { "type": "string" }
+      }
+    }
+  }
+}

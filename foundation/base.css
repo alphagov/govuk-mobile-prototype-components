@@ -1,0 +1,56 @@
+/* The root, <govuk-app>. Every component lives inside one, and it is the only
+   thing they may rely on besides their own styles.
+
+   It carries the tokens (tokens.css declares them on it, and nowhere else),
+   the app's colour and type, and a baseline for everything inside it, so the
+   components look the same in any page: the page's own styles stop at it.
+
+   Attributes:
+     colour-scheme="light" | "dark"   otherwise it follows the device
+     text-size="accessibility-xxxl"   the largest Dynamic Type size
+
+   Custom properties a page may set on it:
+     --govuk-app-inset-bottom   space the home indicator takes, 0 by default */
+
+govuk-app {
+  --govuk-app-inset-bottom: 0px;
+  display: block;
+  background: var(--app-surface-page);
+  color: var(--app-text-primary);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: var(--app-font-body-size);
+  font-weight: var(--app-font-body-weight);
+  --leading: var(--app-font-body-leading);
+  line-height: var(--leading);
+  text-align: start;
+}
+
+/* A page's own styles for its elements stop here: everything inside starts
+   from the app's colour and type, and no spacing. A component's own styles
+   are a class, so they win over these. Load kit.css after the page's own
+   stylesheets, so that a page's rule for a bare element (`p { margin: … }`)
+   does not win over these, which are just as specific. */
+govuk-app *,
+govuk-app *::before,
+govuk-app *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+}
+
+govuk-app :focus-visible {
+  outline: 3px solid var(--app-focus);
+}
+
+/* How iOS sets text, for any component to use: lines of a paragraph are the
+   style's leading apart, but the block is shorter than that by the leading's
+   extra, because the first line is only as tall as the font itself (1.193
+   times its size, for SF). 17pt Body is 20.3pt tall on one line and 22pt a
+   line after that, which is what the app's snapshots measure. A component
+   changes the style by setting --leading along with its font size. */
+.govuk-app-text {
+  line-height: var(--leading);
+  margin-block: calc((1.193em - var(--leading)) / 2);
+}
