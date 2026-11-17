@@ -1,0 +1,15 @@
+{#- One of a component's examples: drawn live in light and dark, and the HTML
+    that draws it. The HTML is the component's own definition file's. -#}
+{% macro componentExample(example) %}
+<div class="docs-example">
+  <h3 class="govuk-heading-s">{{ example.name }}</h3>
+  <div class="docs-example__frames">
+    {% for scheme in ["light", "dark"] %}
+    <govuk-app class="docs-example__frame" colour-scheme="{{ scheme }}">
+      {{ example.html | safe }}
+    </govuk-app>
+    {% endfor %}
+  </div>
+  <pre class="docs-example__code"><code>{{ example.html | escape }}</code></pre>
+</div>
+{% endmacro %}

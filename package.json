@@ -1,0 +1,19 @@
+{
+  "name": "govuk-mobile-prototype-components",
+  "private": true,
+  "type": "module",
+  "description": "Web components that look and behave like the GOV.UK app's own, for prototyping app journeys in HTML.",
+  "scripts": {
+    "start": "eleventy --config=docs/eleventy.config.js --serve",
+    "build": "eleventy --config=docs/eleventy.config.js"
+  },
+  "engines": {
+    "node": ">=22.16"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.8",
+    "@x-govuk/govuk-eleventy-plugin": "^9.0.2",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
+  }
+}

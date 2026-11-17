@@ -1,0 +1,146 @@
+---
+pagination:
+  data: components
+  size: 1
+  alias: component
+permalink: "/components/{{ component.slug }}/"
+layout: component
+sectionKey: Components
+eleventyNavigation:
+  parent: Components
+eleventyComputed:
+  title: "{{ component.name }}"
+  caption: "&lt;{{ component.element }}&gt;"
+  description: "{{ component.purpose | escape }}"
+---
+{% from "component-example.njk" import componentExample %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+{% set platforms = { ios: "iOS", android: "Android" } %}
+
+<div class="app-prose-scope">
+  <p class="govuk-body">
+    {{ govukTag({
+      text: "Mirrors a native control" if component.origin.kind == "native" else "GOV.UK app component",
+      classes: "docs-tag " + ("govuk-tag--grey" if component.origin.kind == "native" else "govuk-tag--blue")
+    }) }}
+  </p>
+  <p class="govuk-body">{{ component.origin.notes | escape }}</p>
+
+  {% if component.prose %}
+  {% renderFile component.prose %}
+  {% endif %}
+</div>
+
+<h2 class="govuk-heading-l" id="examples">Examples</h2>
+{% for example in component.examples %}
+{{ componentExample(example) }}
+{% endfor %}
+
+<div class="app-prose-scope">
+  <h2 class="govuk-heading-l" id="inputs">Inputs</h2>
+  {% set rows = [] %}
+  {% for attribute, spec in component.inputs.attributes %}
+    {% if spec.type == "enum" %}
+      {% set values = [] %}
+      {% for value in spec.values %}{% set values = (values.push('"' + value + '"'), values) %}{% endfor %}
+      {% set type = values | join(" | ") %}
+    {% else %}
+      {% set type = spec.type %}
+    {% endif %}
+    {% set rows = (rows.push([
+      { html: "<code>" + (attribute | escape) + "</code>" },
+      { html: "<code>" + (type | escape) + "</code>" },
+      { html: ("<code>" + (spec.default | string | escape) + "</code>") if spec.default !== undefined else "" },
+      { text: spec.description | escape }
+    ]), rows) %}
+  {% endfor %}
+  {% if rows | length %}
+  {{ govukTable({
+    caption: "Attributes",
+    captionClasses: "govuk-table__caption--m",
+    head: [{ text: "Attribute" }, { text: "Type" }, { text: "Default" }, { text: "Description" }],
+    rows: rows
+  }) }}
+  {% else %}
+  <p class="govuk-body">It takes no attributes.</p>
+  {% endif %}
+  <h3 class="govuk-heading-m">Content</h3>
+  <p class="govuk-body">{{ (component.inputs.content | escape) if component.inputs.content else "None." }}</p>
+
+  <h2 class="govuk-heading-l" id="outputs">Outputs</h2>
+  {% if component.outputs.events | length %}
+  <ul class="govuk-list govuk-list--bullet">
+    {% for event in component.outputs.events %}
+    <li><code>{{ event.name | escape }}</code>: {{ event.description | escape }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="govuk-body">None.</p>
+  {% endif %}
+
+  <h2 class="govuk-heading-l" id="rules">Rules</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {% for rule in component.rules %}
+    <li>{{ rule | escape }}</li>
+    {% endfor %}
+  </ul>
+
+</div>
+
+{#- What it was built from, and the app's own screenshots: there to check the
+    component against, so collapsed until someone needs them. -#}
+{% set sourcesHtml %}
+<ul class="govuk-list govuk-list--bullet">
+  {% for platform in ["ios", "android"] %}
+  {% for source in component.sources[platform] %}
+  <li>{{ platforms[platform] }}: <code>{{ source.symbol | escape }}</code> in {{ source.repo | escape }}/{{ source.path | escape }}{% if source.ref %} at {{ source.ref | escape }}{% endif %}</li>
+  {% endfor %}
+  {% endfor %}
+  {% for link in component.sources.figma %}
+  <li>Figma: <a class="govuk-link" href="{{ link.url | escape }}">{{ link.title | escape }}</a></li>
+  {% else %}
+  <li>Figma: none linked yet</li>
+  {% endfor %}
+  {% for link in component.sources.other %}
+  <li><a class="govuk-link" href="{{ link.url | escape }}">{{ link.title | escape }}</a></li>
+  {% endfor %}
+</ul>
+{% endset %}
+
+{% set referencesHtml %}
+{% set referencesByPlatform = component.references | groupby("platform") %}
+{% for platform in ["ios", "android"] %}
+{% if referencesByPlatform[platform] %}
+<h3 class="govuk-heading-m docs-references__heading">{{ platforms[platform] }}</h3>
+<div class="docs-references">
+  {% for reference in referencesByPlatform[platform] %}
+  <figure class="docs-references__item">
+    <img src="/components/{{ component.slug }}/{{ reference.image }}" alt="{{ platforms[platform] }} app: {{ reference.description | escape }}" loading="lazy">
+    <figcaption class="govuk-body-s">{{ reference.description | escape }}</figcaption>
+  </figure>
+  {% endfor %}
+</div>
+{% endif %}
+{% endfor %}
+{% endset %}
+
+{% set accordionItems = [{
+  heading: { text: "Sources" },
+  summary: { text: "The iOS, Android and Figma sources it was built from" },
+  content: { html: sourcesHtml }
+}] %}
+{% if component.references | length %}
+{% set accordionItems = (accordionItems.push({
+  heading: { text: "In the app" },
+  summary: { text: "Screenshots of the app's own component, to compare the examples with" },
+  content: { html: referencesHtml }
+}), accordionItems) %}
+{% endif %}
+
+{{ govukAccordion({
+  id: "component-details",
+  headingLevel: 2,
+  items: accordionItems
+}) }}
