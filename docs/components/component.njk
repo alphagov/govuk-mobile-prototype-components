@@ -113,7 +113,7 @@ eleventyComputed:
 {% set referencesByPlatform = component.references | groupby("platform") %}
 {% for platform in ["ios", "android"] %}
 {% if referencesByPlatform[platform] %}
-<h3 class="govuk-heading-m">{{ platforms[platform] }}</h3>
+<h3 class="govuk-heading-m docs-references__heading">{{ platforms[platform] }}</h3>
 <div class="docs-references">
   {% for reference in referencesByPlatform[platform] %}
   <figure class="docs-references__item">

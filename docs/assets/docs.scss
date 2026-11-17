@@ -53,7 +53,8 @@
   max-width: none;
 }
 
-// Space between the iOS and Android groups of screenshots.
-.docs-references + .govuk-heading-m {
+// A platform's heading over its screenshots, with space above it when it
+// follows another platform's.
+.docs-references__heading:not(:first-child) {
   @include govuk-responsive-margin(6, "top");
 }
