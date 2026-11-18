@@ -24,7 +24,7 @@
    the capsule takes presses, not the space either side of it. */
 .govuk-app-tab-bar {
   position: sticky;
-  bottom: max(var(--app-space-small), calc(var(--govuk-app-inset-bottom) - var(--app-space-small)));
+  bottom: max(var(--app-space-small), calc(var(--govuk-app-inset-bottom, 0px) - var(--app-space-small)));
   z-index: 1;
   display: flex;
   justify-content: center;
@@ -36,12 +36,12 @@
   max-width: 100%;
   padding: var(--app-space-extra-small);
   border-radius: var(--app-radius-capsule);
-  background: var(--app-tab-bar-glass);
+  background: var(--app-glass);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   backdrop-filter: blur(16px) saturate(180%);
   box-shadow:
-    inset 0 0 0 0.5px var(--app-tab-bar-glass-edge),
-    0 8px 24px var(--app-tab-bar-shadow);
+    inset 0 0 0 0.5px var(--app-glass-edge),
+    0 8px 24px var(--app-glass-shadow);
   pointer-events: auto;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .govuk-app-tab-bar-item:active:not([aria-current]) {
-  background: var(--app-tab-bar-pressed);
+  background: var(--app-glass-pressed);
 }
 
 /* Inside the capsule, so the bar doesn't cut it off. */

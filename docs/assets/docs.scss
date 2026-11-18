@@ -34,6 +34,27 @@
   border-radius: 12px;
 }
 
+// A screen whose first component, such as the navigation bar, spans its full
+// width and starts at its top. The content below is inset instead.
+.docs-screen--flush {
+  display: block;
+  padding: 0;
+}
+
+// A little room over the top of the screen, so the bar's buttons don't touch
+// its edge. Less than a phone's status bar, which with nothing drawn in it
+// looks like a gap.
+.docs-screen--status-bar {
+  --govuk-app-inset-top: var(--app-space-medium);
+  height: 340px;
+}
+
+.docs-screen__content {
+  display: grid;
+  gap: var(--app-space-medium);
+  padding: var(--app-space-medium);
+}
+
 // An example and its code in one box, as the GOV.UK Design System shows
 // them: the example drawn live, then its HTML, with a button to copy it.
 .docs-example__box {
