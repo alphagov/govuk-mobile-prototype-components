@@ -1,0 +1,88 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Status",
+  "element": "govuk-app-status",
+  "purpose": "Shows the state of something with a deadline or a validity, such as a vehicle's tax or MOT, or a driving licence: an icon for its state, then what it is and how it stands, such as Valid, 23 days, or Expired.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "From the future driving designs in Figma, which we have only as a screenshot for now, so its sizes are approximate: the app today shows tax and MOT with ValidityStatusView, its icon on the right and a progress bar below. The colours are GovKit's: primaryGreen for valid, accentPurple for due, on the app's pale blue. The designs show only light mode, so the dark mode colours are ours."
+  },
+  "inputs": {
+    "attributes": {
+      "state": {
+        "type": "enum",
+        "values": ["valid", "due", "expired", "none"],
+        "default": "valid",
+        "description": "valid: a green dot. due: a purple ring, filled as far as progress, for something coming up. expired: a circled exclamation mark. none: no icon, for something that doesn't apply, such as an MOT that isn't required."
+      },
+      "progress": {
+        "type": "string",
+        "default": "1",
+        "description": "For a due status, how full its ring is, from 0 to 1, such as 0.75. Make it the share of the time left, so it empties as the deadline nears."
+      },
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "What it is, in bold, such as Tax, MOT due or Tax expiring."
+      },
+      "detail": {
+        "type": "string",
+        "description": "Anything to say after the label on the same line, not in bold, such as a date: 12 May 2026."
+      },
+      "caption": {
+        "type": "string",
+        "description": "The line below, in grey, such as Valid, 23 days, Expired or Not required."
+      }
+    },
+    "content": null
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Say the state in words as well, in the caption or the label: the icon alone doesn't tell everyone, such as people who can't see it or can't tell its colours apart.",
+    "Use due for something with a deadline coming up, and count down to it in the caption, such as 23 days. Give it a progress to match.",
+    "Use none, not valid, for something that doesn't apply, and say so: Not required.",
+    "Keep the label to a word or two, and the caption to one short line, so two fit side by side."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/ValidityStatusView.swift",
+        "symbol": "ValidityStatusView, which this replaces in the future designs",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Colors/UIColor+Convenience.swift",
+        "symbol": "primaryGreen, accentPurple",
+        "ref": "8a7641e"
+      }
+    ],
+    "android": []
+  },
+  "examples": [
+    {
+      "name": "Valid",
+      "html": "<govuk-app-status label=\"Tax\" caption=\"Valid\"></govuk-app-status>"
+    },
+    {
+      "name": "Due, counting down",
+      "html": "<govuk-app-status state=\"due\" progress=\"0.75\" label=\"MOT due\" caption=\"23 days\"></govuk-app-status>"
+    },
+    {
+      "name": "Expired",
+      "html": "<govuk-app-status state=\"expired\" label=\"MOT\" caption=\"Expired\"></govuk-app-status>"
+    },
+    {
+      "name": "Not required",
+      "html": "<govuk-app-status state=\"none\" label=\"MOT\" caption=\"Not required\"></govuk-app-status>"
+    },
+    {
+      "name": "With a date",
+      "html": "<govuk-app-status state=\"due\" progress=\"0.6\" label=\"Tax expiring\" detail=\"12 May 2026\" caption=\"18 days\"></govuk-app-status>"
+    }
+  ]
+}

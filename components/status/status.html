@@ -1,0 +1,15 @@
+<!-- A status: an icon for its state on the left, then its label in bold,
+     with any detail after it, and a caption below, such as "Valid" or
+     "23 days". -->
+<template>
+  <div class="govuk-app-status" data-attr="data-state: state, style: progressStyle">
+    <span class="govuk-app-status__icon" aria-hidden="true" data-if="icon"></span>
+    <span class="govuk-app-status__text">
+      <span class="govuk-app-status__line govuk-app-text">
+        <span class="govuk-app-status__label" data-text="label"></span>
+        <span class="govuk-app-status__detail" data-if="detail" data-text="detail"></span>
+      </span>
+      <span class="govuk-app-status__caption govuk-app-text" data-if="caption" data-text="caption"></span>
+    </span>
+  </div>
+</template>

@@ -115,6 +115,12 @@ govuk-app {
   --app-sheet-backdrop: #000000;                              /* behind the screen a sheet is presented from */
   --app-sheet-dim: light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.3)); /* over that screen */
 
+  /* Statuses, as the future driving designs draw them (Figma). Dark mode is
+     ours: the designs show only light */
+  --app-status-valid: light-dark(#0f7a52, #66f39e);        /* primaryGreen, and accentGreen in dark, as the primary button */
+  --app-status-due: #ba4aff;                                /* accentPurple */
+  --app-status-track: light-dark(#e8f1f8, #263d54);         /* blueTint90 (fills.surfaceBackground), and strokes.listDivider in dark */
+
   /* Glass: iOS 26's Liquid Glass, approximated, for the system's own bars and
      their buttons. The app sets none of these, only what is drawn on the glass
      (text.linkSecondary, text.primary, and the label colour) */
