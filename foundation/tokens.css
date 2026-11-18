@@ -131,6 +131,11 @@ govuk-app {
   --app-segmented-shadow-near: light-dark(rgb(0 0 0 / 0.04), transparent);
   --app-segmented-divider: light-dark(rgb(60 60 67 / 0.18), rgb(255 255 255 / 0.15));
 
+  /* Number plates: the app's registrationPlate yellow (GOVUKColors+DVLA), in
+     both modes, as a real plate is */
+  --app-surface-number-plate: #ffc800;
+  --app-text-number-plate: #000000;
+
   /* Glass: iOS 26's Liquid Glass, approximated, for the system's own bars and
      their buttons. The app sets none of these, only what is drawn on the glass
      (text.linkSecondary, text.primary, and the label colour) */
@@ -202,6 +207,10 @@ govuk-app {
   --app-font-caption-2-size: calc(11px * var(--app-text-scale));
   --app-font-caption-2-weight: 400;
   --app-font-caption-2-leading: calc(13px * var(--app-text-scale));
+  /* Number plates, in the DVLA's typeface (GOVUKFontBuilder+DVLA): small
+     grows with the text size, as it's relative to Body; large doesn't */
+  --app-font-number-plate-small-size: calc(18px * var(--app-text-scale));
+  --app-font-number-plate-large-size: 56px;
   /* The weight of every style's emphasised form: GovKit's semibold */
   --app-font-emphasis-weight: 600;
 }

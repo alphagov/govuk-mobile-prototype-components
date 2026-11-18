@@ -1,0 +1,42 @@
+/* The app's number plate (VehicleSummaryView, VehicleDetailView): the
+   registration in black, in the DVLA's typeface, DVLA-VRM, on the app's
+   registrationPlate yellow, with a black stroke 0.5pt wide over its edge,
+   taking no room.
+
+   Small, as on a vehicle's card: 18pt, growing with the text size, 7pt in
+   from the sides and top and 4pt from the bottom, 7pt corners. Large, as on
+   a vehicle's detail screen: 56pt, 24pt in from the sides, 20pt from the top
+   and 10pt from the bottom, 16pt corners. Their padding is the app's, off
+   the grid.
+
+   The typeface is the app's own file, unchanged, under the SIL Open Font
+   License, whose text is beside it: it may be shared with software, but not
+   changed and keep its name, so it isn't converted or subsetted. */
+
+@font-face {
+  font-family: "DVLA-VRM";
+  src: url("./DVLA-VRM.ttf") format("truetype");
+  font-display: block;
+}
+
+.govuk-app-number-plate {
+  display: block;
+  width: fit-content;
+  padding: 7px 7px 4px;
+  border-radius: 7px;
+  background: var(--app-surface-number-plate);
+  box-shadow: inset 0 0 0 0.5px var(--app-text-number-plate);
+  color: var(--app-text-number-plate);
+  font-family: "DVLA-VRM", system-ui, sans-serif;
+  font-size: var(--app-font-number-plate-small-size);
+  font-weight: normal;
+  /* The typeface's own height, 18.6pt at 18pt, as the app's plate measures. */
+  line-height: 1.033em;
+  white-space: nowrap;
+}
+
+.govuk-app-number-plate[data-size="large"] {
+  padding: 20px 24px 10px;
+  border-radius: 16px;
+  font-size: var(--app-font-number-plate-large-size);
+}

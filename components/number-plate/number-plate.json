@@ -1,0 +1,83 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Number plate",
+  "element": "govuk-app-number-plate",
+  "purpose": "Shows a vehicle's registration number as it looks on the vehicle: on a yellow number plate, in the DVLA's own typeface. Small on a vehicle's card, large on its detail screen.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "The app's own: Text in its DVLA-VRM typeface on GOVUKColors.Fills.registrationPlate, with a black rounded border, in VehicleSummaryView (Body size) and in VehicleDetailView and VehicleCheckResultView (extra large). The typeface is the app's file, unchanged, under the SIL Open Font License, whose text is beside it. Screen readers hear Number plate:, then the registration spelled out, as the app's speechSpellsOutCharacters."
+  },
+  "inputs": {
+    "attributes": {
+      "size": {
+        "type": "enum",
+        "values": ["small", "large"],
+        "default": "small",
+        "description": "small, as on a vehicle's card, growing with the text size; large, as on a vehicle's detail screen."
+      }
+    },
+    "content": "The registration number, as it's written on the plate, such as AB71 CDE."
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Use it only for a vehicle's registration number.",
+    "Write the registration as it's shown on the plate, in capitals, with its space, such as AB71 CDE.",
+    "Use small beside a vehicle's name, such as on its card, and large on its own on the vehicle's detail screen."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/VehicleSummaryView.swift",
+        "symbol": "headerView, the small plate",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/VehicleDetailView.swift",
+        "symbol": "the large plate",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Extensions/GovKit/GOVUKFontBuilder+DVLA.swift",
+        "symbol": "vehicleRegistrationMarkBody, vehicleRegistrationMarkExtraLarge",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Resources/Fonts/DVLA-VRM.ttf",
+        "symbol": "DVLA-VRM, the typeface",
+        "ref": "8f1fe5da"
+      }
+    ],
+    "android": [],
+    "other": [
+      {
+        "title": "The app prototyping system's number plate, which this follows (app-prototyping-system, exploration-2/components/number-plate)",
+        "url": "https://github.com/thip/app-prototyping-system"
+      },
+      {
+        "title": "SIL Open Font License 1.1, the typeface's licence",
+        "url": "https://openfontlicense.org"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-small.webp", "description": "Small, on a vehicle's card", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-large.webp", "description": "Large, on a vehicle's detail screen, cut off by the screenshot's edge", "from": "VehicleDetailViewSnapshotTests at 8f1fe5da" }
+  ],
+  "examples": [
+    {
+      "name": "Small",
+      "html": "<govuk-app-number-plate>AB71 CDE</govuk-app-number-plate>"
+    },
+    {
+      "name": "Large",
+      "html": "<govuk-app-number-plate size=\"large\">AB71 CDE</govuk-app-number-plate>"
+    }
+  ]
+}
