@@ -1,0 +1,18 @@
+<!-- A banner: an icon, if it has one, then its title and what was written
+     between its tags, a button to close it, if it can be, and a link, if it
+     has one, below. -->
+<template>
+  <section class="govuk-app-banner" data-attr="data-type: type, aria-label: title">
+    <div class="govuk-app-banner__top">
+      <span class="govuk-app-banner__icon govuk-app-icon" aria-hidden="true" data-if="icon" data-text="icon"></span>
+      <div class="govuk-app-banner__text">
+        <h2 class="govuk-app-banner__title govuk-app-text" data-if="title" data-tag="tag: h2 h3 h4" data-text="title"></h2>
+        <div class="govuk-app-banner__body govuk-app-text" data-slot="content"></div>
+      </div>
+      <button class="govuk-app-banner__dismiss" type="button" name="dismiss" aria-label="Dismiss" data-if="dismissible" data-attr="value: name"></button>
+    </div>
+    <a class="govuk-app-banner__link" data-if="linkText" data-attr="href: href">
+      <span class="govuk-app-banner__link-text" data-text="linkText"></span>
+    </a>
+  </section>
+</template>

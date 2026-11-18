@@ -136,6 +136,18 @@ govuk-app {
   --app-surface-number-plate: #ffc800;
   --app-text-number-plate: #000000;
 
+  /* Banners: EmergencyBannerWidgetViewModel's fills and strokes, and the
+     designs' proposed warning */
+  --app-banner-information: light-dark(#ffffff, #263d54);          /* fills.surfaceCardEmergencyInfo */
+  --app-banner-information-border: #5694ca;                        /* strokes.surfaceCardEmergencyInfo (blueTint25) */
+  --app-banner-local-emergency: #158187;                           /* fills.surfaceCardEmergencyLocal (primaryTeal) */
+  --app-banner-national-emergency: #ca3535;                        /* fills.surfaceCardEmergencyNational (primaryRed) */
+  --app-banner-notable-death: #000000;                             /* fills.surfaceCardEmergencyNotableDeath */
+  --app-banner-notable-death-border: light-dark(transparent, #ffffff); /* strokes.surfaceCardEmergencyNotableDeath */
+  --app-banner-emergency-text: #ffffff;
+  --app-banner-warning: light-dark(#fff8cc, #0a2740);              /* yellowTint80, and the app's stateLabelErrorBackgroundColor in dark */
+  --app-banner-warning-text: light-dark(#000000, #feDD04);          /* text.primary, and the app's stateLabelErrorForegroundColor in dark */
+
   /* Glass: iOS 26's Liquid Glass, approximated, for the system's own bars and
      their buttons. The app sets none of these, only what is drawn on the glass
      (text.linkSecondary, text.primary, and the label colour) */

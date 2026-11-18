@@ -1,0 +1,169 @@
+/* The app's EmergencyBannerWidgetView, which shows an alert on Home: 16pt in
+   from every side, on a card with 10pt corners and a 0.5pt border, its title
+   in Title 2, bold, 4pt over its text in Body, and a close button, an
+   xmark in Body Semibold, at the top on the right. A link, if it has one,
+   is below, after a divider, with a chevron, except on information.
+
+   information is white, or the dark divider's blue, with a pale blue border
+   and dark text; local and national emergency are teal and red, notable
+   death black, with white text.
+
+   Proposed, from the future driving designs (Figma, from a screenshot, so
+   approximate): warning, yellowTint80, with an icon on the left, its title
+   in Subheadline Semibold and its text in Subheadline. In dark mode, it's
+   the app's own dark pair for that yellow, its state label's: dark blue,
+   with yellow text. */
+
+.govuk-app-banner {
+  --title-size: var(--app-font-title-2-size);
+  --title-weight: var(--app-font-title-2-weight);
+  --title-leading: var(--app-font-title-2-leading);
+  --body-size: var(--app-font-body-size);
+  --body-leading: var(--app-font-body-leading);
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-small);
+  padding: var(--app-space-medium);
+  border-radius: 10px; /* GovKit's roundedBorder, off the grid */
+  background: var(--app-banner-information);
+  box-shadow: inset 0 0 0 0.5px var(--app-banner-information-border);
+  color: var(--app-text-primary);
+}
+
+.govuk-app-banner[hidden] {
+  display: none;
+}
+
+.govuk-app-banner[data-type="local-emergency"] {
+  background: var(--app-banner-local-emergency);
+  box-shadow: none;
+  color: var(--app-banner-emergency-text);
+}
+
+.govuk-app-banner[data-type="national-emergency"] {
+  background: var(--app-banner-national-emergency);
+  box-shadow: none;
+  color: var(--app-banner-emergency-text);
+}
+
+.govuk-app-banner[data-type="notable-death"] {
+  background: var(--app-banner-notable-death);
+  box-shadow: inset 0 0 0 0.5px var(--app-banner-notable-death-border);
+  color: var(--app-banner-emergency-text);
+}
+
+.govuk-app-banner[data-type="warning"] {
+  --title-size: var(--app-font-subheadline-emphasis-size);
+  --title-weight: var(--app-font-subheadline-emphasis-weight);
+  --title-leading: var(--app-font-subheadline-emphasis-leading);
+  --body-size: var(--app-font-subheadline-size);
+  --body-leading: var(--app-font-subheadline-leading);
+  padding: calc(var(--app-space-small) + var(--app-space-extra-small)) var(--app-space-medium);
+  background: var(--app-banner-warning);
+  box-shadow: none;
+  color: var(--app-banner-warning-text);
+}
+
+.govuk-app-banner__top {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--app-space-small) + var(--app-space-extra-small));
+}
+
+/* The title's own 4pt below it, and SwiftUI's 8pt between views in a
+   stack, put its text 12pt below it. */
+.govuk-app-banner__text {
+  --title-gap: calc(var(--app-space-small) + var(--app-space-extra-small));
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--title-gap);
+  min-width: 0;
+}
+
+.govuk-app-banner[data-type="warning"] .govuk-app-banner__text {
+  --title-gap: 0px;
+}
+
+.govuk-app-banner__title {
+  font-size: var(--title-size);
+  font-weight: var(--title-weight);
+  --leading: var(--title-leading);
+}
+
+.govuk-app-banner__body {
+  font-size: var(--body-size);
+  --leading: var(--body-leading);
+}
+
+.govuk-app-banner__icon {
+  align-self: center;
+  font-family: "Material Symbols Rounded";
+  font-size: 28px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The xmark, drawn as two bars, 12pt across, in a 24pt box at the top right. */
+.govuk-app-banner__dismiss {
+  position: relative;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin: -2px -4px 0 0;
+  border: 0;
+  color: var(--app-text-secondary);
+  cursor: pointer;
+  background:
+    linear-gradient(currentColor, currentColor) center / 15px 2px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 2px 15px no-repeat;
+  transform: rotate(45deg);
+}
+
+.govuk-app-banner:not([data-type="information"], [data-type="warning"]) .govuk-app-banner__dismiss {
+  color: var(--app-banner-emergency-text);
+}
+
+.govuk-app-banner[data-type="warning"] .govuk-app-banner__dismiss {
+  color: var(--app-banner-warning-text);
+}
+
+.govuk-app-banner__dismiss:focus-visible {
+  outline-offset: 2px;
+}
+
+/* The link, 8pt above and below, in the link's colour on information, after
+   a white divider and with a chevron on the others. */
+.govuk-app-banner__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--app-space-small);
+  color: var(--app-text-link-secondary);
+  font-size: var(--body-size);
+  line-height: var(--body-leading);
+}
+
+/* The divider is 6pt from the stack's 8pt either side, as the app pads it,
+   so 14pt below the text and 22pt above the link's. */
+.govuk-app-banner:not([data-type="information"]) .govuk-app-banner__link {
+  margin-top: 6px;
+  padding-top: 22px;
+  box-shadow: inset 0 0.33px var(--app-banner-emergency-text);
+  color: inherit;
+}
+
+.govuk-app-banner:not([data-type="information"]) .govuk-app-banner__link::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-inline-end: 4px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+}
