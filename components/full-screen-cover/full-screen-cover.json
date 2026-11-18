@@ -78,7 +78,7 @@
     {
       "platform": "ios",
       "image": "reference/ios-add-account-light.png",
-      "description": "Adding a driver and vehicles account, in light mode. Drawn before iOS 26, so its close button has no glass",
+      "description": "Adding a driver and vehicles account, in light mode. Drawn before iOS 26, so its close button has no glass, and its navigation bar leaves room for a large title, which sets the content further down",
       "from": "ServiceAccountConsentViewControllerSnapshotTests at fc2b3b1d"
     },
     {
