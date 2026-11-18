@@ -1,6 +1,6 @@
 import { defineComponent } from '../../foundation/component.js'
 
-export const variants = ['primary', 'secondary', 'grouped-secondary', 'compact', 'destructive']
+export const variants = ['primary', 'secondary', 'grouped-secondary', 'compact', 'destructive', 'black']
 
 /** Primary unless it names one of the other variants. */
 export function prepare(data) {

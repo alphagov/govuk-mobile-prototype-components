@@ -1,0 +1,103 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Full-screen cover",
+  "element": "govuk-app-full-screen-cover",
+  "purpose": "Presents a screen over the one the user was on, covering it entirely, for a journey that takes over the app until it's finished or closed, such as adding a driver and vehicles account. Unlike a sheet, nothing of the screen behind shows.",
+  "origin": {
+    "kind": "native",
+    "notes": "UIKit's full-screen presentation, UIModalPresentationStyle.fullScreen, which the app asks for in place of its usual page sheet when adding a driver and vehicles account. It can't be pulled down to close (isModalInPresentation), so its screen needs a close action, which the app puts on the left of the navigation bar. GovKit doesn't style it. On Android the same journey is a navigation destination that draws under the system bars, which looks the same once it's there."
+  },
+  "inputs": {
+    "attributes": {
+      "present": {
+        "type": "boolean",
+        "default": false,
+        "description": "Brings the cover up from the bottom when the page loads, as UIKit presents it. Give it to the first screen of the journey, and not to the screens after it, which are already in the cover."
+      },
+      "label": {
+        "type": "string",
+        "description": "The cover's name for screen readers. Leave it off if its screen has a heading or a navigation bar title."
+      }
+    },
+    "content": "The cover's screen, a <govuk-app-screen>. Optionally, the screen it was presented from, with slot=\"behind\", which is seen only while the cover comes up over it, and can't be used."
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Put a full-screen cover directly in a <govuk-app>, in place of a screen. Give the root a size, as for a screen.",
+    "Use a sheet for most modals, as the app does. Use a full-screen cover only where the app does: for a journey that takes over the app, such as adding a driver and vehicles account.",
+    "Give its screen a way out: a close action on the left of its navigation bar, with slot=\"leading\". It can't be pulled down to close.",
+    "Give present only to the first screen of the journey. Later screens of the same journey are already in the cover.",
+    "To draw the app's green screens, give its screen background=\"green\", its text size=\"title-1\", and its button variant=\"black\"."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Coordinators/DVLA/DrivingTopicWidgetCoordinator.swift",
+        "symbol": "startLinkAccount, modalPresentationStyle = .fullScreen",
+        "ref": "fc2b3b1d"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/ServiceAccount/ServiceAccountConsentView.swift",
+        "symbol": "ServiceAccountConsentView",
+        "ref": "fc2b3b1d"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Extensions/GovKit/GOVUKColors+ServiceAccount.swift",
+        "symbol": "fills.surfaceFullScreenLinkAccount",
+        "ref": "fc2b3b1d"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "design/src/main/kotlin/uk/gov/govuk/design/ui/component/Screen.kt",
+        "symbol": "BookendToWebScreen",
+        "ref": "9952400f"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "feature/dvla/src/main/kotlin/uk/gov/govuk/dvla/ui/DvlaLinkIntroScreen.kt",
+        "symbol": "DvlaLinkIntroScreen",
+        "ref": "9952400f"
+      }
+    ],
+    "other": [
+      {
+        "title": "Apple Developer Documentation: UIModalPresentationStyle.fullScreen",
+        "url": "https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/fullscreen"
+      }
+    ]
+  },
+  "references": [
+    {
+      "platform": "ios",
+      "image": "reference/ios-add-account-light.png",
+      "description": "Adding a driver and vehicles account, in light mode. Drawn before iOS 26, so its close button has no glass, and its navigation bar leaves room for a large title, which sets the content further down",
+      "from": "ServiceAccountConsentViewControllerSnapshotTests at fc2b3b1d"
+    },
+    {
+      "platform": "ios",
+      "image": "reference/ios-add-account-dark.png",
+      "description": "The same in dark mode, which doesn't change the green",
+      "from": "ServiceAccountConsentViewControllerSnapshotTests at fc2b3b1d"
+    }
+  ],
+  "examples": [
+    {
+      "name": "Adding a driver and vehicles account",
+      "frame": "screen",
+      "html": "<govuk-app-full-screen-cover>\n  <govuk-app-screen background=\"green\">\n    <govuk-app-nav-bar>\n      <govuk-app-nav-bar-item icon=\"close\" name=\"close\" slot=\"leading\">Close</govuk-app-nav-bar-item>\n    </govuk-app-nav-bar>\n    <govuk-app-heading level=\"1\" size=\"large-title\">Add your driver and vehicles account</govuk-app-heading>\n    <govuk-app-text size=\"title-1\">Keep track of your licence details, tax and MOT dates.</govuk-app-text>\n    <govuk-app-text size=\"title-1\">We’ll take you to your web browser to sign in.</govuk-app-text>\n    <govuk-app-button-stack slot=\"footer\">\n      <govuk-app-button variant=\"black\" name=\"continue\">Continue</govuk-app-button>\n    </govuk-app-button-stack>\n  </govuk-app-screen>\n</govuk-app-full-screen-cover>"
+    },
+    {
+      "name": "Coming up over the screen it was presented from",
+      "frame": "screen",
+      "html": "<govuk-app-full-screen-cover present>\n  <govuk-app-screen slot=\"behind\">\n    <govuk-app-nav-bar title=\"Driving\" large-title back></govuk-app-nav-bar>\n    <govuk-app-text>Add your driver and vehicles account to see your licence details, tax and MOT dates.</govuk-app-text>\n  </govuk-app-screen>\n  <govuk-app-screen background=\"modal\">\n    <govuk-app-nav-bar title=\"A full-screen cover\">\n      <govuk-app-nav-bar-item icon=\"close\" name=\"close\" slot=\"leading\">Close</govuk-app-nav-bar-item>\n    </govuk-app-nav-bar>\n    <govuk-app-text>Nothing of the screen behind shows once it's up.</govuk-app-text>\n  </govuk-app-screen>\n</govuk-app-full-screen-cover>"
+    }
+  ]
+}

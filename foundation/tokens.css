@@ -88,6 +88,19 @@ govuk-app {
   --app-switch-knob: #ffffff;                                 /* the system's */
   --app-switch-knob-shadow: rgb(0 0 0 / 0.15);                /* the system's */
 
+  /* Green screens and black buttons: the app's own, not GovKit's, which it
+     uses to add an account (govuk-mobile-ios-app, Extensions/GovKit/
+     GOVUKColors+ServiceAccount.swift, read at fc2b3b1d). The same in light
+     and dark */
+  --app-surface-green: #0f7a52;                               /* fills.surfaceFullScreenLinkAccount, GovKit's primaryGreen */
+  --app-text-on-green: #ffffff;                               /* text.header */
+  --app-surface-button-black: #000000;                        /* fills.linkAccountButton */
+  --app-surface-button-black-pressed: #1a1a1a;                /* fills.linkAccountButtonHighlight */
+  --app-text-button-black: #ffffff;                           /* text.linkAccountButton */
+  --app-text-button-black-pressed: #cccccc;                   /* text.linkAccountButtonHighlight */
+  --app-shadow-button-black: #1a1a1a;                         /* strokes.linkAccountButton */
+  --app-shadow-button-black-pressed: #000000;                 /* strokes.linkAccountButtonHighlight */
+
   /* Sheets: the system's, which GovKit leaves */
   --app-sheet-backdrop: #000000;                              /* behind the screen a sheet is presented from */
   --app-sheet-dim: light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.3)); /* over that screen */
@@ -128,6 +141,7 @@ govuk-app {
   --app-font-title-1-size: calc(28px * var(--app-text-scale));
   --app-font-title-1-weight: 700;
   --app-font-title-1-leading: calc(34px * var(--app-text-scale));
+  --app-font-title-1-regular-weight: 400;  /* Font.govUK.title1, which the weight above is the bold of */
   --app-font-title-2-size: calc(22px * var(--app-text-scale));
   --app-font-title-2-weight: 700;
   --app-font-title-2-leading: calc(28px * var(--app-text-scale));

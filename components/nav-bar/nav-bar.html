@@ -13,9 +13,10 @@
     <button class="govuk-app-nav-bar__back" type="button" name="back" aria-label="Back" data-if="backButton">
       <span class="govuk-app-nav-bar__icon" aria-hidden="true">arrow_back_ios_new</span>
     </button>
+    <div class="govuk-app-nav-bar__actions govuk-app-nav-bar__actions--leading" data-if="leading" data-slot="leading"></div>
     <h1 class="govuk-app-nav-bar__title" data-if="inlineTitle" data-text="title"></h1>
     <span class="govuk-app-nav-bar__title" aria-hidden="true" data-if="largeTitle" data-text="title"></span>
-    <div class="govuk-app-nav-bar__actions" data-if="actions" data-slot="content"></div>
+    <div class="govuk-app-nav-bar__actions" data-if="actions" data-slot="actions"></div>
   </div>
   <h1 class="govuk-app-nav-bar__large-title" data-if="largeTitle" data-text="title"></h1>
 </template>

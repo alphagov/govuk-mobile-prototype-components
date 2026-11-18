@@ -16,6 +16,30 @@
   background: var(--app-surface-modal);
 }
 
+/* Green: the app's green, with white text (ServiceAccountConsentView).
+
+   It is the same in light and dark, so what is drawn on it is too: in dark
+   mode, the navigation bar's glass would otherwise turn dark over the green.
+   Its button stack's divider is black at 30%, and only drawn once the
+   content scrolls under it, so it is left out, as on a screen short enough
+   not to scroll. */
+.govuk-app-screen[data-background="green"] {
+  --app-border-button-stack: transparent;
+  --app-border-row: transparent;
+  color-scheme: light;
+  background: var(--app-surface-green);
+  color: var(--app-text-on-green);
+}
+
+/* The app sets its content further down, below the navigation bar. */
+.govuk-app-screen[data-background="green"] .govuk-app-screen__content {
+  padding-top: calc(var(--app-space-medium) + var(--app-space-extra-large));
+}
+
+.govuk-app-screen[data-background="green"] .govuk-app-screen__content[data-under-status-bar] {
+  padding-top: calc(var(--govuk-app-inset-top, 0px) + var(--app-space-medium) + var(--app-space-extra-large));
+}
+
 .govuk-app-screen__scroll {
   display: flex;
   flex-direction: column;

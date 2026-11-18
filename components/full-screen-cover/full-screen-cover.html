@@ -1,0 +1,10 @@
+<!-- A full-screen cover: a screen presented over another, covering the whole
+     screen, status bar and all. The screen written between its tags is the
+     cover's; one with slot="behind" is the screen it was presented from,
+     seen only while the cover comes up over it. -->
+<template>
+  <div class="govuk-app-full-screen-cover" data-attr="data-present: present">
+    <div class="govuk-app-full-screen-cover__behind" inert data-if="behind" data-slot="behind"></div>
+    <div class="govuk-app-full-screen-cover__body" role="dialog" aria-modal="true" data-attr="aria-label: label" data-slot="body"></div>
+  </div>
+</template>

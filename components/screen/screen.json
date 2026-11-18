@@ -5,7 +5,7 @@
   "purpose": "Lays out one screen of the app: the navigation bar at the top, the content, which scrolls, and the tab bar or a button stack at the bottom. Write a screen's components inside it in order, top to bottom.",
   "origin": {
     "kind": "native",
-    "notes": "How iOS lays out a screen under the app's SwiftUI views: a ScrollView of content 16pt in from the sides, under the navigation bar, with room for the status bar and home indicator. The app sets only the background: fills.surfaceBackground, or fills.surfaceModal for a modal. What is pinned to the bottom, such as the app's button stack, is a component of its own."
+    "notes": "How iOS lays out a screen under the app's SwiftUI views: a ScrollView of content 16pt in from the sides, under the navigation bar, with room for the status bar and home indicator. The app sets only the background: fills.surfaceBackground, fills.surfaceModal for a modal, or the app's own green, fills.surfaceFullScreenLinkAccount, for a screen that takes over the app, such as adding a driver and vehicles account. What is pinned to the bottom, such as the app's button stack, is a component of its own."
   },
   "inputs": {
     "attributes": {
@@ -13,10 +13,11 @@
         "type": "enum",
         "values": [
           "page",
-          "modal"
+          "modal",
+          "green"
         ],
         "default": "page",
-        "description": "page: the app's pale blue, for screens in its sections. modal: white, for a screen presented over them, such as a question or a confirmation."
+        "description": "page: the app's pale blue, for screens in its sections. modal: white, for a screen presented over them, such as a question or a confirmation. green: the app's green, the same in light and dark, with white text and its content set further down, for a screen that takes over the app, in a full-screen cover."
       }
     },
     "content": "The screen's components, top to bottom. A <govuk-app-nav-bar> goes at the top and sticks there. A <govuk-app-tab-bar> goes at the bottom of the content and floats over it. An element with slot=\"footer\", usually a <govuk-app-button-stack>, is pinned below the content. Everything else is the content, 16pt in from the sides and 16pt apart, and scrolls."
@@ -28,7 +29,8 @@
     "Put a screen directly in a <govuk-app>, and give the root a size: the screen fills it, and scrolls inside it.",
     "Use one screen for each screen of a journey. In a prototype of several pages, put each on its own page.",
     "Give a screen either a tab bar or a button stack, not both: the app hides the tab bar on screens that ask the user to act.",
-    "Use the modal background for screens presented over the app, such as a sign-out confirmation, and the page background for the rest."
+    "Use the modal background for screens presented over the app, such as a sign-out confirmation, and the page background for the rest.",
+    "Use the green background only for a screen that takes over the app, in a full-screen cover, as the app does when adding a driver and vehicles account. Give it a black button."
   ],
   "sources": {
     "figma": [],
@@ -50,6 +52,12 @@
         "path": "GovKitUI/Sources/Colors/GOVUKColors+Fills.swift",
         "symbol": "fills.surfaceBackground, fills.surfaceModal",
         "ref": "8a7641e"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/ServiceAccount/ServiceAccountConsentView.swift",
+        "symbol": "ServiceAccountConsentView, on fills.surfaceFullScreenLinkAccount",
+        "ref": "fc2b3b1d"
       }
     ],
     "android": [],
