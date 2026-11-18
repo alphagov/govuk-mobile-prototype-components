@@ -129,6 +129,23 @@ govuk-app {
   --app-font-subheadline-emphasis-size: calc(15px * var(--app-text-scale));
   --app-font-subheadline-emphasis-weight: 600;
   --app-font-subheadline-emphasis-leading: calc(20px * var(--app-text-scale));
+  --app-font-callout-size: calc(16px * var(--app-text-scale));
+  --app-font-callout-weight: 400;
+  --app-font-callout-leading: calc(21px * var(--app-text-scale));
+  --app-font-subheadline-size: calc(15px * var(--app-text-scale));
+  --app-font-subheadline-weight: 400;
+  --app-font-subheadline-leading: calc(20px * var(--app-text-scale));
+  --app-font-footnote-size: calc(13px * var(--app-text-scale));
+  --app-font-footnote-weight: 400;
+  --app-font-footnote-leading: calc(18px * var(--app-text-scale));
+  --app-font-caption-1-size: calc(12px * var(--app-text-scale));
+  --app-font-caption-1-weight: 400;
+  --app-font-caption-1-leading: calc(16px * var(--app-text-scale));
+  --app-font-caption-2-size: calc(11px * var(--app-text-scale));
+  --app-font-caption-2-weight: 400;
+  --app-font-caption-2-leading: calc(13px * var(--app-text-scale));
+  /* The weight of every style's emphasised form: GovKit's semibold */
+  --app-font-emphasis-weight: 600;
 }
 
 govuk-app[colour-scheme="light"] { color-scheme: light; }

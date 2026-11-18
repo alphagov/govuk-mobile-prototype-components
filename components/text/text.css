@@ -1,0 +1,55 @@
+/* A paragraph in one of iOS's text styles, through GovKit's Font.govUK: Body,
+   as most of the app's text is, or a smaller style. Each grows with the
+   root's text size.
+
+   Its class isn't govuk-app-text, which base.css already has, for setting
+   lines as iOS does, from --leading. */
+
+.govuk-app-text-block[data-size="body"] {
+  font-size: var(--app-font-body-size);
+  font-weight: var(--app-font-body-weight);
+  --leading: var(--app-font-body-leading);
+}
+
+.govuk-app-text-block[data-size="callout"] {
+  font-size: var(--app-font-callout-size);
+  font-weight: var(--app-font-callout-weight);
+  --leading: var(--app-font-callout-leading);
+}
+
+.govuk-app-text-block[data-size="subheadline"] {
+  font-size: var(--app-font-subheadline-size);
+  font-weight: var(--app-font-subheadline-weight);
+  --leading: var(--app-font-subheadline-leading);
+}
+
+.govuk-app-text-block[data-size="footnote"] {
+  font-size: var(--app-font-footnote-size);
+  font-weight: var(--app-font-footnote-weight);
+  --leading: var(--app-font-footnote-leading);
+}
+
+.govuk-app-text-block[data-size="caption-1"] {
+  font-size: var(--app-font-caption-1-size);
+  font-weight: var(--app-font-caption-1-weight);
+  --leading: var(--app-font-caption-1-leading);
+}
+
+.govuk-app-text-block[data-size="caption-2"] {
+  font-size: var(--app-font-caption-2-size);
+  font-weight: var(--app-font-caption-2-weight);
+  --leading: var(--app-font-caption-2-leading);
+}
+
+/* After the sizes, so it wins over their weights. */
+.govuk-app-text-block[data-emphasis] {
+  font-weight: var(--app-font-emphasis-weight);
+}
+
+.govuk-app-text-block[data-colour="secondary"] {
+  color: var(--app-text-secondary);
+}
+
+.govuk-app-text-block[data-align="center"] {
+  text-align: center;
+}
