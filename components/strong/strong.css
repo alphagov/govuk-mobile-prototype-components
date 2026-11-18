@@ -1,0 +1,6 @@
+/* A few words of a line in bold, as SwiftUI draws Texts joined with + or an
+   AttributedString: semibold, as GovKit's emphasis is, not the browser's
+   bold, in whatever size the line around it is. */
+.govuk-app-strong {
+  font-weight: var(--app-font-emphasis-weight);
+}

@@ -33,7 +33,7 @@
         "description": "center, under a centred heading, as on the app's onboarding and information screens."
       }
     },
-    "content": "The paragraph's text."
+    "content": "The paragraph's text. A few words of it can be bold, in a <govuk-app-strong>."
   },
   "outputs": {
     "events": []
