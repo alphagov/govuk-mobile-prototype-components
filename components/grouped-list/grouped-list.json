@@ -1,0 +1,126 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Grouped list",
+  "element": "govuk-app-grouped-list",
+  "purpose": "A section of rows on a rounded card, as on the Settings screen: rows that go to another screen, open a web page, switch something on or off, or show a value. Each section can have a title above it and a footer below.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "GovKit's GroupedList: GroupedListSectionView and GroupedListRowView, with its seven kinds of row (NavigationRow, LinkRow, InformationRow, DetailRow, ToggleRow, CountRow and SelectableRow). It looks like iOS's inset grouped list, but GovKit draws it itself, with its own colours, spacing and rows. Settings, the vehicle and licence screens, travel alerts and Pages you've visited use it."
+  },
+  "inputs": {
+    "attributes": {
+      "title": {
+        "type": "string",
+        "description": "The section's title, above the card. Without it, the card stands alone, as on Settings."
+      },
+      "level": {
+        "type": "enum",
+        "values": ["1", "2", "3", "4", "5", "6"],
+        "default": "2",
+        "description": "The title's place in the screen's outline. Drawn as h1 to h6, always in Title 3."
+      },
+      "action": {
+        "type": "string",
+        "description": "Text for an action beside the title, such as See all."
+      },
+      "href": {
+        "type": "string",
+        "description": "Makes the title's action a link to this page."
+      },
+      "name": {
+        "type": "string",
+        "description": "The title's action's button's name."
+      },
+      "value": {
+        "type": "string",
+        "description": "The title's action's button's value."
+      },
+      "footer": {
+        "type": "string",
+        "description": "A note below the card, in Footnote, such as what a setting does."
+      }
+    },
+    "content": "The section's rows, <govuk-app-grouped-list-row> elements, in order. Each takes a type: navigation (the default: a chevron, to another screen), link (in the link colour, with an arrow out, to a web page), information (a value on the right, in grey, that can't be pressed), detail (a value on the right in the link colour, such as Off, to change it; destructive draws its title red), toggle (a switch; checked if it is on), count (a number on the right, with unread for a red dot) or selectable (an icon on the right, if it names one, such as check). detail gives the value on the right; description, for information and link rows, a line of grey text below the title. Give href to make a row a link, or name and value to tell it apart as a button or switch. Its title is what is written between its tags."
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "click",
+        "description": "From a row's button, with its name and value, when it is pressed. A row with an href goes to its page instead."
+      },
+      {
+        "name": "change",
+        "description": "From a toggle row's switch, a checkbox with its name and value, when it is switched. Read event.target.checked for whether it is on."
+      }
+    ]
+  },
+  "rules": [
+    "Group rows that belong together in one section, and give each section a title unless the screen makes it obvious, as Settings does.",
+    "Use navigation for a row that goes to another screen in the app, and link only for one that opens a web page.",
+    "Use toggle for a setting that takes effect straight away. Use detail for one that is changed on another screen, showing its value, such as Off.",
+    "Use information for a value the user can't change, such as the app's version.",
+    "Keep row titles to one line where you can, and put any explanation in the section's footer, not the row.",
+    "Use destructive only for a detail row that deletes or removes something, such as Sign out."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKit/Sources/SwiftUIViews/GroupedList/GroupedListSectionView.swift",
+        "symbol": "GroupedListSectionView",
+        "ref": "8a7641e"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKit/Sources/SwiftUIViews/GroupedList/GroupedListRowView.swift",
+        "symbol": "GroupedListRowView",
+        "ref": "8a7641e"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKit/Sources/ViewModels/GroupedListSection.swift",
+        "symbol": "GroupedListSection, and its rows",
+        "ref": "8a7641e"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Settings/SettingsView.swift",
+        "symbol": "SettingsView",
+        "ref": "1e520fc1"
+      }
+    ],
+    "android": [],
+    "other": [
+      {
+        "title": "Material Symbols, the icons it draws",
+        "url": "https://fonts.google.com/icons"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-every-row-light.webp", "description": "A titled section with one of each kind of row, and a footer, in light mode", "from": "GovKit's GroupedListSnapshotTests at 8a7641e" },
+    { "platform": "ios", "image": "reference/ios-every-row-dark.webp", "description": "The same, in dark mode", "from": "GovKit's GroupedListSnapshotTests at 8a7641e" },
+    { "platform": "ios", "image": "reference/ios-settings-light.webp", "description": "Settings, in light mode", "from": "SettingsViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-settings-dark.webp", "description": "Settings, in dark mode", "from": "SettingsViewControllerSnapshotTests at 1e520fc1" }
+  ],
+  "examples": [
+    {
+      "name": "Every kind of row",
+      "html": "<govuk-app-grouped-list title=\"Section 1 header\" footer=\"Footer\">\n  <govuk-app-grouped-list-row name=\"row-1\">Row title 1</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"link\" href=\"https://www.gov.uk\">Row title 2</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"information\" detail=\"Detail\" description=\"Body text\">Row title 3</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"toggle\" name=\"row-4\" checked>Row title 4</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"detail\" detail=\"Body text\" name=\"row-5\">Row title 5</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"count\" detail=\"1\" unread name=\"row-6\">Row title 6</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"selectable\" icon=\"check\" name=\"row-7\">Row title 7</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    },
+    {
+      "name": "Settings",
+      "frame": "screen",
+      "html": "<govuk-app-screen>\n  <govuk-app-nav-bar title=\"Settings\" large-title></govuk-app-nav-bar>\n  <govuk-app-grouped-list>\n    <govuk-app-grouped-list-row name=\"accounts\">Your accounts</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n  <govuk-app-grouped-list>\n    <govuk-app-grouped-list-row type=\"count\" detail=\"2\" unread name=\"messages\">Messages</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n  <govuk-app-grouped-list footer=\"You can share statistics about how you use the GOV.UK app so we can make improvements to it. We will not use these statistics to directly identify you.\">\n    <govuk-app-grouped-list-row type=\"detail\" detail=\"Off\" name=\"notifications\">Notifications</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row name=\"face-id\">Face ID</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row type=\"toggle\" name=\"statistics\" checked>Share app usage statistics</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n  <govuk-app-grouped-list>\n    <govuk-app-grouped-list-row type=\"information\" detail=\"1.2.3 (123)\">App version number</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row type=\"link\" href=\"https://www.gov.uk/contact/govuk-app\">Help and feedback</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n</govuk-app-screen>"
+    },
+    {
+      "name": "A title with an action",
+      "html": "<govuk-app-grouped-list title=\"Pages you’ve visited\" action=\"See all\" href=\"#recent-activity\">\n  <govuk-app-grouped-list-row type=\"link\" href=\"https://www.gov.uk/check-uk-visa\">Check if you need a UK visa</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"link\" href=\"https://www.gov.uk/vehicle-tax\" description=\"Visited today\">Tax your vehicle</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    },
+    {
+      "name": "A destructive detail row",
+      "html": "<govuk-app-grouped-list>\n  <govuk-app-grouped-list-row type=\"detail\" destructive name=\"sign-out\">Sign out</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    }
+  ]
+}

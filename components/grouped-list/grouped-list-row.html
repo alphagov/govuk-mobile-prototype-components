@@ -1,0 +1,37 @@
+<!-- One row of a grouped list: its title, what was written between its tags,
+     what its type puts on the right, and its description below, if it has
+     one. A link if it has an href; a switch if it is a toggle; plain text if
+     it is information; otherwise a button. -->
+<template>
+  <a class="govuk-app-grouped-list-row" data-if="link" data-attr="href: href, data-type: type">
+    <span class="govuk-app-grouped-list-row__line">
+      <span class="govuk-app-grouped-list-row__title govuk-app-text" data-attr="data-destructive: destructive" data-slot="content"></span>
+      <span class="govuk-app-grouped-list-row__dot" data-if="unread"></span>
+      <span class="govuk-app-grouped-list-row__detail govuk-app-text" data-if="detail" data-text="detail"></span>
+      <span class="govuk-app-grouped-list-row__icon" aria-hidden="true" data-if="icon" data-text="icon"></span>
+    </span>
+    <span class="govuk-app-grouped-list-row__description govuk-app-text" data-if="description" data-text="description"></span>
+  </a>
+  <button class="govuk-app-grouped-list-row" type="button" data-if="button" data-attr="name: name, value: value, data-type: type">
+    <span class="govuk-app-grouped-list-row__line">
+      <span class="govuk-app-grouped-list-row__title govuk-app-text" data-attr="data-destructive: destructive" data-slot="content"></span>
+      <span class="govuk-app-grouped-list-row__dot" data-if="unread"></span>
+      <span class="govuk-app-grouped-list-row__detail govuk-app-text" data-if="detail" data-text="detail"></span>
+      <span class="govuk-app-grouped-list-row__icon" aria-hidden="true" data-if="icon" data-text="icon"></span>
+    </span>
+    <span class="govuk-app-grouped-list-row__description govuk-app-text" data-if="description" data-text="description"></span>
+  </button>
+  <label class="govuk-app-grouped-list-row" data-if="toggle" data-attr="data-type: type">
+    <span class="govuk-app-grouped-list-row__line">
+      <span class="govuk-app-grouped-list-row__title govuk-app-text" data-slot="content"></span>
+      <input class="govuk-app-grouped-list-row__switch" type="checkbox" role="switch" data-attr="name: name, value: value, checked: checked">
+    </span>
+  </label>
+  <div class="govuk-app-grouped-list-row" data-if="information" data-attr="data-type: type">
+    <span class="govuk-app-grouped-list-row__line">
+      <span class="govuk-app-grouped-list-row__title govuk-app-text" data-slot="content"></span>
+      <span class="govuk-app-grouped-list-row__detail govuk-app-text" data-if="detail" data-text="detail"></span>
+    </span>
+    <span class="govuk-app-grouped-list-row__description govuk-app-text" data-if="description" data-text="description"></span>
+  </div>
+</template>

@@ -1,0 +1,218 @@
+/* GovKit's GroupedList, one section of it: GroupedListSectionView and its
+   rows, GroupedListRowView.
+
+   A section is its title, in Title 3 Semibold, 16pt above a card with 10pt
+   corners in fills.surfaceList, then its footer 8pt below the card, in
+   Footnote, text.secondary, 16pt in from the sides. Rows are 16pt in from
+   every edge of the card, with a divider one device pixel tall between them
+   in strokes.listDivider, 16pt in from both sides. A row of one line is
+   52.33pt tall, as the app's snapshots measure.
+
+   Icons are Material Symbols Rounded in place of SF Symbols, which may only
+   be used on Apple's platforms. */
+
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0&display=block");
+
+.govuk-app-grouped-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-small);
+}
+
+/* The title's own 8pt below it, and the section's 8pt gap, put the card 16pt
+   below it. Its action is the section heading's: Subheadline Semibold. */
+.govuk-app-grouped-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--app-space-small);
+  padding-bottom: var(--app-space-small);
+}
+
+/* GovKit asks for Title 3 in bold, but its snapshots measure semibold. */
+.govuk-app-grouped-list__title {
+  font-size: var(--app-font-title-3-emphasis-size);
+  font-weight: var(--app-font-title-3-emphasis-weight);
+  --leading: var(--app-font-title-3-emphasis-leading);
+}
+
+.govuk-app-grouped-list__action {
+  flex-shrink: 0;
+  border: 0;
+  color: var(--app-text-button-secondary);
+  font-size: var(--app-font-subheadline-emphasis-size);
+  font-weight: var(--app-font-subheadline-emphasis-weight);
+  line-height: var(--app-font-subheadline-emphasis-leading);
+  cursor: pointer;
+}
+
+.govuk-app-grouped-list__rows {
+  overflow: hidden;
+  border-radius: 10px; /* GroupedListSectionView's cornerRadius, off the grid */
+  background: var(--app-surface-list);
+}
+
+.govuk-app-grouped-list__footer {
+  padding-inline: var(--app-space-medium);
+  color: var(--app-text-secondary);
+  font-size: var(--app-font-footnote-size);
+  --leading: var(--app-font-footnote-leading);
+}
+
+/* A row */
+
+.govuk-app-grouped-list-row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* What SwiftUI's VStack puts between a row's title and its description, as
+     the snapshots measure: off the grid. */
+  gap: 2.5px;
+  width: 100%;
+  padding: var(--app-space-medium);
+  border: 0;
+  color: var(--app-text-primary);
+  font-size: var(--app-font-body-size);
+  --leading: var(--app-font-body-leading);
+  text-align: start;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The divider above every row but the first. It takes room of its own, as
+   SwiftUI's Divider does. */
+govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-list-row {
+  padding-top: calc(var(--app-space-medium) + 0.33px);
+}
+
+govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-list-row::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: var(--app-space-medium);
+  left: var(--app-space-medium);
+  height: 1px;
+  /* A shadow, as a box this thin is drawn a whole point tall. */
+  box-shadow: inset 0 0.33px var(--app-border-list-divider);
+}
+
+.govuk-app-grouped-list-row:is(a, button) {
+  cursor: pointer;
+}
+
+.govuk-app-grouped-list-row:is(a, button):active {
+  background: var(--app-glass-pressed);
+}
+
+/* Inside the card, which would cut it off. */
+.govuk-app-grouped-list-row:focus-visible {
+  outline-offset: calc(-1 * var(--app-focus-width));
+}
+
+.govuk-app-grouped-list-row__line {
+  display: flex;
+  align-items: center;
+  gap: var(--app-space-small);
+}
+
+.govuk-app-grouped-list-row__title {
+  flex: 1;
+}
+
+.govuk-app-grouped-list-row[data-type="link"] .govuk-app-grouped-list-row__title {
+  color: var(--app-text-link);
+}
+
+.govuk-app-grouped-list-row__title[data-destructive] {
+  color: var(--app-text-error);
+}
+
+/* On the right: secondary for information, a link's colour for the rest. */
+.govuk-app-grouped-list-row__detail {
+  flex-shrink: 0;
+  color: var(--app-text-link);
+}
+
+.govuk-app-grouped-list-row[data-type="information"] .govuk-app-grouped-list-row__detail {
+  color: var(--app-text-secondary);
+}
+
+/* A count's unread dot, 8pt before the count. */
+.govuk-app-grouped-list-row__dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-unread);
+}
+
+/* SF's chevron.right in Body Semibold is 9pt by 15pt, its arrow.up.right 12pt
+   square: Material's at 24px and 20px are as big. */
+.govuk-app-grouped-list-row__icon {
+  flex-shrink: 0;
+  color: var(--app-icon-tertiary);
+  font-family: "Material Symbols Rounded";
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  /* Its glyph's right edge, not its box's, 16pt from the card's. And taller
+     than the line, which it overhangs, so the title sets the row's height,
+     as in the app. */
+  margin-block: -2px;
+  margin-inline-end: -6px;
+}
+
+.govuk-app-grouped-list-row[data-type="link"] .govuk-app-grouped-list-row__icon {
+  font-size: 20px;
+  margin-block: 0;
+  margin-inline-end: -3px;
+}
+
+.govuk-app-grouped-list-row__description {
+  color: var(--app-text-secondary);
+  font-size: var(--app-font-subheadline-size);
+  --leading: var(--app-font-subheadline-leading);
+}
+
+/* The switch, as iOS draws it in the app's snapshots: 51pt by 31pt, green
+   when on, with a white knob 2pt inside it. */
+.govuk-app-grouped-list-row__switch {
+  position: relative;
+  flex-shrink: 0;
+  width: 51px;
+  height: 31px;
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-switch-off);
+  appearance: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.govuk-app-grouped-list-row__switch::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 27px;
+  height: 27px;
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-switch-knob);
+  box-shadow: 0 3px 8px var(--app-switch-knob-shadow);
+  transition: transform 0.2s;
+}
+
+.govuk-app-grouped-list-row__switch:checked {
+  background: var(--app-switch-on);
+}
+
+.govuk-app-grouped-list-row__switch:checked::before {
+  transform: translateX(20px);
+}
+
+.govuk-app-grouped-list-row__switch:focus-visible {
+  outline: var(--app-focus-width) solid var(--app-focus);
+}

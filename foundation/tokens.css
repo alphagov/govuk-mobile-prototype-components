@@ -78,6 +78,16 @@ govuk-app {
   --app-shadow-button-destructive: light-dark(#651b1b, #ca3535);          /* strokes.buttonDestructiveDefault */
   --app-shadow-button-destructive-pressed: light-dark(#280b0b, #651b1b);  /* strokes.buttonDestructiveHighlight */
 
+  /* Grouped lists */
+  --app-surface-list: light-dark(#ffffff, #092237);           /* fills.surfaceList */
+  --app-border-list-divider: light-dark(#d2e2f1, #263d54);    /* strokes.listDivider */
+  --app-icon-tertiary: light-dark(#1d70b8, #ffffff);          /* text.iconTertiary: chevrons and arrows */
+  --app-unread: #ff5e5e;                                      /* fills.msgUnread */
+  --app-switch-on: #0f7a52;                                   /* fills.surfaceToggleSelected */
+  --app-switch-off: light-dark(rgb(120 120 128 / 0.16), rgb(120 120 128 / 0.32)); /* the system's, which GovKit leaves */
+  --app-switch-knob: #ffffff;                                 /* the system's */
+  --app-switch-knob-shadow: rgb(0 0 0 / 0.15);                /* the system's */
+
   /* Glass: iOS 26's Liquid Glass, approximated, for the system's own bars and
      their buttons. The app sets none of these, only what is drawn on the glass
      (text.linkSecondary, text.primary, and the label colour) */

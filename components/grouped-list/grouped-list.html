@@ -1,0 +1,14 @@
+<!-- A section of a grouped list: its title, with an action beside it if it has
+     one, then its rows, the <govuk-app-grouped-list-row> elements written
+     between its tags, on a rounded card, then its footer. -->
+<template>
+  <section class="govuk-app-grouped-list">
+    <div class="govuk-app-grouped-list__header" data-if="title">
+      <h2 class="govuk-app-grouped-list__title govuk-app-text" data-tag="tag: h1 h2 h3 h4 h5 h6" data-text="title"></h2>
+      <a class="govuk-app-grouped-list__action" data-if="actionLink" data-attr="href: href" data-text="action"></a>
+      <button class="govuk-app-grouped-list__action" type="button" data-if="actionButton" data-attr="name: name, value: value" data-text="action"></button>
+    </div>
+    <div class="govuk-app-grouped-list__rows" data-slot="content"></div>
+    <p class="govuk-app-grouped-list__footer govuk-app-text" data-if="footer" data-text="footer"></p>
+  </section>
+</template>
