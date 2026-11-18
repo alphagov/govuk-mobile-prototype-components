@@ -40,3 +40,61 @@ for (const phone of document.querySelectorAll('.example-phone')) {
   phone.insertAdjacentHTML('afterbegin', statusBar)
   phone.insertAdjacentHTML('beforeend', '<div class="example-home-indicator" aria-hidden="true"></div>')
 }
+
+// Shaking the phone opens a menu, as shaking a TestFlight build does, with
+// the way back to the examples: on a phone the example fills the screen, so
+// there's nothing else to tap. The examples' index is the folder this script
+// is in, so the link works wherever the site is served from.
+document.body.insertAdjacentHTML('beforeend', `
+  <dialog class="example-menu" aria-label="Example menu">
+    <div class="example-menu__group">
+      <a class="example-menu__item" href="${new URL('./', import.meta.url)}">Back to examples</a>
+    </div>
+    <form class="example-menu__group" method="dialog">
+      <button class="example-menu__item example-menu__item--cancel">Cancel</button>
+    </form>
+  </dialog>`)
+const menu = document.querySelector('.example-menu')
+
+// Tapping outside the sheet closes it, as on iOS.
+menu.addEventListener('click', event => {
+  if (event.target === menu) menu.close()
+})
+
+// A shake is a few hard jolts in quick succession, so a single bump, or
+// putting the phone down, doesn't open the menu. `acceleration` leaves out
+// gravity, so turning the phone over doesn't count either. In m/s².
+const joltThreshold = 15
+const joltsInAShake = 3
+const shakeWindow = 1000
+let jolts = []
+
+function onMotion(event) {
+  const a = event.acceleration
+  if (a?.x == null || Math.hypot(a.x, a.y, a.z) < joltThreshold) return
+
+  // One jolt lasts several readings; count it once.
+  const now = event.timeStamp
+  if (jolts.length && now - jolts.at(-1) < 100) return
+  jolts = [...jolts.filter(time => now - time < shakeWindow), now]
+
+  if (jolts.length >= joltsInAShake && !menu.open) {
+    jolts = []
+    menu.showModal()
+  }
+}
+
+// Browsers only send motion to secure pages, so not over http on the local
+// network. iOS asks the user first, and only in answer to a tap; once they've
+// allowed it, asking again on each page is silent.
+if ('DeviceMotionEvent' in window) {
+  if (typeof DeviceMotionEvent.requestPermission === 'function') {
+    addEventListener('touchend', () => {
+      DeviceMotionEvent.requestPermission()
+        .then(state => { if (state === 'granted') addEventListener('devicemotion', onMotion) })
+        .catch(() => {})
+    }, { once: true })
+  } else {
+    addEventListener('devicemotion', onMotion)
+  }
+}

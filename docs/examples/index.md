@@ -8,6 +8,8 @@ order: 3
 
 Each example is a few pages of plain HTML that link to each other, written with nothing but the library’s components. They show how the components fit together, and what’s still missing. They aren’t prototypes to build on: prototypes belong in their own repositories.
 
+On a phone, an example fills the screen. Shake the phone to get back to this page. On an iPhone, Safari first asks whether the page can use motion, the first time you tap it. Shaking only works over HTTPS, so not when the site is served from your computer on the local network.
+
 ## Home
 
 [Open the Home example](/examples/home/)
