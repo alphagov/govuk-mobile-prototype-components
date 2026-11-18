@@ -3,6 +3,9 @@
   "name": "Summary columns",
   "element": "govuk-app-summary-columns",
   "purpose": "Puts a few short facts side by side, in equal columns with a divider between them: two statuses, such as a vehicle's tax and MOT; counts, such as a driver's offences and points; or details with icons, such as a vehicle's year, fuel and colour.",
+  "proposed": {
+    "design": "a screenshot of the future driving designs in Figma, shared by Shaun in November 2026, until there’s a link to the file"
+  },
   "origin": {
     "kind": "govuk",
     "notes": "From the future driving designs in Figma, which we have only as a screenshot for now, so its sizes are approximate. The app today has nothing like it on iOS; Android draws a vehicle's year, fuel and colour with SpecificationsIcons."

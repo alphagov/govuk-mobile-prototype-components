@@ -22,6 +22,19 @@
       "type": "string",
       "minLength": 1
     },
+    "proposed": {
+      "description": "Only for a component that isn't in the app today, such as one from future designs: where its design comes from. A component without it is in the app. Remove it if the component ships, and point its sources at the app.",
+      "type": "object",
+      "required": ["design"],
+      "additionalProperties": false,
+      "properties": {
+        "design": {
+          "description": "Where the design comes from, such as a Figma file, or a screenshot of one until there's a link.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
     "origin": {
       "description": "Whether it is a native component, mirroring something native to the platform, or a GOV.UK app component, the app's own.",
       "type": "object",

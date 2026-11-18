@@ -5,9 +5,12 @@ description: Each component, drawn live from its definition file, beside the app
 sectionKey: Components
 order: 2
 ---
-{#- Grouped by kind, as in the sidebar. -#}
-{% for kind, group in components | groupby("kind.many") %}
-<h2 class="govuk-heading-l">{{ kind }}</h2>
+{#- Grouped as in the sidebar: by kind, then the proposed ones. -#}
+{% for name, group in components | groupby("group") %}
+<h2 class="govuk-heading-l">{{ name }}</h2>
+{% if name == "Proposed components" %}
+<p class="govuk-body">These aren’t in the app yet. They’re proposed, from designs for it, so they may change, or never ship.</p>
+{% endif %}
 <ul class="govuk-list">
   {% for component in group %}
   <li class="govuk-!-margin-bottom-6">

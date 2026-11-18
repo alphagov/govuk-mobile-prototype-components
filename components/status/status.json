@@ -3,6 +3,9 @@
   "name": "Status",
   "element": "govuk-app-status",
   "purpose": "Shows the state of something with a deadline or a validity, such as a vehicle's tax or MOT, or a driving licence: an icon for its state, then what it is and how it stands, such as Valid, 23 days, or Expired.",
+  "proposed": {
+    "design": "a screenshot of the future driving designs in Figma, shared by Shaun in November 2026, until there’s a link to the file"
+  },
   "origin": {
     "kind": "govuk",
     "notes": "From the future driving designs in Figma, which we have only as a screenshot for now, so its sizes are approximate: the app today shows tax and MOT with ValidityStatusView, its icon on the right and a progress bar below. The colours are GovKit's: primaryGreen for valid, accentPurple for due, on the app's pale blue. The designs show only light mode, so the dark mode colours are ours."

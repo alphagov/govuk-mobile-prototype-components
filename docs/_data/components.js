@@ -18,7 +18,11 @@ const kinds = {
   govuk: { one: 'GOV.UK app component', many: 'GOV.UK app components' },
   native: { one: 'Native component', many: 'Native components' }
 }
-const kindOrder = Object.keys(kinds)
+
+// The groups they're listed in, in this order: the app's components by kind,
+// then the ones proposed for it, of either kind, apart from them.
+const proposed = 'Proposed components'
+const groupOrder = [...Object.values(kinds).map(kind => kind.many), proposed]
 
 export default function () {
   const ajv = new Ajv2020({ allErrors: true, allowUnionTypes: true })
@@ -44,15 +48,16 @@ export default function () {
       ...definition,
       slug,
       kind: kinds[definition.origin.kind],
+      group: definition.proposed ? proposed : kinds[definition.origin.kind].many,
       prose: fs.existsSync(path.join(root, prose)) ? prose : undefined
     })
   }
 
-  // By kind, then by name. Each one's place is its order in the sidebar, which
-  // groups them by kind.
+  // By group, then by name. Each one's place is its order in the sidebar,
+  // which groups them.
   return components
     .sort((a, b) =>
-      kindOrder.indexOf(a.origin.kind) - kindOrder.indexOf(b.origin.kind) ||
+      groupOrder.indexOf(a.group) - groupOrder.indexOf(b.group) ||
       a.name.localeCompare(b.name))
     .map((component, index) => ({ ...component, order: index }))
 }

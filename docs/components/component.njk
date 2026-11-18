@@ -11,8 +11,8 @@ sectionKey: Components
 eleventyNavigation:
   parent: Components
 eleventyComputed:
-  # The sidebar groups components under their kind, in this order.
-  theme: "{{ component.kind.many }}"
+  # The sidebar groups components under their kind, or as proposed, in this order.
+  theme: "{{ component.group }}"
   order: "{{ component.order }}"
   title: "{{ component.name }}"
   caption: "&lt;{{ component.element }}&gt;"
@@ -22,6 +22,7 @@ eleventyComputed:
 {% from "govuk/components/tag/macro.njk" import govukTag %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 {% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 {% set platforms = { ios: "iOS", android: "Android" } %}
 
 <div class="app-prose-scope">
@@ -30,7 +31,17 @@ eleventyComputed:
       text: component.kind.one,
       classes: "docs-tag " + ("govuk-tag--grey" if component.origin.kind == "native" else "govuk-tag--blue")
     }) }}
+    {% if component.proposed %}
+    {{ govukTag({ text: "Proposed", classes: "docs-tag govuk-tag--yellow" }) }}
+    {% endif %}
   </p>
+
+  {% if component.proposed %}
+  {{ govukWarningText({
+    text: "This isn’t in the app yet. It’s proposed, from " + component.proposed.design + ", so it may change, or never ship. Don’t present it as part of the app today.",
+    iconFallbackText: "Warning"
+  }) }}
+  {% endif %}
 
   {% if component.prose %}
   {% renderFile component.prose %}
