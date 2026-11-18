@@ -1,0 +1,39 @@
+/* UIKit's full-screen presentation, UIModalPresentationStyle.fullScreen, as
+   the app presents a modal that asks for it, such as adding a driver and
+   vehicles account. GovKit doesn't style it.
+
+   Unlike a page sheet, it covers the whole screen, under the status bar too,
+   with no corners, and the screen it was presented from isn't set back: it
+   is only covered.
+
+   With present, it comes up from the bottom when the page loads, as UIKit
+   presents it. Without it, it's already there, for the second and later
+   screens of a modal journey. */
+
+.govuk-app-full-screen-cover {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.govuk-app-full-screen-cover__behind,
+.govuk-app-full-screen-cover__body {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Presented as UIKit presents it, with the sheet's timing. */
+.govuk-app-full-screen-cover[data-present] .govuk-app-full-screen-cover__body {
+  animation: govuk-app-full-screen-cover-present 0.5s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+@keyframes govuk-app-full-screen-cover-present {
+  from { transform: translateY(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .govuk-app-full-screen-cover[data-present] .govuk-app-full-screen-cover__body {
+    animation: none;
+  }
+}

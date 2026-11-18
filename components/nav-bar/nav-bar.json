@@ -28,7 +28,7 @@
         "description": "Shows a back button that is a link to this page. Use it in place of back in a prototype of several pages."
       }
     },
-    "content": "Up to three <govuk-app-nav-bar-item> elements, the screen's actions, drawn on the right in order. Each takes an icon attribute, the name of a Material Symbol (such as close, check or more_horiz), or none, to draw its text instead; an href, to make it a link to another page, or name and value, to tell it apart as a button. What is written between its tags is its text, or, with an icon, its name for screen readers."
+    "content": "Up to three <govuk-app-nav-bar-item> elements, the screen's actions, drawn on the right in order. One with slot=\"leading\" is drawn on the left instead, where the back button would be, as the app draws close on a full-screen cover. Each takes an icon attribute, the name of a Material Symbol (such as close, check or more_horiz), or none, to draw its text instead; an href, to make it a link to another page, or name and value, to tell it apart as a button. What is written between its tags is its text, or, with an icon, its name for screen readers."
   },
   "outputs": {
     "events": [
@@ -45,6 +45,7 @@
     "Show a back button on every screen pushed on top of another, and never on a top-level screen or the first screen of a modal.",
     "Close a modal with an action on the right, icon close, named for what it does. Confirm one with icon check.",
     "Use icons for the actions iOS draws as icons (close, check, more_horiz for a menu). Use a word, such as Edit, for anything else.",
+    "Put close on the left, with slot=\"leading\", only on a full-screen cover, as the app does: a sheet has it on the right.",
     "Keep titles short enough to fit on one line. A long title is cut off."
   ],
   "sources": {
@@ -120,6 +121,10 @@
     {
       "name": "Back, large title and a text action",
       "html": "<govuk-app-nav-bar title=\"Pages you've visited\" large-title back>\n  <govuk-app-nav-bar-item name=\"edit\">Edit</govuk-app-nav-bar-item>\n</govuk-app-nav-bar>"
+    },
+    {
+      "name": "Close on the left, on a full-screen cover",
+      "html": "<govuk-app-nav-bar>\n  <govuk-app-nav-bar-item icon=\"close\" name=\"close\" slot=\"leading\">Close</govuk-app-nav-bar-item>\n</govuk-app-nav-bar>"
     },
     {
       "name": "Two actions, sharing their glass",

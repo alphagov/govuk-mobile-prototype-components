@@ -71,6 +71,22 @@
   --shadow: var(--app-shadow-button-destructive-pressed);
 }
 
+/* Link account: black, on the app's green, for adding an account. The app's
+   own blackPrimaryButton, not GovKit's (ButtonConfiguration+Convenience) */
+
+.govuk-app-button[data-variant="link-account"] {
+  --surface: var(--app-surface-button-link-account);
+  --text: var(--app-text-button-link-account);
+  --shadow: var(--app-shadow-button-link-account);
+  font-weight: var(--app-font-body-emphasis-weight);
+}
+
+.govuk-app-button[data-variant="link-account"]:active:not(:disabled) {
+  --surface: var(--app-surface-button-link-account-pressed);
+  --text: var(--app-text-button-link-account-pressed);
+  --shadow: var(--app-shadow-button-link-account-pressed);
+}
+
 /* Secondary: outlined. Grouped secondary: the same, without the outline,
    as it sits under a primary button in a button stack */
 
@@ -114,7 +130,8 @@
 }
 
 .govuk-app-button[data-variant="primary"]:focus-visible:not(:disabled),
-.govuk-app-button[data-variant="destructive"]:focus-visible:not(:disabled) {
+.govuk-app-button[data-variant="destructive"]:focus-visible:not(:disabled),
+.govuk-app-button[data-variant="link-account"]:focus-visible:not(:disabled) {
   --shadow: var(--app-shadow-button-focussed);
 }
 
@@ -130,6 +147,12 @@
 .govuk-app-button[data-variant="destructive"]:disabled {
   --surface: var(--app-surface-button-primary-disabled);
   --text: var(--app-text-button-primary-disabled);
+}
+
+/* Its pressed colours, as the app has no others. */
+.govuk-app-button[data-variant="link-account"]:disabled {
+  --surface: var(--app-surface-button-link-account-pressed);
+  --text: var(--app-text-button-link-account-pressed);
 }
 
 .govuk-app-button[data-variant="compact"]:disabled {

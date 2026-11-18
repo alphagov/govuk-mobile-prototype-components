@@ -1,6 +1,6 @@
 import { defineComponent } from '../../foundation/component.js'
 
-const sizes = ['body', 'callout', 'subheadline', 'footnote', 'caption-1', 'caption-2']
+const sizes = ['title-1', 'body', 'callout', 'subheadline', 'footnote', 'caption-1', 'caption-2']
 
 /** Body unless it names another style; the rest only when they're ones it knows. */
 export function prepare(data) {

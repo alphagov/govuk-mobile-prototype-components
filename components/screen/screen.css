@@ -16,6 +16,26 @@
   background: var(--app-surface-modal);
 }
 
+/* Linking an account: the app's green, the same in light and dark, with
+   white text (ServiceAccountConsentView). Its button stack's divider is
+   black at 30%, and only drawn once the content scrolls under it, so it is
+   left out, as on a screen short enough not to scroll. */
+.govuk-app-screen[data-background="link-account"] {
+  --app-border-button-stack: transparent;
+  --app-border-row: transparent;
+  background: var(--app-surface-link-account);
+  color: var(--app-text-link-account);
+}
+
+/* Its title is 50pt further down, off the 8pt grid, as the app sets it. */
+.govuk-app-screen[data-background="link-account"] .govuk-app-screen__content {
+  padding-top: calc(var(--app-space-medium) + 50px);
+}
+
+.govuk-app-screen[data-background="link-account"] .govuk-app-screen__content[data-under-status-bar] {
+  padding-top: calc(var(--govuk-app-inset-top, 0px) + var(--app-space-medium) + 50px);
+}
+
 .govuk-app-screen__scroll {
   display: flex;
   flex-direction: column;

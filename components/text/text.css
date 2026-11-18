@@ -5,6 +5,14 @@
    Its class isn't govuk-app-text, which base.css already has, for setting
    lines as iOS does, from --leading. */
 
+/* Larger than Body, as the app's green screens for adding an account set
+   their text. */
+.govuk-app-text-block[data-size="title-1"] {
+  font-size: var(--app-font-title-1-size);
+  font-weight: var(--app-font-title-1-regular-weight);
+  --leading: var(--app-font-title-1-leading);
+}
+
 .govuk-app-text-block[data-size="body"] {
   font-size: var(--app-font-body-size);
   font-weight: var(--app-font-body-weight);

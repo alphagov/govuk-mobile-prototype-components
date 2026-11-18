@@ -83,6 +83,11 @@
   justify-self: end;
 }
 
+.govuk-app-nav-bar__actions--leading {
+  grid-area: back;
+  justify-self: start;
+}
+
 /* One line, cut off if it is too long, as iOS does. */
 .govuk-app-nav-bar__title {
   grid-area: title;

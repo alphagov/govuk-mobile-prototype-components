@@ -134,6 +134,16 @@
     }
   }
 
+  /* White in light mode too, as iOS draws them over a dark screen, such as
+     the app's green ones for adding an account. */
+  .example-phone--light-content .example-status-bar {
+    color: #ffffff;
+  }
+
+  .example-phone--light-content .example-home-indicator {
+    background: #ffffff;
+  }
+
   @media (max-width: 460px) {
     body {
       padding: 0;
