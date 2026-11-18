@@ -1,0 +1,74 @@
+/* The app's VehicleCheckSectionView button: its label in Body, then a blank
+   plate reading ABC and a search icon, on a card of its own in
+   fills.surfaceList with 10pt corners, 16pt in from its sides and 12pt from
+   its top and bottom, its parts 8pt apart.
+
+   The plate is white with a black 1.5pt stroke centred on its edge, ABC in
+   black in the DVLA's typeface, 8pt in from its sides and top and 5pt from
+   its bottom, with 6pt corners, in dark mode as in light. The icon is SF's
+   magnifyingglass, 15pt bold, white, on a 36pt circle in primaryBlue, which
+   stays blue in dark mode: Material's search, at 22px, is as big. Their
+   sizes are the app's, off the grid. */
+
+.govuk-app-vehicle-search {
+  display: flex;
+  align-items: center;
+  gap: var(--app-space-small);
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 12px var(--app-space-medium);
+  border: 0;
+  border-radius: 10px;
+  background: var(--app-surface-list);
+  color: var(--app-text-primary);
+  font: inherit;
+  font-size: var(--app-font-body-size);
+  line-height: var(--app-font-body-leading);
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.govuk-app-vehicle-search:active {
+  background-image: linear-gradient(var(--app-glass-pressed), var(--app-glass-pressed));
+}
+
+.govuk-app-vehicle-search__label {
+  flex: 1;
+  min-width: 0;
+}
+
+.govuk-app-vehicle-search__plate {
+  flex-shrink: 0;
+  padding: 8px 8px 5px;
+  border-radius: 6px;
+  background: var(--app-surface-vehicle-search-plate);
+  box-shadow: 0 0 0 0.75px var(--app-text-number-plate), inset 0 0 0 0.75px var(--app-text-number-plate);
+  color: var(--app-text-number-plate);
+  font-family: "DVLA-VRM", system-ui, sans-serif;
+  font-size: var(--app-font-number-plate-small-size);
+  line-height: 1.033em;
+  white-space: nowrap;
+}
+
+.govuk-app-vehicle-search__icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-surface-vehicle-search-icon);
+  color: #ffffff;
+  font-family: "Material Symbols Rounded";
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  font-variation-settings: "wght" 700;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}

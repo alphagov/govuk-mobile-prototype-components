@@ -1,0 +1,14 @@
+<!-- A link if it has an href, otherwise a button: its label, then a blank
+     plate and a search icon, which screen readers don't hear. -->
+<template>
+  <a class="govuk-app-vehicle-search" data-if="href" data-attr="href: href">
+    <span class="govuk-app-vehicle-search__label" data-slot="content"></span>
+    <span class="govuk-app-vehicle-search__plate" aria-hidden="true">ABC</span>
+    <span class="govuk-app-vehicle-search__icon govuk-app-icon" aria-hidden="true">search</span>
+  </a>
+  <button class="govuk-app-vehicle-search" type="button" data-if="button" data-attr="name: name, value: value">
+    <span class="govuk-app-vehicle-search__label" data-slot="content"></span>
+    <span class="govuk-app-vehicle-search__plate" aria-hidden="true">ABC</span>
+    <span class="govuk-app-vehicle-search__icon govuk-app-icon" aria-hidden="true">search</span>
+  </button>
+</template>

@@ -1,0 +1,72 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Vehicle search",
+  "element": "govuk-app-vehicle-search",
+  "purpose": "Starts a search for any vehicle by its registration number, such as to check its tax and MOT: a card the user taps, showing a blank number plate and a search icon, which takes them to where they type the registration.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "The app's VehicleCheckSectionView, under Check vehicle details on the Driving screen: a button, not a field, with its label, a blank plate reading ABC in the DVLA's typeface, and SF's magnifyingglass on a primaryBlue circle. The future driving designs keep it, under Check a vehicle, with Start as its label."
+  },
+  "inputs": {
+    "attributes": {
+      "href": {
+        "type": "string",
+        "description": "Where it goes, if it's a link: the screen where the user types the registration."
+      },
+      "name": {
+        "type": "string",
+        "description": "Its name, if it's a button, to tell it apart when it's pressed."
+      },
+      "value": {
+        "type": "string",
+        "description": "Its value, if it's a button."
+      }
+    },
+    "content": "Its label, such as Search for a vehicle, as the app has it, or Start, as the future designs do. Screen readers hear only this: the plate and icon are hidden from them."
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "click",
+        "description": "From its link or button, when it's pressed."
+      }
+    ]
+  },
+  "rules": [
+    "Use it only to start a search for a vehicle by its registration. For other searches, use the search field.",
+    "Put it in a section that says what the search is for, such as Check vehicle details, with a description, such as Tax and MOT information for any vehicle.",
+    "Make it a link, with href, to the screen where the user types the registration."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/VehicleCheckSectionView.swift",
+        "symbol": "button",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Resources/Strings/DVLA.xcstrings",
+        "symbol": "vehicleCheckButtonTitle, vehicleRegAbc",
+        "ref": "8f1fe5da"
+      }
+    ],
+    "android": []
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-vehicle-check-light.webp", "description": "Under Check vehicle details, on the Driving screen, in light mode", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-vehicle-check-dark.webp", "description": "The same, in dark mode", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" }
+  ],
+  "examples": [
+    {
+      "name": "As the app has it",
+      "html": "<govuk-app-vehicle-search href=\"#check-vehicle\">Search for a vehicle</govuk-app-vehicle-search>"
+    },
+    {
+      "name": "In a section, as the future driving designs have it",
+      "html": "<govuk-app-section title=\"Check a vehicle\" description=\"View information for any vehicle\">\n  <govuk-app-vehicle-search name=\"check-vehicle\">Start</govuk-app-vehicle-search>\n</govuk-app-section>"
+    }
+  ]
+}
