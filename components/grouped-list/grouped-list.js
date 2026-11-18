@@ -1,4 +1,6 @@
 import { defineComponent } from '../../foundation/component.js'
+// A toggle row draws one.
+import '../toggle/toggle.js'
 
 const types = ['navigation', 'link', 'information', 'detail', 'toggle', 'count', 'selectable']
 

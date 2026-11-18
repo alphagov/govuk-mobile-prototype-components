@@ -1,6 +1,6 @@
 <!-- One row of a grouped list: its title, what was written between its tags,
      what its type puts on the right, and its description below, if it has
-     one. A link if it has an href; a switch if it is a toggle; plain text if
+     one. A link if it has an href; a label around a toggle if it is a toggle; plain text if
      it is information; otherwise a button. -->
 <template>
   <a class="govuk-app-grouped-list-row" data-if="link" data-attr="href: href, data-type: type">
@@ -24,7 +24,7 @@
   <label class="govuk-app-grouped-list-row" data-if="toggle" data-attr="data-type: type">
     <span class="govuk-app-grouped-list-row__line">
       <span class="govuk-app-grouped-list-row__title govuk-app-text" data-slot="content"></span>
-      <input class="govuk-app-grouped-list-row__switch" type="checkbox" role="switch" data-attr="name: name, value: value, checked: checked">
+      <govuk-app-toggle data-attr="name: name, value: value, checked: checked"></govuk-app-toggle>
     </span>
   </label>
   <div class="govuk-app-grouped-list-row" data-if="information" data-attr="data-type: type">

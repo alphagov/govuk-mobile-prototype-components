@@ -169,6 +169,13 @@
   font-size: 30px;
 }
 
+/* Centred by eye rather than by its box: the chevron's point is light and its
+   open side heavy, so centred in the circle it looks too far right. iOS's sits
+   left of centre the same way. */
+.govuk-app-nav-bar__back .govuk-app-nav-bar__icon {
+  translate: -1px 0;
+}
+
 /* An icon action's name, for screen readers only. */
 .govuk-app-nav-bar-item__label[data-hidden] {
   position: absolute;
