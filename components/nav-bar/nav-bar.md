@@ -5,7 +5,7 @@ The navigation bar sticks to the top of the screen, and the content scrolls unde
 <div class="docs-example">
 <div class="docs-example__frames">
 {%- for scheme in ["light", "dark"] %}
-<govuk-app class="docs-screen docs-screen--flush" colour-scheme="{{ scheme }}">
+<govuk-app class="docs-screen docs-screen--flush docs-screen--status-bar" colour-scheme="{{ scheme }}">
   <govuk-app-nav-bar title="Pages you’ve visited" large-title back>
     <govuk-app-nav-bar-item name="edit">Edit</govuk-app-nav-bar-item>
   </govuk-app-nav-bar>
@@ -22,10 +22,14 @@ The navigation bar sticks to the top of the screen, and the content scrolls unde
 
 ## Status bar
 
-The bar starts at the top of `<govuk-app>`. To leave room for a status bar drawn above it, set `--govuk-app-inset-top` in the root’s `style`, such as `62px` for an iPhone 17 Pro:
+The bar starts at the top of `<govuk-app>`. If the page draws the status bar above the root, as a phone frame usually does, there’s nothing to set.
 
-```html
-<govuk-app style="--govuk-app-inset-top: 62px">
+In iOS 26 the content scrolls up under the status bar too, as in the example above. To draw that, put the root at the top of the screen, and leave room for the status bar over it by setting `--govuk-app-inset-top` on the root, such as `62px` for an iPhone 17 Pro:
+
+```css
+govuk-app {
+  --govuk-app-inset-top: 62px;
+}
 ```
 
 ## Icons

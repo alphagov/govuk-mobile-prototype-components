@@ -24,7 +24,7 @@
    the capsule takes presses, not the space either side of it. */
 .govuk-app-tab-bar {
   position: sticky;
-  bottom: max(var(--app-space-small), calc(var(--govuk-app-inset-bottom) - var(--app-space-small)));
+  bottom: max(var(--app-space-small), calc(var(--govuk-app-inset-bottom, 0px) - var(--app-space-small)));
   z-index: 1;
   display: flex;
   justify-content: center;

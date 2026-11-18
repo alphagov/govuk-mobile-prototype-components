@@ -9,13 +9,16 @@
      colour-scheme="light" | "dark"   otherwise it follows the device
      text-size="accessibility-xxxl"   the largest Dynamic Type size
 
-   Custom properties a page may set on it:
-     --govuk-app-inset-top      space the status bar takes, 0 by default
-     --govuk-app-inset-bottom   space the home indicator takes, 0 by default */
+   Custom properties a page may set on it, in its own styles or a style
+   attribute:
+     --govuk-app-inset-top      space the status bar takes, 0 if not set
+     --govuk-app-inset-bottom   space the home indicator takes, 0 if not set
+
+   They aren't declared here: this stylesheet comes after the page's, so a
+   default here would win over the page's own rule. Components read each with
+   a fallback of 0 instead. */
 
 govuk-app {
-  --govuk-app-inset-top: 0px;
-  --govuk-app-inset-bottom: 0px;
   display: block;
   background: var(--app-surface-page);
   color: var(--app-text-primary);

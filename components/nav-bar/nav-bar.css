@@ -32,8 +32,8 @@
   grid-template-areas: "back title actions";
   align-items: center;
   gap: var(--app-space-small);
-  min-height: calc(var(--govuk-app-inset-top) + var(--app-size-touch-target));
-  padding: var(--govuk-app-inset-top) var(--app-space-medium) 0;
+  min-height: calc(var(--govuk-app-inset-top, 0px) + var(--app-size-touch-target));
+  padding: var(--govuk-app-inset-top, 0px) var(--app-space-medium) 0;
 }
 
 /* The scroll edge effect: content blurs and fades out as it goes under the
