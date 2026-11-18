@@ -1,0 +1,19 @@
+<!-- The iOS search field: a search box in a form of its own, which goes to
+     its action when the user presses Search on the keyboard, with what they
+     typed as its name (q, unless it says otherwise).
+
+     While they are typing, a button clears the text. Once they have started
+     searching, Cancel appears beside it, a button named cancel, which clears
+     the text and puts the field back as it was (search-field.js). -->
+<template>
+  <form class="govuk-app-search-field" role="search" method="get" data-attr="action: action">
+    <div class="govuk-app-search-field__box">
+      <span class="govuk-app-search-field__icon" aria-hidden="true">search</span>
+      <input class="govuk-app-search-field__input" type="search" autocomplete="off" enterkeyhint="search" data-attr="name: name, value: value, placeholder: placeholder, aria-label: label">
+      <button class="govuk-app-search-field__clear" type="button" aria-label="Clear text">
+        <span class="govuk-app-search-field__icon" aria-hidden="true">cancel</span>
+      </button>
+    </div>
+    <button class="govuk-app-search-field__cancel" type="button" name="cancel">Cancel</button>
+  </form>
+</template>

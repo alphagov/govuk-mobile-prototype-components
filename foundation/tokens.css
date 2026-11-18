@@ -101,6 +101,13 @@ govuk-app {
   --app-shadow-button-black: #1a1a1a;                         /* strokes.linkAccountButton */
   --app-shadow-button-black-pressed: #000000;                 /* strokes.linkAccountButtonHighlight */
 
+  /* The home screen's header and its search field */
+  --app-surface-home-header: light-dark(#1d70b8, #0a2740);   /* fills.surfaceHomeHeaderBackground */
+  --app-text-header: #ffffff;                                 /* text.header */
+  --app-text-link-header: light-dark(#ffffff, #11e0f1);       /* text.linkHeader */
+  --app-logo-dot: #00ffe0;                                    /* the GOV.UK wordmark's dot, in the wordmark itself */
+  --app-text-search-cancel: var(--app-text-primary);          /* text.primary: the search field's Cancel (SearchBarView) */
+
   /* Sheets: the system's, which GovKit leaves */
   --app-sheet-backdrop: #000000;                              /* behind the screen a sheet is presented from */
   --app-sheet-dim: light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.3)); /* over that screen */

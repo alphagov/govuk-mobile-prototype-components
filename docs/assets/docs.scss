@@ -23,6 +23,12 @@
   background: var(--app-surface-modal);
 }
 
+// The colour of a screen, for a component drawn on one, such as the search
+// field, which is white like a modal.
+.docs-example__frame--page {
+  background: var(--app-surface-page);
+}
+
 // A whole screen, for a component that lays one out, with no padding, since
 // the screen has its own. As wide as a phone, 402pt like an iPhone 17 Pro, so
 // its text wraps where the app's does, and drawn at three quarters of that
