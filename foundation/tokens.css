@@ -9,8 +9,8 @@
    Each role names the GovKit token it comes from. The roles down to
    --app-illustration-shadow, and the type, are carried over from Shaun's kit
    (app-prototyping-system, exploration-2/kit/tokens.css); the button roles
-   were added for components/button. The tab bar roles are the system's, not
-   GovKit's, and were added for components/tab-bar.
+   were added for components/button. The glass and tab bar roles are the
+   system's, not GovKit's, and were added for components/tab-bar.
 
    light-dark() picks a value by the root's color-scheme, which base.css
    sets from the colour-scheme attribute, or the device's setting. */
@@ -78,13 +78,14 @@ govuk-app {
   --app-shadow-button-destructive: light-dark(#651b1b, #ca3535);          /* strokes.buttonDestructiveDefault */
   --app-shadow-button-destructive-pressed: light-dark(#280b0b, #651b1b);  /* strokes.buttonDestructiveHighlight */
 
-  /* Tab bar: iOS 26's Liquid Glass, approximated. The app sets none of these,
-     only the tabs' colours (text.linkSecondary, and the label colour) */
-  --app-tab-bar-glass: light-dark(rgb(255 255 255 / 0.6), rgb(255 255 255 / 0.12));
-  --app-tab-bar-glass-edge: light-dark(rgb(255 255 255 / 0.8), rgb(255 255 255 / 0.18));
-  --app-tab-bar-shadow: light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.4));
+  /* Glass: iOS 26's Liquid Glass, approximated, for the system's own bars and
+     their buttons. The app sets none of these, only what is drawn on the glass
+     (text.linkSecondary, text.primary, and the label colour) */
+  --app-glass: light-dark(rgb(255 255 255 / 0.6), rgb(255 255 255 / 0.12));
+  --app-glass-edge: light-dark(rgb(255 255 255 / 0.8), rgb(255 255 255 / 0.18));
+  --app-glass-shadow: light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.4));
+  --app-glass-pressed: light-dark(rgb(0 0 0 / 0.04), rgb(0 0 0 / 0.15));
   --app-tab-bar-selected: light-dark(rgb(0 0 0 / 0.07), rgb(0 0 0 / 0.3));
-  --app-tab-bar-pressed: light-dark(rgb(0 0 0 / 0.04), rgb(0 0 0 / 0.15));
 
   /* Spacing: the 8pt grid, with a 4pt half step. The Android app's
      GovUkSpacing (design/.../theme/Spacing.kt); GovKit has no scale of its own.

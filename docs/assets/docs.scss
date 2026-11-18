@@ -34,6 +34,19 @@
   border-radius: 12px;
 }
 
+// A screen whose first component, such as the navigation bar, spans its full
+// width and starts at its top. The content below is inset instead.
+.docs-screen--flush {
+  display: block;
+  padding: 0;
+}
+
+.docs-screen__content {
+  display: grid;
+  gap: var(--app-space-medium);
+  padding: var(--app-space-medium);
+}
+
 // An example and its code in one box, as the GOV.UK Design System shows
 // them: the example drawn live, then its HTML, with a button to copy it.
 .docs-example__box {

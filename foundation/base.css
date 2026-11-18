@@ -10,9 +10,11 @@
      text-size="accessibility-xxxl"   the largest Dynamic Type size
 
    Custom properties a page may set on it:
+     --govuk-app-inset-top      space the status bar takes, 0 by default
      --govuk-app-inset-bottom   space the home indicator takes, 0 by default */
 
 govuk-app {
+  --govuk-app-inset-top: 0px;
   --govuk-app-inset-bottom: 0px;
   display: block;
   background: var(--app-surface-page);

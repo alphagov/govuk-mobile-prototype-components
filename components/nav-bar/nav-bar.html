@@ -1,0 +1,21 @@
+<!-- The iOS navigation bar: a back button, the screen's title and its actions,
+     the <govuk-app-nav-bar-item> elements written between its tags. With a
+     large title, the title is drawn large below the bar, and moves into the
+     bar once it scrolls under it.
+
+     Two elements, not one wrapper, so the bar sticks to the top of the whole
+     screen rather than only while the large title is in view. -->
+<template>
+  <div class="govuk-app-nav-bar" data-attr="data-large-title: largeTitle">
+    <a class="govuk-app-nav-bar__back" data-if="backHref" data-attr="href: backHref" aria-label="Back">
+      <span class="govuk-app-nav-bar__icon" aria-hidden="true">arrow_back_ios_new</span>
+    </a>
+    <button class="govuk-app-nav-bar__back" type="button" name="back" aria-label="Back" data-if="backButton">
+      <span class="govuk-app-nav-bar__icon" aria-hidden="true">arrow_back_ios_new</span>
+    </button>
+    <h1 class="govuk-app-nav-bar__title" data-if="inlineTitle" data-text="title"></h1>
+    <span class="govuk-app-nav-bar__title" aria-hidden="true" data-if="largeTitle" data-text="title"></span>
+    <div class="govuk-app-nav-bar__actions" data-if="actions" data-slot="content"></div>
+  </div>
+  <h1 class="govuk-app-nav-bar__large-title" data-if="largeTitle" data-text="title"></h1>
+</template>
