@@ -7,15 +7,21 @@
   <link rel="stylesheet" href="../example.css">
   <script type="module" src="../example.js"></script>
   <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/home-header/home-header.js"></script>
+  <script type="module" src="../../components/search-field/search-field.js"></script>
   <script type="module" src="../../components/grouped-list/grouped-list.js"></script>
   <script type="module" src="../../components/text/text.js"></script>
   <script type="module" src="../../components/button/button.js"></script>
   <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
 </head>
 <body>
-  <div class="example-phone">
+  <div class="example-phone example-phone--light-status-bar">
     <govuk-app>
       <govuk-app-screen>
+        <govuk-app-home-header>
+          <govuk-app-search-field></govuk-app-search-field>
+        </govuk-app-home-header>
+
         <govuk-app-grouped-list title="Topics" action="Edit" name="edit-topics">
           <govuk-app-grouped-list-row name="topic" value="benefits">Benefits</govuk-app-grouped-list-row>
           <govuk-app-grouped-list-row name="topic" value="driving">Driving</govuk-app-grouped-list-row>
