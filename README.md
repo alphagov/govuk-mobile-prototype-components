@@ -4,7 +4,7 @@ Components for the GOV.UK app prototyping system: web components that look and b
 
 - [PLAN.md](PLAN.md): what the library is for and how we build it.
 - [COMPONENTS.md](COMPONENTS.md): every component in the iOS and Android apps today, with screenshots. The backlog.
-- [examples/](examples/): screens of the app built from the components alone, such as Settings, to see them working together. Not prototypes to build on.
+- [examples/](examples/): screens of the app built from the components alone, such as Home and Settings, to see them working together. Not prototypes to build on.
 
 Documentation: <https://alphagov.github.io/govuk-mobile-prototype-components/>, with every component drawn live in light and dark beside the app's own screenshots.
 
