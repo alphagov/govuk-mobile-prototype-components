@@ -1,0 +1,9 @@
+<!-- A section's heading, what was written between its tags, with an action
+     on the right if it has one: a link if it has an href, otherwise a button. -->
+<template>
+  <div class="govuk-app-section-heading">
+    <h2 class="govuk-app-section-heading__title govuk-app-text" data-tag="tag: h1 h2 h3 h4 h5 h6" data-slot="content"></h2>
+    <a class="govuk-app-section-heading__action" data-if="actionLink" data-attr="href: href" data-text="action"></a>
+    <button class="govuk-app-section-heading__action" type="button" data-if="actionButton" data-attr="name: name, value: value" data-text="action"></button>
+  </div>
+</template>

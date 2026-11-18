@@ -1,0 +1,33 @@
+/* GovKitUI's SectionHeaderLabelView: the title in Title 3 Semibold, and an
+   action, if it has one, pushed to the right in Subheadline Semibold, in
+   text.buttonSecondary. Both are centred on each other, with nothing around
+   them: the screen spaces it. The action is its text alone, as SwiftUI draws
+   a plain Button. */
+
+.govuk-app-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--app-space-small);
+}
+
+.govuk-app-section-heading__title {
+  font-size: var(--app-font-title-3-emphasis-size);
+  font-weight: var(--app-font-title-3-emphasis-weight);
+  --leading: var(--app-font-title-3-emphasis-leading);
+}
+
+.govuk-app-section-heading__action {
+  flex-shrink: 0;
+  border: 0;
+  color: var(--app-text-button-secondary);
+  font-size: var(--app-font-subheadline-emphasis-size);
+  font-weight: var(--app-font-subheadline-emphasis-weight);
+  line-height: var(--app-font-subheadline-emphasis-leading);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.govuk-app-section-heading__action:active {
+  color: var(--app-text-button-secondary-pressed);
+}
