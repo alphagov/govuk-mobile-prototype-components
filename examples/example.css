@@ -150,6 +150,72 @@
     color: #ffffff;
   }
 
+  /* The shake menu (example.js), as an iOS action sheet: its actions in one
+     rounded group, and Cancel in another under it, at the bottom of the
+     screen. iOS's sizes, in pt: 57 high, 8 apart and from the edges, with
+     13 corners and 20 text. */
+  .example-menu {
+    width: 100%;
+    max-width: 420px;
+    margin: auto auto 0;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
+    box-sizing: border-box;
+    border: 0;
+    background: none;
+    font-size: 20px;
+  }
+
+  .example-menu::backdrop {
+    background: rgb(0 0 0 / 0.4);
+  }
+
+  .example-menu__group {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 13px;
+    background: rgb(255 255 255 / 0.9);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+
+  .example-menu__group + .example-menu__group {
+    margin-top: 8px;
+  }
+
+  .example-menu__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 57px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    border: 0;
+    background: none;
+    color: #007aff;
+    font: inherit;
+    text-decoration: none;
+  }
+
+  .example-menu__item--cancel {
+    background: #ffffff;
+    font-weight: 600;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .example-menu__group {
+      background: rgb(44 44 46 / 0.9);
+    }
+
+    .example-menu__item {
+      color: #0a84ff;
+    }
+
+    .example-menu__item--cancel {
+      background: #2c2c2e;
+    }
+  }
+
   @media (max-width: 460px) {
     body {
       padding: 0;
