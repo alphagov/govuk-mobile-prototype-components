@@ -7,8 +7,8 @@
    Source: govuk-once/govuk-mobile-ios-gov-kit, GovKitUI/Sources/Colors
    (GOVUKColors+Fills, +Text, +Strokes), read at ad8590b on 2026-11-17.
    Each role names the GovKit token it comes from. The roles down to
-   --app-illustration-shadow, and the type, are carried over from Shaun's kit
-   (app-prototyping-system, exploration-2/kit/tokens.css); the button roles
+   --app-illustration-shadow, and the type, are carried over from the app
+   prototyping system's kit (exploration-2/kit/tokens.css); the button roles
    were added for components/button. The glass and tab bar roles are the
    system's, not GovKit's, and were added for components/tab-bar.
 

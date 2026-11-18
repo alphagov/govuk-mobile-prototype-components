@@ -4,7 +4,7 @@
   "element": "govuk-app-status",
   "purpose": "Shows the state of something with a deadline or a validity, such as a vehicle's tax or MOT, or a driving licence: an icon for its state, then what it is and how it stands, such as Valid, 23 days, or Expired.",
   "proposed": {
-    "design": "a screenshot of the future driving designs in Figma, shared by Shaun in November 2026, until there’s a link to the file"
+    "design": "a screenshot of the future driving designs in Figma, until there’s a link to the file"
   },
   "origin": {
     "kind": "govuk",

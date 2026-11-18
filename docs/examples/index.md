@@ -31,7 +31,7 @@ It uses the screen, home header, search field, grouped list, text, button, crown
 
 [Open the Driving example](/examples/driving/)
 
-The future driving designs, from a screenshot of Shaun’s Figma: a driver’s vehicles and licence, with the segmented control between them, and a vehicle’s details. Its back button returns to Home, which opens it from the Driving topic.
+The future driving designs, from a screenshot of Figma: a driver’s vehicles and licence, with the segmented control between them, and a vehicle’s details. Its back button returns to Home, which opens it from the Driving topic.
 
 The licence has four states. The app would show whichever applies, so here each is a page of its own:
 

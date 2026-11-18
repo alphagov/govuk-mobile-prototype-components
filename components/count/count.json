@@ -4,7 +4,7 @@
   "element": "govuk-app-count",
   "purpose": "Shows how many of something there are, big enough to take in at a glance, such as a driver's offences and penalty points.",
   "proposed": {
-    "design": "a screenshot of the future driving designs in Figma, shared by Shaun in November 2026, until there’s a link to the file"
+    "design": "a screenshot of the future driving designs in Figma, until there’s a link to the file"
   },
   "origin": {
     "kind": "govuk",

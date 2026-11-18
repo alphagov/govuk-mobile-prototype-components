@@ -24,9 +24,9 @@
  *   data-tag="x: h1 h2"    the element's tag is x, if it is one of those
  *                          listed, and as written otherwise
  *
- * These are the same attributes as Shaun's kit (app-prototyping-system,
- * exploration-2/kit), so a template written for one reads the same in the
- * other. His data-each is not supported yet.
+ * These are the same attributes as the app prototyping system's kit
+ * (exploration-2/kit), so a template written for one reads the same in the
+ * other. Its data-each is not supported yet.
  */
 
 /**

@@ -46,7 +46,7 @@ There is no build step for components. `foundation/component.js` fetches the tem
 | `data-slot="content"` | The element holds what was written between the component’s tags |
 | `data-tag="x: h1 h2"` | The element’s tag is `x`, if it is one of those listed, and as written otherwise |
 
-These are the same as in Shaun’s kit in the app prototyping system (`exploration-2/kit`), which this structure is based on.
+These are the same as in the app prototyping system’s kit (`exploration-2/kit`), which this structure is based on.
 
 `foundation/` holds what every component relies on: `tokens.css` (the app’s colours, type, spacing and sizes, each naming where it comes from), `base.css` (the `<govuk-app>` root) and `component.js`.
 
