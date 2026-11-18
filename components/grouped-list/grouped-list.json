@@ -5,7 +5,7 @@
   "purpose": "A section of rows on a rounded card, as on the Settings screen: rows that go to another screen, open a web page, switch something on or off, or show a value. Each section can have a title above it and a footer below.",
   "origin": {
     "kind": "govuk",
-    "notes": "GovKit's GroupedList: GroupedListSectionView and GroupedListRowView, with its seven kinds of row (NavigationRow, LinkRow, InformationRow, DetailRow, ToggleRow, CountRow and SelectableRow). It looks like iOS's inset grouped list, but GovKit draws it itself, with its own colours, spacing and rows. Settings, the vehicle and licence screens, travel alerts and Pages you've visited use it."
+    "notes": "GovKit's GroupedList: GroupedListSectionView and GroupedListRowView, with its seven kinds of row (NavigationRow, LinkRow, InformationRow, DetailRow, ToggleRow, CountRow and SelectableRow). It looks like iOS's inset grouped list, but GovKit draws it itself, with its own colours, spacing and rows. Settings, the vehicle and licence screens, travel alerts and Pages you've visited use it. Its topic row is the app's TopicListItemView, as the Topics widget on Home draws it; Android draws the same with IconListItem, in its Bold style."
   },
   "inputs": {
     "attributes": {
@@ -40,7 +40,7 @@
         "description": "A note below the card, in Footnote, such as what a setting does."
       }
     },
-    "content": "The section's rows, <govuk-app-grouped-list-row> elements, in order. Each takes a type: navigation (the default: a chevron, to another screen), link (in the link colour, with an arrow out, to a web page), information (a value on the right, in grey, that can't be pressed), detail (a value on the right in the link colour, such as Off, to change it; destructive draws its title red), toggle (a switch, drawn by <govuk-app-toggle>; checked if it is on), count (a number on the right, with unread for a red dot) or selectable (an icon on the right, if it names one, such as check). detail gives the value on the right; description, for information and link rows, a line of grey text below the title. Give href to make a row a link, or name and value to tell it apart as a button or switch. Its title is what is written between its tags."
+    "content": "The section's rows, <govuk-app-grouped-list-row> elements, in order. Each takes a type: navigation (the default: a chevron, to another screen), link (in the link colour, with an arrow out, to a web page), information (a value on the right, in grey, that can't be pressed), detail (a value on the right in the link colour, such as Off, to change it; destructive draws its title red), toggle (a switch, drawn by <govuk-app-toggle>; checked if it is on), count (a number on the right, with unread for a red dot) selectable (an icon on the right, if it names one, such as check) or topic (a navigation row with its icon on the left, in a circle, and its title in bold; icon names the symbol, such as currency_pound, or it draws a star). detail gives the value on the right; description, for information and link rows, a line of grey text below the title. Give href to make a row a link, or name and value to tell it apart as a button or switch. Its title is what is written between its tags."
   },
   "outputs": {
     "events": [
@@ -60,10 +60,16 @@
     "Use toggle for a setting that takes effect straight away. Use detail for one that is changed on another screen, showing its value, such as Off.",
     "Use information for a value the user can't change, such as the app's version.",
     "Keep row titles to one line where you can, and put any explanation in the section's footer, not the row.",
-    "Use destructive only for a detail row that deletes or removes something, such as Sign out."
+    "Use destructive only for a detail row that deletes or removes something, such as Sign out.",
+    "Use topic only for a list of the app's topics, as on Home, with the topic's own icon."
   ],
   "sources": {
-    "figma": [],
+    "figma": [
+      {
+        "title": "GOV.UK app library v2: topic icons",
+        "url": "https://www.figma.com/design/x5i4a5RT0xMhJAcjoIxefb/2025-06-GOV.UK-app-library-v2--UX-refresh?node-id=6962-20640"
+      }
+    ],
     "ios": [
       {
         "repo": "govuk-once/govuk-mobile-ios-gov-kit",
@@ -88,9 +94,34 @@
         "path": "Production/govuk_ios/Views/Settings/SettingsView.swift",
         "symbol": "SettingsView",
         "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SwiftUIViews/Topics/TopicListItemView.swift",
+        "symbol": "TopicListItemView",
+        "ref": "fc2b3b1d"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Home/Topics/TopicsWidgetView.swift",
+        "symbol": "TopicsWidgetView",
+        "ref": "fc2b3b1d"
       }
     ],
-    "android": [],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "design/src/main/kotlin/uk/gov/govuk/design/ui/component/List.kt",
+        "symbol": "IconListItem",
+        "ref": "9952400f"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "feature/topics/src/main/kotlin/uk/gov/govuk/topics/ui/widget/TopicsWidget.kt",
+        "symbol": "TopicsWidget",
+        "ref": "9952400f"
+      }
+    ],
     "other": [
       {
         "title": "Material Symbols, the icons it draws",
@@ -102,7 +133,10 @@
     { "platform": "ios", "image": "reference/ios-every-row-light.webp", "description": "A titled section with one of each kind of row, and a footer, in light mode", "from": "GovKit's GroupedListSnapshotTests at 8a7641e" },
     { "platform": "ios", "image": "reference/ios-every-row-dark.webp", "description": "The same, in dark mode", "from": "GovKit's GroupedListSnapshotTests at 8a7641e" },
     { "platform": "ios", "image": "reference/ios-settings-light.webp", "description": "Settings, in light mode", "from": "SettingsViewControllerSnapshotTests at 1e520fc1" },
-    { "platform": "ios", "image": "reference/ios-settings-dark.webp", "description": "Settings, in dark mode", "from": "SettingsViewControllerSnapshotTests at 1e520fc1" }
+    { "platform": "ios", "image": "reference/ios-settings-dark.webp", "description": "Settings, in dark mode", "from": "SettingsViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-topics-light.webp", "description": "The Topics widget on Home, its rows topics, in light mode", "from": "TopicsWidgetViewSnapshotTests at fc2b3b1d" },
+    { "platform": "ios", "image": "reference/ios-topics-dark.webp", "description": "The same, in dark mode", "from": "TopicsWidgetViewSnapshotTests at fc2b3b1d" },
+    { "platform": "android", "image": "reference/android-topics-light.webp", "description": "The Topics widget on Home, in light mode", "from": "The Android app's TopicsWidgetScreenshotTests" }
   ],
   "examples": [
     {
@@ -113,6 +147,10 @@
       "name": "Settings",
       "frame": "screen",
       "html": "<govuk-app-screen>\n  <govuk-app-nav-bar title=\"Settings\" large-title></govuk-app-nav-bar>\n  <govuk-app-grouped-list>\n    <govuk-app-grouped-list-row name=\"accounts\">Your accounts</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n  <govuk-app-grouped-list>\n    <govuk-app-grouped-list-row type=\"count\" detail=\"2\" unread name=\"messages\">Messages</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n  <govuk-app-grouped-list footer=\"You can share statistics about how you use the GOV.UK app so we can make improvements to it. We will not use these statistics to directly identify you.\">\n    <govuk-app-grouped-list-row type=\"detail\" detail=\"Off\" name=\"notifications\">Notifications</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row name=\"face-id\">Face ID</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row type=\"toggle\" name=\"statistics\" checked>Share app usage statistics</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n  <govuk-app-grouped-list>\n    <govuk-app-grouped-list-row type=\"information\" detail=\"1.2.3 (123)\">App version number</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row type=\"link\" href=\"https://www.gov.uk/contact/govuk-app\">Help and feedback</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n</govuk-app-screen>"
+    },
+    {
+      "name": "Topics",
+      "html": "<govuk-app-grouped-list title=\"Topics\" action=\"Edit\" name=\"edit-topics\">\n  <govuk-app-grouped-list-row type=\"topic\" icon=\"currency_pound\" name=\"topic\" value=\"benefits\">Benefits</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"topic\" icon=\"directions_car\" name=\"topic\" value=\"driving\">Driving</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"topic\" icon=\"travel\" name=\"topic\" value=\"travel\">Travel abroad</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"topic\" name=\"topic\" value=\"other\">A topic without an icon</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
     },
     {
       "name": "A title with an action",
