@@ -2,7 +2,8 @@ import { defineComponent, materialSymbols, materialSymbolsOutlined } from '../..
 // A toggle row draws one.
 import '../toggle/toggle.js'
 
-const types = ['navigation', 'link', 'information', 'detail', 'toggle', 'count', 'selectable', 'topic']
+const types = ['navigation', 'link', 'information', 'detail', 'toggle', 'count', 'selectable', 'topic', 'action', 'content']
+const backgrounds = ['subtle', 'accent']
 
 /** h2 unless it names another level; its action a link if it has an href. */
 export function prepareList(data) {
@@ -14,6 +15,7 @@ export function prepareList(data) {
     tag: `h${level}`,
     actionLink: action && data.href !== undefined,
     actionButton: action && data.href === undefined,
+    background: backgrounds.includes(data.background) ? data.background : undefined,
   }
 }
 
@@ -22,14 +24,17 @@ export function prepareList(data) {
  * chevron for navigation, an arrow out for a link, the icon it names for a
  * selectable row, and the detail on the right for the types that have one. A
  * topic is a navigation row with its icon on the left, as the app's
- * TopicListItemView, or a star, the app's for a topic without one.
+ * TopicListItemView, or a star, the app's for a topic without one. An action
+ * row, proposed, has its icon on the right, a plus unless it names another. A
+ * content row, proposed, holds whatever was written between its tags.
  */
 export function prepareRow(data) {
   const type = types.includes(data.type) ? data.type : 'navigation'
-  const pressable = !['toggle', 'information'].includes(type)
+  const pressable = !['toggle', 'information', 'content'].includes(type)
   const icon = ['navigation', 'topic'].includes(type) ? 'chevron_right'
-    : type === 'link' ? 'arrow_outward'
+    : type === 'link' ? (data.noArrow ? undefined : 'arrow_outward')
     : type === 'selectable' ? data.icon
+    : type === 'action' ? data.icon || 'add_circle'
     : undefined
   return {
     ...data,
@@ -38,6 +43,8 @@ export function prepareRow(data) {
     button: pressable && data.href === undefined,
     toggle: type === 'toggle',
     information: type === 'information',
+    contentRow: type === 'content',
+    flush: type === 'content' && Boolean(data.flush),
     icon,
     topic: type === 'topic' ? data.icon || 'star' : undefined,
     detail: ['information', 'detail', 'count'].includes(type) ? data.detail : undefined,
@@ -58,7 +65,7 @@ await Promise.all([
     template: new URL('./grouped-list.html', import.meta.url),
     styles,
     fonts,
-    attributes: ['title', 'level', 'action', 'href', 'name', 'value', 'footer'],
+    attributes: ['title', 'level', 'action', 'href', 'name', 'value', 'footer', 'background'],
     prepare: prepareList,
   }),
   defineComponent({
@@ -66,7 +73,7 @@ await Promise.all([
     template: new URL('./grouped-list-row.html', import.meta.url),
     styles,
     fonts,
-    attributes: ['type', 'detail', 'description', 'icon', 'href', 'name', 'value', 'checked', 'unread', 'destructive'],
+    attributes: ['type', 'detail', 'description', 'icon', 'href', 'name', 'value', 'checked', 'unread', 'destructive', 'no-arrow', 'flush'],
     prepare: prepareRow,
   }),
 ])

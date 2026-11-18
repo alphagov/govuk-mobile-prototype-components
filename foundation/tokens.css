@@ -81,6 +81,8 @@ govuk-app {
   /* Grouped lists */
   --app-surface-list: light-dark(#ffffff, #092237);           /* fills.surfaceList */
   --app-border-list-divider: light-dark(#d2e2f1, #263d54);    /* strokes.listDivider */
+  --app-surface-list-subtle: light-dark(#f4f8fb, #0f385c);    /* fills.surfaceCardBlue (blueTint95, blueShade50) */
+  --app-surface-list-accent: light-dark(#d2e2f1, #263d54);    /* blueTint80, the designs' Add vehicle; blueDarkMode in dark, ours */
   --app-icon-tertiary: light-dark(#1d70b8, #ffffff);          /* text.iconTertiary: chevrons and arrows */
   --app-icon-primary: #ffffff;                                /* textAndIcons.iconPrimary, the Android app's: a topic's icon */
   --app-icon-surround-primary: light-dark(#1d70b8, #263d54);  /* textAndIcons.iconSurroundPrimary, the Android app's: the circle behind it */

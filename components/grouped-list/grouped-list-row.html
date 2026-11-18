@@ -1,7 +1,9 @@
 <!-- One row of a grouped list: its title, what was written between its tags,
-     a topic's icon on its left, what its type puts on the right, and its description below, if it has
-     one. A link if it has an href; a label around a toggle if it is a toggle; plain text if
-     it is information; otherwise a button. -->
+     a topic's icon on its left, what its type puts on the right, and its
+     description below, if it has one. A link if it has an href; a label
+     around a toggle if it is a toggle; plain text if it is information;
+     whatever was written between its tags if it is content; otherwise a
+     button. -->
 <template>
   <a class="govuk-app-grouped-list-row" data-if="link" data-attr="href: href, data-type: type">
     <span class="govuk-app-grouped-list-row__line">
@@ -36,4 +38,5 @@
     </span>
     <span class="govuk-app-grouped-list-row__description govuk-app-text" data-if="description" data-text="description"></span>
   </div>
+  <div class="govuk-app-grouped-list-row" data-if="contentRow" data-attr="data-type: type, data-flush: flush" data-slot="content"></div>
 </template>

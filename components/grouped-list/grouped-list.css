@@ -51,6 +51,18 @@
   background: var(--app-surface-list);
 }
 
+/* A card in another colour, as GroupedList's sectionBackgroundColor lets
+   the app give it: subtle, for a card on a white screen, as the future
+   driving designs' vehicle screen has; accent, for a card that's an action
+   of its own, as their Add vehicle. */
+.govuk-app-grouped-list__rows[data-background="subtle"] {
+  background: var(--app-surface-list-subtle);
+}
+
+.govuk-app-grouped-list__rows[data-background="accent"] {
+  background: var(--app-surface-list-accent);
+}
+
 .govuk-app-grouped-list__footer {
   padding-inline: var(--app-space-medium);
   color: var(--app-text-secondary);
@@ -210,4 +222,19 @@ govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-lis
   color: var(--app-text-secondary);
   font-size: var(--app-font-subheadline-size);
   --leading: var(--app-font-subheadline-leading);
+}
+
+/* Proposed, from the future driving designs: a row holding anything, such as
+   a vehicle's name and model, spaced 8pt apart. Flush, it has no padding of
+   its own, for content that has its own, such as summary columns. */
+.govuk-app-grouped-list-row[data-type="content"] {
+  gap: var(--app-space-small);
+}
+
+.govuk-app-grouped-list-row[data-flush] {
+  padding: 0;
+}
+
+govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-list-row[data-flush] {
+  padding-top: 0.33px;
 }
