@@ -1,0 +1,116 @@
+/* The iOS 26 search field, UISearchBar in its minimal style, as the app
+   draws it on the home screen (HomeViewController) and in the country list
+   (SearchBarView): its field filled with fills.surfaceSearch, and its
+   placeholder, icons and caret in text.secondary. The rest is the system's,
+   as the app's snapshots measure it: a capsule 44pt tall, the magnifier
+   centred 22pt in from its left, and the text 40pt in.
+
+   Cancel is in text.primary, or text.linkHeader on the home screen's
+   header, which sets --app-text-search-cancel.
+
+   Icons are Material Symbols Rounded in place of SF Symbols, which may only be
+   used on Apple's platforms. */
+
+.govuk-app-search-field {
+  display: flex;
+  align-items: center;
+  gap: var(--app-space-small);
+}
+
+.govuk-app-search-field__box {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--app-space-extra-small);
+  min-width: 0;
+  height: var(--app-size-touch-target);
+  padding: 0 var(--app-space-small);
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-surface-input);
+  color: var(--app-text-secondary);
+  cursor: text;
+}
+
+.govuk-app-search-field__icon {
+  /* 28pt wide puts the magnifier's centre 22pt into the field. Material's
+     magnifier is drawn smaller in its box than SF Symbols', so it takes 22px
+     to be as big as the app's, 16pt across. */
+  flex-shrink: 0;
+  width: 28px;
+  font-family: "Material Symbols Rounded";
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-align: center;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+.govuk-app-search-field__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  appearance: none;
+  color: var(--app-text-primary);
+  caret-color: var(--app-text-secondary);
+  font-size: var(--app-font-body-size);
+  font-weight: var(--app-font-body-weight);
+}
+
+/* The field shows it is being typed in by its caret, and Cancel, as iOS
+   does, not by an outline. */
+.govuk-app-search-field__input:focus-visible {
+  outline: none;
+}
+
+.govuk-app-search-field__input::placeholder {
+  color: var(--app-text-secondary);
+  opacity: 1;
+}
+
+/* The browser's own clear button and decorations: the field draws its own. */
+.govuk-app-search-field__input::-webkit-search-cancel-button,
+.govuk-app-search-field__input::-webkit-search-decoration {
+  appearance: none;
+}
+
+/* While the user is typing, and there is text to clear, as UIKit's
+   .whileEditing. */
+.govuk-app-search-field__clear {
+  display: none;
+  flex-shrink: 0;
+  border: 0;
+  color: var(--app-text-secondary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.govuk-app-search-field__box:focus-within:has(.govuk-app-search-field__input:not(:placeholder-shown)) .govuk-app-search-field__clear {
+  display: flex;
+}
+
+/* Smaller than the magnifier, as iOS's clear button is. */
+.govuk-app-search-field__clear .govuk-app-search-field__icon {
+  font-size: 18px;
+}
+
+/* Once the user has started searching (search-field.js). */
+.govuk-app-search-field__cancel {
+  display: none;
+  flex-shrink: 0;
+  height: var(--app-size-touch-target);
+  border: 0;
+  color: var(--app-text-search-cancel);
+  font-size: var(--app-font-body-size);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.govuk-app-search-field[data-searching] .govuk-app-search-field__cancel {
+  display: block;
+}

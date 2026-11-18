@@ -1,6 +1,8 @@
-import { defineComponent, materialSymbols } from '../../foundation/component.js'
+import { defineComponent, materialSymbols, materialSymbolsOutlined } from '../../foundation/component.js'
+// A toggle row draws one.
+import '../toggle/toggle.js'
 
-const types = ['navigation', 'link', 'information', 'detail', 'toggle', 'count', 'selectable']
+const types = ['navigation', 'link', 'information', 'detail', 'toggle', 'count', 'selectable', 'topic']
 
 /** h2 unless it names another level; its action a link if it has an href. */
 export function prepareList(data) {
@@ -18,12 +20,14 @@ export function prepareList(data) {
 /**
  * What a row draws, from its type, as GovKit's GroupedListRowView does: a
  * chevron for navigation, an arrow out for a link, the icon it names for a
- * selectable row, and the detail on the right for the types that have one.
+ * selectable row, and the detail on the right for the types that have one. A
+ * topic is a navigation row with its icon on the left, as the app's
+ * TopicListItemView, or a star, the app's for a topic without one.
  */
 export function prepareRow(data) {
   const type = types.includes(data.type) ? data.type : 'navigation'
   const pressable = !['toggle', 'information'].includes(type)
-  const icon = type === 'navigation' ? 'chevron_right'
+  const icon = ['navigation', 'topic'].includes(type) ? 'chevron_right'
     : type === 'link' ? 'arrow_outward'
     : type === 'selectable' ? data.icon
     : undefined
@@ -35,6 +39,7 @@ export function prepareRow(data) {
     toggle: type === 'toggle',
     information: type === 'information',
     icon,
+    topic: type === 'topic' ? data.icon || 'star' : undefined,
     detail: ['information', 'detail', 'count'].includes(type) ? data.detail : undefined,
     description: ['information', 'link'].includes(type) ? data.description : undefined,
     unread: type === 'count' && Boolean(data.unread),
@@ -42,15 +47,17 @@ export function prepareRow(data) {
   }
 }
 
-// Both elements share one stylesheet, and the icons' font.
+// Both elements share one stylesheet, and the icons' fonts: a topic's icon
+// is from Material Symbols Outlined.
 const styles = new URL('./grouped-list.css', import.meta.url)
+const fonts = [materialSymbols, materialSymbolsOutlined]
 
 await Promise.all([
   defineComponent({
     name: 'grouped-list',
     template: new URL('./grouped-list.html', import.meta.url),
     styles,
-    fonts: [materialSymbols],
+    fonts,
     attributes: ['title', 'level', 'action', 'href', 'name', 'value', 'footer'],
     prepare: prepareList,
   }),
@@ -58,7 +65,7 @@ await Promise.all([
     name: 'grouped-list-row',
     template: new URL('./grouped-list-row.html', import.meta.url),
     styles,
-    fonts: [materialSymbols],
+    fonts,
     attributes: ['type', 'detail', 'description', 'icon', 'href', 'name', 'value', 'checked', 'unread', 'destructive'],
     prepare: prepareRow,
   }),

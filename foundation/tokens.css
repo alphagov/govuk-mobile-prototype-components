@@ -82,11 +82,33 @@ govuk-app {
   --app-surface-list: light-dark(#ffffff, #092237);           /* fills.surfaceList */
   --app-border-list-divider: light-dark(#d2e2f1, #263d54);    /* strokes.listDivider */
   --app-icon-tertiary: light-dark(#1d70b8, #ffffff);          /* text.iconTertiary: chevrons and arrows */
+  --app-icon-primary: #ffffff;                                /* textAndIcons.iconPrimary, the Android app's: a topic's icon */
+  --app-icon-surround-primary: light-dark(#1d70b8, #263d54);  /* textAndIcons.iconSurroundPrimary, the Android app's: the circle behind it */
   --app-unread: #ff5e5e;                                      /* fills.msgUnread */
   --app-switch-on: #0f7a52;                                   /* fills.surfaceToggleSelected */
   --app-switch-off: light-dark(rgb(120 120 128 / 0.16), rgb(120 120 128 / 0.32)); /* the system's, which GovKit leaves */
   --app-switch-knob: #ffffff;                                 /* the system's */
   --app-switch-knob-shadow: rgb(0 0 0 / 0.15);                /* the system's */
+
+  /* Green screens and black buttons: the app's own, not GovKit's, which it
+     uses to add an account (govuk-mobile-ios-app, Extensions/GovKit/
+     GOVUKColors+ServiceAccount.swift, read at fc2b3b1d). The same in light
+     and dark */
+  --app-surface-green: #0f7a52;                               /* fills.surfaceFullScreenLinkAccount, GovKit's primaryGreen */
+  --app-text-on-green: #ffffff;                               /* text.header */
+  --app-surface-button-black: #000000;                        /* fills.linkAccountButton */
+  --app-surface-button-black-pressed: #1a1a1a;                /* fills.linkAccountButtonHighlight */
+  --app-text-button-black: #ffffff;                           /* text.linkAccountButton */
+  --app-text-button-black-pressed: #cccccc;                   /* text.linkAccountButtonHighlight */
+  --app-shadow-button-black: #1a1a1a;                         /* strokes.linkAccountButton */
+  --app-shadow-button-black-pressed: #000000;                 /* strokes.linkAccountButtonHighlight */
+
+  /* The home screen's header and its search field */
+  --app-surface-home-header: light-dark(#1d70b8, #0a2740);   /* fills.surfaceHomeHeaderBackground */
+  --app-text-header: #ffffff;                                 /* text.header */
+  --app-text-link-header: light-dark(#ffffff, #11e0f1);       /* text.linkHeader */
+  --app-logo-dot: #00ffe0;                                    /* the GOV.UK wordmark's dot, in the wordmark itself */
+  --app-text-search-cancel: var(--app-text-primary);          /* text.primary: the search field's Cancel (SearchBarView) */
 
   /* Sheets: the system's, which GovKit leaves */
   --app-sheet-backdrop: #000000;                              /* behind the screen a sheet is presented from */
@@ -128,6 +150,7 @@ govuk-app {
   --app-font-title-1-size: calc(28px * var(--app-text-scale));
   --app-font-title-1-weight: 700;
   --app-font-title-1-leading: calc(34px * var(--app-text-scale));
+  --app-font-title-1-regular-weight: 400;  /* Font.govUK.title1, which the weight above is the bold of */
   --app-font-title-2-size: calc(22px * var(--app-text-scale));
   --app-font-title-2-weight: 700;
   --app-font-title-2-leading: calc(28px * var(--app-text-scale));

@@ -18,11 +18,12 @@
    may only be used on Apple's platforms. */
 
 /* It sticks to the bottom of the screen, so the content scrolls under it,
-   just above the home indicator on a phone with one, as iOS places it. Only
+   16pt from the bottom, or just above the home indicator on a phone with one,
+   as iOS places it. Only
    the capsule takes presses, not the space either side of it. */
 .govuk-app-tab-bar {
   position: sticky;
-  bottom: max(var(--app-space-small), calc(var(--govuk-app-inset-bottom, 0px) - var(--app-space-small)));
+  bottom: max(var(--app-space-medium), calc(var(--govuk-app-inset-bottom, 0px) - var(--app-space-small)));
   z-index: 1;
   display: flex;
   justify-content: center;

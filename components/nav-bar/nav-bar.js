@@ -3,16 +3,25 @@ import { defineComponent, materialSymbols } from '../../foundation/component.js'
 /**
  * The back button is a link if it has a back-href, otherwise a button. The
  * title is the bar's heading, unless it is large, when the large one is. A
- * screen without a title has no heading in the bar.
+ * screen without a title has no heading in the bar. Actions marked
+ * slot="leading" go where the back button would, such as a close action on a
+ * full-screen cover, and the rest at the end.
  */
 export function prepareBar(data) {
   const title = typeof data.title === 'string' && data.title !== ''
+  const leading = []
+  const actions = []
+  for (const node of data.content) {
+    if (node.nodeType === Node.ELEMENT_NODE && node.getAttribute('slot') === 'leading') leading.push(node)
+    else actions.push(node)
+  }
   return {
     ...data,
     backButton: Boolean(data.back) && data.backHref === undefined,
     inlineTitle: title && !data.largeTitle,
     largeTitle: title && Boolean(data.largeTitle),
-    actions: data.content.some(node => node.nodeType === Node.ELEMENT_NODE),
+    leading,
+    actions: actions.some(node => node.nodeType === Node.ELEMENT_NODE) ? actions : [],
   }
 }
 

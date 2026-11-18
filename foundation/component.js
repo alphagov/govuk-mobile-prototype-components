@@ -36,6 +36,12 @@
  */
 export const materialSymbols = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0&display=block'
 
+/**
+ * Material Symbols Outlined, filled, which the app's own topic icons are
+ * drawn from.
+ */
+export const materialSymbolsOutlined = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0&display=block'
+
 const templates = new Map()
 const stylesheets = new Map()
 
