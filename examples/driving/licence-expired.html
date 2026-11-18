@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Licence expired – GOV.UK app example</title>
+  <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../example.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../components/segmented-control/segmented-control.js"></script>
+  <script type="module" src="../../components/grouped-list/grouped-list.js"></script>
+  <script type="module" src="../../components/card-header/card-header.js"></script>
+  <script type="module" src="../../components/heading/heading.js"></script>
+  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module" src="../../components/address/address.js"></script>
+  <script type="module" src="../../components/status/status.js"></script>
+  <script type="module" src="../../components/button/button.js"></script>
+  <script type="module" src="../../components/summary-columns/summary-columns.js"></script>
+  <script type="module" src="../../components/count/count.js"></script>
+  <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
+</head>
+<body>
+  <div class="example-phone">
+    <govuk-app>
+      <govuk-app-screen>
+        <govuk-app-nav-bar title="Driving" large-title back-href="../home/index.html"></govuk-app-nav-bar>
+
+        <govuk-app-segmented-control label="Driving">
+          <govuk-app-segmented-control-item href="index.html">Vehicles</govuk-app-segmented-control-item>
+          <govuk-app-segmented-control-item href="licence.html" selected>Licence</govuk-app-segmented-control-item>
+        </govuk-app-segmented-control>
+
+        <govuk-app-grouped-list>
+          <govuk-app-grouped-list-row type="content" flush>
+            <govuk-app-card-header>
+              <govuk-app-text size="subheadline" emphasis>Expired 28 March 2026</govuk-app-text>
+              <govuk-app-heading level="2" size="title-1">ARENO803236AA170</govuk-app-heading>
+            </govuk-app-card-header>
+          </govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="content">
+            <govuk-app-address name="Ms Anna Ornella Arenö">
+              29 Orchard Drive
+              Milton Keynes
+              PA98 J83
+            </govuk-app-address>
+          </govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="content">
+            <govuk-app-button name="renew-licence">Renew licence</govuk-app-button>
+            <govuk-app-text size="footnote" colour="secondary" align="center">You must renew your licence before you can legally drive. Your status may not update immediately after renewal.</govuk-app-text>
+          </govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-heading level="2" size="title-3">Driver record</govuk-app-heading>
+        <govuk-app-text size="subheadline" colour="secondary">There are no offences on your record.</govuk-app-text>
+        <govuk-app-grouped-list>
+          <govuk-app-grouped-list-row type="content" flush>
+            <govuk-app-summary-columns>
+              <govuk-app-summary-column>
+                <govuk-app-count value="0">Offences</govuk-app-count>
+              </govuk-app-summary-column>
+              <govuk-app-summary-column>
+                <govuk-app-count value="0">Points</govuk-app-count>
+              </govuk-app-summary-column>
+            </govuk-app-summary-columns>
+          </govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row name="driver-record-history">History</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-tab-bar>
+          <govuk-app-tab-bar-item icon="home" href="../home/index.html" selected>Home</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="chat_bubble" name="chat">Chat</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="settings" href="../settings/index.html">Settings</govuk-app-tab-bar-item>
+        </govuk-app-tab-bar>
+      </govuk-app-screen>
+    </govuk-app>
+  </div>
+</body>
+</html>

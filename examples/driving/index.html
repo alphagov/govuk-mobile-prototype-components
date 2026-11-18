@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Driving – GOV.UK app example</title>
+  <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../example.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../components/segmented-control/segmented-control.js"></script>
+  <script type="module" src="../../components/grouped-list/grouped-list.js"></script>
+  <script type="module" src="../../components/number-plate/number-plate.js"></script>
+  <script type="module" src="../../components/heading/heading.js"></script>
+  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module" src="../../components/summary-columns/summary-columns.js"></script>
+  <script type="module" src="../../components/status/status.js"></script>
+  <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
+</head>
+<body>
+  <div class="example-phone">
+    <govuk-app>
+      <govuk-app-screen>
+        <govuk-app-nav-bar title="Driving" large-title back-href="../home/index.html"></govuk-app-nav-bar>
+
+        <govuk-app-segmented-control label="Driving">
+          <govuk-app-segmented-control-item href="index.html" selected>Vehicles</govuk-app-segmented-control-item>
+          <govuk-app-segmented-control-item href="licence.html">Licence</govuk-app-segmented-control-item>
+        </govuk-app-segmented-control>
+
+        <govuk-app-grouped-list>
+          <govuk-app-grouped-list-row type="content">
+            <govuk-app-number-plate>LH09 PZ2</govuk-app-number-plate>
+            <govuk-app-heading level="2" size="title-2">Lamborghini</govuk-app-heading>
+            <govuk-app-text size="subheadline">Aventador LP 770-4 Super Veloce Jota 63 Edition Roadster</govuk-app-text>
+          </govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="content" flush>
+            <govuk-app-summary-columns>
+              <govuk-app-summary-column>
+                <govuk-app-status state="due" progress="0.6" label="Tax due" caption="18 days"></govuk-app-status>
+              </govuk-app-summary-column>
+              <govuk-app-summary-column>
+                <govuk-app-status label="MOT" caption="Valid"></govuk-app-status>
+              </govuk-app-summary-column>
+            </govuk-app-summary-columns>
+          </govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row href="vehicle.html">Details</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-grouped-list>
+          <govuk-app-grouped-list-row type="content">
+            <govuk-app-number-plate>RD26 4RY</govuk-app-number-plate>
+            <govuk-app-heading level="2" size="title-2">Volvo</govuk-app-heading>
+            <govuk-app-text size="subheadline">V50 2.0D</govuk-app-text>
+          </govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="content" flush>
+            <govuk-app-summary-columns>
+              <govuk-app-summary-column>
+                <govuk-app-status label="Tax" caption="Valid"></govuk-app-status>
+              </govuk-app-summary-column>
+              <govuk-app-summary-column>
+                <govuk-app-status state="none" label="MOT" caption="Not required"></govuk-app-status>
+              </govuk-app-summary-column>
+            </govuk-app-summary-columns>
+          </govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row name="vehicle-details" value="rd26-4ry">Details</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-grouped-list background="accent">
+          <govuk-app-grouped-list-row type="action" name="add-vehicle">Add vehicle</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-grouped-list title="Check a vehicle" footer="View tax and MOT information for any vehicle.">
+          <govuk-app-grouped-list-row name="check-vehicle">Start</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-grouped-list title="Related">
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/personalised-vehicle-registration-numbers">Personalised number plates</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/vehicle-insurance">Vehicle insurance</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/child-car-seats-the-rules">Child car seats</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/parking-fines-penalty-charge-notices">Parking fines and penalty charge notices</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-tab-bar>
+          <govuk-app-tab-bar-item icon="home" href="../home/index.html" selected>Home</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="chat_bubble" name="chat">Chat</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="settings" href="../settings/index.html">Settings</govuk-app-tab-bar-item>
+        </govuk-app-tab-bar>
+      </govuk-app-screen>
+    </govuk-app>
+  </div>
+</body>
+</html>

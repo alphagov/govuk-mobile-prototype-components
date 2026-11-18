@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Licence revoked – GOV.UK app example</title>
+  <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../example.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../components/segmented-control/segmented-control.js"></script>
+  <script type="module" src="../../components/grouped-list/grouped-list.js"></script>
+  <script type="module" src="../../components/card-header/card-header.js"></script>
+  <script type="module" src="../../components/heading/heading.js"></script>
+  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module" src="../../components/address/address.js"></script>
+  <script type="module" src="../../components/status/status.js"></script>
+  <script type="module" src="../../components/button/button.js"></script>
+  <script type="module" src="../../components/summary-columns/summary-columns.js"></script>
+  <script type="module" src="../../components/count/count.js"></script>
+  <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
+</head>
+<body>
+  <div class="example-phone">
+    <govuk-app>
+      <govuk-app-screen>
+        <govuk-app-nav-bar title="Driving" large-title back-href="../home/index.html"></govuk-app-nav-bar>
+
+        <govuk-app-segmented-control label="Driving">
+          <govuk-app-segmented-control-item href="index.html">Vehicles</govuk-app-segmented-control-item>
+          <govuk-app-segmented-control-item href="licence.html" selected>Licence</govuk-app-segmented-control-item>
+        </govuk-app-segmented-control>
+
+        <govuk-app-grouped-list>
+          <govuk-app-grouped-list-row type="content" flush>
+            <govuk-app-card-header tone="warning" tall>
+              <govuk-app-heading level="2" size="title-1">Revoked</govuk-app-heading>
+            </govuk-app-card-header>
+          </govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="content">
+            <govuk-app-text>Your driving licence has been revoked. Before you can drive again, you must apply for a new provisional licence and pass the required tests.</govuk-app-text>
+          </govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" href="https://www.gov.uk/apply-first-provisional-driving-licence">Get a provisional licence</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-grouped-list title="Related">
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/driving-medical-conditions">Medical conditions, disabilities and driving</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/driving-eyesight-rules">Driving eyesight rules</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/driving-licence-fees">Driving licence fees</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-tab-bar>
+          <govuk-app-tab-bar-item icon="home" href="../home/index.html" selected>Home</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="chat_bubble" name="chat">Chat</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="settings" href="../settings/index.html">Settings</govuk-app-tab-bar-item>
+        </govuk-app-tab-bar>
+      </govuk-app-screen>
+    </govuk-app>
+  </div>
+</body>
+</html>

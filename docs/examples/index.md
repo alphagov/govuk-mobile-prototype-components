@@ -25,7 +25,30 @@ It uses the screen, home header, search field, grouped list, text, button, crown
 - **Your local services’ card.** The council is drawn as a link row, rather than in the app’s large, bold link text on a card of its own, without an arrow.
 - **Pages you’ve visited without arrows.** They’re link rows, which always show their arrow; the app’s don’t.
 - **Give feedback as a link.** It is a grouped secondary button, the nearest the library has.
-- **Rows that go nowhere.** The topics, the Edit and See all actions, Give feedback and the Chat tab have no screens of their own here.
+- **Rows that go nowhere.** The topics other than Driving, the Edit and See all actions, Give feedback and the Chat tab have no screens of their own here. Driving opens the Driving example.
+
+## Driving
+
+[Open the Driving example](/examples/driving/)
+
+The future driving designs, from a screenshot of Shaun’s Figma: a driver’s vehicles and licence, with the segmented control between them, and a vehicle’s details. Its back button returns to Home, which opens it from the Driving topic.
+
+The licence has four states. The app would show whichever applies, so here each is a page of its own:
+
+- [Valid, and expiring](/examples/driving/licence.html)
+- [Expired](/examples/driving/licence-expired.html)
+- [Disqualified](/examples/driving/licence-disqualified.html)
+- [Revoked](/examples/driving/licence-revoked.html)
+
+Much of it is proposed, not in the app yet: the status, count and card header, the yellow warning banner, the grouped list’s content rows and accent background. Its number plates, labelled icons, address, segmented control and Add vehicle are the app’s own. It also uses the screen, navigation bar, grouped list, summary columns, heading, text, button and tab bar. Its source is in `examples/driving/` in the repository.
+
+### What’s missing
+
+- **The menu on each vehicle and licence.** The designs put a round “…” button on each card; there’s no icon button yet.
+- **The number plate beside Overview.** A heading can’t hold anything beside it yet, so the plate is below it.
+- **Checking a vehicle.** The designs’ row has a number plate field and a search button; here it’s a row, Start, that goes nowhere.
+- **Bold within a line.** The designs bold only part of lines such as “**Expired** 28 March 2026” and “**1 year 28 days** remaining”; text can only be bold as a whole.
+- **Screens that go nowhere.** The Volvo’s details, Tech specs, MOT history, the driver record’s History, Add vehicle and Renew have no screens here.
 
 ## Settings
 
