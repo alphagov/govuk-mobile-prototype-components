@@ -1,6 +1,6 @@
 ## Over a screen
 
-The navigation bar sticks to the top of the screen, and the content scrolls under it. A large title scrolls with the content, and moves into the bar once it has gone under it. Scroll these to see it.
+The navigation bar sticks to the top of the screen, and the content scrolls under it. A large title scrolls with the content, and moves into the bar once it has gone under it. The bar then takes a fill, with a keyline along its bottom. Scroll these to see it.
 
 <div class="docs-example">
 <div class="docs-example__frames">
@@ -40,5 +40,6 @@ The app’s actions use SF Symbols, which may only be used on Apple’s platform
 
 - The glass is a blurred, translucent fill. It doesn’t bend the content behind it, or catch the light at its edges.
 - Content going under the bar is blurred and faded, as iOS 26 does, but not as smoothly.
+- The fill and keyline behind a large title in the bar are measured from a screenshot of the app in light mode. Their dark colours are a guess.
 - The large title doesn’t stretch when the screen is pulled down, and the title fades into the bar rather than sliding.
 - The back button doesn’t offer a menu of earlier screens when it is held down.
