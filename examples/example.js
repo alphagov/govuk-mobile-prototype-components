@@ -61,12 +61,13 @@ menu.addEventListener('click', event => {
   if (event.target === menu) menu.close()
 })
 
-// A shake is a few hard jolts in quick succession, so a single bump, or
-// putting the phone down, doesn't open the menu. `acceleration` leaves out
-// gravity, so turning the phone over doesn't count either. In m/s².
-const joltThreshold = 15
+// A shake is a few firm jolts in quick succession, so a single bump, or
+// putting the phone down, doesn't open the menu. Each change of direction
+// is a jolt. `acceleration` leaves out gravity, so turning the phone over
+// doesn't count either. 10 m/s², about 1g: at 15, it took a hard flick.
+const joltThreshold = 10
 const joltsInAShake = 3
-const shakeWindow = 1000
+const shakeWindow = 1500
 let jolts = []
 
 function onMotion(event) {
