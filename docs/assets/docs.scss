@@ -63,6 +63,8 @@
   gap: var(--app-space-medium);
   height: 320px;
   overflow-y: auto;
+  // No scroll bar, as on a phone, even where the computer always shows them.
+  scrollbar-width: none;
   padding: var(--app-space-large) var(--app-space-medium) 0;
   border-radius: 12px;
 }

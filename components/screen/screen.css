@@ -46,6 +46,10 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  /* iOS draws no scroll bar beside the content, only a thin indicator
+     while it scrolls. A computer set to always show scroll bars would
+     otherwise draw one, and take its width from the screen. */
+  scrollbar-width: none;
   /* A long word wraps rather than widening the screen, as in the app. */
   overflow-wrap: anywhere;
 }
