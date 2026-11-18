@@ -1,0 +1,157 @@
+/* How an example's pages are shown: each <govuk-app> as a phone, 402pt by
+   874pt like an iPhone 17 Pro, in the middle of the window, with iOS's status
+   bar over its top and its home indicator over its bottom (example.js). On a
+   phone, it fills the screen instead, and the phone's own are the ones over
+   it.
+
+   In a cascade layer, so none of this reaches inside <govuk-app>. */
+
+@layer example {
+  html {
+    height: 100%;
+  }
+
+  body {
+    display: grid;
+    place-items: center;
+    min-height: 100%;
+    margin: 0;
+    padding: 24px;
+    box-sizing: border-box;
+    background: #dee0e2;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .example-phone {
+    position: relative;
+    width: 402px;
+    height: 874px;
+    overflow: hidden;
+    border-radius: 48px;
+    box-shadow: 0 0 0 10px #0b0c0c, 0 24px 60px rgb(0 0 0 / 0.3);
+  }
+
+  .example-phone govuk-app {
+    height: 100%;
+    --govuk-app-inset-top: 62px;
+    --govuk-app-inset-bottom: 34px;
+  }
+
+  /* iOS's status bar, over whatever is under it (example.js): the time and
+     the icons either side of the Dynamic Island, 126pt by 37pt and 11pt
+     from the top, and centred on it. It doesn't grow with the app's text. */
+  .example-status-bar {
+    position: absolute;
+    top: 11px;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 126px 1fr;
+    align-items: center;
+    height: 37px;
+    color: #000000;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 22px;
+    font-variant-numeric: tabular-nums;
+    pointer-events: none;
+  }
+
+  .example-status-bar__time {
+    justify-self: center;
+    padding-left: 12px;
+  }
+
+  .example-status-bar__island {
+    height: 37px;
+    border-radius: 9999px;
+    background: #000000;
+  }
+
+  .example-status-bar__icons {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    gap: 6px;
+    padding-right: 6px;
+    fill: currentColor;
+  }
+
+  .example-status-bar__signal {
+    width: 18px;
+    height: 12px;
+  }
+
+  .example-status-bar__wifi {
+    width: 16px;
+    height: 12px;
+    stroke: currentColor;
+  }
+
+  .example-status-bar__battery {
+    width: 27px;
+    height: 13px;
+  }
+
+  .example-status-bar__battery-case {
+    fill: none;
+    stroke: currentColor;
+    stroke-opacity: 0.35;
+  }
+
+  .example-status-bar__battery-cap {
+    fill-opacity: 0.4;
+  }
+
+  /* The home indicator: 134pt by 5pt, 8pt from the bottom. */
+  .example-home-indicator {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    z-index: 2;
+    width: 134px;
+    height: 5px;
+    border-radius: 9999px;
+    background: #000000;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: #1b1d1f;
+    }
+
+    .example-status-bar {
+      color: #ffffff;
+    }
+
+    .example-home-indicator {
+      background: #ffffff;
+    }
+  }
+
+  @media (max-width: 460px) {
+    body {
+      padding: 0;
+    }
+
+    .example-phone {
+      width: 100vw;
+      height: 100dvh;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .example-phone govuk-app {
+      --govuk-app-inset-top: env(safe-area-inset-top, 0px);
+      --govuk-app-inset-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    .example-status-bar,
+    .example-home-indicator {
+      display: none;
+    }
+  }
+}

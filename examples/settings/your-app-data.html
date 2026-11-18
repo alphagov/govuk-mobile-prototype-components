@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Your app data – GOV.UK app example</title>
+  <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../example.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module" src="../../components/button/button.js"></script>
+  <script type="module" src="../../components/button-stack/button-stack.js"></script>
+</head>
+<body>
+  <div class="example-phone">
+    <govuk-app>
+      <govuk-app-screen>
+        <govuk-app-nav-bar title="Your app data" large-title back-href="index.html"></govuk-app-nav-bar>
+        <govuk-app-text>We store a small amount of data about you to improve your experience in the app, like:</govuk-app-text>
+        <!-- The app draws these as a bulleted list, which the library doesn't have yet. -->
+        <govuk-app-text>• your notification settings<br>• a unique ID for this app (Push ID)</govuk-app-text>
+        <govuk-app-text>This does not include any other information you have shared with us or with other government services.</govuk-app-text>
+        <govuk-app-text>You can ask us to delete your data at any time. Read more about this in the privacy notice.</govuk-app-text>
+        <govuk-app-button-stack slot="footer">
+          <govuk-app-button name="request-data">Request data</govuk-app-button>
+        </govuk-app-button-stack>
+      </govuk-app-screen>
+    </govuk-app>
+  </div>
+</body>
+</html>

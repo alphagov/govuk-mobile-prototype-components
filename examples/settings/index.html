@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Settings – GOV.UK app example</title>
+  <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../example.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../components/grouped-list/grouped-list.js"></script>
+  <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
+</head>
+<body>
+  <div class="example-phone">
+    <govuk-app>
+      <govuk-app-screen>
+        <govuk-app-nav-bar title="Settings" large-title></govuk-app-nav-bar>
+
+        <govuk-app-grouped-list footer="You might need to sign in again to manage your GOV.UK One Login details.">
+          <govuk-app-grouped-list-row type="information" description="test@example.com">Your GOV.UK One Login</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" href="https://home.account.gov.uk">Manage your GOV.UK One Login</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-grouped-list>
+          <govuk-app-grouped-list-row name="your-accounts">Your accounts</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-grouped-list>
+          <govuk-app-grouped-list-row type="count" detail="2" unread name="messages">Messages</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-grouped-list footer="You can share statistics about how you use the GOV.UK app so we can make improvements to it. We will not use these statistics to directly identify you. Read more about this in the privacy notice.">
+          <govuk-app-grouped-list-row type="detail" detail="Off" name="notifications">Notifications</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row href="face-id.html">Face ID</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="toggle" name="statistics" checked>Share app usage statistics</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-grouped-list>
+          <govuk-app-grouped-list-row type="information" detail="1.2.3 (123)">App version number</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" href="https://www.gov.uk">Help and feedback</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-grouped-list title="Privacy and legal">
+          <govuk-app-grouped-list-row type="link" href="https://www.gov.uk">Privacy notice</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" href="https://www.gov.uk">Accessibility statement</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row name="licences">Open source licences</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" href="https://www.gov.uk">Terms and conditions</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row href="your-app-data.html">Your app data</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-grouped-list>
+          <govuk-app-grouped-list-row type="detail" destructive href="sign-out.html">Sign out</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-tab-bar>
+          <govuk-app-tab-bar-item icon="home" name="home">Home</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="settings" href="index.html" selected>Settings</govuk-app-tab-bar-item>
+        </govuk-app-tab-bar>
+      </govuk-app-screen>
+    </govuk-app>
+  </div>
+</body>
+</html>

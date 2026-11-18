@@ -19,7 +19,8 @@ export default async function (eleventyConfig) {
     serviceNavigation: {
       navigation: [
         { text: 'Get started', href: '/get-started/' },
-        { text: 'Components', href: '/components/' }
+        { text: 'Components', href: '/components/' },
+        { text: 'Examples', href: '/examples/' }
       ]
     },
     markdown: {
@@ -42,6 +43,9 @@ export default async function (eleventyConfig) {
   // drawn into its page, so isn't published on its own.
   eleventyConfig.addPassthroughCopy({ foundation: 'foundation' })
   eleventyConfig.addPassthroughCopy({ components: 'components' }, { filter: path => !path.endsWith('.md') })
+  // Examples of the components put together, as they are in the repository.
+  eleventyConfig.addPassthroughCopy({ examples: 'examples' })
+  eleventyConfig.addWatchTarget('examples/')
   eleventyConfig.addWatchTarget('components/')
   eleventyConfig.addWatchTarget('foundation/')
   eleventyConfig.addWatchTarget('component.schema.json')

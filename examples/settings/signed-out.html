@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>You’ve signed out – GOV.UK app example</title>
+  <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../example.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/heading/heading.js"></script>
+  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module" src="../../components/button/button.js"></script>
+  <script type="module" src="../../components/button-stack/button-stack.js"></script>
+  <script type="module">
+    // Signing in again starts the journey over.
+    document.addEventListener('click', event => {
+      if (event.target.closest('govuk-app button')?.name === 'sign-in') location.href = 'index.html'
+    })
+  </script>
+</head>
+<body>
+  <div class="example-phone">
+    <govuk-app>
+      <govuk-app-screen background="modal">
+        <govuk-app-heading level="1" align="center">You’ve signed out</govuk-app-heading>
+        <govuk-app-text align="center">You need to sign in again to use the app</govuk-app-text>
+        <govuk-app-button-stack slot="footer">
+          <govuk-app-button name="sign-in">Sign in with GOV.UK One Login</govuk-app-button>
+        </govuk-app-button-stack>
+      </govuk-app-screen>
+    </govuk-app>
+  </div>
+</body>
+</html>
