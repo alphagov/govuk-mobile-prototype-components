@@ -51,13 +51,29 @@
   border-radius: 10px 10px 0 0;
 }
 
-/* Presented as UIKit presents it: the sheet slides up as the screen behind
-   it sets back. */
-.govuk-app-sheet[data-present] .govuk-app-sheet__card {
+/* Until everything in it has drawn (sheet.js), a sheet being presented
+   waits below the screen, and the screen behind it isn't set back yet, so
+   nothing appears on the way up. */
+govuk-app-sheet:not([data-drawn]) .govuk-app-sheet[data-present] .govuk-app-sheet__card {
+  transform: translateY(100%);
+}
+
+govuk-app-sheet:not([data-drawn]) .govuk-app-sheet[data-present] .govuk-app-sheet__behind {
+  border-radius: 0;
+  transform: none;
+}
+
+govuk-app-sheet:not([data-drawn]) .govuk-app-sheet[data-present] .govuk-app-sheet__behind::after {
+  opacity: 0;
+}
+
+/* Then it's presented as UIKit presents it: the sheet slides up as the
+   screen behind it sets back. */
+govuk-app-sheet[data-drawn] .govuk-app-sheet[data-present] .govuk-app-sheet__card {
   animation: govuk-app-sheet-present 0.5s cubic-bezier(0.2, 0.9, 0.3, 1);
 }
 
-.govuk-app-sheet[data-present] .govuk-app-sheet__behind {
+govuk-app-sheet[data-drawn] .govuk-app-sheet[data-present] .govuk-app-sheet__behind {
   animation: govuk-app-sheet-set-back 0.5s cubic-bezier(0.2, 0.9, 0.3, 1);
 }
 
@@ -73,14 +89,14 @@
   from { opacity: 0; }
 }
 
-.govuk-app-sheet[data-present] .govuk-app-sheet__behind::after {
+govuk-app-sheet[data-drawn] .govuk-app-sheet[data-present] .govuk-app-sheet__behind::after {
   animation: govuk-app-sheet-set-back-dim 0.5s ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .govuk-app-sheet[data-present] .govuk-app-sheet__card,
-  .govuk-app-sheet[data-present] .govuk-app-sheet__behind,
-  .govuk-app-sheet[data-present] .govuk-app-sheet__behind::after {
+  govuk-app-sheet[data-drawn] .govuk-app-sheet[data-present] .govuk-app-sheet__card,
+  govuk-app-sheet[data-drawn] .govuk-app-sheet[data-present] .govuk-app-sheet__behind,
+  govuk-app-sheet[data-drawn] .govuk-app-sheet[data-present] .govuk-app-sheet__behind::after {
     animation: none;
   }
 }
