@@ -16,6 +16,18 @@ const statusBar = `
     </span>
   </div>`
 
+// Shrinks the phone to fit the window, as a whole, so all of the screen is
+// in view without scrolling the page. CSS can't yet divide one length by
+// another everywhere, so this works out the scale. The room around it is
+// the body's 24px padding, and the bezel's 10px.
+const room = 2 * (24 + 10)
+function fit() {
+  const scale = Math.min(1, (innerHeight - room) / 874, (innerWidth - room) / 402)
+  document.documentElement.style.setProperty('--example-scale', String(Math.max(scale, 0.4)))
+}
+fit()
+addEventListener('resize', fit)
+
 for (const phone of document.querySelectorAll('.example-phone')) {
   phone.insertAdjacentHTML('afterbegin', statusBar)
   phone.insertAdjacentHTML('beforeend', '<div class="example-home-indicator" aria-hidden="true"></div>')

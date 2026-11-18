@@ -1,8 +1,9 @@
 /* How an example's pages are shown: each <govuk-app> as a phone, 402pt by
    874pt like an iPhone 17 Pro, in the middle of the window, with iOS's status
-   bar over its top and its home indicator over its bottom (example.js). On a
-   phone, it fills the screen instead, and the phone's own are the ones over
-   it.
+   bar over its top and its home indicator over its bottom (example.js). It
+   shrinks, all of it together, to fit a window too small for it, by
+   --example-scale, which example.js sets. On a phone, it fills the screen
+   instead, and the phone's own are the ones over it.
 
    In a cascade layer, so none of this reaches inside <govuk-app>. */
 
@@ -23,6 +24,7 @@
   }
 
   .example-phone {
+    zoom: var(--example-scale, 1);
     position: relative;
     width: 402px;
     height: 874px;
@@ -138,6 +140,7 @@
     }
 
     .example-phone {
+      zoom: 1;
       width: 100vw;
       height: 100dvh;
       border-radius: 0;
