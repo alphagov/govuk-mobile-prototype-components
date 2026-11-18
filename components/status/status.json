@@ -26,7 +26,7 @@
       "label": {
         "type": "string",
         "required": true,
-        "description": "What it is, in bold, such as Tax, MOT due or Tax expiring."
+        "description": "What it is, in Body Semibold, such as Tax, MOT due or Tax expiring."
       },
       "detail": {
         "type": "string",
@@ -34,7 +34,7 @@
       },
       "caption": {
         "type": "string",
-        "description": "The line below, in grey, such as Valid, 23 days, Expired or Not required."
+        "description": "The line below, in Subheadline, grey, such as Valid, 23 days, Expired or Not required."
       }
     },
     "content": null

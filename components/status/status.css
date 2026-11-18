@@ -1,7 +1,8 @@
 /* A status, as the future driving designs show tax, MOT and a licence's
-   expiry (Figma, from a screenshot, so approximate): a 32pt icon for its
-   state, then 12pt on, its label in Subheadline Semibold, with any detail
-   after it in Subheadline, and its caption below in Footnote, grey.
+   expiry (Figma, from a screenshot, so approximate): a 36pt icon for its
+   state, as tall as the two lines beside it and as the app's
+   ValidityStatusView's, then 12pt on, its label in Body Semibold, with any
+   detail after it in Body, and its caption below in Subheadline, grey.
 
    The icons are drawn here, not from a font, so they're there from the
    start: a green dot when valid; a purple ring, filled clockwise from the
@@ -18,8 +19,8 @@
 
 .govuk-app-status__icon {
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--app-radius-capsule);
 }
 
@@ -34,19 +35,19 @@
     var(--app-status-due) calc(var(--govuk-app-status-progress) * 1turn),
     var(--app-status-track) 0
   );
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), black calc(100% - 4px + 0.5px));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 4px), black calc(100% - 4px + 0.5px));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4.5px), black calc(100% - 4.5px + 0.5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 4.5px), black calc(100% - 4.5px + 0.5px));
 }
 
 .govuk-app-status[data-state="expired"] .govuk-app-status__icon {
   display: grid;
   place-items: center;
-  border: 3px solid var(--app-text-primary);
+  border: 3.5px solid var(--app-text-primary);
 }
 
 .govuk-app-status[data-state="expired"] .govuk-app-status__icon::before {
   content: "!";
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
   line-height: 1;
 }
@@ -58,18 +59,18 @@
 }
 
 .govuk-app-status__line {
-  font-size: var(--app-font-subheadline-size);
-  font-weight: var(--app-font-subheadline-weight);
-  --leading: var(--app-font-subheadline-leading);
+  font-size: var(--app-font-body-size);
+  font-weight: var(--app-font-body-weight);
+  --leading: var(--app-font-body-leading);
 }
 
 .govuk-app-status__label {
-  font-weight: var(--app-font-subheadline-emphasis-weight);
+  font-weight: var(--app-font-body-emphasis-weight);
 }
 
 .govuk-app-status__caption {
   color: var(--app-text-secondary);
-  font-size: var(--app-font-footnote-size);
-  font-weight: var(--app-font-footnote-weight);
-  --leading: var(--app-font-footnote-leading);
+  font-size: var(--app-font-subheadline-size);
+  font-weight: var(--app-font-subheadline-weight);
+  --leading: var(--app-font-subheadline-leading);
 }
