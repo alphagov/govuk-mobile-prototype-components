@@ -1,4 +1,4 @@
-import { defineComponent } from '../../foundation/component.js'
+import { defineComponent, materialSymbols } from '../../foundation/component.js'
 
 /** The placeholder is its name for screen readers, unless it has a label. */
 export function prepare(data) {
@@ -52,6 +52,7 @@ await defineComponent({
   name: 'search-field',
   template: new URL('./search-field.html', import.meta.url),
   styles: new URL('./search-field.css', import.meta.url),
+  fonts: [materialSymbols],
   attributes: ['placeholder', 'label', 'name', 'value', 'action'],
   prepare,
 })

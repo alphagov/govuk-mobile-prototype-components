@@ -1,4 +1,4 @@
-import { defineComponent } from '../../foundation/component.js'
+import { defineComponent, materialSymbols, materialSymbolsOutlined } from '../../foundation/component.js'
 // A toggle row draws one.
 import '../toggle/toggle.js'
 
@@ -47,14 +47,17 @@ export function prepareRow(data) {
   }
 }
 
-// Both elements share one stylesheet. It loads the icons' font.
+// Both elements share one stylesheet, and the icons' fonts: a topic's icon
+// is from Material Symbols Outlined.
 const styles = new URL('./grouped-list.css', import.meta.url)
+const fonts = [materialSymbols, materialSymbolsOutlined]
 
 await Promise.all([
   defineComponent({
     name: 'grouped-list',
     template: new URL('./grouped-list.html', import.meta.url),
     styles,
+    fonts,
     attributes: ['title', 'level', 'action', 'href', 'name', 'value', 'footer'],
     prepare: prepareList,
   }),
@@ -62,6 +65,7 @@ await Promise.all([
     name: 'grouped-list-row',
     template: new URL('./grouped-list-row.html', import.meta.url),
     styles,
+    fonts,
     attributes: ['type', 'detail', 'description', 'icon', 'href', 'name', 'value', 'checked', 'unread', 'destructive'],
     prepare: prepareRow,
   }),
