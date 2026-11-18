@@ -25,8 +25,9 @@ export function prepareList(data) {
  * selectable row, and the detail on the right for the types that have one. A
  * topic is a navigation row with its icon on the left, as the app's
  * TopicListItemView, or a star, the app's for a topic without one. An action
- * row, proposed, has its icon on the right, a plus unless it names another. A
- * content row, proposed, holds whatever was written between its tags.
+ * row, as the app's Add vehicle, has an outlined plus on the right, or the
+ * icon it names. A content row, proposed, holds whatever was written between
+ * its tags.
  */
 export function prepareRow(data) {
   const type = types.includes(data.type) ? data.type : 'navigation'
@@ -34,7 +35,7 @@ export function prepareRow(data) {
   const icon = ['navigation', 'topic'].includes(type) ? 'chevron_right'
     : type === 'link' ? (data.noArrow ? undefined : 'arrow_outward')
     : type === 'selectable' ? data.icon
-    : type === 'action' ? data.icon || 'add_circle'
+    : type === 'action' ? data.icon
     : undefined
   return {
     ...data,
@@ -44,6 +45,7 @@ export function prepareRow(data) {
     toggle: type === 'toggle',
     information: type === 'information',
     contentRow: type === 'content',
+    plus: type === 'action' && !data.icon,
     flush: type === 'content' && Boolean(data.flush),
     icon,
     topic: type === 'topic' ? data.icon || 'star' : undefined,

@@ -24,10 +24,14 @@ Without an `icon`, it draws `star`, as the app does for a topic it has no icon f
 
 ## Proposed additions
 
-The content and action rows come from the future driving designs, not the app, which we have only as a screenshot for now. They may change, or never ship.
+These come from the future driving designs, not the app, which we have only as a screenshot for now. They may change, or never ship.
 
 - A **content row** holds anything, such as a vehicle’s name and model, or summary columns with `flush`. The divider between rows is drawn as for any other row.
-- An **action row** is an action on its own, such as Add vehicle, on the accent background. The designs’ plus is an outline; the icon font here has only filled icons, so it’s filled.
+- The **accent background**, a stronger blue, for a card that’s a single action, as the designs draw Add vehicle. In the app today it’s white.
+
+## Action rows
+
+An action row is the app’s Add vehicle card (`VehiclesView`): its title, with an outlined plus on the right. The plus is drawn here rather than from the icon font, whose icons are all filled. Give it an `icon` to draw a Material Symbol instead.
 
 ## Known differences from the app
 

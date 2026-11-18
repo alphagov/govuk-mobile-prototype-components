@@ -224,6 +224,41 @@ govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-lis
   --leading: var(--app-font-subheadline-leading);
 }
 
+/* An action, as the app's Add vehicle card (VehiclesView): 12pt above and
+   below a 36pt box, which holds its icon, or an outlined plus: SF's
+   plus.circle in Title 3 Semibold, 20pt across, drawn here, as the icon
+   font has only filled icons. */
+.govuk-app-grouped-list-row[data-type="action"] {
+  padding-block: calc(var(--app-space-small) + var(--app-space-extra-small));
+}
+
+govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-list-row[data-type="action"] {
+  padding-top: calc(var(--app-space-small) + var(--app-space-extra-small) + 0.33px);
+}
+
+/* The circle is its ::before, and the plus two bars in its background. */
+.govuk-app-grouped-list-row__plus {
+  position: relative;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  color: var(--app-icon-tertiary);
+  background:
+    linear-gradient(currentColor, currentColor) center / 10px 2px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 2px 10px no-repeat;
+}
+
+.govuk-app-grouped-list-row__plus::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  border: 2px solid currentColor;
+  border-radius: var(--app-radius-capsule);
+}
+
 /* Proposed, from the future driving designs: a row holding anything, such as
    a vehicle's name and model, spaced 8pt apart. Flush, it has no padding of
    its own, for content that has its own, such as summary columns. */

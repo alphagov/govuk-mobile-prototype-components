@@ -42,10 +42,10 @@
       "background": {
         "type": "enum",
         "values": ["subtle", "accent"],
-        "description": "Draws the card in another colour, as GovKit lets the app: subtle, pale blue, for a card on a white screen; accent, a stronger blue, for a card that's an action of its own, such as Add vehicle (proposed). Without it, the card is white, or dark blue in dark mode."
+        "description": "Draws the card in another colour, as GovKit lets the app: subtle, pale blue, for a card on a white screen; accent, a stronger blue, proposed by the future driving designs for Add vehicle. Without it, the card is white, or dark blue in dark mode."
       }
     },
-    "content": "The section's rows, <govuk-app-grouped-list-row> elements, in order. Each takes a type: navigation (the default: a chevron, to another screen), link (in the link colour, with an arrow out, to a web page), information (a value on the right, in grey, that can't be pressed), detail (a value on the right in the link colour, such as Off, to change it; destructive draws its title red), toggle (a switch, drawn by <govuk-app-toggle>; checked if it is on), count (a number on the right, with unread for a red dot) selectable (an icon on the right, if it names one, such as check) or topic (a navigation row with its icon on the left, in a circle, and its title in bold; icon names the symbol, such as currency_pound, or it draws a star). detail gives the value on the right; description, for information and link rows, a line of grey text below the title. Give href to make a row a link, or name and value to tell it apart as a button or switch. Its title is what is written between its tags. A link row with no-arrow has no arrow, as GovKit can draw one for a link that stays in the app. Proposed, from the future driving designs: action (its title, with an icon on the right in the link colour, add_circle unless icon names another, such as Add vehicle) and content (anything written between its tags, such as a heading and text, 16pt in from the card's edges; with flush, none, for content with its own padding, such as summary columns)."
+    "content": "The section's rows, <govuk-app-grouped-list-row> elements, in order. Each takes a type: navigation (the default: a chevron, to another screen), link (in the link colour, with an arrow out, to a web page), information (a value on the right, in grey, that can't be pressed), detail (a value on the right in the link colour, such as Off, to change it; destructive draws its title red), toggle (a switch, drawn by <govuk-app-toggle>; checked if it is on), count (a number on the right, with unread for a red dot) selectable (an icon on the right, if it names one, such as check) or topic (a navigation row with its icon on the left, in a circle, and its title in bold; icon names the symbol, such as currency_pound, or it draws a star). detail gives the value on the right; description, for information and link rows, a line of grey text below the title. Give href to make a row a link, or name and value to tell it apart as a button or switch. Its title is what is written between its tags. A link row with no-arrow has no arrow, as GovKit can draw one for a link that stays in the app. An action row is a single action, as the app's Add vehicle: its title, with an outlined plus on the right in the icon colour, or the icon it names. Proposed, from the future driving designs: content (anything written between its tags, such as a heading and text, 16pt in from the card's edges; with flush, none, for content with its own padding, such as summary columns)."
   },
   "outputs": {
     "events": [
@@ -68,7 +68,8 @@
     "Use destructive only for a detail row that deletes or removes something, such as Sign out.",
     "Use topic only for a list of the app's topics, as on Home, with the topic's own icon.",
     "Use a content row for what a row type can't draw, such as a vehicle's name and its tax and MOT, and put anything more about it, such as Details, in a navigation row below. It's proposed, so isn't in the app yet.",
-    "Use the subtle background for cards on a white screen, so they stand apart from it, and the accent background only for a card that's a single action, such as Add vehicle."
+    "Use the subtle background for cards on a white screen, so they stand apart from it. The accent background is proposed, for a card that's a single action, such as Add vehicle.",
+    "Use an action row on a card of its own, for an action that adds to the list above it, as Add vehicle does."
   ],
   "sources": {
     "figma": [
@@ -101,6 +102,12 @@
         "path": "Production/govuk_ios/Views/Settings/SettingsView.swift",
         "symbol": "SettingsView",
         "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/VehiclesView.swift",
+        "symbol": "addVehiclesSmallCard, the action row",
+        "ref": "8f1fe5da"
       },
       {
         "repo": "govuk-once/govuk-mobile-ios-app",
@@ -141,6 +148,8 @@
     { "platform": "ios", "image": "reference/ios-every-row-dark.webp", "description": "The same, in dark mode", "from": "GovKit's GroupedListSnapshotTests at 8a7641e" },
     { "platform": "ios", "image": "reference/ios-settings-light.webp", "description": "Settings, in light mode", "from": "SettingsViewControllerSnapshotTests at 1e520fc1" },
     { "platform": "ios", "image": "reference/ios-settings-dark.webp", "description": "Settings, in dark mode", "from": "SettingsViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-add-vehicle-light.webp", "description": "Add vehicle, an action row's card, in light mode", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-add-vehicle-dark.webp", "description": "Add vehicle, in dark mode", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" },
     { "platform": "ios", "image": "reference/ios-topics-light.webp", "description": "The Topics widget on Home, its rows topics, in light mode", "from": "TopicsWidgetViewSnapshotTests at fc2b3b1d" },
     { "platform": "ios", "image": "reference/ios-topics-dark.webp", "description": "The same, in dark mode", "from": "TopicsWidgetViewSnapshotTests at fc2b3b1d" },
     { "platform": "android", "image": "reference/android-topics-light.webp", "description": "The Topics widget on Home, in light mode", "from": "The Android app's TopicsWidgetScreenshotTests" }
@@ -172,7 +181,11 @@
       "html": "<govuk-app-grouped-list>\n  <govuk-app-grouped-list-row type=\"content\">\n    <govuk-app-heading level=\"2\" size=\"title-2\">Lamborghini</govuk-app-heading>\n    <govuk-app-text size=\"subheadline\">Aventador LP 770-4 Super Veloce Jota 63 Edition Roadster</govuk-app-text>\n  </govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"content\" flush>\n    <govuk-app-summary-columns>\n      <govuk-app-summary-column>\n        <govuk-app-status state=\"due\" progress=\"0.6\" label=\"Tax due\" caption=\"18 days\"></govuk-app-status>\n      </govuk-app-summary-column>\n      <govuk-app-summary-column>\n        <govuk-app-status label=\"MOT\" caption=\"Valid\"></govuk-app-status>\n      </govuk-app-summary-column>\n    </govuk-app-summary-columns>\n  </govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row name=\"details\">Details</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
     },
     {
-      "name": "Proposed: an action row, on the accent background",
+      "name": "An action row, as Add vehicle",
+      "html": "<govuk-app-grouped-list>\n  <govuk-app-grouped-list-row type=\"action\" name=\"add-vehicle\">Add vehicle</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    },
+    {
+      "name": "Proposed: the accent background, for Add vehicle",
       "html": "<govuk-app-grouped-list background=\"accent\">\n  <govuk-app-grouped-list-row type=\"action\" name=\"add-vehicle\">Add vehicle</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
     },
     {
