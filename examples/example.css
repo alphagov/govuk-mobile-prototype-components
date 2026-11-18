@@ -146,6 +146,24 @@
     fill-opacity: 0.4;
   }
 
+  /* The screen is hidden until every component on it has drawn, so it
+     never flashes up as bare text. If one never does, because the page
+     doesn't load it, it shows anyway after two seconds. */
+  .example-phone govuk-app:has(:not(:defined)) {
+    visibility: hidden;
+    animation: example-show 0s 2s forwards;
+  }
+
+  @keyframes example-show {
+    to { visibility: visible; }
+  }
+
+  /* Over a sheet, the status bar is on the black behind it, so iOS draws it
+     white, in light mode as in dark. */
+  .example-phone:has(govuk-app-sheet) .example-status-bar {
+    color: #ffffff;
+  }
+
   /* The home indicator: 134pt by 5pt, 8pt from the bottom. */
   .example-home-indicator {
     position: absolute;

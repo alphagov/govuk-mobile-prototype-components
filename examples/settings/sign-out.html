@@ -11,6 +11,9 @@
   <script type="module" src="../../components/text/text.js"></script>
   <script type="module" src="../../components/button/button.js"></script>
   <script type="module" src="../../components/button-stack/button-stack.js"></script>
+  <script type="module" src="../../components/sheet/sheet.js"></script>
+  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../components/grouped-list/grouped-list.js"></script>
   <script type="module">
     // Buttons go nowhere of their own: the page listens for which was
     // pressed, by its name, and goes where the app would.
@@ -24,14 +27,29 @@
 <body>
   <div class="example-phone">
     <govuk-app>
-      <govuk-app-screen background="modal">
-        <govuk-app-heading level="1" size="title-1">Are you sure you want to sign out?</govuk-app-heading>
-        <govuk-app-text>If you’re using Face ID or Touch ID to unlock the app, this will be turned off. You can turn it on again the next time you sign in.</govuk-app-text>
-        <govuk-app-button-stack slot="footer">
-          <govuk-app-button variant="destructive" name="sign-out">Sign out</govuk-app-button>
-          <govuk-app-button variant="grouped-secondary" name="cancel">Cancel</govuk-app-button>
-        </govuk-app-button-stack>
-      </govuk-app-screen>
+      <govuk-app-sheet present>
+        <!-- Settings, which it was presented from: only its top, which is
+             all that shows behind the sheet. -->
+        <govuk-app-screen slot="behind">
+          <govuk-app-nav-bar title="Settings" large-title></govuk-app-nav-bar>
+          <govuk-app-grouped-list footer="You might need to sign in again to manage your GOV.UK One Login details.">
+            <govuk-app-grouped-list-row type="information" description="test@example.com">Your GOV.UK One Login</govuk-app-grouped-list-row>
+            <govuk-app-grouped-list-row type="link">Manage your GOV.UK One Login</govuk-app-grouped-list-row>
+          </govuk-app-grouped-list>
+        </govuk-app-screen>
+
+        <govuk-app-screen background="modal">
+          <govuk-app-nav-bar>
+            <govuk-app-nav-bar-item icon="close" href="index.html">Close</govuk-app-nav-bar-item>
+          </govuk-app-nav-bar>
+          <govuk-app-heading level="1" size="title-1">Are you sure you want to sign out?</govuk-app-heading>
+          <govuk-app-text>If you’re using Face ID or Touch ID to unlock the app, this will be turned off. You can turn it on again the next time you sign in.</govuk-app-text>
+          <govuk-app-button-stack slot="footer">
+            <govuk-app-button variant="destructive" name="sign-out">Sign out</govuk-app-button>
+            <govuk-app-button variant="grouped-secondary" name="cancel">Cancel</govuk-app-button>
+          </govuk-app-button-stack>
+        </govuk-app-screen>
+      </govuk-app-sheet>
     </govuk-app>
   </div>
 </body>
