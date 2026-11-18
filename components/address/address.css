@@ -1,0 +1,30 @@
+/* An address, as the app shows who a vehicle is registered to
+   (VehicleDetailView) and the holder of a driving licence
+   (DrivingLicenceSummaryView): the name in Body Semibold, 8pt over the
+   address's lines in Body, a line each.
+
+   It has no padding of its own: whatever it's in spaces it, such as a
+   screen or a grouped list's content row. */
+
+.govuk-app-address {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-small);
+}
+
+.govuk-app-address__name {
+  font-size: var(--app-font-body-emphasis-size);
+  font-weight: var(--app-font-body-emphasis-weight);
+  --leading: var(--app-font-body-emphasis-leading);
+}
+
+/* Each line of the app's address is a paragraph of its own, and iOS puts
+   paragraphs 2.33pt further apart than Body's lines, as the snapshots
+   measure: off the grid. A line that wraps is a little looser here than in
+   the app. */
+.govuk-app-address__lines {
+  font-size: var(--app-font-body-size);
+  font-weight: var(--app-font-body-weight);
+  --leading: calc(var(--app-font-body-leading) + 2.33px * var(--app-text-scale));
+  white-space: pre-line;
+}
