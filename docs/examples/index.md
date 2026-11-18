@@ -20,7 +20,6 @@ It uses the screen, home header, search field, grouped list, text, button and ta
 
 - **Searching.** The search field works, but there are no previous searches or results to show while searching.
 - **Your topics and All topics.** There’s no segmented control yet, so Topics shows only your topics.
-- **The topics’ icons.** The grouped list can’t draw images on rows yet.
 - **Your local services’ card.** The council is drawn as a link row, rather than in the app’s large, bold link text on a card of its own, without an arrow.
 - **Pages you’ve visited without arrows.** They’re link rows, which always show their arrow; the app’s don’t.
 - **Give feedback as a link.** It is a grouped secondary button, the nearest the library has.
