@@ -275,3 +275,20 @@ govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-lis
 govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-list-row[data-flush] {
   padding-top: 0.33px;
 }
+
+/* Proposed, from the future driving designs: dividers right across the
+   card, in the page's pale blue, 1pt, as the designs' vehicle cards have,
+   for a card whose rows are parts of one thing rather than a list. */
+.govuk-app-grouped-list__rows[data-dividers="full"] govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-list-row {
+  padding-top: calc(var(--app-space-medium) + 1px);
+}
+
+.govuk-app-grouped-list__rows[data-dividers="full"] govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-list-row[data-flush] {
+  padding-top: 1px;
+}
+
+.govuk-app-grouped-list__rows[data-dividers="full"] govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-list-row::before {
+  right: 0;
+  left: 0;
+  box-shadow: inset 0 1px var(--app-border-card-divider);
+}

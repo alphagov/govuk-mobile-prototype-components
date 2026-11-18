@@ -16,6 +16,7 @@ export function prepareList(data) {
     actionLink: action && data.href !== undefined,
     actionButton: action && data.href === undefined,
     background: backgrounds.includes(data.background) ? data.background : undefined,
+    dividers: data.dividers === 'full' ? 'full' : undefined,
   }
 }
 
@@ -67,7 +68,7 @@ await Promise.all([
     template: new URL('./grouped-list.html', import.meta.url),
     styles,
     fonts,
-    attributes: ['title', 'level', 'action', 'href', 'name', 'value', 'footer', 'background'],
+    attributes: ['title', 'level', 'action', 'href', 'name', 'value', 'footer', 'background', 'dividers'],
     prepare: prepareList,
   }),
   defineComponent({

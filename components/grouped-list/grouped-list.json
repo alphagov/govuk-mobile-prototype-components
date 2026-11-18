@@ -39,6 +39,11 @@
         "type": "string",
         "description": "A note below the card, in Footnote, such as what a setting does."
       },
+      "dividers": {
+        "type": "enum",
+        "values": ["full"],
+        "description": "Proposed, from the future driving designs: full draws the dividers between rows right across the card, in a paler blue, for a card whose rows are parts of one thing, such as a vehicle, rather than a list. Without it, they're GovKit's, 16pt in from each side."
+      },
       "background": {
         "type": "enum",
         "values": ["subtle", "accent"],
@@ -196,6 +201,10 @@
       "name": "The subtle background, on a white screen",
       "frame": "screen",
       "html": "<govuk-app-screen background=\"modal\">\n  <govuk-app-grouped-list title=\"Overview\" background=\"subtle\">\n    <govuk-app-grouped-list-row type=\"content\" flush>\n      <govuk-app-summary-columns>\n        <govuk-app-summary-column>\n          <govuk-app-labelled-icon icon=\"calendar_month\">2017</govuk-app-labelled-icon>\n        </govuk-app-summary-column>\n        <govuk-app-summary-column>\n          <govuk-app-labelled-icon icon=\"local_gas_station\">Bi-fuel</govuk-app-labelled-icon>\n        </govuk-app-summary-column>\n        <govuk-app-summary-column>\n          <govuk-app-labelled-icon icon=\"palette\">Red</govuk-app-labelled-icon>\n        </govuk-app-summary-column>\n      </govuk-app-summary-columns>\n    </govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row name=\"tech-specs\">Tech specs</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n</govuk-app-screen>"
+    },
+    {
+      "name": "Proposed: full-width dividers, as a vehicle's card",
+      "html": "<govuk-app-grouped-list dividers=\"full\">\n  <govuk-app-grouped-list-row type=\"content\">\n    <govuk-app-heading level=\"2\" size=\"title-1\">Volkswagen</govuk-app-heading>\n    <govuk-app-text>ID4 2.0</govuk-app-text>\n  </govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"information\" detail=\"Valid\">Tax</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row name=\"details\">Details</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
     }
   ]
 }

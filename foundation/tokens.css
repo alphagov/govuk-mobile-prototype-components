@@ -83,6 +83,7 @@ govuk-app {
   --app-border-list-divider: light-dark(#d2e2f1, #263d54);    /* strokes.listDivider */
   --app-surface-list-subtle: light-dark(#f4f8fb, #092237);    /* fills.surfaceListAlt (blueTint95, blueShade70), as VehicleSpecView's card */
   --app-surface-list-accent: light-dark(#d2e2f1, #263d54);    /* blueTint80, the designs' Add vehicle; blueDarkMode in dark, ours */
+  --app-border-card-divider: light-dark(#e8f1f8, #263d54);    /* blueTint90, the designs' full-width dividers; strokes.listDivider in dark, ours */
   --app-icon-tertiary: light-dark(#1d70b8, #ffffff);          /* text.iconTertiary: chevrons and arrows */
   --app-icon-primary: #ffffff;                                /* textAndIcons.iconPrimary, the Android app's: a topic's icon */
   --app-icon-surround-primary: light-dark(#1d70b8, #263d54);  /* textAndIcons.iconSurroundPrimary, the Android app's: the circle behind it */

@@ -28,6 +28,7 @@ These come from the future driving designs, not the app, which we have only as a
 
 - A **content row** holds anything, such as a vehicle’s name and model, or summary columns with `flush`. The divider between rows is drawn as for any other row.
 - The **accent background**, a stronger blue, for a card that’s a single action, as the designs draw Add vehicle. In the app today it’s white.
+- **Full-width dividers**, with `dividers="full"`: right across the card, in a paler blue, as the designs’ vehicle cards have. GovKit’s are 16pt in from each side.
 
 ## Action rows
 
