@@ -40,9 +40,11 @@
 }
 
 /* Its screen fills it, and needs no room for the status bar, which is
-   above the gap. */
+   above the gap. It leaves 16pt at the top instead, so a navigation bar's
+   controls sit that far below the sheet's edge, as iOS 26 places them, and
+   the content starts below the bar. */
 .govuk-app-sheet__card {
-  --govuk-app-inset-top: 0px;
+  --govuk-app-inset-top: var(--app-space-medium);
   position: absolute;
   inset: calc(var(--govuk-app-inset-top-outer, 0px) + 10px) 0 0;
   overflow: hidden;
