@@ -1,0 +1,5 @@
+<!-- One item in a menu: a link if it has an href, otherwise a button. -->
+<template>
+  <a class="govuk-app-menu-button-item" role="menuitem" data-if="href" data-attr="href: href" data-slot="content"></a>
+  <button class="govuk-app-menu-button-item" type="button" role="menuitem" data-if="button" data-attr="name: name, value: value" data-slot="content"></button>
+</template>

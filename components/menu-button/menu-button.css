@@ -1,0 +1,89 @@
+/* The app's menu button, on a vehicle's card (VehicleSummaryView) and a
+   driving licence (DrivingLicenceSummaryView): SF's ellipsis.circle.fill in
+   Title 1 Bold, in text.link, in a 36pt box. Its circle is 28.66pt across,
+   and its three dots are cut out of it, so the card shows through them, as
+   the app's snapshots show.
+
+   Pressing it opens iOS's menu, a SwiftUI Menu: a panel of its items, each a
+   row in Body, below the button, its right edge under the button's. The
+   panel's look is the system's, approximated. */
+
+.govuk-app-menu-button {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.govuk-app-menu-button__button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--app-radius-capsule);
+  color: var(--app-text-link);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The circle, with its dots cut out of it: each a hole in its mask. */
+.govuk-app-menu-button__button::before {
+  content: "";
+  width: 28.66px;
+  height: 28.66px;
+  border-radius: var(--app-radius-capsule);
+  background: currentColor;
+  --dot: radial-gradient(circle, black 2.3px, transparent 2.6px);
+  -webkit-mask:
+    var(--dot) calc(50% - 6.9px) 50% / 6px 6px no-repeat,
+    var(--dot) 50% 50% / 6px 6px no-repeat,
+    var(--dot) calc(50% + 6.9px) 50% / 6px 6px no-repeat,
+    linear-gradient(black, black);
+  -webkit-mask-composite: xor;
+  mask:
+    var(--dot) calc(50% - 6.9px) 50% / 6px 6px no-repeat exclude,
+    var(--dot) 50% 50% / 6px 6px no-repeat exclude,
+    var(--dot) calc(50% + 6.9px) 50% / 6px 6px no-repeat exclude,
+    linear-gradient(black, black);
+}
+
+.govuk-app-menu-button__button:active::before {
+  opacity: 0.6;
+}
+
+/* The menu: in the page's top layer, placed by menu-button.js. */
+.govuk-app-menu-button__menu {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  min-width: 250px;
+  max-width: calc(100vw - 16px);
+  padding: var(--app-space-small) 0;
+  border: 0;
+  border-radius: 26px;
+  background: var(--app-menu-surface);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 12px 40px var(--app-menu-shadow);
+  color: var(--app-text-primary);
+}
+
+.govuk-app-menu-button-item {
+  display: block;
+  width: 100%;
+  padding: 11px var(--app-space-medium); /* a 44pt row, iOS's, off the grid */
+  border: 0;
+  color: var(--app-text-primary);
+  font-size: var(--app-font-body-size);
+  line-height: var(--app-font-body-leading);
+  text-align: start;
+  cursor: pointer;
+}
+
+.govuk-app-menu-button-item:active,
+.govuk-app-menu-button-item:hover {
+  background: var(--app-menu-highlight);
+}
+
+.govuk-app-menu-button-item:focus-visible {
+  outline-offset: calc(-1 * var(--app-focus-width));
+}

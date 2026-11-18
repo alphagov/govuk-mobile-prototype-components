@@ -1,0 +1,72 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Menu button",
+  "element": "govuk-app-menu-button",
+  "purpose": "Offers a few more things the user can do with something on a card, such as a vehicle or a driving licence, without crowding the card: a round “…” button that opens a menu of them.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "The app's menuView on a vehicle's card (VehicleSummaryView) and on a driving licence (DrivingLicenceSummaryView): SF's ellipsis.circle.fill in Title 1 Bold, in text.link, in a 36pt box, which opens a SwiftUI Menu of links. The menu's look is iOS's, approximated."
+  },
+  "inputs": {
+    "attributes": {
+      "label": {
+        "type": "string",
+        "default": "More options",
+        "description": "The button's name for screen readers, as the app's moreOptionsButtonAccessibilityLabel."
+      },
+      "name": {
+        "type": "string",
+        "description": "The button's name, to tell it apart when it's pressed."
+      }
+    },
+    "content": "Its menu's items, <govuk-app-menu-button-item> elements, top to bottom. Each is a link, with an href, or a button, with a name and value. Its label is what's written between its tags."
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "click",
+        "description": "From the button, which opens the menu, and from an item's link or button, when it's chosen; choosing one closes the menu."
+      }
+    ]
+  },
+  "rules": [
+    "Use it for a few things the user can do with what's on its card, that don't need to be on show. Anything they'll want often belongs on the card itself.",
+    "Put it at the top right of its card, as the app does.",
+    "Keep its menu short, a handful of items at most, each saying what it does, such as Change address.",
+    "Label it for screen readers if More options doesn't say enough."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/VehicleSummaryView.swift",
+        "symbol": "menuView",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/DrivingLicenceSummaryView.swift",
+        "symbol": "its Menu",
+        "ref": "8f1fe5da"
+      }
+    ],
+    "android": [],
+    "other": [
+      {
+        "title": "Apple Human Interface Guidelines: Pull-down buttons",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/pull-down-buttons"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-vehicle-card-light.webp", "description": "On a vehicle's card, beside its number plate, in light mode", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-vehicle-card-dark.webp", "description": "The same, in dark mode", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" }
+  ],
+  "examples": [
+    {
+      "name": "A vehicle's menu",
+      "html": "<govuk-app-menu-button name=\"vehicle-menu\">\n  <govuk-app-menu-button-item href=\"https://www.gov.uk/vehicle-tax\">Tax this vehicle</govuk-app-menu-button-item>\n  <govuk-app-menu-button-item href=\"https://www.gov.uk/getting-an-mot\">Book an MOT</govuk-app-menu-button-item>\n  <govuk-app-menu-button-item name=\"remove-vehicle\">Remove vehicle</govuk-app-menu-button-item>\n</govuk-app-menu-button>"
+    }
+  ]
+}
