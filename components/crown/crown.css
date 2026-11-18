@@ -1,0 +1,49 @@
+/* The crown at the end of the home screen, as ScrollBottomIndicatorView
+   draws it: 40pt square, centred, with 30pt below it, 28pt below the last
+   widget (HomeContentView). The app stretches the crown's 54 by 51 to fill
+   the square, so this does too.
+
+   It grows as it is scrolled into view. The app sets its scale and its
+   opacity to how much of those 70pt are in view above the tab bar: nothing
+   until it passes the tab bar, the whole of it at the end of the screen. So
+   both follow the last 70pt of the screen's scroll. A browser that can't
+   tie an animation to scrolling draws the crown at its full size. */
+
+.govuk-app-crown {
+  display: flex;
+  justify-content: center;
+  /* The app's 28pt, of which the screen's gap is 16. */
+  margin-top: calc(28px - var(--app-space-medium));
+  /* The app's 30pt below the crown is where the screen ends, so the screen's
+     own padding below its content is taken back. */
+  margin-bottom: calc(-1 * var(--app-space-medium));
+  padding-bottom: 30px;
+}
+
+/* It doesn't grow with the text size, as the app's doesn't. */
+.govuk-app-crown__image {
+  width: 40px;
+  height: 40px;
+  fill: var(--app-logo-crown);
+}
+
+@keyframes govuk-app-crown-grow {
+  from {
+    opacity: 0;
+    scale: 0;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+/* The crown and the 30pt below it: 70pt. */
+@supports (animation-timeline: scroll()) {
+  .govuk-app-crown__image {
+    animation: govuk-app-crown-grow linear both;
+    animation-timeline: scroll(nearest block);
+    animation-range: calc(100% - 70px) 100%;
+  }
+}

@@ -14,7 +14,7 @@ Each example is a few pages of plain HTML that link to each other, written with 
 
 The Home tab, with the widgets a user sees once they’ve chosen some topics, set their council and visited some pages. For now it is mostly what’s missing, and it will grow as the components it needs are added. Its Settings tab opens the Settings example.
 
-It uses the screen, home header, search field, grouped list, text, button and tab bar. Its source is in `examples/home/` in the repository.
+It uses the screen, home header, search field, grouped list, text, button, crown and tab bar. Its source is in `examples/home/` in the repository.
 
 ### What’s missing
 

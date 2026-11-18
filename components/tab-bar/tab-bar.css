@@ -20,10 +20,15 @@
 /* It sticks to the bottom of the screen, so the content scrolls under it,
    16pt from the bottom, or just above the home indicator on a phone with one,
    as iOS places it. Only
-   the capsule takes presses, not the space either side of it. */
+   the capsule takes presses, not the space either side of it.
+
+   The same space below it, so at the end of the screen it sits below the
+   content, rather than over its end: iOS leaves room for the tab bar at the
+   end of what scrolls. */
 .govuk-app-tab-bar {
   position: sticky;
   bottom: max(var(--app-space-medium), calc(var(--govuk-app-inset-bottom, 0px) - var(--app-space-small)));
+  margin-bottom: max(var(--app-space-medium), calc(var(--govuk-app-inset-bottom, 0px) - var(--app-space-small)));
   z-index: 1;
   display: flex;
   justify-content: center;
