@@ -123,6 +123,14 @@ govuk-app {
   --app-status-due: #ba4aff;                                /* accentPurple */
   --app-status-track: light-dark(#e8f1f8, #263d54);         /* blueTint90 (fills.surfaceBackground), and strokes.listDivider in dark */
 
+  /* Segmented controls: the system's, which the app leaves, as its snapshots
+     measure them */
+  --app-segmented-track: light-dark(rgb(118 118 128 / 0.12), rgb(118 118 128 / 0.24));
+  --app-segmented-selected: light-dark(#ffffff, rgb(255 255 255 / 0.275));
+  --app-segmented-shadow: light-dark(rgb(0 0 0 / 0.12), transparent);
+  --app-segmented-shadow-near: light-dark(rgb(0 0 0 / 0.04), transparent);
+  --app-segmented-divider: light-dark(rgb(60 60 67 / 0.18), rgb(255 255 255 / 0.15));
+
   /* Glass: iOS 26's Liquid Glass, approximated, for the system's own bars and
      their buttons. The app sets none of these, only what is drawn on the glass
      (text.linkSecondary, text.primary, and the label colour) */

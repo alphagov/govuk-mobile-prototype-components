@@ -1,0 +1,64 @@
+/* iOS's segmented control, as the app draws it with SwiftUI's
+   SegmentedPickerStyle, unstyled, on its driving and topics widgets: a track
+   32pt tall with round ends, in the system's fill, and the selected segment
+   on it, 2pt in, in white with a soft shadow, or a lighter fill in dark mode.
+   Labels are 13pt, the selected one medium, as the app's snapshots
+   measure. Between two segments that aren't selected, iOS draws a short
+   divider. */
+
+.govuk-app-segmented-control {
+  display: flex;
+  padding: 2px; /* iOS's, off the grid */
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-segmented-track);
+}
+
+.govuk-app-segmented-control-item {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 28px;
+  padding: 0 var(--app-space-small);
+  border: 0;
+  border-radius: var(--app-radius-capsule);
+  color: var(--app-text-primary);
+  font-size: 13px; /* the system's, which doesn't grow with Dynamic Type */
+  font-weight: var(--app-font-body-weight);
+  line-height: 16px;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.govuk-app-segmented-control-item[aria-selected="true"] {
+  background: var(--app-segmented-selected);
+  box-shadow: 0 3px 8px var(--app-segmented-shadow), 0 3px 1px var(--app-segmented-shadow-near);
+  font-weight: 500; /* the system's, medium, as the snapshots measure */
+}
+
+.govuk-app-segmented-control-item:active:not([aria-selected="true"]) {
+  opacity: 0.6;
+}
+
+.govuk-app-segmented-control-item:focus-visible {
+  outline-offset: calc(-1 * var(--app-focus-width));
+}
+
+/* The divider between two segments neither of which is selected. */
+govuk-app-segmented-control-item + govuk-app-segmented-control-item > .govuk-app-segmented-control-item::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 0;
+  width: 1px;
+  background: var(--app-segmented-divider);
+}
+
+govuk-app-segmented-control-item[selected] + govuk-app-segmented-control-item > .govuk-app-segmented-control-item::before,
+govuk-app-segmented-control-item + govuk-app-segmented-control-item > .govuk-app-segmented-control-item[aria-selected="true"]::before {
+  content: none;
+}
