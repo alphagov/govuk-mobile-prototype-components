@@ -148,6 +148,13 @@ govuk-app {
   --app-banner-warning: light-dark(#fff8cc, #0a2740);              /* yellowTint80, and the app's stateLabelErrorBackgroundColor in dark */
   --app-banner-warning-text: light-dark(#000000, #feDD04);          /* text.primary, and the app's stateLabelErrorForegroundColor in dark */
 
+  /* Card headers, proposed by the future driving designs: GovKit's colours,
+     the same in both modes, as the designs show only light */
+  --app-card-header-caution: #fff8cc;                             /* yellowTint80 */
+  --app-card-header-warning: #ffee80;                             /* yellowTint50 */
+  --app-card-header-danger: #ff5e5e;                              /* accentRed */
+  --app-card-header-text: #000000;
+
   /* Glass: iOS 26's Liquid Glass, approximated, for the system's own bars and
      their buttons. The app sets none of these, only what is drawn on the glass
      (text.linkSecondary, text.primary, and the label colour) */

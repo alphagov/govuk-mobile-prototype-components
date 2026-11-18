@@ -1,0 +1,32 @@
+/* A card's header in a colour that says how something stands, as the future
+   driving designs show a licence that's expired, revoked or disqualified
+   (Figma, from a screenshot, so approximate): its content 16pt in from every
+   side, 8pt apart, in black on caution's yellowTint80, warning's
+   yellowTint50 or danger's accentRed. Tall, as for revoked and
+   disqualified, it's at least 120pt, its content at the bottom.
+
+   The designs show only light mode. These are strong colours, as a number
+   plate's is, so they're the same in dark mode, with black text. It fills
+   the top of its card, so goes in a grouped list's first row, flush. */
+
+.govuk-app-card-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--app-space-small);
+  padding: var(--app-space-medium);
+  background: var(--app-card-header-caution);
+  color: var(--app-card-header-text);
+}
+
+.govuk-app-card-header[data-tone="warning"] {
+  background: var(--app-card-header-warning);
+}
+
+.govuk-app-card-header[data-tone="danger"] {
+  background: var(--app-card-header-danger);
+}
+
+.govuk-app-card-header[data-tall] {
+  min-height: 120px;
+}
