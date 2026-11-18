@@ -122,6 +122,10 @@ govuk-app {
   --app-glass-shadow: light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.4));
   --app-glass-pressed: light-dark(rgb(0 0 0 / 0.04), rgb(0 0 0 / 0.15));
   --app-tab-bar-selected: light-dark(rgb(0 0 0 / 0.07), rgb(0 0 0 / 0.3));
+  /* The navigation bar's fill and keyline once a large title has moved into
+     it, measured from the app's Settings screen */
+  --app-nav-bar-fill: light-dark(rgb(244 249 255 / 0.8), rgb(6 22 37 / 0.8));
+  --app-nav-bar-keyline: light-dark(rgb(0 0 0 / 0.13), rgb(255 255 255 / 0.15));
 
   /* Spacing: the 8pt grid, with a 4pt half step. The Android app's
      GovUkSpacing (design/.../theme/Spacing.kt); GovKit has no scale of its own.

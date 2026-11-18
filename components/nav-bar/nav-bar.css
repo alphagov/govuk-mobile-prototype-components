@@ -11,7 +11,7 @@
 
    A large title is Large Title, 16pt from the left, below the row. It scrolls
    with the content, and once it has gone under the row, the title appears in
-   the row instead (nav-bar.js).
+   the row instead (nav-bar.js), and the bar takes a fill and a keyline.
 
    The glass is an approximation, as in the tab bar. So is the scroll edge
    effect, the blur that fades content out as it scrolls under the bar.
@@ -48,6 +48,20 @@
   -webkit-mask-image: linear-gradient(black 50%, transparent);
   mask-image: linear-gradient(black 50%, transparent);
   pointer-events: none;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+/* Once a large title has moved into the bar, the bar is filled, as iOS draws
+   it over the app's Settings screen, down to a hairline keyline 10pt below
+   the row. 10pt is off the 8pt grid, and kept to match the app. Below the
+   bar, not in it, so the content doesn't move as it fills. */
+.govuk-app-nav-bar--scrolled.govuk-app-nav-bar--collapsed::before {
+  bottom: -10px;
+  background-color: var(--app-nav-bar-fill);
+  /* A shadow, as a box this thin is drawn a whole point tall. */
+  box-shadow: 0 0.33px var(--app-nav-bar-keyline);
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 /* Glass: the back button, and the capsule the actions share. */
