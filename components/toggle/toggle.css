@@ -1,0 +1,41 @@
+/* The iOS switch, as GovKit's toggle row draws it: SwiftUI's Toggle, tinted
+   fills.surfaceToggleSelected when on. The rest is the system's, as the app's
+   snapshots draw it: 51pt by 31pt, with a white knob 2pt inside it. */
+
+/* It keeps its size beside text that wraps, as iOS's does. */
+.govuk-app-toggle {
+  position: relative;
+  flex-shrink: 0;
+  width: 51px;
+  height: 31px;
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-switch-off);
+  appearance: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.govuk-app-toggle::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 27px;
+  height: 27px;
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-switch-knob);
+  box-shadow: 0 3px 8px var(--app-switch-knob-shadow);
+  transition: transform 0.2s;
+}
+
+.govuk-app-toggle:checked {
+  background: var(--app-switch-on);
+}
+
+.govuk-app-toggle:checked::before {
+  transform: translateX(20px);
+}
+
+.govuk-app-toggle:focus-visible {
+  outline: var(--app-focus-width) solid var(--app-focus);
+}

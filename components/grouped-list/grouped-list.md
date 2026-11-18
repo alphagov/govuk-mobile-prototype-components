@@ -8,5 +8,5 @@ The app’s rows use SF Symbols, which may only be used on Apple’s platforms, 
 - GovKit can draw a section’s title in a coloured band at the top of the card, with an icon. This can’t yet.
 - A count row can’t yet show the spinner the app shows while it loads.
 - A link row always shows its arrow; GovKit can hide it.
-- The switch is iOS’s as the app’s snapshots draw it, 51pt by 31pt. iOS 26 on a phone draws a wider one, in Liquid Glass.
+- A toggle row’s switch is the [toggle](../toggle/), with its differences from the app.
 - The chevron is a little lighter than SF’s.
