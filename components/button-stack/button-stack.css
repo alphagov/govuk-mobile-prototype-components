@@ -1,0 +1,23 @@
+/* The app's ButtonStackView, and PrimaryButtonView, its one-button form: a
+   divider one device pixel tall across the screen, then the buttons 16pt
+   below it and 16pt in from the sides, 8pt apart, down to the bottom of the
+   safe area, with nothing below that.
+
+   Where nothing is below the screen, such as a home indicator, this keeps
+   16pt under the buttons anyway, so the last one's shadow isn't cut off at
+   the edge. With a home indicator's inset set, it matches the app. */
+
+/* The divider is a SwiftUI Divider, in the system's separator colour, with
+   strokes.fixedContainer over it, which together measure as the app's
+   snapshots do. It is a shadow, as a border this thin is drawn a whole
+   point thick. */
+.govuk-app-button-stack {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: var(--app-space-small);
+  padding: calc(var(--app-space-medium) + 0.33px) var(--app-space-medium) max(var(--govuk-app-inset-bottom, 0px), var(--app-space-medium));
+  box-shadow:
+    inset 0 0.33px var(--app-border-button-stack),
+    inset 0 0.33px var(--app-border-row);
+}

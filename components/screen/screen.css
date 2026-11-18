@@ -1,0 +1,55 @@
+/* A screen of the app, as iOS lays one out under the app's SwiftUI views: a
+   ScrollView of content 16pt in from the sides, under the navigation bar,
+   and below it, where a screen has one, a footer that doesn't scroll, such
+   as a <govuk-app-button-stack>. The app sets only the background.
+
+   It fills the root, whose size is the page's to set. */
+
+.govuk-app-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--app-surface-page);
+}
+
+.govuk-app-screen[data-background="modal"] {
+  background: var(--app-surface-modal);
+}
+
+.govuk-app-screen__scroll {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  /* A long word wraps rather than widening the screen, as in the app. */
+  overflow-wrap: anywhere;
+}
+
+/* The navigation bar sticks to the top of what scrolls, so it is drawn as if
+   it were there itself. So is the tab bar, at the bottom. */
+.govuk-app-screen__bar,
+.govuk-app-screen__tabs {
+  display: contents;
+}
+
+/* Screens space their content as they each need. 16pt apart is the commonest,
+   and what a component's own margins add to. It grows to fill a short screen,
+   so the tab bar is at the bottom however little there is above it. */
+.govuk-app-screen__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  gap: var(--app-space-medium);
+  padding: var(--app-space-medium);
+}
+
+.govuk-app-screen__content[data-under-status-bar] {
+  padding-top: calc(var(--govuk-app-inset-top, 0px) + var(--app-space-medium));
+}
+
+/* What is pinned below the content draws itself, such as a button stack,
+   which leaves room for the home indicator. */
+.govuk-app-screen__footer {
+  flex-shrink: 0;
+}

@@ -37,8 +37,10 @@
 }
 
 /* The scroll edge effect: content blurs and fades out as it goes under the
-   bar, from the top of the screen to a little below the row. */
-.govuk-app-nav-bar::before {
+   bar, from the top of the screen to a little below the row. Only once
+   something has scrolled under it (nav-bar.js), as iOS draws it: before then
+   the blur would only pick up what is around the screen. */
+.govuk-app-nav-bar--scrolled::before {
   content: "";
   position: absolute;
   inset: 0 0 calc(-1 * var(--app-space-medium));
@@ -102,6 +104,9 @@
 /* 8pt below the row puts its capitals 17pt below it, as the app's snapshots
    measure. One line, cut off if it is too long, as iOS does by default. */
 .govuk-app-nav-bar__large-title {
+  /* In a column that scrolls, such as a screen's, it keeps its height rather
+     than shrinking to fit, as its hidden overflow would otherwise let it. */
+  flex-shrink: 0;
   overflow: hidden;
   padding: var(--app-space-small) var(--app-space-medium) 0;
   text-overflow: ellipsis;

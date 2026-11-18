@@ -1,0 +1,77 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Button stack",
+  "element": "govuk-app-button-stack",
+  "purpose": "Holds a screen's main action, and any way out of it, at the bottom of the screen under a divider, where they stay as the content scrolls. Used on screens that ask the user to do something, such as confirm, agree or continue.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "The app's ButtonStackView, a primary button over a grouped secondary one, and PrimaryButtonView, the same with one button. The divider is a SwiftUI Divider with strokes.fixedContainer laid over it. The app's UIKit screens have their own, StickyFooterView, with its buttons 4pt apart rather than 8pt."
+  },
+  "inputs": {
+    "attributes": {},
+    "content": "One or two <govuk-app-button> elements, top to bottom: the main action, as a primary or destructive button, then any way out of it as a grouped secondary button. Give the stack slot=\"footer\" to pin it to the bottom of a <govuk-app-screen>."
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Put it in a <govuk-app-screen> with slot=\"footer\", so it stays at the bottom as the content scrolls.",
+    "Put the main action first, as a primary button, or a destructive one if it deletes or removes something. Put any way out of it second, as a grouped secondary button, such as Cancel or Not now.",
+    "Use no more than two buttons.",
+    "Don't use it on a screen with a tab bar: the app hides the tab bar on screens that ask the user to act."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SwiftUIViews/ButtonStackView.swift",
+        "symbol": "ButtonStackView",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SwiftUIViews/PrimaryButtonView.swift",
+        "symbol": "PrimaryButtonView",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Extensions/Views/StickyFooterView.swift",
+        "symbol": "StickyFooterView",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Colors/GOVUKColors+Strokes.swift",
+        "symbol": "strokes.fixedContainer",
+        "ref": "8a7641e"
+      }
+    ],
+    "android": []
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-sign-out-light.webp", "description": "Sign out and Cancel, on the sign-out confirmation, in light mode", "from": "SignOutConfirmationViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-sign-out-dark.webp", "description": "Sign out and Cancel, in dark mode", "from": "SignOutConfirmationViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-analytics-consent-light.webp", "description": "Share statistics and Not now, on analytics consent", "from": "AnalyticsConsentViewControllerSnapshotTests at 1e520fc1" }
+  ],
+  "examples": [
+    {
+      "name": "An action and a way out",
+      "html": "<govuk-app-button-stack>\n  <govuk-app-button name=\"allow\">Allow notifications</govuk-app-button>\n  <govuk-app-button variant=\"grouped-secondary\" name=\"not-now\">Not now</govuk-app-button>\n</govuk-app-button-stack>"
+    },
+    {
+      "name": "A destructive action",
+      "html": "<govuk-app-button-stack>\n  <govuk-app-button variant=\"destructive\" name=\"sign-out\">Sign out</govuk-app-button>\n  <govuk-app-button variant=\"grouped-secondary\" name=\"cancel\">Cancel</govuk-app-button>\n</govuk-app-button-stack>"
+    },
+    {
+      "name": "One button",
+      "html": "<govuk-app-button-stack>\n  <govuk-app-button name=\"continue\">Continue</govuk-app-button>\n</govuk-app-button-stack>"
+    },
+    {
+      "name": "At the bottom of a screen",
+      "frame": "screen",
+      "html": "<govuk-app-screen background=\"modal\">\n  <p>If you’re using Face ID or Touch ID to unlock the app, this will be turned off. You can turn it on again the next time you sign in.</p>\n  <govuk-app-button-stack slot=\"footer\">\n    <govuk-app-button variant=\"destructive\" name=\"sign-out\">Sign out</govuk-app-button>\n    <govuk-app-button variant=\"grouped-secondary\" name=\"cancel\">Cancel</govuk-app-button>\n  </govuk-app-button-stack>\n</govuk-app-screen>"
+    }
+  ]
+}

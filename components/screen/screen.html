@@ -1,0 +1,13 @@
+<!-- A screen of the app: its navigation bar, then its content, which scrolls,
+     then the tab bar, or a footer, such as a button stack, pinned below it.
+     screen.js sorts what was written between its tags into these parts. -->
+<template>
+  <div class="govuk-app-screen" data-attr="data-background: background">
+    <div class="govuk-app-screen__scroll">
+      <div class="govuk-app-screen__bar" data-if="bar" data-slot="bar"></div>
+      <div class="govuk-app-screen__content" data-attr="data-under-status-bar: underStatusBar" data-slot="body"></div>
+      <div class="govuk-app-screen__tabs" data-if="tabs" data-slot="tabs"></div>
+    </div>
+    <div class="govuk-app-screen__footer" data-if="footer" data-slot="footer"></div>
+  </div>
+</template>

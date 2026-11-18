@@ -25,13 +25,23 @@ export function prepareItem(data) {
   }
 }
 
+/** The nearest element above `element` that scrolls, or the page. */
+function scroller(element) {
+  for (let parent = element.parentElement; parent; parent = parent.parentElement) {
+    if (/auto|scroll/.test(getComputedStyle(parent).overflowY)) return parent
+  }
+  return document.scrollingElement
+}
+
 /**
- * A large title moves into the bar once it has scrolled under it, as iOS
- * does. Scroll events don't bubble, so this listens for every one on the page
- * as it passes down to the element that scrolled.
+ * Once content has scrolled under a bar, the bar blurs it, as iOS does, and
+ * not before. A large title moves into the bar once it has gone under it.
+ * Scroll events don't bubble, so this listens for every one on the page as it
+ * passes down to the element that scrolled.
  */
-function collapse() {
-  for (const bar of document.querySelectorAll('.govuk-app-nav-bar[data-large-title]')) {
+function update() {
+  for (const bar of document.querySelectorAll('.govuk-app-nav-bar')) {
+    bar.classList.toggle('govuk-app-nav-bar--scrolled', scroller(bar).scrollTop > 0)
     const title = bar.nextElementSibling
     if (!title?.classList.contains('govuk-app-nav-bar__large-title')) continue
     const under = title.getBoundingClientRect().bottom <= bar.getBoundingClientRect().bottom
@@ -42,7 +52,7 @@ function collapse() {
 let frame = 0
 document.addEventListener('scroll', () => {
   cancelAnimationFrame(frame)
-  frame = requestAnimationFrame(collapse)
+  frame = requestAnimationFrame(update)
 }, { capture: true, passive: true })
 
 // Both elements share one stylesheet. It loads the icons' font.

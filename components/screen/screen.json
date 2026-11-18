@@ -1,0 +1,100 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Screen",
+  "element": "govuk-app-screen",
+  "purpose": "Lays out one screen of the app: the navigation bar at the top, the content, which scrolls, and the tab bar or a button stack at the bottom. Write a screen's components inside it in order, top to bottom.",
+  "origin": {
+    "kind": "native",
+    "notes": "How iOS lays out a screen under the app's SwiftUI views: a ScrollView of content 16pt in from the sides, under the navigation bar, with room for the status bar and home indicator. The app sets only the background: fills.surfaceBackground, or fills.surfaceModal for a modal. What is pinned to the bottom, such as the app's button stack, is a component of its own."
+  },
+  "inputs": {
+    "attributes": {
+      "background": {
+        "type": "enum",
+        "values": [
+          "page",
+          "modal"
+        ],
+        "default": "page",
+        "description": "page: the app's pale blue, for screens in its sections. modal: white, for a screen presented over them, such as a question or a confirmation."
+      }
+    },
+    "content": "The screen's components, top to bottom. A <govuk-app-nav-bar> goes at the top and sticks there. A <govuk-app-tab-bar> goes at the bottom of the content and floats over it. An element with slot=\"footer\", usually a <govuk-app-button-stack>, is pinned below the content. Everything else is the content, 16pt in from the sides and 16pt apart, and scrolls."
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Put a screen directly in a <govuk-app>, and give the root a size: the screen fills it, and scrolls inside it.",
+    "Use one screen for each screen of a journey. In a prototype of several pages, put each on its own page.",
+    "Give a screen either a tab bar or a button stack, not both: the app hides the tab bar on screens that ask the user to act.",
+    "Use the modal background for screens presented over the app, such as a sign-out confirmation, and the page background for the rest."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/SignOut/SignOutConfirmationView.swift",
+        "symbol": "SignOutConfirmationView",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SwiftUIViews/Settings/SARExplainerView.swift",
+        "symbol": "SARExplainerView",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Colors/GOVUKColors+Fills.swift",
+        "symbol": "fills.surfaceBackground, fills.surfaceModal",
+        "ref": "8a7641e"
+      }
+    ],
+    "android": [],
+    "other": [
+      {
+        "title": "The app prototyping system's viewer, whose screen this follows (app-prototyping-system, exploration-2/viewer/css/app.css)",
+        "url": "https://github.com/thip/app-prototyping-system"
+      }
+    ]
+  },
+  "references": [
+    {
+      "platform": "ios",
+      "image": "reference/ios-sign-out-light.webp",
+      "description": "Sign out confirmation: a modal screen, in light mode",
+      "from": "SignOutConfirmationViewControllerSnapshotTests at 1e520fc1"
+    },
+    {
+      "platform": "ios",
+      "image": "reference/ios-sign-out-dark.webp",
+      "description": "Sign out confirmation, in dark mode",
+      "from": "SignOutConfirmationViewControllerSnapshotTests at 1e520fc1"
+    },
+    {
+      "platform": "ios",
+      "image": "reference/ios-analytics-consent-light.webp",
+      "description": "Analytics consent: a longer modal screen",
+      "from": "AnalyticsConsentViewControllerSnapshotTests at 1e520fc1"
+    }
+  ],
+  "examples": [
+    {
+      "name": "A modal screen with buttons",
+      "frame": "screen",
+      "html": "<govuk-app-screen background=\"modal\">\n  <p>If you’re using Face ID or Touch ID to unlock the app, this will be turned off. You can turn it on again the next time you sign in.</p>\n  <govuk-app-button-stack slot=\"footer\">\n    <govuk-app-button variant=\"destructive\" name=\"sign-out\">Sign out</govuk-app-button>\n    <govuk-app-button variant=\"grouped-secondary\" name=\"cancel\">Cancel</govuk-app-button>\n  </govuk-app-button-stack>\n</govuk-app-screen>"
+    },
+    {
+      "name": "A page with a navigation bar and tab bar",
+      "frame": "screen",
+      "html": "<govuk-app-screen>\n  <govuk-app-nav-bar title=\"Settings\" large-title></govuk-app-nav-bar>\n  <p>Notifications</p>\n  <p>Face ID</p>\n  <p>Your accounts</p>\n  <p>Privacy notice. Accessibility statement. Open source licences. Terms and conditions. Help using the app.</p>\n  <govuk-app-tab-bar>\n    <govuk-app-tab-bar-item icon=\"home\" name=\"home\">Home</govuk-app-tab-bar-item>\n    <govuk-app-tab-bar-item icon=\"settings\" name=\"settings\" selected>Settings</govuk-app-tab-bar-item>\n  </govuk-app-tab-bar>\n</govuk-app-screen>"
+    },
+    {
+      "name": "A page pushed on top, with a button",
+      "frame": "screen",
+      "html": "<govuk-app-screen>\n  <govuk-app-nav-bar title=\"Your app data\" back></govuk-app-nav-bar>\n  <p>We store a small amount of data about you to improve your experience in the app.</p>\n  <p>You can ask for a copy of it.</p>\n  <govuk-app-button-stack slot=\"footer\">\n    <govuk-app-button name=\"request\">Request your data</govuk-app-button>\n  </govuk-app-button-stack>\n</govuk-app-screen>"
+    }
+  ]
+}

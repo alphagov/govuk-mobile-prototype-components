@@ -7,7 +7,11 @@
 {% block head %}
   {{ super() }}
   <link rel="stylesheet" href="/assets/docs.css">
-  <script type="module" src="/components/{{ component.slug }}/{{ component.slug }}.js"></script>
+  {#- Every component, not only this one, since examples put them together:
+      a screen holds a navigation bar and buttons. -#}
+  {%- for each in components %}
+  <script type="module" src="/components/{{ each.slug }}/{{ each.slug }}.js"></script>
+  {%- endfor %}
   <script type="module" src="/assets/docs.js"></script>
 {% endblock %}
 

@@ -5,16 +5,16 @@ The navigation bar sticks to the top of the screen, and the content scrolls unde
 <div class="docs-example">
 <div class="docs-example__frames">
 {%- for scheme in ["light", "dark"] %}
-<govuk-app class="docs-screen docs-screen--flush docs-screen--status-bar" colour-scheme="{{ scheme }}">
-  <govuk-app-nav-bar title="Pages you’ve visited" large-title back>
-    <govuk-app-nav-bar-item name="edit">Edit</govuk-app-nav-bar-item>
-  </govuk-app-nav-bar>
-  <div class="docs-screen__content">
+<govuk-app class="docs-example__screen docs-example__screen--short" colour-scheme="{{ scheme }}">
+  <govuk-app-screen>
+    <govuk-app-nav-bar title="Pages you’ve visited" large-title back>
+      <govuk-app-nav-bar-item name="edit">Edit</govuk-app-nav-bar-item>
+    </govuk-app-nav-bar>
     <p>November 2026</p>
     <p>Check if you need a UK visa. Renew or replace your adult passport. Check your State Pension age. Tax your vehicle. Find out how much Income Tax you pay. Register to vote. Apply for a provisional driving licence.</p>
     <p>October 2026</p>
     <p>Get an MOT reminder. Check if you can get Pension Credit. Apply for a Blue Badge. Find your local council. Report a problem with a road. Check bin collection days. Pay your council tax.</p>
-  </div>
+  </govuk-app-screen>
 </govuk-app>
 {%- endfor %}
 </div>

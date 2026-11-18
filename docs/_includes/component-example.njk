@@ -8,7 +8,7 @@
     <div class="docs-example__preview">
       <div class="docs-example__frames">
         {% for scheme in ["light", "dark"] %}
-        <govuk-app class="docs-example__frame" colour-scheme="{{ scheme }}">
+        <govuk-app class="{{ 'docs-example__screen' if example.frame == 'screen' else 'docs-example__frame' }}" colour-scheme="{{ scheme }}">
           {{ example.html | safe }}
         </govuk-app>
         {% endfor %}
