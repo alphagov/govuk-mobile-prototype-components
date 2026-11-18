@@ -144,6 +144,12 @@
     background: #ffffff;
   }
 
+  /* The status bar alone, for a screen dark only at its top, such as Home
+     under its blue header (HomeViewController's preferredStatusBarStyle). */
+  .example-phone--light-status-bar .example-status-bar {
+    color: #ffffff;
+  }
+
   @media (max-width: 460px) {
     body {
       padding: 0;

@@ -20,7 +20,7 @@
         "description": "page: the app's pale blue, for screens in its sections. modal: white, for a screen presented over them, such as a question or a confirmation. green: the app's green, the same in light and dark, with white text and its content set further down, for a screen that takes over the app, in a full-screen cover."
       }
     },
-    "content": "The screen's components, top to bottom. A <govuk-app-nav-bar> goes at the top and sticks there. A <govuk-app-tab-bar> goes at the bottom of the content and floats over it. An element with slot=\"footer\", usually a <govuk-app-button-stack>, is pinned below the content. Everything else is the content, 16pt in from the sides and 16pt apart, and scrolls."
+    "content": "The screen's components, top to bottom. A <govuk-app-nav-bar>, or the home screen's <govuk-app-home-header>, goes at the top and sticks there. A <govuk-app-tab-bar> goes at the bottom of the content and floats over it. An element with slot=\"footer\", usually a <govuk-app-button-stack>, is pinned below the content. Everything else is the content, 16pt in from the sides and 16pt apart, and scrolls."
   },
   "outputs": {
     "events": []

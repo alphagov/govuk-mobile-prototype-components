@@ -14,11 +14,11 @@ Each example is a few pages of plain HTML that link to each other, written with 
 
 The Home tab, with the widgets a user sees once they’ve chosen some topics, set their council and visited some pages. For now it is mostly what’s missing, and it will grow as the components it needs are added. Its Settings tab opens the Settings example.
 
-It uses the screen, grouped list, text, button and tab bar. Its source is in `examples/home/` in the repository.
+It uses the screen, home header, search field, grouped list, text, button and tab bar. Its source is in `examples/home/` in the repository.
 
 ### What’s missing
 
-- **The header.** The library has no blue GOV.UK header with its logo and search box yet, so the screen starts at Topics.
+- **Searching.** The search field works, but there are no previous searches or results to show while searching.
 - **Your topics and All topics.** There’s no segmented control yet, so Topics shows only your topics.
 - **The topics’ icons.** The grouped list can’t draw images on rows yet.
 - **Your local services’ card.** The council is drawn as a link row, rather than in the app’s large, bold link text on a card of its own, without an arrow.

@@ -130,8 +130,8 @@
           "name": { "type": "string", "minLength": 1 },
           "html": { "type": "string", "minLength": 1 },
           "frame": {
-            "description": "What the docs draw it in. screen: a whole screen, phone height, with no padding of its own, for a component that lays out a screen. Otherwise a box with room around it.",
-            "enum": ["screen"]
+            "description": "What the docs draw it in. screen: a whole screen, phone height, with no padding of its own, for a component that lays out a screen. page: a box with room around it, the colour of a screen, for a component drawn on one, such as the search field. Otherwise a box with room around it, the colour of a modal.",
+            "enum": ["screen", "page"]
           }
         }
       }
