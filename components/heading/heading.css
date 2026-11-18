@@ -1,0 +1,40 @@
+/* A heading in one of iOS's text styles, at the weight the app gives each:
+   Font.govUK's largeTitleBold, title1Bold, title2Bold, title3Semibold and
+   bodySemibold. Each grows with the root's text size.
+
+   govuk-app-text (base.css) sets lines as iOS does, from --leading. */
+
+.govuk-app-heading[data-size="large-title"] {
+  font-size: var(--app-font-large-title-size);
+  font-weight: var(--app-font-large-title-weight);
+  --leading: var(--app-font-large-title-leading);
+}
+
+.govuk-app-heading[data-size="title-1"] {
+  font-size: var(--app-font-title-1-size);
+  font-weight: var(--app-font-title-1-weight);
+  --leading: var(--app-font-title-1-leading);
+}
+
+.govuk-app-heading[data-size="title-2"] {
+  font-size: var(--app-font-title-2-size);
+  font-weight: var(--app-font-title-2-weight);
+  --leading: var(--app-font-title-2-leading);
+}
+
+.govuk-app-heading[data-size="title-3"] {
+  font-size: var(--app-font-title-3-emphasis-size);
+  font-weight: var(--app-font-title-3-emphasis-weight);
+  --leading: var(--app-font-title-3-emphasis-leading);
+}
+
+.govuk-app-heading[data-size="body"] {
+  font-size: var(--app-font-body-emphasis-size);
+  font-weight: var(--app-font-body-emphasis-weight);
+  --leading: var(--app-font-body-emphasis-leading);
+}
+
+/* As the app's onboarding and confirmation screens set theirs. */
+.govuk-app-heading[data-align="center"] {
+  text-align: center;
+}

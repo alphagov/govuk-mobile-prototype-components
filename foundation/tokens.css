@@ -117,6 +117,9 @@ govuk-app {
   --app-font-title-2-size: calc(22px * var(--app-text-scale));
   --app-font-title-2-weight: 700;
   --app-font-title-2-leading: calc(28px * var(--app-text-scale));
+  --app-font-title-3-emphasis-size: calc(20px * var(--app-text-scale));
+  --app-font-title-3-emphasis-weight: 600;
+  --app-font-title-3-emphasis-leading: calc(25px * var(--app-text-scale));
   --app-font-body-size: calc(17px * var(--app-text-scale));
   --app-font-body-weight: 400;
   --app-font-body-leading: calc(22px * var(--app-text-scale));

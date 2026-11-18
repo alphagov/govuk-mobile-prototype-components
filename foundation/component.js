@@ -21,10 +21,12 @@
  *                          false, null, undefined, '' or []
  *   data-slot="content"    the element holds what was written between the
  *                          component's tags
+ *   data-tag="x: h1 h2"    the element's tag is x, if it is one of those
+ *                          listed, and as written otherwise
  *
  * These are the same attributes as Shaun's kit (app-prototyping-system,
  * exploration-2/kit), so a template written for one reads the same in the
- * other. His data-each and data-tag are not supported yet.
+ * other. His data-each is not supported yet.
  */
 
 const templates = new Map()
@@ -127,6 +129,17 @@ export async function defineComponent({ name, template, styles, attributes = [],
 
 /** Fills in a copy of a template's content from `data`. */
 function fill(fragment, data) {
+  // First, so the new element keeps the attributes the steps below read.
+  for (const element of fragment.querySelectorAll('[data-tag]')) {
+    const [property, choices = ''] = element.dataset.tag.split(':').map(part => part.trim())
+    const tag = String(data[property] ?? '').toLowerCase()
+    element.removeAttribute('data-tag')
+    if (!choices.split(/\s+/).includes(tag) || tag === element.localName) continue
+    const replacement = document.createElement(tag)
+    for (const attribute of element.attributes) replacement.setAttribute(attribute.name, attribute.value)
+    replacement.append(...element.childNodes)
+    element.replaceWith(replacement)
+  }
   for (const element of fragment.querySelectorAll('[data-if]')) {
     if (present(data[element.dataset.if])) element.removeAttribute('data-if')
     else element.remove()

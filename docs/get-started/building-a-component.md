@@ -44,6 +44,7 @@ There is no build step for components. `foundation/component.js` fetches the tem
 | `data-attr="a: x, b: y"` | Attribute `a` is `x`. `true` sets it empty; `false` or absent leaves it off |
 | `data-if="x"` | The element is left out unless `x` is present |
 | `data-slot="content"` | The element holds what was written between the component’s tags |
+| `data-tag="x: h1 h2"` | The element’s tag is `x`, if it is one of those listed, and as written otherwise |
 
 These are the same as in Shaun’s kit in the app prototyping system (`exploration-2/kit`), which this structure is based on.
 
