@@ -1,0 +1,15 @@
+<!-- A section of a screen: its title, with anything given slot="accessory"
+     on its right, such as a number plate, and a line of description under
+     it, then what else was written between its tags. -->
+<template>
+  <section class="govuk-app-section">
+    <div class="govuk-app-section__header">
+      <div class="govuk-app-section__title-row">
+        <h2 class="govuk-app-section__title govuk-app-text" data-tag="tag: h2 h3 h4" data-text="title"></h2>
+        <div class="govuk-app-section__accessory" data-if="accessory" data-slot="accessory"></div>
+      </div>
+      <p class="govuk-app-section__description govuk-app-text" data-if="description" data-text="description"></p>
+    </div>
+    <div class="govuk-app-section__content" data-slot="body"></div>
+  </section>
+</template>

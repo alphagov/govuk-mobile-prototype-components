@@ -1,0 +1,54 @@
+/* A section of a screen, as the app's VehicleCheckSectionView heads Check
+   vehicle details: its title in Title 3 Semibold (GovKit asks for bold, but
+   its snapshots measure semibold), its description 8pt below in
+   Subheadline, and what it holds 16pt below that, 16pt apart.
+
+   A section that isn't first is 16pt further from what's above it than the
+   screen's own spacing, so 32pt, as VehicleDetailView puts its section
+   titles, such as Registered to. */
+
+.govuk-app-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-medium);
+  min-width: 0;
+}
+
+govuk-app-section:not(:first-child) > .govuk-app-section {
+  margin-top: var(--app-space-medium);
+}
+
+.govuk-app-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-small);
+}
+
+.govuk-app-section__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--app-space-small);
+}
+
+.govuk-app-section__title {
+  font-size: var(--app-font-title-3-emphasis-size);
+  font-weight: var(--app-font-title-3-emphasis-weight);
+  --leading: var(--app-font-title-3-emphasis-leading);
+}
+
+.govuk-app-section__accessory {
+  flex-shrink: 0;
+}
+
+.govuk-app-section__description {
+  font-size: var(--app-font-subheadline-size);
+  font-weight: var(--app-font-subheadline-weight);
+  --leading: var(--app-font-subheadline-leading);
+}
+
+.govuk-app-section__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-medium);
+}
