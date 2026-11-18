@@ -12,10 +12,12 @@
    be used on Apple's platforms. A topic's icon is Material Symbols Outlined,
    filled, which is what the app's own topic icons are drawn from. */
 
+/* As wide as what it's in, and no wider, whatever its rows hold. */
 .govuk-app-grouped-list {
   display: flex;
   flex-direction: column;
   gap: var(--app-space-small);
+  min-width: 0;
 }
 
 /* The title's own 8pt below it, and the section's 8pt gap, put the card 16pt

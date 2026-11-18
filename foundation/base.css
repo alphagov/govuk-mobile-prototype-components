@@ -28,6 +28,9 @@ govuk-app {
   --leading: var(--app-font-body-leading);
   line-height: var(--leading);
   text-align: start;
+  /* A word too long for its line breaks onto the next, as iOS's Text does,
+     such as a licence number in a narrow card, rather than widening it. */
+  overflow-wrap: anywhere;
 }
 
 /* A page's own styles for its elements stop here: everything inside starts
