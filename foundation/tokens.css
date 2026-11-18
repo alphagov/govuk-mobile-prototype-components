@@ -109,6 +109,7 @@ govuk-app {
   --app-text-link-header: light-dark(#ffffff, #11e0f1);       /* text.linkHeader */
   --app-logo-dot: #00ffe0;                                    /* the GOV.UK wordmark's dot, in the wordmark itself */
   --app-text-search-cancel: var(--app-text-primary);          /* text.primary: the search field's Cancel (SearchBarView) */
+  --app-logo-crown: #858686;                                  /* the crown at the end of the home screen, in the crown itself (crownLogo): the same in dark mode */
 
   /* Sheets: the system's, which GovKit leaves */
   --app-sheet-backdrop: #000000;                              /* behind the screen a sheet is presented from */
