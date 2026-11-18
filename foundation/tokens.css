@@ -88,17 +88,18 @@ govuk-app {
   --app-switch-knob: #ffffff;                                 /* the system's */
   --app-switch-knob-shadow: rgb(0 0 0 / 0.15);                /* the system's */
 
-  /* Linking an account: the app's own, not GovKit's (govuk-mobile-ios-app,
-     Extensions/GovKit/GOVUKColors+ServiceAccount.swift, read at fc2b3b1d).
-     The same in light and dark */
-  --app-surface-link-account: #0f7a52;                        /* fills.surfaceFullScreenLinkAccount */
-  --app-text-link-account: #ffffff;                           /* text.header */
-  --app-surface-button-link-account: #000000;                 /* fills.linkAccountButton */
-  --app-surface-button-link-account-pressed: #1a1a1a;         /* fills.linkAccountButtonHighlight */
-  --app-text-button-link-account: #ffffff;                    /* text.linkAccountButton */
-  --app-text-button-link-account-pressed: #cccccc;            /* text.linkAccountButtonHighlight */
-  --app-shadow-button-link-account: #1a1a1a;                  /* strokes.linkAccountButton */
-  --app-shadow-button-link-account-pressed: #000000;          /* strokes.linkAccountButtonHighlight */
+  /* Green screens and black buttons: the app's own, not GovKit's, which it
+     uses to add an account (govuk-mobile-ios-app, Extensions/GovKit/
+     GOVUKColors+ServiceAccount.swift, read at fc2b3b1d). The same in light
+     and dark */
+  --app-surface-green: #0f7a52;                               /* fills.surfaceFullScreenLinkAccount, GovKit's primaryGreen */
+  --app-text-on-green: #ffffff;                               /* text.header */
+  --app-surface-button-black: #000000;                        /* fills.linkAccountButton */
+  --app-surface-button-black-pressed: #1a1a1a;                /* fills.linkAccountButtonHighlight */
+  --app-text-button-black: #ffffff;                           /* text.linkAccountButton */
+  --app-text-button-black-pressed: #cccccc;                   /* text.linkAccountButtonHighlight */
+  --app-shadow-button-black: #1a1a1a;                         /* strokes.linkAccountButton */
+  --app-shadow-button-black-pressed: #000000;                 /* strokes.linkAccountButtonHighlight */
 
   /* Sheets: the system's, which GovKit leaves */
   --app-sheet-backdrop: #000000;                              /* behind the screen a sheet is presented from */

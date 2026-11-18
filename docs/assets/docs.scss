@@ -23,22 +23,31 @@
   background: var(--app-surface-modal);
 }
 
-// A whole screen, for a component that lays one out: phone height, with no
-// padding, since the screen has its own. A little room over the top, so a
-// navigation bar's buttons don't touch the edge: less than a phone's status
-// bar, which with nothing drawn in it looks like a gap.
+// A whole screen, for a component that lays one out, with no padding, since
+// the screen has its own. As wide as a phone, 402pt like an iPhone 17 Pro, so
+// its text wraps where the app's does, and drawn at three quarters of that
+// size, so two fit side by side. A little room over the top, so a navigation
+// bar's buttons don't touch the edge: less than a phone's status bar, which
+// with nothing drawn in it looks like a gap.
+.docs-example__frames:has(.docs-example__screen) {
+  grid-template-columns: repeat(auto-fit, minmax(302px, 1fr));
+}
+
 .docs-example__screen {
   --govuk-app-inset-top: var(--app-space-medium);
-  height: 560px;
+  zoom: 0.75;
+  justify-self: center;
+  width: 402px;
+  height: 746px;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 16px;
   // So a white screen has an edge on the white page.
   box-shadow: 0 0 0 1px $govuk-border-colour;
 }
 
 // Shorter, for a screen whose prose asks to be scrolled.
 .docs-example__screen--short {
-  height: 340px;
+  height: 453px;
 }
 
 // A short screen that scrolls, for a component that floats over the content,

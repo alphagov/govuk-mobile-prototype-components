@@ -29,7 +29,7 @@
     "Use a sheet for most modals, as the app does. Use a full-screen cover only where the app does: for a journey that takes over the app, such as adding a driver and vehicles account.",
     "Give its screen a way out: a close action on the left of its navigation bar, with slot=\"leading\". It can't be pulled down to close.",
     "Give present only to the first screen of the journey. Later screens of the same journey are already in the cover.",
-    "To draw the app's green screens for adding an account, give its screen background=\"link-account\", its text size=\"title-1\", and its button variant=\"link-account\"."
+    "To draw the app's green screens, give its screen background=\"green\", its text size=\"title-1\", and its button variant=\"black\"."
   ],
   "sources": {
     "figma": [],
@@ -92,7 +92,7 @@
     {
       "name": "Adding a driver and vehicles account",
       "frame": "screen",
-      "html": "<govuk-app-full-screen-cover>\n  <govuk-app-screen background=\"link-account\">\n    <govuk-app-nav-bar>\n      <govuk-app-nav-bar-item icon=\"close\" name=\"close\" slot=\"leading\">Close</govuk-app-nav-bar-item>\n    </govuk-app-nav-bar>\n    <govuk-app-heading level=\"1\" size=\"large-title\">Add your driver and vehicles account</govuk-app-heading>\n    <govuk-app-text size=\"title-1\">Keep track of your licence details, tax and MOT dates.</govuk-app-text>\n    <govuk-app-text size=\"title-1\">We’ll take you to your web browser to sign in.</govuk-app-text>\n    <govuk-app-button-stack slot=\"footer\">\n      <govuk-app-button variant=\"link-account\" name=\"continue\">Continue</govuk-app-button>\n    </govuk-app-button-stack>\n  </govuk-app-screen>\n</govuk-app-full-screen-cover>"
+      "html": "<govuk-app-full-screen-cover>\n  <govuk-app-screen background=\"green\">\n    <govuk-app-nav-bar>\n      <govuk-app-nav-bar-item icon=\"close\" name=\"close\" slot=\"leading\">Close</govuk-app-nav-bar-item>\n    </govuk-app-nav-bar>\n    <govuk-app-heading level=\"1\" size=\"large-title\">Add your driver and vehicles account</govuk-app-heading>\n    <govuk-app-text size=\"title-1\">Keep track of your licence details, tax and MOT dates.</govuk-app-text>\n    <govuk-app-text size=\"title-1\">We’ll take you to your web browser to sign in.</govuk-app-text>\n    <govuk-app-button-stack slot=\"footer\">\n      <govuk-app-button variant=\"black\" name=\"continue\">Continue</govuk-app-button>\n    </govuk-app-button-stack>\n  </govuk-app-screen>\n</govuk-app-full-screen-cover>"
     },
     {
       "name": "Coming up over the screen it was presented from",
