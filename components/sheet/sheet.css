@@ -1,0 +1,84 @@
+/* UIKit's page sheet, as the app presents most of its modals: its
+   coordinators present a navigation controller without asking for a style,
+   which on an iPhone is a page sheet. GovKit doesn't style it.
+
+   The sheet starts 10pt below the status bar, with its top corners rounded
+   10pt, as the app prototyping system's viewer measures them: the system's
+   own, so approximate. Behind it, the screen it was presented from is set
+   back, smaller and dimmed, on black.
+
+   With present, it comes up from the bottom when the page loads, as UIKit
+   presents it, and the screen behind it sets back. Without it, it's
+   already there, for the second and later screens of a modal journey. */
+
+/* The root's inset, under another name, for the card, whose own is 0. */
+.govuk-app-sheet {
+  --govuk-app-inset-top-outer: var(--govuk-app-inset-top, 0px);
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background: var(--app-sheet-backdrop);
+}
+
+/* The screen it was presented from: smaller, with its top at the status
+   bar's bottom, 10pt above the sheet's, and dimmed. */
+.govuk-app-sheet__behind {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  transform: translateY(var(--govuk-app-inset-top, 0px)) scale(0.92);
+  transform-origin: top center;
+}
+
+.govuk-app-sheet__behind::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--app-sheet-dim);
+  pointer-events: none;
+}
+
+/* Its screen fills it, and needs no room for the status bar, which is
+   above the gap. */
+.govuk-app-sheet__card {
+  --govuk-app-inset-top: 0px;
+  position: absolute;
+  inset: calc(var(--govuk-app-inset-top-outer, 0px) + 10px) 0 0;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Presented as UIKit presents it: the sheet slides up as the screen behind
+   it sets back. */
+.govuk-app-sheet[data-present] .govuk-app-sheet__card {
+  animation: govuk-app-sheet-present 0.5s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.govuk-app-sheet[data-present] .govuk-app-sheet__behind {
+  animation: govuk-app-sheet-set-back 0.5s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+@keyframes govuk-app-sheet-present {
+  from { transform: translateY(100%); }
+}
+
+@keyframes govuk-app-sheet-set-back {
+  from { transform: none; border-radius: 0; }
+}
+
+@keyframes govuk-app-sheet-set-back-dim {
+  from { opacity: 0; }
+}
+
+.govuk-app-sheet[data-present] .govuk-app-sheet__behind::after {
+  animation: govuk-app-sheet-set-back-dim 0.5s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .govuk-app-sheet[data-present] .govuk-app-sheet__card,
+  .govuk-app-sheet[data-present] .govuk-app-sheet__behind,
+  .govuk-app-sheet[data-present] .govuk-app-sheet__behind::after {
+    animation: none;
+  }
+}

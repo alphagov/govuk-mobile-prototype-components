@@ -114,7 +114,7 @@ eleventyComputed:
 {% endset %}
 
 {% set referencesHtml %}
-{% set referencesByPlatform = component.references | groupby("platform") %}
+{% set referencesByPlatform = (component.references or []) | groupby("platform") %}
 {% for platform in ["ios", "android"] %}
 {% if referencesByPlatform[platform] %}
 <h3 class="govuk-heading-m docs-references__heading">{{ platforms[platform] }}</h3>
@@ -135,7 +135,7 @@ eleventyComputed:
   summary: { text: "The iOS, Android and Figma sources it was built from" },
   content: { html: sourcesHtml }
 }] %}
-{% if component.references | length %}
+{% if (component.references or []) | length %}
 {% set accordionItems = (accordionItems.push({
   heading: { text: "In the app" },
   summary: { text: "Screenshots of the app's own component, to compare the examples with" },

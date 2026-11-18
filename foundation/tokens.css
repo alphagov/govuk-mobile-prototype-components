@@ -88,6 +88,10 @@ govuk-app {
   --app-switch-knob: #ffffff;                                 /* the system's */
   --app-switch-knob-shadow: rgb(0 0 0 / 0.15);                /* the system's */
 
+  /* Sheets: the system's, which GovKit leaves */
+  --app-sheet-backdrop: #000000;                              /* behind the screen a sheet is presented from */
+  --app-sheet-dim: light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.3)); /* over that screen */
+
   /* Glass: iOS 26's Liquid Glass, approximated, for the system's own bars and
      their buttons. The app sets none of these, only what is drawn on the glass
      (text.linkSecondary, text.primary, and the label colour) */

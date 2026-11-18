@@ -1,0 +1,11 @@
+<!-- A page sheet: a screen presented over another, on a card that comes up
+     from the bottom with its top corners rounded, leaving a gap at the top.
+     The screen written between its tags is the sheet's; one with
+     slot="behind" is drawn behind it, set back, as the screen it was
+     presented from. -->
+<template>
+  <div class="govuk-app-sheet" data-attr="data-present: present">
+    <div class="govuk-app-sheet__behind" inert data-if="behind" data-slot="behind"></div>
+    <div class="govuk-app-sheet__card" role="dialog" aria-modal="true" data-attr="aria-label: label" data-slot="body"></div>
+  </div>
+</template>
