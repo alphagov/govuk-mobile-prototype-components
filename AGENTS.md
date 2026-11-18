@@ -10,7 +10,7 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 - Each definition follows `component.schema.json`. Say where it comes from: the iOS and Android source, with the commit read, and the app's screenshots in `reference/`.
 - Call the two kinds **GOV.UK app components** (`origin.kind: "govuk"`, the app's own) and **native components** (`"native"`, mirroring a platform control). The names live in `docs/_data/components.js`.
 - Match the app. Where we can't, say so in the component's `.md` under "Known differences from the app".
-- Use Material Symbols in place of SF Symbols, which may only be used on Apple's platforms. Load their font with `fonts: [materialSymbols]` in `defineComponent` (or `materialSymbolsOutlined`, for the app's topic icons), never an `@import` in the component's CSS: a component waits for its stylesheet, and the font can take a second or more.
+- Use Material Symbols in place of SF Symbols, which may only be used on Apple's platforms. Load their font with `fonts: [materialSymbols]` in `defineComponent` (or `materialSymbolsOutlined`, for the app's topic icons), never an `@import` in the component's CSS: a component waits for its stylesheet, and the font can take a second or more. Give each element drawn in the font the class `govuk-app-icon` as well as its own, so it's hidden until the font has loaded, rather than showing as its name.
 
 ## Styles
 

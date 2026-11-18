@@ -4,11 +4,11 @@
      that text. A link to another page if it has an href, otherwise a button. -->
 <template>
   <a class="govuk-app-nav-bar-item" data-if="href" data-attr="href: href, data-icon: hasIcon">
-    <span class="govuk-app-nav-bar-item__icon" aria-hidden="true" data-if="icon" data-text="icon"></span>
+    <span class="govuk-app-nav-bar-item__icon govuk-app-icon" aria-hidden="true" data-if="icon" data-text="icon"></span>
     <span class="govuk-app-nav-bar-item__label" data-attr="data-hidden: hasIcon" data-slot="content"></span>
   </a>
   <button class="govuk-app-nav-bar-item" type="button" data-if="button" data-attr="name: name, value: value, data-icon: hasIcon">
-    <span class="govuk-app-nav-bar-item__icon" aria-hidden="true" data-if="icon" data-text="icon"></span>
+    <span class="govuk-app-nav-bar-item__icon govuk-app-icon" aria-hidden="true" data-if="icon" data-text="icon"></span>
     <span class="govuk-app-nav-bar-item__label" data-attr="data-hidden: hasIcon" data-slot="content"></span>
   </button>
 </template>

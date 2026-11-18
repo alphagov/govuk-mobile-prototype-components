@@ -66,3 +66,11 @@ govuk-app :focus-visible {
   line-height: var(--leading);
   margin-block: calc((1.193em - var(--leading)) / 2);
 }
+
+/* An icon, drawn from an icon font as a word, such as "close", is hidden
+   while any font is loading (component.js), so it never shows as that word
+   in the page's own font. Any component that draws icons gives them this
+   class, besides its own. */
+:root[data-govuk-app-fonts-loading] .govuk-app-icon {
+  visibility: hidden;
+}

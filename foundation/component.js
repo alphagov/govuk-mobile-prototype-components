@@ -74,6 +74,16 @@ function stylesheet(url) {
 }
 
 const fontStylesheets = new Set()
+let fontsLoading = 0
+
+/**
+ * Marks the page while any font is loading, so base.css can hide icons,
+ * which would otherwise show as their names in the page's own font.
+ */
+function fontLoading(change) {
+  fontsLoading += change
+  document.documentElement.toggleAttribute('data-govuk-app-fonts-loading', fontsLoading > 0)
+}
 
 /**
  * Adds a font's stylesheet to the page once, without waiting for it. It's
@@ -87,13 +97,23 @@ function fontStylesheet(url) {
   const key = String(url)
   if (fontStylesheets.has(key)) return
   fontStylesheets.add(key)
+  fontLoading(+1)
   fetch(key)
     .then(response => {
       if (!response.ok) throw new Error(`${response.status}`)
       return response.text()
     })
-    .then(css => document.head.append(Object.assign(document.createElement('style'), { textContent: css })))
+    .then(css => {
+      document.head.append(Object.assign(document.createElement('style'), { textContent: css }))
+      // A stylesheet doesn't load its fonts until something uses them, so
+      // ask for each family it declares, and wait for them.
+      const families = new Set([...css.matchAll(/font-family:\s*['"]([^'"]+)['"]/g)].map(match => match[1]))
+      return Promise.all([...families].map(family => document.fonts.load(`24px "${family}"`)))
+    })
+    // If it can't be loaded, its icons show as their names: better than
+    // nothing, as they say what they are.
     .catch(error => console.warn(`Could not load the font ${key}: ${error.message}`))
+    .finally(() => fontLoading(-1))
 }
 
 /** The <template> in the HTML file at `url`, fetched once. */
@@ -127,9 +147,9 @@ function load(url) {
  *   fonts       stylesheets of fonts it uses, such as materialSymbols, added
  *               to the page but not waited for: a font from another site can
  *               take a second or more, and the component would be drawn as
- *               bare text until then. Text in the font shows once it loads,
- *               and is hidden until then, if the font says so, as
- *               materialSymbols does
+ *               bare text until then. Give anything drawn in an icon font
+ *               the class govuk-app-icon, which base.css hides until every
+ *               font has loaded, so it never shows as the icon's name
  *
  * The element is defined once its template and styles have loaded, so it is
  * never drawn unstyled.

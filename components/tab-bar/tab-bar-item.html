@@ -3,11 +3,11 @@
      A link to another page if it has an href, otherwise a button. -->
 <template>
   <a class="govuk-app-tab-bar-item" data-if="href" data-attr="href: href, aria-current: current">
-    <span class="govuk-app-tab-bar-item__icon" aria-hidden="true" data-text="icon"></span>
+    <span class="govuk-app-tab-bar-item__icon govuk-app-icon" aria-hidden="true" data-text="icon"></span>
     <span class="govuk-app-tab-bar-item__label" data-slot="content"></span>
   </a>
   <button class="govuk-app-tab-bar-item" type="button" data-if="button" data-attr="aria-current: current, name: name, value: value">
-    <span class="govuk-app-tab-bar-item__icon" aria-hidden="true" data-text="icon"></span>
+    <span class="govuk-app-tab-bar-item__icon govuk-app-icon" aria-hidden="true" data-text="icon"></span>
     <span class="govuk-app-tab-bar-item__label" data-slot="content"></span>
   </button>
 </template>
