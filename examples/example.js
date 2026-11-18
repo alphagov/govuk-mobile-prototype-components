@@ -16,13 +16,21 @@ const statusBar = `
     </span>
   </div>`
 
+// A way back to the docs site, which would otherwise be a dead end. The
+// Examples page is the folder this script is in, wherever the site is served.
+document.body.insertAdjacentHTML('afterbegin', `
+  <a class="example-back" href="${new URL('./', import.meta.url)}">Back to examples</a>`)
+const back = document.querySelector('.example-back')
+
 // Shrinks the phone to fit the window, as a whole, so all of the screen is
 // in view without scrolling the page. CSS can't yet divide one length by
 // another everywhere, so this works out the scale. The room around it is
-// the body's 24px padding, and the bezel's 10px.
+// the body's 24px padding, and the bezel's 10px, and above it the back link
+// and the 16px under it, while the link is shown.
 const room = 2 * (24 + 10)
 function fit() {
-  const scale = Math.min(1, (innerHeight - room) / 874, (innerWidth - room) / 402)
+  const above = back.offsetHeight ? back.offsetHeight + 16 : 0
+  const scale = Math.min(1, (innerHeight - room - above) / 874, (innerWidth - room) / 402)
   document.documentElement.style.setProperty('--example-scale', String(Math.max(scale, 0.4)))
 }
 fit()

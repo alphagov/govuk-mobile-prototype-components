@@ -14,13 +14,53 @@
 
   body {
     display: grid;
+    grid-template-rows: auto 1fr;
     place-items: center;
+    gap: 16px;
     min-height: 100%;
     margin: 0;
     padding: 24px;
     box-sizing: border-box;
     background: #dee0e2;
     font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  /* Back to the docs site, in the style of GOV.UK Frontend's back link. */
+  .example-back {
+    justify-self: start;
+    position: relative;
+    padding-left: 14px;
+    color: #0b0c0c;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: underline;
+    text-underline-offset: 0.1578em;
+  }
+
+  .example-back::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 3px;
+    width: 7px;
+    height: 7px;
+    margin: auto 0;
+    border: solid currentColor;
+    border-width: 1px 0 0 1px;
+    transform: rotate(-45deg);
+  }
+
+  .example-back:hover {
+    text-decoration-thickness: 3px;
+  }
+
+  .example-back:focus-visible {
+    outline: 3px solid transparent;
+    background: #ffdd00;
+    box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+    color: #0b0c0c;
+    text-decoration: none;
   }
 
   .example-phone {
@@ -125,6 +165,10 @@
       background: #1b1d1f;
     }
 
+    .example-back {
+      color: #ffffff;
+    }
+
     .example-status-bar {
       color: #ffffff;
     }
@@ -168,6 +212,12 @@
       --govuk-app-inset-bottom: env(safe-area-inset-bottom, 0px);
     }
 
+    body {
+      display: block;
+    }
+
+    /* The phone's own back gesture and browser are the way out here. */
+    .example-back,
     .example-status-bar,
     .example-home-indicator {
       display: none;
