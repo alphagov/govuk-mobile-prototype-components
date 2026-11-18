@@ -1,0 +1,55 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Summary columns",
+  "element": "govuk-app-summary-columns",
+  "purpose": "Puts a few short facts side by side, in equal columns with a divider between them: two statuses, such as a vehicle's tax and MOT; counts, such as a driver's offences and points; or details with icons, such as a vehicle's year, fuel and colour.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "From the future driving designs in Figma, which we have only as a screenshot for now, so its sizes are approximate. The app today has nothing like it on iOS; Android draws a vehicle's year, fuel and colour with SpecificationsIcons."
+  },
+  "inputs": {
+    "attributes": {},
+    "content": "Two to four <govuk-app-summary-column> elements, left to right. Each takes a value and a label, for a count, such as value=\"0\" label=\"Offences\"; or an icon, the name of a Material Symbol, and a label, for a detail, such as icon=\"calendar_month\" label=\"2017\". Without either, it holds what's written between its tags, such as a <govuk-app-status>."
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Use it for two to four facts of the same kind that are worth taking in at a glance. For more, or for longer ones, use a grouped list.",
+    "Keep each column to one kind: all counts, all details with icons, or all statuses.",
+    "Keep labels to a word or two, so they fit on a line in a narrow column.",
+    "Put it inside a card, such as a grouped list's section, with anything more about the facts, such as History, in a row below it."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "design/src/main/kotlin/uk/gov/govuk/design/ui/component/SpecificationsIcons.kt",
+        "symbol": "SpecificationsIcons, a vehicle's year, fuel and colour today",
+        "ref": "f50fcd71"
+      }
+    ],
+    "other": [
+      {
+        "title": "Material Symbols, the icons it draws",
+        "url": "https://fonts.google.com/icons"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "name": "Two statuses",
+      "html": "<govuk-app-summary-columns>\n  <govuk-app-summary-column>\n    <govuk-app-status label=\"Tax\" caption=\"Valid\"></govuk-app-status>\n  </govuk-app-summary-column>\n  <govuk-app-summary-column>\n    <govuk-app-status state=\"due\" progress=\"0.75\" label=\"MOT due\" caption=\"23 days\"></govuk-app-status>\n  </govuk-app-summary-column>\n</govuk-app-summary-columns>"
+    },
+    {
+      "name": "Counts",
+      "html": "<govuk-app-summary-columns>\n  <govuk-app-summary-column value=\"2\" label=\"Offences\"></govuk-app-summary-column>\n  <govuk-app-summary-column value=\"12\" label=\"Points\"></govuk-app-summary-column>\n</govuk-app-summary-columns>"
+    },
+    {
+      "name": "Details with icons",
+      "html": "<govuk-app-summary-columns>\n  <govuk-app-summary-column icon=\"calendar_month\" label=\"2017\"></govuk-app-summary-column>\n  <govuk-app-summary-column icon=\"local_gas_station\" label=\"Bi-fuel\"></govuk-app-summary-column>\n  <govuk-app-summary-column icon=\"format_color_fill\" label=\"Red\"></govuk-app-summary-column>\n</govuk-app-summary-columns>"
+    }
+  ]
+}

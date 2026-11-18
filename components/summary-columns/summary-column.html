@@ -1,0 +1,11 @@
+<!-- One column of a summary: a big value over its label, such as 0 over
+     Offences; an icon over its label, such as a calendar over 2017; or,
+     without either, what was written between its tags, such as a status. -->
+<template>
+  <div class="govuk-app-summary-column" data-attr="data-kind: kind">
+    <span class="govuk-app-summary-column__icon govuk-app-icon" aria-hidden="true" data-if="icon" data-text="icon"></span>
+    <span class="govuk-app-summary-column__value govuk-app-text" data-if="value" data-text="value"></span>
+    <span class="govuk-app-summary-column__label govuk-app-text" data-if="label" data-text="label"></span>
+    <div class="govuk-app-summary-column__content" data-if="custom" data-slot="content"></div>
+  </div>
+</template>
