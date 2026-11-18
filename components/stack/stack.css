@@ -1,0 +1,29 @@
+/* SwiftUI's VStack and HStack, which every screen of the app lays itself out
+   with: its items in a column, or a row, lined up across it (align) and put
+   along it (distribute), a gap from the spacing scale apart: 8pt, SwiftUI's
+   own, unless it says otherwise. Between, as a Spacer between two items,
+   puts the first at the start and the last at the end. */
+
+.govuk-app-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--app-space-small);
+  min-width: 0;
+}
+
+.govuk-app-stack[data-direction="horizontal"] {
+  flex-direction: row;
+}
+
+.govuk-app-stack[data-align="start"] { align-items: flex-start; }
+.govuk-app-stack[data-align="end"] { align-items: flex-end; }
+
+.govuk-app-stack[data-distribute="end"] { justify-content: flex-end; }
+.govuk-app-stack[data-distribute="between"] { justify-content: space-between; }
+
+.govuk-app-stack[data-gap="none"] { gap: 0; }
+.govuk-app-stack[data-gap="extra-small"] { gap: var(--app-space-extra-small); }
+.govuk-app-stack[data-gap="medium"] { gap: var(--app-space-medium); }
+.govuk-app-stack[data-gap="large"] { gap: var(--app-space-large); }

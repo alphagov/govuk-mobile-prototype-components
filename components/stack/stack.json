@@ -1,0 +1,76 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Stack",
+  "element": "govuk-app-stack",
+  "purpose": "Lays out a few components in a row or a column, lined up and spaced as a screen needs, where no other component already does: such as a vehicle's number plate and menu button side by side on the right of its card, as the future driving designs show them.",
+  "origin": {
+    "kind": "native",
+    "notes": "SwiftUI's HStack and VStack, which the app lays out every screen with: a row or a column, its items aligned across it, and a gap between them, 8pt unless it says otherwise. A Spacer between items is distribute=\"between\"."
+  },
+  "inputs": {
+    "attributes": {
+      "direction": {
+        "type": "enum",
+        "values": ["vertical", "horizontal"],
+        "default": "vertical",
+        "description": "vertical, a column, as a VStack; horizontal, a row, as an HStack."
+      },
+      "align": {
+        "type": "enum",
+        "values": ["start", "center", "end"],
+        "default": "center",
+        "description": "How its items line up across it: in a row, top, middle or bottom; in a column, left, centre or right."
+      },
+      "distribute": {
+        "type": "enum",
+        "values": ["start", "end", "between"],
+        "default": "start",
+        "description": "Where its items go along it: at its start, at its end, or the first at the start and the last at the end, as with a Spacer between them."
+      },
+      "gap": {
+        "type": "enum",
+        "values": ["none", "extra-small", "small", "medium", "large"],
+        "default": "small",
+        "description": "The space between its items, from the spacing scale: 0, 4, 8, 16 or 24pt."
+      }
+    },
+    "content": "The components it lays out, in order."
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Use it only where no other component already lays things out: a screen, a section, a grouped list's content row and summary columns all space what they hold.",
+    "Keep a row to a few short items, so they fit side by side on a phone.",
+    "Leave gap at small, SwiftUI's own spacing, unless the design asks for another."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [],
+    "android": [],
+    "other": [
+      {
+        "title": "SwiftUI: HStack",
+        "url": "https://developer.apple.com/documentation/swiftui/hstack"
+      },
+      {
+        "title": "SwiftUI: VStack",
+        "url": "https://developer.apple.com/documentation/swiftui/vstack"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "name": "A heading and a number plate, at either end",
+      "html": "<govuk-app-stack direction=\"horizontal\" distribute=\"between\">\n  <govuk-app-heading level=\"2\" size=\"title-2\">Lamborghini</govuk-app-heading>\n  <govuk-app-number-plate>LH09 PZ2</govuk-app-number-plate>\n</govuk-app-stack>"
+    },
+    {
+      "name": "Two buttons side by side",
+      "html": "<govuk-app-stack direction=\"horizontal\" gap=\"medium\">\n  <govuk-app-button variant=\"secondary\" name=\"no\">No</govuk-app-button>\n  <govuk-app-button name=\"yes\">Yes</govuk-app-button>\n</govuk-app-stack>"
+    },
+    {
+      "name": "A column, centred",
+      "html": "<govuk-app-stack>\n  <govuk-app-heading level=\"2\" size=\"title-2\" align=\"center\">You’ve signed out</govuk-app-heading>\n  <govuk-app-text align=\"center\">You need to sign in again to use the app</govuk-app-text>\n</govuk-app-stack>"
+    }
+  ]
+}
