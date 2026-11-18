@@ -2,7 +2,7 @@
 
 Write a screen’s components inside it in the order they appear, top to bottom. The screen sorts them into place:
 
-- a `<govuk-app-nav-bar>` goes at the top, and stays there as the content scrolls under it
+- a `<govuk-app-nav-bar>`, or the home screen’s `<govuk-app-home-header>`, goes at the top, and stays there as the content scrolls under it
 - a `<govuk-app-tab-bar>` goes at the bottom, and floats over the content
 - anything with `slot="footer"`, usually a `<govuk-app-button-stack>`, is pinned below the content
 - everything else is the content, which scrolls

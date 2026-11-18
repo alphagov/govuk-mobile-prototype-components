@@ -72,6 +72,12 @@
   padding-top: calc(var(--govuk-app-inset-top, 0px) + var(--app-space-medium));
 }
 
+/* The home screen starts its widgets further below its header
+   (HomeContentView). */
+.govuk-app-screen__content[data-under-home-header] {
+  padding-top: var(--app-space-large);
+}
+
 /* What is pinned below the content draws itself, such as a button stack,
    which leaves room for the home indicator. */
 .govuk-app-screen__footer {

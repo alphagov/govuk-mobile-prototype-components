@@ -1,0 +1,53 @@
+/* The top of the home screen, as HomeViewController lays it out: the GOV.UK
+   wordmark, 28pt tall, centred 16pt below the status bar, on
+   fills.surfaceHomeHeaderBackground, which also fills the status bar. The
+   home screen hides its navigation bar, so this takes its place.
+
+   With a search field, the field is 16pt in from the sides. UISearchBar
+   draws its field 10pt inside its own top and bottom, so the field is 26pt
+   below the wordmark (the app's 16 and UISearchBar's 10), and the blue ends
+   18pt below it (UISearchBar's 10 and the app's 8). Off the grid because of
+   UISearchBar, as the app's snapshots measure. Without one, the blue ends
+   16pt below the wordmark.
+
+   It doesn't scroll: the screen's content scrolls under it. */
+
+.govuk-app-home-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--app-space-medium) + 10px);
+  padding: calc(var(--govuk-app-inset-top, 0px) + var(--app-space-medium)) var(--app-space-medium) var(--app-space-medium);
+  background: var(--app-surface-home-header);
+  /* The search field's Cancel, which the app draws in text.linkHeader here. */
+  --app-text-search-cancel: var(--app-text-link-header);
+}
+
+.govuk-app-home-header[data-search] {
+  padding-bottom: calc(var(--app-space-small) + 10px);
+}
+
+.govuk-app-home-header__logo {
+  display: flex;
+}
+
+/* It doesn't grow with the text size, as the app's doesn't. */
+.govuk-app-home-header__wordmark {
+  width: 150px;
+  height: 28px;
+}
+
+.govuk-app-home-header__letter {
+  fill: var(--app-text-header);
+}
+
+.govuk-app-home-header__dot {
+  fill: var(--app-logo-dot);
+}
+
+.govuk-app-home-header__search {
+  align-self: stretch;
+}
