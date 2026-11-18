@@ -40,13 +40,12 @@ The licence has four states. The app would show whichever applies, so here each 
 - [Disqualified](/examples/driving/licence-disqualified.html)
 - [Revoked](/examples/driving/licence-revoked.html)
 
-Much of it is proposed, not in the app yet: the status, count and card header, the yellow warning banner, the grouped list’s content rows and accent background. Its number plates, labelled icons, address, segmented control and Add vehicle are the app’s own. It also uses the screen, navigation bar, grouped list, summary columns, heading, text, button and tab bar. Its source is in `examples/driving/` in the repository.
+Much of it is proposed, not in the app yet: the status, count and card header, the yellow warning banner, and the grouped list’s content rows, accent background and full-width dividers. Its number plates, menu buttons, labelled icons, address, sections, segmented control and Add vehicle are the app’s own. It also uses the screen, navigation bar, grouped list, summary columns, stack, heading, text, button and tab bar. Its source is in `examples/driving/` in the repository.
 
 ### What’s missing
 
-- **The menu on each vehicle and licence.** The designs put a round “…” button on each card; there’s no icon button yet.
-- **The number plate beside Overview.** A heading can’t hold anything beside it yet, so the plate is below it.
 - **Checking a vehicle.** The designs’ row has a number plate field and a search button; here it’s a row, Start, that goes nowhere.
+- **The plate’s size on a vehicle’s card.** The designs’ plate is a little larger than the app’s, and further from the vehicle’s name.
 - **Bold within a line.** The designs bold only part of lines such as “**Expired** 28 March 2026” and “**1 year 28 days** remaining”; text can only be bold as a whole.
 - **Screens that go nowhere.** The Volvo’s details, Tech specs, MOT history, the driver record’s History, Add vehicle and Renew have no screens here.
 

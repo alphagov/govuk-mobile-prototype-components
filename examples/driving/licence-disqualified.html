@@ -18,6 +18,9 @@
   <script type="module" src="../../components/button/button.js"></script>
   <script type="module" src="../../components/summary-columns/summary-columns.js"></script>
   <script type="module" src="../../components/count/count.js"></script>
+  <script type="module" src="../../components/stack/stack.js"></script>
+  <script type="module" src="../../components/menu-button/menu-button.js"></script>
+  <script type="module" src="../../components/section/section.js"></script>
   <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
 </head>
 <body>
@@ -31,7 +34,7 @@
           <govuk-app-segmented-control-item href="licence.html" selected>Licence</govuk-app-segmented-control-item>
         </govuk-app-segmented-control>
 
-        <govuk-app-grouped-list>
+        <govuk-app-grouped-list dividers="full">
           <govuk-app-grouped-list-row type="content" flush>
             <govuk-app-card-header tone="danger" tall>
               <govuk-app-heading level="2" size="title-1">Disqualified</govuk-app-heading>
@@ -46,9 +49,8 @@
           </govuk-app-grouped-list-row>
         </govuk-app-grouped-list>
 
-        <govuk-app-heading level="2" size="title-3">Driver record</govuk-app-heading>
-        <govuk-app-text size="subheadline" colour="secondary">There are 2 offences on your record.</govuk-app-text>
-        <govuk-app-grouped-list>
+        <govuk-app-section title="Driver record" description="There are 2 offences on your record.">
+          <govuk-app-grouped-list>
           <govuk-app-grouped-list-row type="content" flush>
             <govuk-app-summary-columns>
               <govuk-app-summary-column>
@@ -60,13 +62,16 @@
             </govuk-app-summary-columns>
           </govuk-app-grouped-list-row>
           <govuk-app-grouped-list-row name="driver-record-history">History</govuk-app-grouped-list-row>
-        </govuk-app-grouped-list>
+          </govuk-app-grouped-list>
+        </govuk-app-section>
 
-        <govuk-app-grouped-list title="Related">
+        <govuk-app-section title="Related">
+          <govuk-app-grouped-list>
           <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/driving-disqualifications">Driving disqualifications</govuk-app-grouped-list-row>
           <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/penalty-points-endorsements">Penalty points</govuk-app-grouped-list-row>
           <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/speeding-penalties">Speeding penalties</govuk-app-grouped-list-row>
-        </govuk-app-grouped-list>
+          </govuk-app-grouped-list>
+        </govuk-app-section>
 
         <govuk-app-tab-bar>
           <govuk-app-tab-bar-item icon="home" href="../home/index.html" selected>Home</govuk-app-tab-bar-item>

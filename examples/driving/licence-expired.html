@@ -18,6 +18,9 @@
   <script type="module" src="../../components/button/button.js"></script>
   <script type="module" src="../../components/summary-columns/summary-columns.js"></script>
   <script type="module" src="../../components/count/count.js"></script>
+  <script type="module" src="../../components/stack/stack.js"></script>
+  <script type="module" src="../../components/menu-button/menu-button.js"></script>
+  <script type="module" src="../../components/section/section.js"></script>
   <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
 </head>
 <body>
@@ -31,10 +34,16 @@
           <govuk-app-segmented-control-item href="licence.html" selected>Licence</govuk-app-segmented-control-item>
         </govuk-app-segmented-control>
 
-        <govuk-app-grouped-list>
+        <govuk-app-grouped-list dividers="full">
           <govuk-app-grouped-list-row type="content" flush>
             <govuk-app-card-header>
-              <govuk-app-text size="subheadline" emphasis>Expired 28 March 2026</govuk-app-text>
+              <govuk-app-stack direction="horizontal" distribute="between">
+                <govuk-app-text size="subheadline" emphasis>Expired 28 March 2026</govuk-app-text>
+                <govuk-app-menu-button name="licence-menu">
+                <govuk-app-menu-button-item href="https://www.gov.uk/change-address-driving-licence">Change address</govuk-app-menu-button-item>
+                <govuk-app-menu-button-item href="https://www.gov.uk/replacement-driving-licence">Replace licence</govuk-app-menu-button-item>
+              </govuk-app-menu-button>
+              </govuk-app-stack>
               <govuk-app-heading level="2" size="title-1">ARENO803236AA170</govuk-app-heading>
             </govuk-app-card-header>
           </govuk-app-grouped-list-row>
@@ -47,13 +56,12 @@
           </govuk-app-grouped-list-row>
           <govuk-app-grouped-list-row type="content">
             <govuk-app-button name="renew-licence">Renew licence</govuk-app-button>
-            <govuk-app-text size="footnote" colour="secondary" align="center">You must renew your licence before you can legally drive. Your status may not update immediately after renewal.</govuk-app-text>
+            <govuk-app-text size="subheadline" colour="secondary" align="center">You must renew your licence before you can legally drive. Your status may not update immediately after renewal.</govuk-app-text>
           </govuk-app-grouped-list-row>
         </govuk-app-grouped-list>
 
-        <govuk-app-heading level="2" size="title-3">Driver record</govuk-app-heading>
-        <govuk-app-text size="subheadline" colour="secondary">There are no offences on your record.</govuk-app-text>
-        <govuk-app-grouped-list>
+        <govuk-app-section title="Driver record" description="There are no offences on your record.">
+          <govuk-app-grouped-list>
           <govuk-app-grouped-list-row type="content" flush>
             <govuk-app-summary-columns>
               <govuk-app-summary-column>
@@ -65,7 +73,8 @@
             </govuk-app-summary-columns>
           </govuk-app-grouped-list-row>
           <govuk-app-grouped-list-row name="driver-record-history">History</govuk-app-grouped-list-row>
-        </govuk-app-grouped-list>
+          </govuk-app-grouped-list>
+        </govuk-app-section>
 
         <govuk-app-tab-bar>
           <govuk-app-tab-bar-item icon="home" href="../home/index.html" selected>Home</govuk-app-tab-bar-item>

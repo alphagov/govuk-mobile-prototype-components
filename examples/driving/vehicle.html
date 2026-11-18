@@ -18,6 +18,7 @@
   <script type="module" src="../../components/status/status.js"></script>
   <script type="module" src="../../components/button/button.js"></script>
   <script type="module" src="../../components/address/address.js"></script>
+  <script type="module" src="../../components/section/section.js"></script>
 </head>
 <body>
   <div class="example-phone">
@@ -27,53 +28,56 @@
           <govuk-app-nav-bar-item icon="more_horiz" name="vehicle-menu">More</govuk-app-nav-bar-item>
         </govuk-app-nav-bar>
 
-        <govuk-app-heading level="1" size="title-1">Lamborghini</govuk-app-heading>
+        <govuk-app-heading level="1" size="large-title">Lamborghini</govuk-app-heading>
         <govuk-app-text>Aventador LP 770-4 Super Veloce Jota 63 Edition Roadster</govuk-app-text>
 
         <govuk-app-banner type="warning" icon="warning" title="Stay insured" dismissible name="stay-insured">
           Driving without vehicle tax can invalidate your insurance
         </govuk-app-banner>
 
-        <govuk-app-heading level="2" size="title-3">Overview</govuk-app-heading>
-        <govuk-app-number-plate>LH09 PZ2</govuk-app-number-plate>
-        <govuk-app-grouped-list background="subtle">
-          <govuk-app-grouped-list-row type="content" flush>
-            <govuk-app-summary-columns>
-              <govuk-app-summary-column>
-                <govuk-app-labelled-icon icon="calendar_month" label="Year of manufacture: 2017">2017</govuk-app-labelled-icon>
-              </govuk-app-summary-column>
-              <govuk-app-summary-column>
-                <govuk-app-labelled-icon icon="local_gas_station" label="Fuel: Bi-fuel">Bi-fuel</govuk-app-labelled-icon>
-              </govuk-app-summary-column>
-              <govuk-app-summary-column>
-                <govuk-app-labelled-icon icon="palette" label="Colour: Red">Red</govuk-app-labelled-icon>
-              </govuk-app-summary-column>
-            </govuk-app-summary-columns>
-          </govuk-app-grouped-list-row>
-          <govuk-app-grouped-list-row name="tech-specs">Tech specs</govuk-app-grouped-list-row>
-        </govuk-app-grouped-list>
+        <govuk-app-section title="Overview">
+          <govuk-app-number-plate slot="accessory">LH09 PZ2</govuk-app-number-plate>
+          <govuk-app-grouped-list background="subtle">
+            <govuk-app-grouped-list-row type="content" flush>
+              <govuk-app-summary-columns>
+                <govuk-app-summary-column>
+                  <govuk-app-labelled-icon icon="calendar_month" label="Year of manufacture: 2017">2017</govuk-app-labelled-icon>
+                </govuk-app-summary-column>
+                <govuk-app-summary-column>
+                  <govuk-app-labelled-icon icon="local_gas_station" label="Fuel: Bi-fuel">Bi-fuel</govuk-app-labelled-icon>
+                </govuk-app-summary-column>
+                <govuk-app-summary-column>
+                  <govuk-app-labelled-icon icon="palette" label="Colour: Red">Red</govuk-app-labelled-icon>
+                </govuk-app-summary-column>
+              </govuk-app-summary-columns>
+            </govuk-app-grouped-list-row>
+            <govuk-app-grouped-list-row name="tech-specs">Tech specs</govuk-app-grouped-list-row>
+          </govuk-app-grouped-list>
+        </govuk-app-section>
 
-        <govuk-app-grouped-list title="Status" background="subtle">
-          <govuk-app-grouped-list-row type="content">
-            <govuk-app-status state="due" progress="0.6" label="Tax expiring" detail="12 May 2026" caption="18 days"></govuk-app-status>
-            <govuk-app-button name="renew-tax">Renew tax</govuk-app-button>
-            <govuk-app-text size="footnote" colour="secondary" align="center">It can take a couple of days after you’ve paid for your status to update</govuk-app-text>
-          </govuk-app-grouped-list-row>
-        </govuk-app-grouped-list>
+        <govuk-app-section title="Status">
+          <govuk-app-grouped-list background="subtle">
+            <govuk-app-grouped-list-row type="content">
+              <govuk-app-status state="due" progress="0.6" label="Tax expiring" detail="12 May 2026" caption="18 days"></govuk-app-status>
+              <govuk-app-button name="renew-tax">Renew tax</govuk-app-button>
+              <govuk-app-text size="subheadline" colour="secondary" align="center">It can take a couple of days after you’ve paid for your status to update</govuk-app-text>
+            </govuk-app-grouped-list-row>
+          </govuk-app-grouped-list>
+          <govuk-app-grouped-list background="subtle">
+            <govuk-app-grouped-list-row type="content">
+              <govuk-app-status label="MOT" caption="Valid until 18 Dec 2026"></govuk-app-status>
+            </govuk-app-grouped-list-row>
+            <govuk-app-grouped-list-row name="mot-history">History</govuk-app-grouped-list-row>
+          </govuk-app-grouped-list>
+        </govuk-app-section>
 
-        <govuk-app-grouped-list background="subtle">
-          <govuk-app-grouped-list-row type="content">
-            <govuk-app-status label="MOT" caption="Valid until 18 Dec 2026"></govuk-app-status>
-          </govuk-app-grouped-list-row>
-          <govuk-app-grouped-list-row name="mot-history">History</govuk-app-grouped-list-row>
-        </govuk-app-grouped-list>
-
-        <govuk-app-heading level="2" size="title-3">Registered to</govuk-app-heading>
-        <govuk-app-address name="Ms Anna Ornella Arenö">
-          29 Orchard Drive
-          Milton Keynes
-          PA98 J83
-        </govuk-app-address>
+        <govuk-app-section title="Registered to">
+          <govuk-app-address name="Ms Anna Ornella Arenö">
+            29 Orchard Drive
+            Milton Keynes
+            PA98 J83
+          </govuk-app-address>
+        </govuk-app-section>
       </govuk-app-screen>
     </govuk-app>
   </div>
