@@ -1,19 +1,6 @@
-import { defineComponent, materialSymbols } from '../../foundation/component.js'
+import { defineComponent } from '../../foundation/component.js'
 
-/** A value, an icon, or, with neither, its own content. */
-export function prepareColumn(data) {
-  const kind = data.value !== undefined ? 'value' : data.icon !== undefined ? 'icon' : 'content'
-  return {
-    ...data,
-    kind,
-    value: kind === 'value' ? data.value : undefined,
-    icon: kind === 'icon' ? data.icon : undefined,
-    label: kind === 'content' ? undefined : data.label,
-    custom: kind === 'content',
-  }
-}
-
-// Both elements share one stylesheet, and the icons' font.
+// Both elements share one stylesheet.
 const styles = new URL('./summary-columns.css', import.meta.url)
 
 await Promise.all([
@@ -26,8 +13,5 @@ await Promise.all([
     name: 'summary-column',
     template: new URL('./summary-column.html', import.meta.url),
     styles,
-    fonts: [materialSymbols],
-    attributes: ['value', 'icon', 'label'],
-    prepare: prepareColumn,
   }),
 ])

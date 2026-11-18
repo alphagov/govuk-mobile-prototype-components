@@ -1,7 +1,11 @@
-## Where it comes from
+## What goes in the columns
 
-The future driving designs in Figma, which we have only as a screenshot for now. Its sizes and spacing are read from that, so they’re approximate, and will be checked against the Figma file once we have it.
+Summary columns only lay out their columns: each holds a component of its own, which draws itself.
 
-## Icons
+- A [labelled icon](../labelled-icon/), as the app shows a vehicle’s year, fuel and colour.
+- A [count](../count/), proposed, as the future driving designs show a driver’s offences and points.
+- A [status](../status/), proposed, as the future driving designs show a vehicle’s tax and MOT.
 
-The designs’ icons are SF Symbols, which may only be used on Apple’s platforms, so it draws [Material Symbols](https://fonts.google.com/icons) instead. Give a column any symbol’s name as its `icon`. The closest to the designs’ are `calendar_month` for a year, `local_gas_station` for fuel and `format_color_fill` for colour.
+## Known differences from the app
+
+- When its columns don’t fit side by side, the app stacks them, one above another. These always stay side by side.

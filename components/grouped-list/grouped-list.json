@@ -195,7 +195,7 @@
     {
       "name": "The subtle background, on a white screen",
       "frame": "screen",
-      "html": "<govuk-app-screen background=\"modal\">\n  <govuk-app-grouped-list title=\"Overview\" background=\"subtle\">\n    <govuk-app-grouped-list-row type=\"content\" flush>\n      <govuk-app-summary-columns>\n        <govuk-app-summary-column icon=\"calendar_month\" label=\"2017\"></govuk-app-summary-column>\n        <govuk-app-summary-column icon=\"local_gas_station\" label=\"Bi-fuel\"></govuk-app-summary-column>\n        <govuk-app-summary-column icon=\"format_color_fill\" label=\"Red\"></govuk-app-summary-column>\n      </govuk-app-summary-columns>\n    </govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row name=\"tech-specs\">Tech specs</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n</govuk-app-screen>"
+      "html": "<govuk-app-screen background=\"modal\">\n  <govuk-app-grouped-list title=\"Overview\" background=\"subtle\">\n    <govuk-app-grouped-list-row type=\"content\" flush>\n      <govuk-app-summary-columns>\n        <govuk-app-summary-column>\n          <govuk-app-labelled-icon icon=\"calendar_month\">2017</govuk-app-labelled-icon>\n        </govuk-app-summary-column>\n        <govuk-app-summary-column>\n          <govuk-app-labelled-icon icon=\"local_gas_station\">Bi-fuel</govuk-app-labelled-icon>\n        </govuk-app-summary-column>\n        <govuk-app-summary-column>\n          <govuk-app-labelled-icon icon=\"palette\">Red</govuk-app-labelled-icon>\n        </govuk-app-summary-column>\n      </govuk-app-summary-columns>\n    </govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row name=\"tech-specs\">Tech specs</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n</govuk-app-screen>"
     }
   ]
 }

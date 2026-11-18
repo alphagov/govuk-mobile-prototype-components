@@ -1,15 +1,10 @@
-/* Summary columns, as the future driving designs show a vehicle's tax and
-   MOT, a driver's offences and points, and a vehicle's year, fuel and
-   colour (Figma, from a screenshot, so approximate): equal columns, their
-   content 16pt in from every side, with a divider between them in
-   strokes.listDivider.
+/* Summary columns, as the app's VehicleSpecView lays out a vehicle's year,
+   fuel and colour: equal columns, each holding its content 16pt in from
+   every side, centred top to bottom, with the system's separator between
+   them, one device pixel wide.
 
-   A value is Large Title, bold, over its label in Body; an icon is 28pt,
-   over its label in Body; both are centred. Anything else, such as a
-   status, starts at the column's left.
-
-   Icons are Material Symbols Rounded in place of SF Symbols, which may only
-   be used on Apple's platforms. */
+   It only lays them out: what's in each, such as a labelled icon, a count
+   or a status, draws itself, and says how it's aligned across. */
 
 .govuk-app-summary-columns {
   display: grid;
@@ -21,41 +16,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: var(--app-space-extra-small);
   height: 100%;
   padding: var(--app-space-medium);
 }
 
-.govuk-app-summary-column:is([data-kind="value"], [data-kind="icon"]) {
-  align-items: center;
-  text-align: center;
-}
-
-/* The divider before every column but the first. */
+/* The divider before every column but the first: a shadow, as a line this
+   thin is drawn a whole point wide. */
 govuk-app-summary-column + govuk-app-summary-column > .govuk-app-summary-column {
-  box-shadow: inset 1px 0 var(--app-border-list-divider);
-}
-
-.govuk-app-summary-column__value {
-  font-size: var(--app-font-large-title-size);
-  font-weight: var(--app-font-large-title-weight);
-  --leading: var(--app-font-large-title-leading);
-}
-
-.govuk-app-summary-column__label {
-  font-size: var(--app-font-body-size);
-  font-weight: var(--app-font-body-weight);
-  --leading: var(--app-font-body-leading);
-}
-
-.govuk-app-summary-column__icon {
-  font-family: "Material Symbols Rounded";
-  font-size: 28px;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  white-space: nowrap;
-  font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased;
+  box-shadow: inset 0.33px 0 var(--app-border-row);
 }

@@ -2,57 +2,59 @@
   "$schema": "../../component.schema.json",
   "name": "Summary columns",
   "element": "govuk-app-summary-columns",
-  "purpose": "Puts a few short facts side by side, in equal columns with a divider between them: two statuses, such as a vehicle's tax and MOT; counts, such as a driver's offences and points; or details with icons, such as a vehicle's year, fuel and colour.",
-  "proposed": {
-    "design": "a screenshot of the future driving designs in Figma, shared by Shaun in November 2026, until there’s a link to the file"
-  },
+  "purpose": "Lays out a few short facts side by side, in equal columns with a divider between them, so they can be taken in at a glance: a vehicle's year, fuel and colour, a driver's offences and points, or a vehicle's tax and MOT.",
   "origin": {
     "kind": "govuk",
-    "notes": "From the future driving designs in Figma, which we have only as a screenshot for now, so its sizes are approximate. The app today has nothing like it on iOS; Android draws a vehicle's year, fuel and colour with SpecificationsIcons."
+    "notes": "The app's VehicleSpecView lays out a vehicle's year, fuel and colour this way: equal columns, each padded 16pt, with the system's separator between them. It only lays them out: what goes in each column is a component of its own, such as a labelled icon. The counts and statuses the future driving designs put in columns are proposed components."
   },
   "inputs": {
     "attributes": {},
-    "content": "Two to four <govuk-app-summary-column> elements, left to right. Each takes a value and a label, for a count, such as value=\"0\" label=\"Offences\"; or an icon, the name of a Material Symbol, and a label, for a detail, such as icon=\"calendar_month\" label=\"2017\". Without either, it holds what's written between its tags, such as a <govuk-app-status>."
+    "content": "Two to four <govuk-app-summary-column> elements, left to right, each holding one component, such as a <govuk-app-labelled-icon>, a <govuk-app-count> or a <govuk-app-status>."
   },
   "outputs": {
     "events": []
   },
   "rules": [
-    "Use it for two to four facts of the same kind that are worth taking in at a glance. For more, or for longer ones, use a grouped list.",
-    "Keep each column to one kind: all counts, all details with icons, or all statuses.",
-    "Keep labels to a word or two, so they fit on a line in a narrow column.",
-    "Put it inside a card, such as a grouped list's section, with anything more about the facts, such as History, in a row below it."
+    "Use it for two to four facts of the same kind, worth taking in at a glance. For more, or for longer ones, use a grouped list.",
+    "Put the same kind of component in every column: all labelled icons, all counts, or all statuses.",
+    "Keep what's in each column short, so it fits in a narrow column.",
+    "Put it inside a card, such as a grouped list's content row with flush, with anything more about the facts, such as History, in a row below it."
   ],
   "sources": {
     "figma": [],
-    "ios": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/VehicleSpecView.swift",
+        "symbol": "VehicleSpecView, its horizontalView",
+        "ref": "8f1fe5da"
+      }
+    ],
     "android": [
       {
         "repo": "govuk-once/govuk-mobile-android-app",
         "path": "design/src/main/kotlin/uk/gov/govuk/design/ui/component/SpecificationsIcons.kt",
-        "symbol": "SpecificationsIcons, a vehicle's year, fuel and colour today",
+        "symbol": "SpecificationsIcons",
         "ref": "f50fcd71"
-      }
-    ],
-    "other": [
-      {
-        "title": "Material Symbols, the icons it draws",
-        "url": "https://fonts.google.com/icons"
       }
     ]
   },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-vehicle-spec-light.webp", "description": "A vehicle's year, fuel and colour, on its detail screen, in light mode", "from": "VehicleDetailViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-vehicle-spec-dark.webp", "description": "The same, in dark mode", "from": "VehicleDetailViewSnapshotTests at 8f1fe5da" }
+  ],
   "examples": [
     {
-      "name": "Two statuses",
+      "name": "Labelled icons, as a vehicle's year, fuel and colour",
+      "html": "<govuk-app-summary-columns>\n  <govuk-app-summary-column>\n    <govuk-app-labelled-icon icon=\"calendar_month\" label=\"Year of manufacture: 2021\">2021</govuk-app-labelled-icon>\n  </govuk-app-summary-column>\n  <govuk-app-summary-column>\n    <govuk-app-labelled-icon icon=\"local_gas_station\" label=\"Fuel: Petrol\">Petrol</govuk-app-labelled-icon>\n  </govuk-app-summary-column>\n  <govuk-app-summary-column>\n    <govuk-app-labelled-icon icon=\"palette\" label=\"Colour: Yellow\">Yellow</govuk-app-labelled-icon>\n  </govuk-app-summary-column>\n</govuk-app-summary-columns>"
+    },
+    {
+      "name": "Counts (proposed), as a driver's offences and points",
+      "html": "<govuk-app-summary-columns>\n  <govuk-app-summary-column>\n    <govuk-app-count value=\"2\">Offences</govuk-app-count>\n  </govuk-app-summary-column>\n  <govuk-app-summary-column>\n    <govuk-app-count value=\"12\">Points</govuk-app-count>\n  </govuk-app-summary-column>\n</govuk-app-summary-columns>"
+    },
+    {
+      "name": "Statuses (proposed), as a vehicle's tax and MOT",
       "html": "<govuk-app-summary-columns>\n  <govuk-app-summary-column>\n    <govuk-app-status label=\"Tax\" caption=\"Valid\"></govuk-app-status>\n  </govuk-app-summary-column>\n  <govuk-app-summary-column>\n    <govuk-app-status state=\"due\" progress=\"0.75\" label=\"MOT due\" caption=\"23 days\"></govuk-app-status>\n  </govuk-app-summary-column>\n</govuk-app-summary-columns>"
-    },
-    {
-      "name": "Counts",
-      "html": "<govuk-app-summary-columns>\n  <govuk-app-summary-column value=\"2\" label=\"Offences\"></govuk-app-summary-column>\n  <govuk-app-summary-column value=\"12\" label=\"Points\"></govuk-app-summary-column>\n</govuk-app-summary-columns>"
-    },
-    {
-      "name": "Details with icons",
-      "html": "<govuk-app-summary-columns>\n  <govuk-app-summary-column icon=\"calendar_month\" label=\"2017\"></govuk-app-summary-column>\n  <govuk-app-summary-column icon=\"local_gas_station\" label=\"Bi-fuel\"></govuk-app-summary-column>\n  <govuk-app-summary-column icon=\"format_color_fill\" label=\"Red\"></govuk-app-summary-column>\n</govuk-app-summary-columns>"
     }
   ]
 }
