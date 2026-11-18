@@ -1,4 +1,4 @@
-import { defineComponent } from '../../foundation/component.js'
+import { defineComponent, materialSymbols } from '../../foundation/component.js'
 
 /**
  * The back button is a link if it has a back-href, otherwise a button. The
@@ -55,7 +55,7 @@ document.addEventListener('scroll', () => {
   frame = requestAnimationFrame(update)
 }, { capture: true, passive: true })
 
-// Both elements share one stylesheet. It loads the icons' font.
+// Both elements share one stylesheet, and the icons' font.
 const styles = new URL('./nav-bar.css', import.meta.url)
 
 await Promise.all([
@@ -63,6 +63,7 @@ await Promise.all([
     name: 'nav-bar',
     template: new URL('./nav-bar.html', import.meta.url),
     styles,
+    fonts: [materialSymbols],
     attributes: ['title', 'large-title', 'back', 'back-href'],
     prepare: prepareBar,
   }),
@@ -70,6 +71,7 @@ await Promise.all([
     name: 'nav-bar-item',
     template: new URL('./nav-bar-item.html', import.meta.url),
     styles,
+    fonts: [materialSymbols],
     attributes: ['icon', 'href', 'name', 'value'],
     prepare: prepareItem,
   }),

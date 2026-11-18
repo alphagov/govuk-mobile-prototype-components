@@ -1,4 +1,4 @@
-import { defineComponent } from '../../foundation/component.js'
+import { defineComponent, materialSymbols } from '../../foundation/component.js'
 
 const types = ['navigation', 'link', 'information', 'detail', 'toggle', 'count', 'selectable']
 
@@ -42,7 +42,7 @@ export function prepareRow(data) {
   }
 }
 
-// Both elements share one stylesheet. It loads the icons' font.
+// Both elements share one stylesheet, and the icons' font.
 const styles = new URL('./grouped-list.css', import.meta.url)
 
 await Promise.all([
@@ -50,6 +50,7 @@ await Promise.all([
     name: 'grouped-list',
     template: new URL('./grouped-list.html', import.meta.url),
     styles,
+    fonts: [materialSymbols],
     attributes: ['title', 'level', 'action', 'href', 'name', 'value', 'footer'],
     prepare: prepareList,
   }),
@@ -57,6 +58,7 @@ await Promise.all([
     name: 'grouped-list-row',
     template: new URL('./grouped-list-row.html', import.meta.url),
     styles,
+    fonts: [materialSymbols],
     attributes: ['type', 'detail', 'description', 'icon', 'href', 'name', 'value', 'checked', 'unread', 'destructive'],
     prepare: prepareRow,
   }),

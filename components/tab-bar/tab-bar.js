@@ -1,4 +1,4 @@
-import { defineComponent } from '../../foundation/component.js'
+import { defineComponent, materialSymbols } from '../../foundation/component.js'
 
 /** A link if it has an href, otherwise a button. Selected is the current tab. */
 export function prepareItem(data) {
@@ -26,7 +26,7 @@ function select(event) {
 
 document.addEventListener('click', select)
 
-// Both elements share one stylesheet. It loads the tab icons' font.
+// Both elements share one stylesheet, and the icons' font.
 const styles = new URL('./tab-bar.css', import.meta.url)
 
 await Promise.all([
@@ -34,11 +34,13 @@ await Promise.all([
     name: 'tab-bar',
     template: new URL('./tab-bar.html', import.meta.url),
     styles,
+    fonts: [materialSymbols],
   }),
   defineComponent({
     name: 'tab-bar-item',
     template: new URL('./tab-bar-item.html', import.meta.url),
     styles,
+    fonts: [materialSymbols],
     attributes: ['icon', 'href', 'selected', 'name', 'value'],
     prepare: prepareItem,
   }),

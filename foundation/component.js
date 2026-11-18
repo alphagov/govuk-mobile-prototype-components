@@ -29,6 +29,13 @@
  * other. His data-each is not supported yet.
  */
 
+/**
+ * The icons' font: Material Symbols Rounded, filled, in place of SF Symbols,
+ * which may only be used on Apple's platforms. A component that draws icons
+ * names it in its fonts.
+ */
+export const materialSymbols = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0&display=block'
+
 const templates = new Map()
 const stylesheets = new Map()
 
@@ -60,6 +67,29 @@ function stylesheet(url) {
   return stylesheets.get(key)
 }
 
+const fontStylesheets = new Set()
+
+/**
+ * Adds a font's stylesheet to the page once, without waiting for it. It's
+ * fetched and added as a <style>, not a <link>: Chrome holds every
+ * stylesheet's load event until those added before it have loaded, so a font
+ * from another site, which can take a second or more, would hold back every
+ * component still loading. Google Fonts' stylesheets may be fetched from any
+ * site.
+ */
+function fontStylesheet(url) {
+  const key = String(url)
+  if (fontStylesheets.has(key)) return
+  fontStylesheets.add(key)
+  fetch(key)
+    .then(response => {
+      if (!response.ok) throw new Error(`${response.status}`)
+      return response.text()
+    })
+    .then(css => document.head.append(Object.assign(document.createElement('style'), { textContent: css })))
+    .catch(error => console.warn(`Could not load the font ${key}: ${error.message}`))
+}
+
 /** The <template> in the HTML file at `url`, fetched once. */
 function load(url) {
   const key = String(url)
@@ -88,17 +118,24 @@ function load(url) {
  *               one left off is undefined
  *   prepare     turns that data into what the template is filled in from:
  *               defaults, and anything worked out from more than one value
+ *   fonts       stylesheets of fonts it uses, such as materialSymbols, added
+ *               to the page but not waited for: a font from another site can
+ *               take a second or more, and the component would be drawn as
+ *               bare text until then. Text in the font shows once it loads,
+ *               and is hidden until then, if the font says so, as
+ *               materialSymbols does
  *
  * The element is defined once its template and styles have loaded, so it is
  * never drawn unstyled.
  */
-export async function defineComponent({ name, template, styles, attributes = [], prepare = data => data }) {
+export async function defineComponent({ name, template, styles, attributes = [], prepare = data => data, fonts = [] }) {
   const tag = `govuk-app-${name}`
   if (customElements.get(tag)) return
   const [source] = await Promise.all([
     load(template),
     ...[...foundation, ...(styles ? [styles] : [])].map(stylesheet),
   ])
+  for (const font of fonts) fontStylesheet(font)
   if (customElements.get(tag)) return
 
   elements.insertRule(`${tag} { display: contents; }`)
