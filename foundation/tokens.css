@@ -135,6 +135,7 @@ govuk-app {
   /* Number plates: the app's registrationPlate yellow (GOVUKColors+DVLA), in
      both modes, as a real plate is */
   --app-surface-number-plate: #ffc800;
+  --app-surface-number-plate-front: #ffffff;                  /* Color.white: VehicleCheckSectionView's blank plate */
   --app-text-number-plate: #000000;
   --app-surface-vehicle-search-plate: #ffffff;                /* Color.white: VehicleCheckSectionView's blank plate */
   --app-surface-vehicle-search-icon: #1d70b8;                 /* primaryBlue, in dark mode too: VehicleCheckSectionView's search icon */

@@ -1,7 +1,7 @@
 import { defineComponent } from '../../foundation/component.js'
 
 /**
- * Small unless it says large. What screen readers hear: "Number plate:", then
+ * Small unless it says large, and the rear plate unless it says front. What screen readers hear: "Number plate:", then
  * the registration spelled out, a character at a time, as the app's
  * speechSpellsOutCharacters does.
  */
@@ -11,6 +11,7 @@ export function prepare(data) {
   return {
     ...data,
     size: data.size === 'large' ? 'large' : 'small',
+    variant: data.variant === 'front' ? 'front' : 'rear',
     spoken: `Number plate: ${spelled}`,
   }
 }
@@ -19,6 +20,6 @@ await defineComponent({
   name: 'number-plate',
   template: new URL('./number-plate.html', import.meta.url),
   styles: new URL('./number-plate.css', import.meta.url),
-  attributes: ['size'],
+  attributes: ['size', 'variant'],
   prepare,
 })

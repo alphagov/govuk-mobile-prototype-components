@@ -40,3 +40,19 @@
   border-radius: 16px;
   font-size: var(--app-font-number-plate-large-size);
 }
+
+/* The front plate: white, with a black stroke 1.5pt wide centred on its edge,
+   8pt in from its sides and top and 5pt from its bottom, with 6pt corners,
+   as the app draws the blank ABC plate in VehicleCheckSectionView, the only
+   front plate it has. Its padding is the app's, off the grid. */
+.govuk-app-number-plate[data-variant="front"] {
+  padding: 8px 8px 5px;
+  border-radius: 6px;
+  background: var(--app-surface-number-plate-front);
+  box-shadow: 0 0 0 0.75px var(--app-text-number-plate), inset 0 0 0 0.75px var(--app-text-number-plate);
+}
+
+.govuk-app-number-plate[data-variant="front"][data-size="large"] {
+  padding: 20px 24px 10px;
+  border-radius: 16px;
+}
