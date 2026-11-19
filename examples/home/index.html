@@ -10,6 +10,7 @@
   <script type="module" src="../../components/home-header/home-header.js"></script>
   <script type="module" src="../../components/search-field/search-field.js"></script>
   <script type="module" src="../../components/grouped-list/grouped-list.js"></script>
+  <script type="module" src="../../components/segmented-control/segmented-control.js"></script>
   <script type="module" src="../../components/text/text.js"></script>
   <script type="module" src="../../components/button/button.js"></script>
   <script type="module" src="../../components/crown/crown.js"></script>
@@ -24,6 +25,10 @@
         </govuk-app-home-header>
 
         <govuk-app-grouped-list title="Topics" action="Edit" name="edit-topics">
+          <govuk-app-segmented-control slot="control" label="Topics">
+            <govuk-app-segmented-control-item name="topics" value="yours" selected>Your topics</govuk-app-segmented-control-item>
+            <govuk-app-segmented-control-item name="topics" value="all">All topics</govuk-app-segmented-control-item>
+          </govuk-app-segmented-control>
           <govuk-app-grouped-list-row type="topic" icon="currency_pound" name="topic" value="benefits">Benefits</govuk-app-grouped-list-row>
           <govuk-app-grouped-list-row type="topic" icon="directions_car" href="../driving/index.html">Driving</govuk-app-grouped-list-row>
           <govuk-app-grouped-list-row type="topic" icon="travel" name="topic" value="travel-abroad">Travel abroad</govuk-app-grouped-list-row>
@@ -34,9 +39,9 @@
         </govuk-app-grouped-list>
 
         <govuk-app-grouped-list title="Pages you’ve visited" action="See all" name="see-all-visited">
-          <govuk-app-grouped-list-row type="link" href="https://www.gov.uk/register-to-vote" description="Last visited on 6 October">Register to vote</govuk-app-grouped-list-row>
-          <govuk-app-grouped-list-row type="link" href="https://www.gov.uk/check-mot-history" description="Last visited on 14 August">Check the MOT history of a vehicle</govuk-app-grouped-list-row>
-          <govuk-app-grouped-list-row type="link" href="https://www.gov.uk/vehicle-tax" description="Last visited on 2 August">Tax your vehicle</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/register-to-vote" description="Last visited on 6 October">Register to vote</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/check-mot-history" description="Last visited on 14 August">Check the MOT history of a vehicle</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/vehicle-tax" description="Last visited on 2 August">Tax your vehicle</govuk-app-grouped-list-row>
         </govuk-app-grouped-list>
 
         <govuk-app-text align="center">Tell us what you think about the app</govuk-app-text>
@@ -51,5 +56,33 @@
       </govuk-app-screen>
     </govuk-app>
   </div>
+  <!-- All topics, shown in place of your topics when it's chosen, as the
+       app's Topics widget does. -->
+  <template id="all-topics">
+    <govuk-app-grouped-list-row type="topic" icon="currency_pound" name="topic" value="benefits">Benefits</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="business_center" name="topic" value="business">Business</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="volunteer_activism" name="topic" value="care">Care</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="directions_car" href="../driving/index.html">Driving</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="work" name="topic" value="employment">Employment</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="medical_services" name="topic" value="health-disability">Health and disability</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="account_balance" name="topic" value="money-tax">Money and tax</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="family_restroom" name="topic" value="parenting-guardianship">Parenting and guardianship</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="elderly" name="topic" value="retirement">Retirement</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="school" name="topic" value="studying-training">Studying and training</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="travel" name="topic" value="travel-abroad">Travel abroad</govuk-app-grouped-list-row>
+  </template>
+  <script type="module">
+    const list = document.querySelector('govuk-app-grouped-list[name="edit-topics"]')
+    const yours = [...list.querySelectorAll('govuk-app-grouped-list-row')]
+    const all = document.getElementById('all-topics')
+
+    // Before the segmented control draws its chosen segment again.
+    document.addEventListener('click', event => {
+      const item = event.target.closest?.('govuk-app-segmented-control-item[name="topics"]')
+      if (!item || !list.contains(item)) return
+      const rows = list.querySelectorAll('govuk-app-grouped-list-row')
+      rows[0].parentElement.replaceChildren(...(item.getAttribute('value') === 'all' ? all.content.cloneNode(true).children : yours))
+    }, true)
+  </script>
 </body>
 </html>

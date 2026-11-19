@@ -5,13 +5,24 @@ import '../toggle/toggle.js'
 const types = ['navigation', 'link', 'information', 'detail', 'toggle', 'count', 'selectable', 'topic', 'action', 'content']
 const backgrounds = ['subtle', 'accent']
 
-/** h2 unless it names another level; its action a link if it has an href. */
+/**
+ * h2 unless it names another level; its action a link if it has an href.
+ * Anything given slot="control" goes above its rows.
+ */
 export function prepareList(data) {
+  const control = []
+  const rows = []
+  for (const node of data.content) {
+    if (node.nodeType === Node.ELEMENT_NODE && node.getAttribute('slot') === 'control') control.push(node)
+    else rows.push(node)
+  }
   const number = Number(data.level)
   const level = Number.isInteger(number) && number >= 1 && number <= 6 ? number : 2
   const action = typeof data.action === 'string' && data.action !== ''
   return {
     ...data,
+    control,
+    rows,
     tag: `h${level}`,
     actionLink: action && data.href !== undefined,
     actionButton: action && data.href === undefined,

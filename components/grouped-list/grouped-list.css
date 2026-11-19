@@ -53,6 +53,18 @@
   background: var(--app-surface-list);
 }
 
+/* A control at the top of the card, such as the segmented control the app's
+   Topics widget has (TopicsWidgetView): 16pt in from the card's top and
+   sides, the rows straight after it, with no divider between. */
+.govuk-app-grouped-list__control {
+  padding: var(--app-space-medium) var(--app-space-medium) 0;
+}
+
+/* The rows, as if they were the card's own. */
+.govuk-app-grouped-list__list {
+  display: contents;
+}
+
 /* A card in another colour, as GroupedList's sectionBackgroundColor lets
    the app give it: subtle, for a card on a white screen, as the future
    driving designs' vehicle screen has; accent, for a card that's an action

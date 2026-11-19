@@ -1,6 +1,8 @@
 <!-- A section of a grouped list: its title, with an action beside it if it has
      one, then its rows, the <govuk-app-grouped-list-row> elements written
-     between its tags, on a rounded card, then its footer. -->
+     between its tags, on a rounded card, then its footer. Anything given
+     slot="control", such as a segmented control, goes at the top of the
+     card, above the rows. -->
 <template>
   <section class="govuk-app-grouped-list">
     <div class="govuk-app-grouped-list__header" data-if="title">
@@ -8,7 +10,10 @@
       <a class="govuk-app-grouped-list__action" data-if="actionLink" data-attr="href: href" data-text="action"></a>
       <button class="govuk-app-grouped-list__action" type="button" data-if="actionButton" data-attr="name: name, value: value" data-text="action"></button>
     </div>
-    <div class="govuk-app-grouped-list__rows" data-attr="data-background: background, data-dividers: dividers" data-slot="content"></div>
+    <div class="govuk-app-grouped-list__rows" data-attr="data-background: background, data-dividers: dividers">
+      <div class="govuk-app-grouped-list__control" data-if="control" data-slot="control"></div>
+      <div class="govuk-app-grouped-list__list" data-slot="rows"></div>
+    </div>
     <p class="govuk-app-grouped-list__footer govuk-app-text" data-if="footer" data-text="footer"></p>
   </section>
 </template>
