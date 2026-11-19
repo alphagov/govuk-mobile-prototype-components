@@ -1,0 +1,14 @@
+<!-- A search box on a card of its own, in a form of its own, which goes to
+     its action when the user presses its search button or Search on the
+     keyboard, with what they typed as its name (q, unless it says
+     otherwise). Anything given slot="accessory", such as a blank number
+     plate, sits inside it, after the text, as a hint of what to type. -->
+<template>
+  <form class="govuk-app-search-box" role="search" method="get" data-attr="action: action">
+    <input class="govuk-app-search-box__input" type="search" autocomplete="off" enterkeyhint="search" data-attr="name: name, value: value, placeholder: placeholder, aria-label: spoken">
+    <span class="govuk-app-search-box__accessory" aria-hidden="true" data-if="accessory" data-slot="accessory"></span>
+    <button class="govuk-app-search-box__submit" type="submit" aria-label="Search">
+      <span class="govuk-app-search-box__icon govuk-app-icon" aria-hidden="true">search</span>
+    </button>
+  </form>
+</template>

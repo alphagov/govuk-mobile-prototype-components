@@ -18,7 +18,7 @@
   <script type="module" src="../../components/stack/stack.js"></script>
   <script type="module" src="../../components/menu-button/menu-button.js"></script>
   <script type="module" src="../../components/section/section.js"></script>
-  <script type="module" src="../../components/vehicle-search/vehicle-search.js"></script>
+  <script type="module" src="../../components/search-box/search-box.js"></script>
   <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
 </head>
 <body>
@@ -89,7 +89,9 @@
         </govuk-app-grouped-list>
 
         <govuk-app-section title="Check a vehicle" description="View information for any vehicle">
-          <govuk-app-vehicle-search name="check-vehicle">Start</govuk-app-vehicle-search>
+          <govuk-app-search-box placeholder="Start" label="Registration number" name="registration" action="vehicle.html">
+            <govuk-app-number-plate slot="accessory" variant="front">ABC</govuk-app-number-plate>
+          </govuk-app-search-box>
         </govuk-app-section>
 
         <govuk-app-section title="Related">

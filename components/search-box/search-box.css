@@ -1,0 +1,99 @@
+/* Proposed, from the future driving designs: a search box drawn as the app
+   draws its vehicle search (VehicleCheckSectionView), on a card of its own
+   in fills.surfaceList with 10pt corners, 16pt in from its sides and 12pt
+   from its top and bottom, its parts 8pt apart. What's typed is in Body;
+   the placeholder in text.secondary, as iOS's are.
+
+   Its search button is SF's magnifyingglass, 15pt bold, white, on a 36pt
+   circle in primaryBlue, which stays blue in dark mode: Material's search,
+   at 22px, is as big. Its sizes are the app's, off the grid.
+
+   It shows it's being typed in by its caret, as iOS does, and an outline
+   round the whole card for the keyboard. */
+
+.govuk-app-search-box {
+  display: flex;
+  align-items: center;
+  gap: var(--app-space-small);
+  margin: 0;
+  padding: 12px var(--app-space-medium);
+  border-radius: 10px;
+  background: var(--app-surface-list);
+  cursor: text;
+}
+
+.govuk-app-search-box:has(.govuk-app-search-box__input:focus-visible) {
+  outline: var(--app-focus-width) solid var(--app-focus);
+}
+
+.govuk-app-search-box__input {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  appearance: none;
+  background: transparent;
+  color: var(--app-text-primary);
+  caret-color: var(--app-text-link);
+  font: inherit;
+  font-size: var(--app-font-body-size);
+  font-weight: var(--app-font-body-weight);
+  line-height: var(--app-font-body-leading);
+}
+
+.govuk-app-search-box__input:focus-visible {
+  outline: none;
+}
+
+.govuk-app-search-box__input::placeholder {
+  color: var(--app-text-secondary);
+  opacity: 1;
+}
+
+/* The browser's own clear button and decorations. */
+.govuk-app-search-box__input::-webkit-search-cancel-button,
+.govuk-app-search-box__input::-webkit-search-decoration {
+  appearance: none;
+}
+
+.govuk-app-search-box__accessory {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.govuk-app-search-box__submit {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--app-radius-capsule);
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.govuk-app-search-box__icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-surface-search-box-button);
+  color: #ffffff;
+  font-family: "Material Symbols Rounded";
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  font-variation-settings: "wght" 700;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+.govuk-app-search-box__submit:active .govuk-app-search-box__icon {
+  background-image: linear-gradient(var(--app-glass-pressed), var(--app-glass-pressed));
+}

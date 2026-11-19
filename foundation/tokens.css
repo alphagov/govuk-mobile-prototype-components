@@ -137,8 +137,7 @@ govuk-app {
   --app-surface-number-plate: #ffc800;
   --app-surface-number-plate-front: #ffffff;                  /* Color.white: VehicleCheckSectionView's blank plate */
   --app-text-number-plate: #000000;
-  --app-surface-vehicle-search-plate: #ffffff;                /* Color.white: VehicleCheckSectionView's blank plate */
-  --app-surface-vehicle-search-icon: #1d70b8;                 /* primaryBlue, in dark mode too: VehicleCheckSectionView's search icon */
+  --app-surface-search-box-button: #1d70b8;                   /* primaryBlue, in dark mode too: VehicleCheckSectionView's search icon */
 
   /* Banners: EmergencyBannerWidgetViewModel's fills and strokes, and the
      designs' proposed warning */
