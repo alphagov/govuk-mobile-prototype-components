@@ -52,10 +52,9 @@ Much of it is proposed, not in the app yet: the status, count, card header, stro
 
 The Settings tab, using the app’s own wording. Its Home tab opens the Home example. From it you can open Face ID and Your app data, which have back buttons, and sign out, through the sign-out confirmation.
 
-The sign-out confirmation slides up as a sheet, with Settings set back behind it. It uses the screen, sheet, navigation bar, grouped list, tab bar, heading, text, button and button stack. Its source is in `examples/settings/` in the repository.
+The sign-out confirmation slides up as a sheet, with Settings set back behind it. It uses the screen, sheet, navigation bar, grouped list, tab bar, heading, text, bulleted list, button and button stack. Its source is in `examples/settings/` in the repository.
 
 ### What’s missing
 
 - **Your GOV.UK One Login’s image.** The grouped list can’t draw images on rows yet.
-- **Your app data’s bulleted list.** The library has no bulleted list yet, so its two bullets are written as text.
 - **Rows that go nowhere.** Your accounts, Messages, Notifications and Open source licences have no screens of their own here.

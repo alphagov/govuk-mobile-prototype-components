@@ -1,0 +1,46 @@
+/* The app's BulletView: each point in Body, text.primary, after a bullet,
+   the whole list 10pt in from the edge, as the app pads it, off the grid.
+
+   Regular spacing, as on the screen asking to share statistics, puts the
+   text 16pt after the bullet and the points 8pt apart. Compact, as on Your
+   app data, 8pt and 4pt.
+
+   The app's bullet is the character •, in Body, heavy: a dot 5pt across,
+   centred on the first line's lower-case letters. It's drawn as a dot here,
+   since the character's size and place differ from font to font. */
+
+.govuk-app-bulleted-list {
+  --govuk-app-bulleted-list-gap: var(--app-space-medium);
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-small);
+  margin: 0;
+  /* 10pt, then the bullet's 8pt advance, then the gap. */
+  padding: 0 0 0 calc(18px + var(--govuk-app-bulleted-list-gap));
+  color: var(--app-text-primary);
+  font-size: var(--app-font-body-size);
+  font-weight: var(--app-font-body-weight);
+  line-height: var(--app-font-body-leading);
+  list-style: none;
+}
+
+.govuk-app-bulleted-list[data-spacing="compact"] {
+  --govuk-app-bulleted-list-gap: var(--app-space-small);
+  gap: var(--app-space-extra-small);
+}
+
+.govuk-app-bulleted-list__item {
+  position: relative;
+}
+
+.govuk-app-bulleted-list__item::before {
+  content: "";
+  position: absolute;
+  /* The dot sits 1pt into the character's 8pt advance, 11pt from the edge. */
+  left: calc(-7px - var(--govuk-app-bulleted-list-gap));
+  top: calc(var(--app-font-body-leading) / 2 - 1.5px);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
