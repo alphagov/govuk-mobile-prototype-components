@@ -27,6 +27,7 @@ The app’s colours and type exist only inside `<govuk-app>`.
 
 - `colour-scheme="light"` or `"dark"` fixes the scheme. Otherwise it follows the device.
 - Its size and position are the page’s to set.
+- `highlight-actions` shows what can be tapped when a tap goes nowhere. See [show what works](#show-what-works).
 
 Prototype pages shouldn’t style anything inside `<govuk-app>`. If a page loads stylesheets of its own, such as GOV.UK Frontend, load them into a cascade layer, so none of their styles reach the components:
 
@@ -50,6 +51,18 @@ document.addEventListener('click', event => {
   if (button) console.log(button.name, button.value)
 })
 ```
+
+## Show what works
+
+A prototype only works where you’ve made it work. Add `highlight-actions` to the root, and a tap that goes nowhere rings everything that can be tapped for a moment, so whoever is trying the prototype can find what does:
+
+```html
+<govuk-app highlight-actions>
+```
+
+A tap goes nowhere if, within a third of a second, the page doesn’t leave or change, and no menu opens. Tapping text, or a button the page doesn’t listen for, goes nowhere. Links, fields and switches always do something of their own. A button found to go nowhere isn’t ringed after that.
+
+So a button’s listener should go somewhere or change the page. One that only logs to the console counts as going nowhere.
 
 ## Serve the page
 
