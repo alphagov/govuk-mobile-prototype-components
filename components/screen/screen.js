@@ -18,6 +18,12 @@ export function prepare(data) {
     else if (tag && node.getAttribute('slot') === 'footer') parts.footer.push(node)
     else parts.body.push(node)
   }
+  // With a footer too, such as GOV.UK Chat's field, the tab bar goes below
+  // it, out of what scrolls, as iOS sets the chat's field above the tab bar.
+  if (parts.footer.length && parts.tabs.length) {
+    parts.footer.push(...parts.tabs)
+    parts.tabs = []
+  }
   return {
     ...data,
     ...parts,
