@@ -47,6 +47,24 @@ Much of it is proposed, not in the app yet: the status, count, card header, stro
 - **The plate’s size on a vehicle’s card.** The designs’ plate is a little larger than the app’s, and further from the vehicle’s name.
 - **Screens that go nowhere.** The Volvo’s details, Tech specs, MOT history, the driver record’s History, Add vehicle and Renew have no screens here.
 
+## Chat
+
+[Open the Chat example](/examples/chat/)
+
+Proposed changes to GOV.UK Chat, from a researcher’s mockups, as props for research sessions. Chat opens with its example questions, and each starts one of two conversations:
+
+- [Using saved info](/examples/chat/universal-credit.html): Chat asks to use details the app has saved, and the user chooses which. Each detail’s info button says where the app got it. What would they choose, and what would they need to know to decide?
+- [Remembering what you tell it](/examples/chat/register-to-vote.html): Chat asks for an address, and the app picks up whatever is typed, to use again. Sending nothing sends the mockup’s address. Its link opens everything the app has picked up from chats, as a sheet, where each thing can be removed. How does it feel, and what controls would they expect?
+
+Its chat components are the example’s own, not the library’s: the question, answer, example questions and text box are GOV.UK Chat’s, from the iOS app, and the saved details and the note of what was picked up are proposed. They’re drawn the same way as the library’s, so any could join it later. It also uses the screen, sheet, navigation bar, grouped list and text. Its source is in `examples/chat/` in the repository.
+
+### What’s missing
+
+- **Answering anything else.** Chat only answers what each conversation was written for. Anything else it says it can’t answer.
+- **The rest of an answer.** Answers have no GOV.UK pages they were drawn from, no warning that Chat can make mistakes, and no feedback buttons.
+- **Chat’s menu.** The text box has no menu button beside it, and doesn’t grow as more is typed.
+- **Keeping what was removed.** The info picked up from chats is all back each time it opens.
+
 ## Settings
 
 [Open the Settings example](/examples/settings/)

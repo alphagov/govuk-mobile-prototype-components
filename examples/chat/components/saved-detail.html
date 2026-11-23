@@ -1,0 +1,22 @@
+<!-- Proposed: one saved detail, with what it is above its value, a button
+     that shows where the app got it from, and a checkbox, drawn as a button,
+     to use it or not. -->
+<template>
+  <div class="govuk-app-chat-saved-detail">
+    <div class="govuk-app-chat-saved-detail__line">
+      <div class="govuk-app-chat-saved-detail__text">
+        <p class="govuk-app-chat-saved-detail__label govuk-app-text" data-text="label"></p>
+        <p class="govuk-app-chat-saved-detail__value govuk-app-text" data-slot="content"></p>
+      </div>
+      <button class="govuk-app-chat-saved-detail__about" type="button" data-works aria-expanded="false" data-attr="aria-label: aboutLabel">
+        <span class="govuk-app-chat-saved-detail__icon govuk-app-icon" aria-hidden="true">info</span>
+      </button>
+      <label class="govuk-app-chat-saved-detail__use">
+        <input class="govuk-app-chat-saved-detail__checkbox" type="checkbox" name="use" data-attr="value: name, checked: checked, aria-label: useLabel">
+        <span class="govuk-app-chat-saved-detail__off" aria-hidden="true">Use</span>
+        <span class="govuk-app-chat-saved-detail__on" aria-hidden="true"><span class="govuk-app-chat-saved-detail__tick govuk-app-icon">check</span>Using</span>
+      </label>
+    </div>
+    <p class="govuk-app-chat-saved-detail__source govuk-app-text" hidden data-text="source"></p>
+  </div>
+</template>

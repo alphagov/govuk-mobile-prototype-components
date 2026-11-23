@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Register to vote – Chat – GOV.UK app example</title>
+  <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../example.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module">
+    // Research prop: how does it feel when the app remembers something from
+    // a chat, to use again? Chat asks for an address, and whatever is typed
+    // is what the app picks up. Sending nothing sends the mockup's address.
+    //
+    // Coming back from the info the app has picked up (#saved), the
+    // conversation is as it was left, without waiting for Chat.
+    import { ask, reply, onQuestion } from './components/chat.js'
+
+    const key = 'govuk-app-chat-example-address'
+    const fallback = '6 Market Street, Saxford, SX1 1CD'
+    const remembered = () => { try { return sessionStorage.getItem(key) } catch { return null } }
+
+    /** The address, then what the app picked up from it, then the answer. */
+    async function answer(address, options) {
+      ask(address)
+      const note = document.querySelector('#remembered').content.cloneNode(true)
+      note.querySelector('[data-address]').textContent = address
+      await reply([note.firstElementChild, document.querySelector('#answer')], options)
+    }
+
+    let asked = false
+    onQuestion(async question => {
+      if (asked) {
+        if (!question) return
+        ask(question)
+        return reply(['This is a prototype, so I can only answer the questions it was written for.'])
+      }
+      asked = true
+      const address = question || fallback
+      try { sessionStorage.setItem(key, address) } catch {}
+      await answer(address)
+    })
+
+    if (location.hash === '#saved') {
+      asked = true
+      await answer(remembered() ?? fallback, { instantly: true })
+    }
+  </script>
+</head>
+<body>
+  <div class="example-phone">
+    <govuk-app highlight-actions>
+      <govuk-app-screen>
+        <govuk-app-nav-bar title="GOV.UK Chat" back-href="index.html"></govuk-app-nav-bar>
+
+        <govuk-app-chat-conversation>
+          <govuk-app-chat-question>I just moved house and want to register to vote</govuk-app-chat-question>
+          <govuk-app-chat-answer>
+            <govuk-app-text>What’s your address?</govuk-app-text>
+          </govuk-app-chat-answer>
+        </govuk-app-chat-conversation>
+
+        <!-- What Chat shows once it has the address. -->
+        <template id="remembered">
+          <govuk-app-chat-remembered href="info-from-chats.html">You live at <span data-address></span></govuk-app-chat-remembered>
+        </template>
+        <template id="answer">
+          <govuk-app-chat-answer>
+            <govuk-app-text>You can register to vote online. It takes about 5 minutes.</govuk-app-text>
+            <govuk-app-text>You’ll need your National Insurance number. You’ll be asked for your new address, and the address you lived at before you moved.</govuk-app-text>
+          </govuk-app-chat-answer>
+        </template>
+
+        <govuk-app-chat-input slot="footer" placeholder="Ask a question..."></govuk-app-chat-input>
+      </govuk-app-screen>
+    </govuk-app>
+  </div>
+</body>
+</html>

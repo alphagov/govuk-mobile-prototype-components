@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Universal Credit – Chat – GOV.UK app example</title>
+  <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../example.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module">
+    // Research prop: which saved details would someone let Chat use, and
+    // what would they need to know to decide? Chat asks once the page has
+    // loaded, and answers with what they chose.
+    import { ask, reply } from './components/chat.js'
+
+    await reply([
+      'I can calculate the amount you’re entitled to.',
+      'Can I use the info you’ve previously saved in the app?',
+      document.querySelector('#saved-details'),
+    ])
+
+    /** "a, b and c" */
+    const list = items => items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`
+
+    document.addEventListener('submit', async event => {
+      const form = event.target.closest('.govuk-app-chat-saved-details')
+      if (!form) return
+      event.preventDefault()
+      form.inert = true
+      const used = new FormData(form).getAll('use')
+      if (used.length) {
+        ask(`Use my ${list(used)}`)
+        await reply([`Thanks. I’ll use your ${list(used)} to work out how your Universal Credit could change once your partner moves out.`, 'When do you think they’ll move out? If you’re not sure yet, tell me roughly when.'])
+      } else {
+        ask('Don’t use my saved info')
+        await reply(['That’s fine. I’ll ask you for what I need as we go.', 'First, how much do you earn a year, before tax?'])
+      }
+    })
+  </script>
+</head>
+<body>
+  <div class="example-phone">
+    <govuk-app highlight-actions>
+      <govuk-app-screen>
+        <govuk-app-nav-bar title="GOV.UK Chat" back-href="index.html"></govuk-app-nav-bar>
+
+        <govuk-app-chat-conversation>
+          <govuk-app-chat-question>I broke up with my partner who will be moving out but not sure when yet</govuk-app-chat-question>
+          <govuk-app-chat-question>How will this change my Universal Credit?</govuk-app-chat-question>
+        </govuk-app-chat-conversation>
+
+        <!-- What Chat shows once it has answered. Each detail's name is what
+             the reply calls it. -->
+        <template id="saved-details">
+          <govuk-app-chat-saved-details action="Continue">
+            <govuk-app-chat-saved-detail label="Name" name="name" source="From your GOV.UK One Login">Priya Shah</govuk-app-chat-saved-detail>
+            <govuk-app-chat-saved-detail label="Date of birth" name="date of birth" source="From your GOV.UK One Login">8 March 1993</govuk-app-chat-saved-detail>
+            <govuk-app-chat-saved-detail label="Your income" name="income" source="You told Chat on 2 October 2026">£6,238 per year</govuk-app-chat-saved-detail>
+            <govuk-app-chat-saved-detail label="Monthly rent" name="monthly rent" source="You told Chat on 2 October 2026">£730</govuk-app-chat-saved-detail>
+            <govuk-app-chat-saved-detail label="You have a disability and get" name="disability benefit" source="You told Chat on 14 August 2026">£76.70 per week</govuk-app-chat-saved-detail>
+          </govuk-app-chat-saved-details>
+        </template>
+
+        <govuk-app-chat-input slot="footer" placeholder="Ask a question..."></govuk-app-chat-input>
+      </govuk-app-screen>
+    </govuk-app>
+  </div>
+</body>
+</html>
