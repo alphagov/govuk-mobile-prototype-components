@@ -1,0 +1,68 @@
+/* GOV.UK Chat while it's busy (ChatCellView's sendingView and
+   pendingAnswerView): no bubble, just text.
+
+   Sending is Subheadline at the right, where the question will be.
+   Generating is Body, 8pt after the app's 32pt animation. */
+
+.govuk-app-chat-loading {
+  display: flex;
+  align-items: center;
+  gap: var(--app-space-small);
+  color: var(--app-text-primary);
+  font-size: var(--app-font-body-size);
+  font-weight: var(--app-font-body-weight);
+  line-height: var(--app-font-body-leading);
+}
+
+.govuk-app-chat-loading[data-stage="sending"] {
+  justify-content: flex-end;
+  font-size: var(--app-font-subheadline-size);
+  font-weight: var(--app-font-subheadline-weight);
+  line-height: var(--app-font-subheadline-leading);
+  text-align: end;
+}
+
+/* The app's animation is a Lottie file (chat_loading_message_light.json and
+   _dark): a pink circle and a blue one, passing back and forth through each
+   other on a slant, blended where they cross, every 2.67 seconds (100
+   frames at 25 a second, played at 1.5 times). This draws its like. */
+.govuk-app-chat-loading__mark {
+  position: relative;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.govuk-app-chat-loading__circle {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--app-chat-loading-one);
+  mix-blend-mode: var(--app-chat-loading-blend);
+  animation: govuk-app-chat-loading-one 2.67s ease-in-out infinite;
+}
+
+.govuk-app-chat-loading__circle + .govuk-app-chat-loading__circle {
+  background: var(--app-chat-loading-two);
+  animation-name: govuk-app-chat-loading-two;
+}
+
+@keyframes govuk-app-chat-loading-one {
+  0%, 100% { transform: translate(-5px, 4px); }
+  50% { transform: translate(5px, -4px); }
+}
+
+@keyframes govuk-app-chat-loading-two {
+  0%, 100% { transform: translate(5px, -4px); }
+  50% { transform: translate(-5px, 4px); }
+}
+
+/* The app shows the animation still when the user asks for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  .govuk-app-chat-loading__circle {
+    animation: none;
+  }
+}
