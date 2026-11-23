@@ -1,20 +1,28 @@
 /**
- * Rings everything that can be tapped, for a moment, when a tap goes nowhere,
- * inside a <govuk-app highlight-actions>. A prototype only works where
- * someone has made it work, so this shows whoever is trying one what does.
- * The app has nothing like it: it's for prototypes. base.css draws the ring.
+ * Rings what works, for a moment, when a tap goes nowhere, inside a
+ * <govuk-app highlight-actions>. A prototype only works where someone has
+ * made it work, so this shows whoever is trying one what does. The app has
+ * nothing like it: it's for prototypes. base.css draws the ring.
+ *
+ * What works:
+ *   - a link, a field, a switch, a form's own button, or a button that opens
+ *     a popover: the browser does something with each, whatever the page does
+ *   - a button its component acts on, such as a segmented control's segment,
+ *     which its template marks with data-works
+ *   - a button the page listens for, whose component the page marks with
+ *     `works`, as <govuk-app-button name="sign-out" works>
+ *
+ * Any other button goes nowhere until the page says it works: there's no
+ * asking whether anything is listening for it.
  *
  * A tap goes nowhere if nothing happens after it: the page doesn't leave or
- * change, and no menu or dialog opens. A component's button does nothing
- * until the page listens for it, and there's no asking whether anything is
- * listening, so this waits a moment after each tap and looks. A link, a
- * field or a form's own button always does something, of the browser's own.
- *
- * A button found to go nowhere isn't ringed after that, as it doesn't work.
+ * change, and no menu or dialog opens. So this waits a moment after each tap
+ * and looks, which catches a button marked as working that doesn't, and one
+ * the page listens for without saying so.
  */
 
 /** What can be tapped. A link to "#" is a placeholder, so goes nowhere. */
-const actions = [
+const tappable = [
   'a[href]:not([href="#"])',
   'button:enabled',
   'label:has(input:enabled, select:enabled, textarea:enabled)',
@@ -30,8 +38,6 @@ const attribute = 'data-govuk-app-highlight'
 
 /** How long a tap has to do something, in milliseconds. */
 const wait = 300
-
-const dead = new WeakSet()
 
 let changed = -Infinity
 let pressed = -Infinity
@@ -62,18 +68,32 @@ function watch() {
   })
 }
 
-/** Whether the browser does something when `action` is tapped, whatever the page does. */
-function native(action) {
-  if (action.localName === 'button') return action.type !== 'button' && action.form !== null
-  return action.localName !== 'summary' && !action.hasAttribute('tabindex')
+/** Whether the browser does something when `element` is tapped, whatever the page does. */
+function native(element) {
+  if (element.localName === 'button') {
+    return (element.type !== 'button' && element.form !== null) || element.hasAttribute('popovertarget') || element.hasAttribute('commandfor')
+  }
+  return element.localName !== 'summary' && !element.hasAttribute('tabindex')
+}
+
+/** The component that drew `element`: the nearest govuk-app-NAME around it. */
+function component(element) {
+  for (let parent = element.parentElement; parent; parent = parent.parentElement) {
+    if (parent.localName.startsWith('govuk-app-')) return parent
+  }
+  return null
+}
+
+function works(element) {
+  return native(element) || element.hasAttribute('data-works') || Boolean(component(element)?.hasAttribute('works'))
 }
 
 function highlight(app) {
   for (const element of app.querySelectorAll(`[${attribute}]`)) element.removeAttribute(attribute)
   // Draws the page without the rings, so any still fading start again.
   app.offsetWidth
-  for (const element of app.querySelectorAll(actions)) {
-    if (dead.has(element) || element.closest('[inert]') || !element.checkVisibility({ visibilityProperty: true })) continue
+  for (const element of app.querySelectorAll(tappable)) {
+    if (!works(element) || element.closest('[inert]') || !element.checkVisibility({ visibilityProperty: true })) continue
     element.setAttribute(attribute, '')
   }
 }
@@ -89,19 +109,14 @@ for (const type of ['pointerdown', 'keydown']) {
 document.addEventListener('click', event => {
   const app = event.target.closest?.(root)
   if (!app || !event.isTrusted) return
-  const action = event.target.closest(actions) ?? event.target.closest('label')
+  const action = event.target.closest(tappable) ?? event.target.closest('label')
   if (action && native(action)) return
   watch()
   // From the press, so a menu that closes as the tap begins counts. A click
   // with no press before it, from assistive technology, from now.
   const since = event.timeStamp - pressed < 2000 ? pressed : event.timeStamp
   setTimeout(() => {
-    if (changed >= since) {
-      if (action) dead.delete(action)
-      return
-    }
-    if (action) dead.add(action)
-    highlight(app)
+    if (changed < since) highlight(app)
   }, wait)
 })
 

@@ -39,7 +39,7 @@ govuk-app {
   --app-radio-selected: light-dark(#11875a, #66f39e);
   --app-radio-unselected: light-dark(#808080, #b2b2b2);
   --app-focus: light-dark(#ffdd00, #ffdd00);
-  --app-highlight: light-dark(#1d70b8, #11e0f1);            /* the library's own, for highlight-actions: text.link, and text.linkSecondary in dark */
+  --app-highlight: #ffdd00;                                 /* the library's own, for highlight-actions: GOV.UK's focus yellow, which stands out on every surface */
   --app-illustration-mark: light-dark(#1d70b8, #1d70b8);
   --app-illustration-shadow: light-dark(#8eb8dc, #11e0f1);
 

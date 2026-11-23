@@ -54,15 +54,22 @@ document.addEventListener('click', event => {
 
 ## Show what works
 
-A prototype only works where you’ve made it work. Add `highlight-actions` to the root, and a tap that goes nowhere rings everything that can be tapped for a moment, so whoever is trying the prototype can find what does:
+A prototype only works where you’ve made it work. Add `highlight-actions` to the root, and a tap that goes nowhere rings everything that works for a moment, so whoever is trying the prototype can find it:
 
 ```html
 <govuk-app highlight-actions>
 ```
 
-A tap goes nowhere if, within a third of a second, the page doesn’t leave or change, and no menu opens. Tapping text, or a button the page doesn’t listen for, goes nowhere. Links, fields and switches always do something of their own. A button found to go nowhere isn’t ringed after that.
+Links, fields and switches work. So do buttons a component acts on itself, such as a segmented control’s segments. A button only does something when your page listens for it, so say which ones do: add `works` to the component.
 
-So a button’s listener should go somewhere or change the page. One that only logs to the console counts as going nowhere.
+```html
+<govuk-app-button name="sign-out" works>Sign out</govuk-app-button>
+<govuk-app-grouped-list-row name="licences" works>Open source licences</govuk-app-grouped-list-row>
+```
+
+On a grouped list or section heading, `works` is for its action, such as Edit.
+
+A tap goes nowhere if, within a third of a second, the page doesn’t leave or change, and no menu opens: tapping text, or a button no one listens for. So a button’s listener should go somewhere or change the page. One that only logs to the console counts as going nowhere.
 
 ## Serve the page
 
