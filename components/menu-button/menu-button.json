@@ -17,9 +17,18 @@
       "name": {
         "type": "string",
         "description": "The button's name, to tell it apart when it's pressed."
+      },
+      "variant": {
+        "type": "enum",
+        "values": [
+          "card",
+          "chat"
+        ],
+        "default": "card",
+        "description": "card: a filled circle with its dots cut out, in link blue, as on a vehicle's or a licence's card. chat: three blue dots on a white circle, as beside GOV.UK Chat's field. The chat input draws its own."
       }
     },
-    "content": "Its menu's items, <govuk-app-menu-button-item> elements, top to bottom. Each is a link, with an href, or a button, with a name and value. Its label is what's written between its tags."
+    "content": "Its menu's items, <govuk-app-menu-button-item> elements, top to bottom. Each is a link, with an href, or a button, with a name and value. Its label is what's written between its tags. Give it destructive to draw it in red, for one that deletes something, such as Clear chat, and icon to draw a Material Symbol at its end, such as delete."
   },
   "outputs": {
     "events": [
@@ -49,6 +58,12 @@
         "path": "Production/govuk_ios/Views/DVLA/DrivingLicenceSummaryView.swift",
         "symbol": "its Menu",
         "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Chat/ChatMenuView.swift",
+        "symbol": "ChatMenuView",
+        "ref": "fc2b3b1d"
       }
     ],
     "android": [],
@@ -60,13 +75,28 @@
     ]
   },
   "references": [
-    { "platform": "ios", "image": "reference/ios-vehicle-card-light.webp", "description": "On a vehicle's card, beside its number plate, in light mode", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" },
-    { "platform": "ios", "image": "reference/ios-vehicle-card-dark.webp", "description": "The same, in dark mode", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" }
+    {
+      "platform": "ios",
+      "image": "reference/ios-vehicle-card-light.webp",
+      "description": "On a vehicle's card, beside its number plate, in light mode",
+      "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da"
+    },
+    {
+      "platform": "ios",
+      "image": "reference/ios-vehicle-card-dark.webp",
+      "description": "The same, in dark mode",
+      "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da"
+    }
   ],
   "examples": [
     {
       "name": "A vehicle's menu",
       "html": "<govuk-app-menu-button name=\"vehicle-menu\">\n  <govuk-app-menu-button-item href=\"https://www.gov.uk/vehicle-tax\">Tax this vehicle</govuk-app-menu-button-item>\n  <govuk-app-menu-button-item href=\"https://www.gov.uk/getting-an-mot\">Book an MOT</govuk-app-menu-button-item>\n  <govuk-app-menu-button-item name=\"remove-vehicle\">Remove vehicle</govuk-app-menu-button-item>\n</govuk-app-menu-button>"
+    },
+    {
+      "name": "GOV.UK Chat's menu",
+      "frame": "page",
+      "html": "<govuk-app-menu-button variant=\"chat\" name=\"chat-menu\">\n  <govuk-app-menu-button-item name=\"clear-chat\" destructive icon=\"delete\">Clear chat</govuk-app-menu-button-item>\n  <govuk-app-menu-button-item name=\"privacy\">Privacy notice</govuk-app-menu-button-item>\n  <govuk-app-menu-button-item name=\"about\">About</govuk-app-menu-button-item>\n  <govuk-app-menu-button-item name=\"feedback\">Give feedback</govuk-app-menu-button-item>\n</govuk-app-menu-button>"
     }
   ]
 }

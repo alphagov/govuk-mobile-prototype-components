@@ -1,10 +1,17 @@
-import { defineComponent } from '../../foundation/component.js'
+import { defineComponent, materialSymbols } from '../../foundation/component.js'
 
 let count = 0
 
+const variants = ['card', 'chat']
+
 /** Its menu's id, so its button can open it, and its name for screen readers. */
 export function prepareButton(data) {
-  return { ...data, id: `govuk-app-menu-${++count}`, label: data.label || 'More options' }
+  return {
+    ...data,
+    id: `govuk-app-menu-${++count}`,
+    label: data.label || 'More options',
+    variant: variants.includes(data.variant) ? data.variant : 'card',
+  }
 }
 
 /** A link if it has an href, otherwise a button. */
@@ -56,14 +63,15 @@ await Promise.all([
     name: 'menu-button',
     template: new URL('./menu-button.html', import.meta.url),
     styles,
-    attributes: ['label', 'name'],
+    attributes: ['label', 'name', 'variant'],
     prepare: prepareButton,
   }),
   defineComponent({
     name: 'menu-button-item',
     template: new URL('./menu-button-item.html', import.meta.url),
     styles,
-    attributes: ['href', 'name', 'value'],
+    attributes: ['href', 'name', 'value', 'destructive', 'icon'],
     prepare: prepareItem,
+    fonts: [materialSymbols],
   }),
 ])
