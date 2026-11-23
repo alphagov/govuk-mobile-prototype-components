@@ -3,7 +3,7 @@
 Put it in the screen's footer, so it stays below the conversation as it scrolls. With a tab bar, the screen puts the tab bar below it, as the app does:
 
 ```html
-<govuk-app-screen>
+<govuk-app-screen background="chat">
   <govuk-app-heading level="1" size="title-2" align="center">GOV.UK Chat</govuk-app-heading>
   <govuk-app-chat-answer note="Messages will be saved for 90 days.">
     <govuk-app-text>Hi, I’m GOV.UK Chat 👋. I use AI to help you find what you need on GOV.UK.</govuk-app-text>

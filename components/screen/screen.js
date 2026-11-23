@@ -1,6 +1,6 @@
 import { defineComponent } from '../../foundation/component.js'
 
-const backgrounds = ['page', 'modal', 'green']
+const backgrounds = ['page', 'modal', 'green', 'chat']
 
 /**
  * Sorts what was written between the tags into the screen's parts, so a
