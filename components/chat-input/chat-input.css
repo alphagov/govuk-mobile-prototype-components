@@ -68,6 +68,9 @@ govuk-app-chat-input:last-child .govuk-app-chat-input {
   max-height: calc(6 * var(--app-font-body-leading) + 26px);
   padding: 13px var(--app-space-medium);
   border: 0;
+  /* The field's, so a ring round it, such as highlight-actions' (base.css),
+     follows the capsule. */
+  border-radius: 25px;
   outline: 0;
   resize: none;
   field-sizing: content;
