@@ -2,13 +2,17 @@
      grows as they type, a send button once there's a question, and, while
      there isn't, a menu of the <govuk-app-menu-button-item> elements written
      between its tags. Above it, near the limit, how many characters are left
-     (chat-input.js). -->
+     (chat-input.js).
+
+     Grammarly, the browser extension, is told to leave the field alone: the
+     app has nothing like it, and the first time it took the field over, it
+     left the screen blank for a moment. -->
 <template>
   <form class="govuk-app-chat-input" data-attr="action: action, method: method">
     <p class="govuk-app-chat-input__message" aria-live="polite" data-attr="data-type: messageType" data-text="message"></p>
     <div class="govuk-app-chat-input__row">
       <div class="govuk-app-chat-input__field">
-        <textarea class="govuk-app-chat-input__textarea" rows="1" data-attr="name: name, placeholder: placeholder, aria-label: label" data-text="value"></textarea>
+        <textarea class="govuk-app-chat-input__textarea" rows="1" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" data-attr="name: name, placeholder: placeholder, aria-label: label" data-text="value"></textarea>
         <button class="govuk-app-chat-input__send" type="submit" aria-label="Send message" data-attr="disabled: sendDisabled"><span class="govuk-app-icon govuk-app-chat-input__send-icon" aria-hidden="true">arrow_upward</span></button>
       </div>
       <span class="govuk-app-chat-input__menu" data-if="menu">
