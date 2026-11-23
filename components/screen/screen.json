@@ -14,13 +14,14 @@
         "values": [
           "page",
           "modal",
-          "green"
+          "green",
+          "chat"
         ],
         "default": "page",
-        "description": "page: the app's pale blue, for screens in its sections. modal: white, for a screen presented over them, such as a question or a confirmation. green: the app's green, the same in light and dark, with white text and its content set further down, for a screen that takes over the app, in a full-screen cover."
+        "description": "page: the app's pale blue, for screens in its sections. modal: white, for a screen presented over them, such as a question or a confirmation. green: the app's green, the same in light and dark, with white text and its content set further down, for a screen that takes over the app, in a full-screen cover. chat: GOV.UK Chat's, the same pale blue, with its conversation kept below the status bar and above the chat input, rather than scrolling under them, as the app's chat screen does."
       }
     },
-    "content": "The screen's components, top to bottom. A <govuk-app-nav-bar>, or the home screen's <govuk-app-home-header>, goes at the top and sticks there. A <govuk-app-tab-bar> goes at the bottom of the content and floats over it. An element with slot=\"footer\", usually a <govuk-app-button-stack>, is pinned below the content. Everything else is the content, 16pt in from the sides and 16pt apart, and scrolls."
+    "content": "The screen's components, top to bottom. A <govuk-app-nav-bar>, or the home screen's <govuk-app-home-header>, goes at the top and sticks there. A <govuk-app-tab-bar> goes at the bottom of the content and floats over it. An element with slot=\"footer\", usually a <govuk-app-button-stack>, is pinned below the content, with the tab bar below it if there is one, as GOV.UK Chat's field is. Everything else is the content, 16pt in from the sides and 16pt apart, and scrolls."
   },
   "outputs": {
     "events": []
@@ -28,9 +29,10 @@
   "rules": [
     "Put a screen directly in a <govuk-app>, and give the root a size: the screen fills it, and scrolls inside it.",
     "Use one screen for each screen of a journey. In a prototype of several pages, put each on its own page.",
-    "Give a screen either a tab bar or a button stack, not both: the app hides the tab bar on screens that ask the user to act.",
+    "Give a screen either a tab bar or a button stack, not both: the app hides the tab bar on screens that ask the user to act. GOV.UK Chat's field is the one footer the app shows above its tab bar.",
     "Use the modal background for screens presented over the app, such as a sign-out confirmation, and the page background for the rest.",
-    "Use the green background only for a screen that takes over the app, in a full-screen cover, as the app does when adding a driver and vehicles account. Give it a black button."
+    "Use the green background only for a screen that takes over the app, in a full-screen cover, as the app does when adding a driver and vehicles account. Give it a black button.",
+    "Use the chat background for GOV.UK Chat's screens, with a chat input in its footer."
   ],
   "sources": {
     "figma": [],
@@ -57,6 +59,12 @@
         "repo": "govuk-once/govuk-mobile-ios-app",
         "path": "Production/govuk_ios/Views/ServiceAccount/ServiceAccountConsentView.swift",
         "symbol": "ServiceAccountConsentView, on fills.surfaceFullScreenLinkAccount",
+        "ref": "fc2b3b1d"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Chat/ChatView.swift",
+        "symbol": "ChatView, its scroll view's padding",
         "ref": "fc2b3b1d"
       }
     ],

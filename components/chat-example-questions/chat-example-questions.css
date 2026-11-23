@@ -1,0 +1,53 @@
+/* GOV.UK Chat's questions to try (ChatExampleQuestionsView): Try asking:, in
+   Body, text.secondary, at the right, 16pt in, then a card for each
+   question, 12pt apart, off the grid, as the app has them. The whole is
+   44pt in from the left, off the grid too.
+
+   Each card is the question in Body, text.link, padded 16pt, on
+   fills.surfaceCardDefault, with a 1pt edge in text.link, its corners
+   rounded 18pt. */
+
+.govuk-app-chat-example-questions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  padding-inline-start: 44px;
+}
+
+.govuk-app-chat-example-questions__title {
+  padding-inline-end: var(--app-space-medium);
+  color: var(--app-text-secondary);
+  font-size: var(--app-font-body-size);
+  line-height: var(--app-font-body-leading);
+}
+
+.govuk-app-chat-example-questions__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  list-style: none;
+}
+
+.govuk-app-chat-example-question {
+  display: flex;
+}
+
+.govuk-app-chat-example-question__card {
+  flex: 1;
+  padding: var(--app-space-medium);
+  border: 1px solid var(--app-text-link);
+  border-radius: 18px;
+  background: var(--app-surface-card);
+  color: var(--app-text-link);
+  font-size: var(--app-font-body-size);
+  line-height: var(--app-font-body-leading);
+  text-align: start;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.govuk-app-chat-example-question__card:active {
+  opacity: 0.6;
+}

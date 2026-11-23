@@ -1,0 +1,79 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Chat question",
+  "element": "govuk-app-chat-question",
+  "purpose": "Shows a question the user asked GOV.UK Chat, in a dark blue bubble at the right of the conversation.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "ChatCellView's question: Body in white on fills.surfaceChatQuestion, padded 16pt, its corners rounded 18pt. It is only as wide as its text, at the right, leaving at least 20% of the window to its left. The Android app's Question is the same, but leaves 60dp."
+  },
+  "inputs": {
+    "attributes": {},
+    "content": "The question, as text, as the user typed it."
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Use it in a screen of GOV.UK Chat, after the answer before it, or after the welcome message for the first question.",
+    "Follow it with the answer, or with a chat loading while the answer is being generated.",
+    "Write the question as a user would type it: in their words, not GOV.UK's."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Chat/ChatCellView.swift",
+        "symbol": "ChatCellView.questionView",
+        "ref": "fc2b3b1d"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/ViewModels/Chat/ChatCellViewModel.swift",
+        "symbol": "questionWidth, backgroundColor",
+        "ref": "fc2b3b1d"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Extensions/GovKit/GOVUKColors+Chat.swift",
+        "symbol": "fills.surfaceChatQuestion",
+        "ref": "fc2b3b1d"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "feature/chat/src/main/kotlin/uk/gov/govuk/chat/ui/component/Question.kt",
+        "symbol": "Question",
+        "ref": "9952400f"
+      }
+    ]
+  },
+  "references": [
+    {
+      "platform": "ios",
+      "image": "reference/ios-conversation-light.webp",
+      "description": "A question between the welcome message and its answer, in light mode",
+      "from": "ChatViewControllerSnapshotTests at fc2b3b1d"
+    },
+    {
+      "platform": "ios",
+      "image": "reference/ios-conversation-dark.webp",
+      "description": "The same, in dark mode",
+      "from": "ChatViewControllerSnapshotTests at fc2b3b1d"
+    }
+  ],
+  "examples": [
+    {
+      "name": "A short question",
+      "frame": "page",
+      "html": "<govuk-app-chat-question>How do I renew my passport?</govuk-app-chat-question>"
+    },
+    {
+      "name": "A longer question",
+      "frame": "page",
+      "html": "<govuk-app-chat-question>I’m moving to Spain next year. Do I need to exchange my driving licence, and how long do I have to do it?</govuk-app-chat-question>"
+    }
+  ]
+}

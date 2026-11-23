@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Register to vote – Chat – GOV.UK app example</title>
+  <title>Remembering what you tell it – Chat – GOV.UK app example</title>
   <link rel="stylesheet" href="../example.css">
   <script type="module" src="../example.js"></script>
   <script type="module" src="../../components/screen/screen.js"></script>
-  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
-  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module" src="../../components/heading/heading.js"></script>
+  <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
   <script type="module">
-    // Research prop: how does it feel when the app remembers something from
-    // a chat, to use again? Chat asks for an address, and whatever is typed
-    // is what the app picks up. Sending nothing sends the mockup's address.
+    // Proposed, from a researcher's mockup: how does it feel when the app
+    // remembers something from a chat, to use again? Chat asks for an
+    // address, and whatever is typed is what the app picks up.
     //
     // Coming back from the info the app has picked up (#saved), the
     // conversation is as it was left, without waiting for Chat.
-    import { ask, reply, onQuestion } from './components/chat.js'
+    import { ask, reply, onQuestion } from './proposals/chat.js'
 
     const key = 'govuk-app-chat-example-address'
     const fallback = '6 Market Street, Saxford, SX1 1CD'
@@ -33,14 +33,12 @@
     let asked = false
     onQuestion(async question => {
       if (asked) {
-        if (!question) return
         ask(question)
         return reply(['This is a prototype, so I can only answer the questions it was written for.'])
       }
       asked = true
-      const address = question || fallback
-      try { sessionStorage.setItem(key, address) } catch {}
-      await answer(address)
+      try { sessionStorage.setItem(key, question) } catch {}
+      await answer(question)
     })
 
     if (location.hash === '#saved') {
@@ -52,15 +50,17 @@
 <body>
   <div class="example-phone">
     <govuk-app highlight-actions>
-      <govuk-app-screen>
-        <govuk-app-nav-bar title="GOV.UK Chat" back-href="index.html"></govuk-app-nav-bar>
+      <govuk-app-screen background="chat">
+        <govuk-app-heading level="1" size="title-2" align="center">GOV.UK Chat</govuk-app-heading>
 
-        <govuk-app-chat-conversation>
-          <govuk-app-chat-question>I just moved house and want to register to vote</govuk-app-chat-question>
-          <govuk-app-chat-answer>
-            <govuk-app-text>What’s your address?</govuk-app-text>
-          </govuk-app-chat-answer>
-        </govuk-app-chat-conversation>
+        <govuk-app-chat-answer note="Messages will be saved for 90 days.">
+          <govuk-app-text>Hi, I’m GOV.UK Chat 👋. I use AI to help you find what you need on GOV.UK.</govuk-app-text>
+        </govuk-app-chat-answer>
+
+        <govuk-app-chat-question>I just moved house and want to register to vote</govuk-app-chat-question>
+        <govuk-app-chat-answer>
+          <govuk-app-text>What’s your address?</govuk-app-text>
+        </govuk-app-chat-answer>
 
         <!-- What Chat shows once it has the address. -->
         <template id="remembered">
@@ -73,7 +73,18 @@
           </govuk-app-chat-answer>
         </template>
 
-        <govuk-app-chat-input slot="footer" placeholder="Ask a question..."></govuk-app-chat-input>
+        <govuk-app-chat-input slot="footer">
+          <govuk-app-menu-button-item href="index.html" destructive icon="delete">Clear chat</govuk-app-menu-button-item>
+          <govuk-app-menu-button-item name="privacy">Privacy notice</govuk-app-menu-button-item>
+          <govuk-app-menu-button-item name="about">About</govuk-app-menu-button-item>
+          <govuk-app-menu-button-item name="feedback">Give feedback</govuk-app-menu-button-item>
+        </govuk-app-chat-input>
+
+        <govuk-app-tab-bar>
+          <govuk-app-tab-bar-item icon="home" href="../home/index.html">Home</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="chat_bubble" href="index.html" selected>Chat</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="settings" href="../settings/index.html">Settings</govuk-app-tab-bar-item>
+        </govuk-app-tab-bar>
       </govuk-app-screen>
     </govuk-app>
   </div>

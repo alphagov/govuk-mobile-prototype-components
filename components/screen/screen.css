@@ -40,6 +40,22 @@
   padding-top: calc(var(--govuk-app-inset-top, 0px) + var(--app-space-medium) + var(--app-space-extra-large));
 }
 
+/* GOV.UK Chat (ChatView): its background, fills.surfaceChatBackground, is
+   the page's. Its conversation scrolls inside the safe area, 8pt in from
+   its top and bottom, so it's cut off below the status bar and above the
+   field, on the screen's own colour, rather than scrolling under them. */
+.govuk-app-screen[data-background="chat"] {
+  padding-top: calc(var(--govuk-app-inset-top, 0px) + var(--app-space-small));
+}
+
+.govuk-app-screen[data-background="chat"] .govuk-app-screen__scroll {
+  margin-bottom: var(--app-space-small);
+}
+
+.govuk-app-screen[data-background="chat"] .govuk-app-screen__content[data-under-status-bar] {
+  padding-top: var(--app-space-medium);
+}
+
 .govuk-app-screen__scroll {
   display: flex;
   flex-direction: column;

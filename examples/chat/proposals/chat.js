@@ -1,15 +1,16 @@
 import { defineComponent, materialSymbols } from '../../../foundation/component.js'
+// The library's chat components, which the conversation adds to.
+import '../../../components/text/text.js'
+import '../../../components/chat-question/chat-question.js'
+import '../../../components/chat-answer/chat-answer.js'
+import '../../../components/chat-loading/chat-loading.js'
+import '../../../components/chat-input/chat-input.js'
 
-// The Chat example's own components, drawn the same way as the library's so
-// any of them could join it later. chat.css says where each comes from.
+// The proposals' own components, drawn the same way as the library's so
+// either could join it later. chat.css says what they are.
 
 const styles = new URL('./chat.css', import.meta.url)
 const fonts = [materialSymbols]
-
-/** The answer's content shows once it's no longer pending. */
-function prepareAnswer(data) {
-  return { ...data, ready: !data.pending }
-}
 
 /** What a screen reader says for a saved detail's two buttons. */
 function prepareDetail(data) {
@@ -21,20 +22,16 @@ function prepareDetail(data) {
 }
 
 await Promise.all([
-  defineComponent({ name: 'chat-conversation', template: new URL('./conversation.html', import.meta.url), styles }),
-  defineComponent({ name: 'chat-question', template: new URL('./question.html', import.meta.url), styles }),
-  defineComponent({ name: 'chat-answer', template: new URL('./answer.html', import.meta.url), styles, attributes: ['pending'], prepare: prepareAnswer }),
-  defineComponent({ name: 'chat-input', template: new URL('./input.html', import.meta.url), styles, attributes: ['placeholder', 'value'], fonts }),
   defineComponent({ name: 'chat-saved-details', template: new URL('./saved-details.html', import.meta.url), styles, attributes: ['name', 'action'] }),
   defineComponent({ name: 'chat-saved-detail', template: new URL('./saved-detail.html', import.meta.url), styles, attributes: ['label', 'source', 'name', 'checked'], prepare: prepareDetail, fonts }),
   defineComponent({ name: 'chat-remembered', template: new URL('./remembered.html', import.meta.url), styles, attributes: ['href'] }),
 ])
 
-// Messages are added to what the conversation has drawn. Wait until every
+// Messages are added after the conversation's last. Wait until every
 // component on the page has been drawn: one drawn later, such as the screen
-// the conversation is in, moves it, which draws it again from what was
-// written in the page, and anything added before then would be lost. The
-// root, <govuk-app>, is never defined, so isn't waited for.
+// the conversation is in, draws what's in it again from what was written in
+// the page, and anything added before then would be lost. The root,
+// <govuk-app>, is never defined, so isn't waited for.
 await Promise.all([...document.querySelectorAll(':not(:defined)')]
   .filter(node => node.localName.startsWith('govuk-app-'))
   .map(node => customElements.whenDefined(node.localName)))
@@ -50,23 +47,31 @@ document.addEventListener('click', event => {
   about.closest('.govuk-app-chat-saved-detail').querySelector('.govuk-app-chat-saved-detail__source').hidden = !open
 })
 
-/** How long Chat takes to answer, in milliseconds, so it feels like it's thinking. */
-const thinking = 1500
+/** How long Chat takes to send a question, then to answer it, in milliseconds. */
+const sending = 600
+const generating = 1500
 
 const wait = time => new Promise(resolve => setTimeout(resolve, time))
 
-function conversation() {
-  return document.querySelector('.govuk-app-chat-conversation')
+/** The last message in the conversation, which new ones go after. */
+function last() {
+  return [...document.querySelectorAll('govuk-app-chat-question, govuk-app-chat-answer, govuk-app-chat-loading, govuk-app-chat-saved-details, govuk-app-chat-remembered')].at(-1)
 }
 
 /** Scrolls what the conversation is in to its end, so the newest message is in view. */
 function scrollToEnd() {
-  for (let parent = conversation()?.parentElement; parent; parent = parent.parentElement) {
+  for (let parent = last()?.parentElement; parent; parent = parent.parentElement) {
     if (/auto|scroll/.test(getComputedStyle(parent).overflowY)) {
       parent.scrollTo({ top: parent.scrollHeight, behavior: 'smooth' })
       return
     }
   }
+}
+
+/** Adds nodes to the end of the conversation. */
+function add(...nodes) {
+  last().after(...nodes)
+  scrollToEnd()
 }
 
 /** An element with the given attributes and children. */
@@ -84,14 +89,14 @@ export function answer(...paragraphs) {
 
 /** Adds the user's question to the end of the conversation. */
 export function ask(text) {
-  conversation().append(element('govuk-app-chat-question', {}, text))
-  scrollToEnd()
+  add(element('govuk-app-chat-question', {}, text))
 }
 
 /**
- * Chat's reply: the pending dots, for a moment, then each part in turn. A
- * part is a string, for an answer of one paragraph; a <template>, for what
- * the page wrote in it; or an element. With `instantly`, there's no wait.
+ * Chat's reply, after it has shown it's sending, then generating: each part
+ * in turn. A part is a string, for an answer of one paragraph; a
+ * <template>, for what the page wrote in it; or an element. With
+ * `instantly`, there's no wait.
  */
 export async function reply(parts, { instantly = false } = {}) {
   const nodes = parts.flatMap(part =>
@@ -99,13 +104,14 @@ export async function reply(parts, { instantly = false } = {}) {
       : part instanceof HTMLTemplateElement ? [...part.content.cloneNode(true).children]
         : [part])
   if (instantly) {
-    conversation().append(...nodes)
+    add(...nodes)
   } else {
-    const pending = element('govuk-app-chat-answer', { pending: true })
-    conversation().append(pending)
-    scrollToEnd()
-    await wait(thinking)
-    pending.replaceWith(...nodes)
+    const loading = element('govuk-app-chat-loading', { stage: 'sending' })
+    add(loading)
+    await wait(sending)
+    loading.setAttribute('stage', 'generating')
+    await wait(generating)
+    loading.replaceWith(...nodes)
   }
   // After the new messages have been drawn.
   requestAnimationFrame(scrollToEnd)
@@ -117,7 +123,6 @@ export async function reply(parts, { instantly = false } = {}) {
  * gives its own with onQuestion.
  */
 let answerQuestion = async question => {
-  if (!question) return
   ask(question)
   await reply(['This is a prototype, so I can only answer the questions it was written for.'])
 }
@@ -126,12 +131,17 @@ export function onQuestion(callback) {
   answerQuestion = callback
 }
 
+// The chat input sends its question to another page. Here, Chat answers on
+// this one instead.
 document.addEventListener('submit', event => {
   const form = event.target.closest('.govuk-app-chat-input')
   if (!form) return
   event.preventDefault()
-  const field = form.elements.question
+  const field = form.querySelector('textarea')
   const question = field.value.trim()
+  if (!question) return
   field.value = ''
+  // So the input empties its count and turns its send button off.
+  field.dispatchEvent(new Event('input', { bubbles: true }))
   answerQuestion(question)
 })

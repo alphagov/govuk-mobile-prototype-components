@@ -16,7 +16,7 @@ Not everything in an example goes somewhere. Tap something that doesn’t, and e
 
 [Open the Home example](/examples/home/)
 
-The Home tab, with the widgets a user sees once they’ve chosen some topics, set their council and visited some pages. For now it is mostly what’s missing, and it will grow as the components it needs are added. Its Settings tab opens the Settings example.
+The Home tab, with the widgets a user sees once they’ve chosen some topics, set their council and visited some pages. For now it is mostly what’s missing, and it will grow as the components it needs are added. Its Chat and Settings tabs open the Chat and Settings examples.
 
 It uses the screen, home header, search field, grouped list, segmented control, section heading, link card, text, button, crown and tab bar. Its source is in `examples/home/` in the repository.
 
@@ -24,7 +24,7 @@ It uses the screen, home header, search field, grouped list, segmented control, 
 
 - **Searching.** The search field works, but there are no previous searches or results to show while searching.
 - **Give feedback as a link.** It is a grouped secondary button, the nearest the library has.
-- **Rows that go nowhere.** The topics other than Driving, the Edit and See all actions, Give feedback and the Chat tab have no screens of their own here. Driving opens the Driving example.
+- **Rows that go nowhere.** The topics other than Driving, the Edit and See all actions and Give feedback have no screens of their own here. Driving opens the Driving example.
 
 ## Driving
 
@@ -51,19 +51,27 @@ Much of it is proposed, not in the app yet: the status, count, card header, stro
 
 [Open the Chat example](/examples/chat/)
 
-GOV.UK Chat as it opens, and proposed changes to it, from a researcher’s mockups, as props for research sessions. Each proposal is a conversation of its own:
+The Chat tab: GOV.UK Chat, using the app’s own wording. A new chat has the welcome message and questions to try. Asking the first, about renewing a passport, or typing a question and sending it, shows it being answered, then, after a few seconds, the answer, with the GOV.UK pages it used. Clear chat, in the menu beside the field, starts a new chat.
 
-- [Using saved info](/examples/chat/universal-credit.html): Chat asks to use details the app has saved, and the user chooses which. Each detail’s info button says where the app got it. What would they choose, and what would they need to know to decide?
-- [Remembering what you tell it](/examples/chat/register-to-vote.html): Chat asks for an address, and the app picks up whatever is typed, to use again. Sending nothing sends the mockup’s address. Its link opens everything the app has picked up from chats, as a sheet, where each thing can be removed. How does it feel, and what controls would they expect?
-
-Its chat components are the example’s own, not the library’s: the question, answer and text box are GOV.UK Chat’s, from the iOS app, and the saved details and the note of what was picked up are proposed. They’re drawn the same way as the library’s, so any could join it later. It also uses the screen, sheet, navigation bar, grouped list and text. Its source is in `examples/chat/` in the repository.
+The pages are plain HTML, so they move on with a link, a form and a page that refreshes, with no script of their own. It uses the screen, heading, text, bulleted list, link, chat answer, chat question, chat loading, chat example questions, chat input, menu button and tab bar. Its source is in `examples/chat/` in the repository.
 
 ### What’s missing
 
-- **Answering anything else.** Chat only answers what each conversation was written for. Anything else it says it can’t answer.
-- **The rest of an answer.** Answers have no GOV.UK pages they were drawn from, no warning that Chat can make mistakes, and no feedback buttons.
-- **Chat’s menu.** The text box has no menu button beside it, and doesn’t grow as more is typed.
-- **Keeping what was removed.** The info picked up from chats is all back each time it opens.
+- **Other answers.** The other questions to try go nowhere, and whatever is typed, the answer is about renewing a passport.
+- **Onboarding.** The app asks the user to agree to GOV.UK Chat’s terms before their first chat. Those screens aren’t here.
+- **The menu’s other items.** Privacy notice, About and Give feedback go nowhere here.
+- **Clearing the chat.** The app asks the user to confirm in an alert first. Here it starts a new chat straight away.
+
+### Proposals
+
+Proposed changes to GOV.UK Chat, from a researcher’s mockups, as props for research sessions. Each is a conversation of its own, on the Chat tab:
+
+- [Using saved info](/examples/chat/universal-credit.html): Chat asks to use details the app has saved, and the user chooses which. Each detail’s info button says where the app got it. What would they choose, and what would they need to know to decide?
+- [Remembering what you tell it](/examples/chat/register-to-vote.html): Chat asks for an address, and the app picks up whatever is typed, to use again, in a yellow note set apart from Chat’s answers. Its link opens everything the app has picked up from chats, as a sheet, where each thing can be removed. How does it feel, and what controls would they expect?
+
+The saved details and the note of what was picked up are the example’s own, not the library’s, as the app doesn’t have them: they’re in `examples/chat/proposals/`, drawn the same way as the library’s, so either could join it later. The conversations also use the sheet, navigation bar and grouped list.
+
+Chat only answers what each conversation was written for, and anything else it says it can’t answer. The info picked up from chats is all back each time it opens.
 
 ## Settings
 
