@@ -159,6 +159,21 @@ govuk-app {
   --app-card-header-danger: #ff5e5e;                              /* accentRed */
   --app-card-header-text: #000000;
 
+  /* GOV.UK Chat: the app's own, not GovKit's (govuk-mobile-ios-app,
+     Extensions/GovKit/GOVUKColors+Chat.swift, read at fc2b3b1d). The
+     screen's background, surfaceChatBackground, is the same as
+     --app-surface-page */
+  --app-surface-chat-question: light-dark(#0f385c, #1d70b8);  /* fills.surfaceChatQuestion */
+  --app-text-chat-question: #ffffff;                          /* ChatCellView's .white */
+  --app-surface-chat-answer: light-dark(#ffffff, #092237);    /* fills.surfaceChatAnswer */
+  --app-surface-chat-action: light-dark(#ffffff, #0f385c);    /* fills.surfaceChatAction: the field and the menu button */
+  --app-border-chat-divider: light-dark(#d2e2f1, #16548a);    /* strokes.chatDivider */
+  --app-text-chat-placeholder: light-dark(#4d4d4d, #ffffff);  /* text.chatTextArea */
+  --app-icon-trailing: light-dark(#1d70b8, #f4f8fb);          /* text.trailingIcon */
+  --app-surface-card: light-dark(#ffffff, #0a2740);           /* fills.surfaceCardDefault */
+  --app-chat-loading-one: #ba4aff;                            /* the loading animation's pink, accentPurple (chat_loading_message_light.json) */
+  --app-chat-loading-two: #11e0f1;                            /* and its blue, accentBlue */
+
   /* Menus: iOS's, approximated, which the app leaves */
   --app-menu-surface: light-dark(rgb(250 250 250 / 0.82), rgb(40 40 44 / 0.82));
   --app-menu-shadow: light-dark(rgb(0 0 0 / 0.18), rgb(0 0 0 / 0.5));
@@ -245,4 +260,14 @@ govuk-app {
 
 govuk-app[colour-scheme="light"] { color-scheme: light; }
 govuk-app[colour-scheme="dark"] { color-scheme: dark; }
+
+/* How chat's loading animation blends its two circles where they cross:
+   multiply in light, screen in dark, as its two Lottie files do. Not a
+   colour, so light-dark() can't pick it, and it follows the same choice of
+   scheme instead. */
+govuk-app { --app-chat-loading-blend: multiply; }
+@media (prefers-color-scheme: dark) {
+  govuk-app:not([colour-scheme="light"]) { --app-chat-loading-blend: screen; }
+}
+govuk-app[colour-scheme="dark"] { --app-chat-loading-blend: screen; }
 govuk-app[text-size="accessibility-xxxl"] { --app-text-scale: 3.12; }
