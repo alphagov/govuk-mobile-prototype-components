@@ -56,5 +56,4 @@ The sign-out confirmation slides up as a sheet, with Settings set back behind it
 
 ### What’s missing
 
-- **Your GOV.UK One Login’s image.** The grouped list can’t draw images on rows yet.
 - **Rows that go nowhere.** Your accounts, Messages, Notifications and Open source licences have no screens of their own here.

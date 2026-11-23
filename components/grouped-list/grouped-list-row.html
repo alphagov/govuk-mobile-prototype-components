@@ -1,11 +1,12 @@
 <!-- One row of a grouped list: its title, what was written between its tags,
-     a topic's icon on its left, what its type puts on the right, and its
-     description below, if it has one. A link if it has an href; a label
+     a topic's icon or an image on its left, what its type puts on the right,
+     and its description below, if it has one. A link if it has an href; a label
      around a toggle if it is a toggle; plain text if it is information;
      whatever was written between its tags if it is content; otherwise a
      button. -->
 <template>
   <a class="govuk-app-grouped-list-row" data-if="link" data-attr="href: href, data-type: type">
+    <img class="govuk-app-grouped-list-row__image" alt="" data-if="image" data-attr="src: image">
     <span class="govuk-app-grouped-list-row__line">
       <span class="govuk-app-grouped-list-row__topic govuk-app-icon" aria-hidden="true" data-if="topic" data-text="topic"></span>
       <span class="govuk-app-grouped-list-row__title govuk-app-text" data-attr="data-destructive: destructive" data-slot="content"></span>
@@ -17,6 +18,7 @@
     <span class="govuk-app-grouped-list-row__description govuk-app-text" data-if="description" data-text="description"></span>
   </a>
   <button class="govuk-app-grouped-list-row" type="button" data-if="button" data-attr="name: name, value: value, data-type: type">
+    <img class="govuk-app-grouped-list-row__image" alt="" data-if="image" data-attr="src: image">
     <span class="govuk-app-grouped-list-row__line">
       <span class="govuk-app-grouped-list-row__topic govuk-app-icon" aria-hidden="true" data-if="topic" data-text="topic"></span>
       <span class="govuk-app-grouped-list-row__title govuk-app-text" data-attr="data-destructive: destructive" data-slot="content"></span>
@@ -34,6 +36,7 @@
     </span>
   </label>
   <div class="govuk-app-grouped-list-row" data-if="information" data-attr="data-type: type">
+    <img class="govuk-app-grouped-list-row__image" alt="" data-if="image" data-attr="src: image">
     <span class="govuk-app-grouped-list-row__line">
       <span class="govuk-app-grouped-list-row__title govuk-app-text" data-slot="content"></span>
       <span class="govuk-app-grouped-list-row__detail govuk-app-text" data-if="detail" data-text="detail"></span>

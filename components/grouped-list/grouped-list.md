@@ -22,6 +22,18 @@ A topic row draws its `icon` on the left, white on a blue circle, as the Topics 
 
 Without an `icon`, it draws `star`, as the app does for a topic it has no icon for.
 
+## Images
+
+An information or link row can draw a picture on its left, at its own size, with `image` giving its URL, as Settings draws One Login's account icon beside the user's email. This component's folder has that icon, as `images/one-login.svg`:
+
+```html
+<govuk-app-grouped-list-row type="information" description="test@example.com" image="components/grouped-list/images/one-login.svg">Your GOV.UK One Login</govuk-app-grouped-list-row>
+```
+
+Screen readers don't hear the image: say what it shows in the row's title.
+
+The app also draws an image on a topic's step-by-step guides, with its own version for dark mode. That one isn't here yet: an image can't follow `colour-scheme` from one picture to another.
+
 ## Proposed additions
 
 These come from the future driving designs, not the app, which we have only as a screenshot for now. They may change, or never ship.

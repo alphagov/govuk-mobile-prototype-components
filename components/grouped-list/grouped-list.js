@@ -38,7 +38,8 @@ export function prepareList(data) {
  * topic is a navigation row with its icon on the left, as the app's
  * TopicListItemView, or a star, the app's for a topic without one. An action
  * row, as the app's Add vehicle, has an outlined plus on the right, or the
- * icon it names. A content row, proposed, holds whatever was written between
+ * icon it names. An information or link row may have an image on its left,
+ * as GovKit's InformationRowView and LinkRowView do. A content row, proposed, holds whatever was written between
  * its tags.
  */
 export function prepareRow(data) {
@@ -63,6 +64,7 @@ export function prepareRow(data) {
     topic: type === 'topic' ? data.icon || 'star' : undefined,
     detail: ['information', 'detail', 'count'].includes(type) ? data.detail : undefined,
     description: ['information', 'link'].includes(type) ? data.description : undefined,
+    image: ['information', 'link'].includes(type) ? data.image : undefined,
     unread: type === 'count' && Boolean(data.unread),
     destructive: type === 'detail' && Boolean(data.destructive),
   }
@@ -87,7 +89,7 @@ await Promise.all([
     template: new URL('./grouped-list-row.html', import.meta.url),
     styles,
     fonts,
-    attributes: ['type', 'detail', 'description', 'icon', 'href', 'name', 'value', 'checked', 'unread', 'destructive', 'no-arrow', 'flush'],
+    attributes: ['type', 'detail', 'description', 'icon', 'image', 'href', 'name', 'value', 'checked', 'unread', 'destructive', 'no-arrow', 'flush'],
     prepare: prepareRow,
   }),
 ])

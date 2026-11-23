@@ -232,6 +232,35 @@ govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-lis
   -webkit-font-smoothing: antialiased;
 }
 
+/* An image on the left of an information or link row, as GovKit's
+   InformationRowView and LinkRowView draw one, such as the app's One Login
+   account icon: at its own size, centred against the title and description,
+   SwiftUI's 8pt before the text of an information row, and 16pt before a
+   link's. */
+.govuk-app-grouped-list-row:has(> .govuk-app-grouped-list-row__image) {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-content: center;
+  column-gap: var(--app-space-small);
+}
+
+.govuk-app-grouped-list-row[data-type="link"]:has(> .govuk-app-grouped-list-row__image) {
+  column-gap: var(--app-space-medium);
+}
+
+.govuk-app-grouped-list-row__image {
+  grid-row: 1 / span 2;
+  align-self: center;
+}
+
+.govuk-app-grouped-list-row:not(:has(> .govuk-app-grouped-list-row__description)) > .govuk-app-grouped-list-row__image {
+  grid-row: 1;
+}
+
+.govuk-app-grouped-list-row__image ~ * {
+  grid-column: 2;
+}
+
 .govuk-app-grouped-list-row__description {
   color: var(--app-text-secondary);
   font-size: var(--app-font-subheadline-size);
