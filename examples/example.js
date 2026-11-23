@@ -86,16 +86,20 @@ function onMotion(event) {
 }
 
 // Browsers only send motion to secure pages, so not over http on the local
-// network. iOS asks the user first, and only in answer to a tap; once they've
-// allowed it, asking again on each page is silent.
+// network. Listen from the start: if the user has already allowed motion on
+// another page, there's no need to wait for a tap on this one.
 if ('DeviceMotionEvent' in window) {
+  addEventListener('devicemotion', onMotion)
+
+  // iOS asks the user first, and only in answer to a tap; once they've
+  // allowed it, asking again is silent. A touch that ends a scroll isn't a
+  // tap, and iOS turns the request down, so keep asking until it answers.
   if (typeof DeviceMotionEvent.requestPermission === 'function') {
-    addEventListener('touchend', () => {
+    const ask = () => {
       DeviceMotionEvent.requestPermission()
-        .then(state => { if (state === 'granted') addEventListener('devicemotion', onMotion) })
+        .then(() => removeEventListener('touchend', ask))
         .catch(() => {})
-    }, { once: true })
-  } else {
-    addEventListener('devicemotion', onMotion)
+    }
+    addEventListener('touchend', ask)
   }
 }
