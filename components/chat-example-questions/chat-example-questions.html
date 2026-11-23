@@ -1,0 +1,10 @@
+<!-- Questions to try, at the start of a new chat: Try asking:, then the
+     <govuk-app-chat-example-question> elements written between its tags.
+     Screen readers skip Try asking:, as the app's VoiceOver does, and hear
+     the list's name instead. -->
+<template>
+  <div class="govuk-app-chat-example-questions">
+    <p class="govuk-app-chat-example-questions__title" aria-hidden="true">Try asking:</p>
+    <ul class="govuk-app-chat-example-questions__list" aria-label="Try asking" data-slot="content"></ul>
+  </div>
+</template>
