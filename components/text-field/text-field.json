@@ -1,0 +1,110 @@
+{
+  "$schema": "../../component.schema.json",
+  "name": "Text field",
+  "element": "govuk-app-text-field",
+  "purpose": "Asks the user to type a short answer, such as their postcode, under a heading asking the question, with a hint of what to type and, if what they typed won't do, an error saying what to do.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "The app's postcode field, on the screen that finds the user's local council (LocalAuthorityPostcodeEntryView): the screen's Title 1 heading asks the question, then a hint, any error and the field, 15pt apart. The field is a SwiftUI TextField, padded 10pt by 8pt, filled with fills.surfaceSearch, its corners rounded 4pt and its edge 0.5pt of strokes.listDivider. The Android app's is Material's filled text field (LocalLookupScreen), with the error below it."
+  },
+  "inputs": {
+    "attributes": {
+      "label": {
+        "type": "string",
+        "required": true,
+        "description": "The field's name for screen readers, such as Postcode. It isn't shown: the heading above asks the question."
+      },
+      "hint": {
+        "type": "string",
+        "description": "Shown above the field, in grey, saying what to type, such as For example SW1A 2AA."
+      },
+      "error": {
+        "type": "string",
+        "description": "Shown above the field, in red, when what the user typed won't do, saying what to do, such as Enter your postcode."
+      },
+      "type": {
+        "type": "enum",
+        "values": ["text", "email", "tel", "url", "password", "postcode"],
+        "default": "text",
+        "description": "What's typed, so the phone shows the keyboard for it. postcode types in capitals, with the browser offering the user's own."
+      },
+      "name": {
+        "type": "string",
+        "description": "The name what the user typed is sent as, in a form."
+      },
+      "value": {
+        "type": "string",
+        "description": "Text already in the field."
+      },
+      "placeholder": {
+        "type": "string",
+        "description": "What the field shows until the user types. The app's postcode field has none: put what to type in the hint, which stays."
+      },
+      "autocomplete": {
+        "type": "string",
+        "description": "What the browser may fill in for the user, such as email or postal-code."
+      }
+    },
+    "content": null
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "input",
+        "description": "From its field, as the user types."
+      },
+      {
+        "name": "change",
+        "description": "From its field, when the user leaves it having changed it."
+      }
+    ]
+  },
+  "rules": [
+    "Put it under a heading asking the question, such as What is your postcode?, and give it a label for screen readers with the answer's name, such as Postcode.",
+    "Ask for one thing on a screen, with a primary button below to carry on.",
+    "Put an example in the hint, not the placeholder, so it's still there once the user starts typing.",
+    "Say what to do in the error, not what went wrong: Enter your postcode, not Postcode is empty.",
+    "Put it in a form, so pressing Return on the keyboard sends it."
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Home/LocalAuthority/LocalAuthorityPostcodeEntryView.swift",
+        "symbol": "LocalAuthorityPostcodeEntryView",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Helpers/RoundedBorder.swift",
+        "symbol": "roundedBorder(cornerRadius:borderColor:borderWidth:)",
+        "ref": "ad8590b"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "feature/local/src/main/kotlin/uk/govuk/app/local/ui/LocalLookupScreen.kt",
+        "symbol": "LocalLookupScreen",
+        "ref": "16621861"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-postcode-light.webp", "description": "Asking for the user's postcode, in light mode", "from": "LocalAuthorityPostcodeEntryViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-postcode-dark.webp", "description": "The same, in dark mode", "from": "LocalAuthorityPostcodeEntryViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-postcode-error-light.webp", "description": "With an error, in light mode", "from": "LocalAuthorityPostcodeEntryViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-postcode-error-dark.webp", "description": "With an error, in dark mode", "from": "LocalAuthorityPostcodeEntryViewControllerSnapshotTests at 1e520fc1" }
+  ],
+  "examples": [
+    {
+      "name": "A postcode",
+      "html": "<govuk-app-heading level=\"1\" size=\"title-1\">What is your postcode?</govuk-app-heading>\n<govuk-app-text-field type=\"postcode\" name=\"postcode\" label=\"Postcode\" hint=\"For example SW1A 2AA\"></govuk-app-text-field>"
+    },
+    {
+      "name": "With an error",
+      "html": "<govuk-app-heading level=\"1\" size=\"title-1\">What is your postcode?</govuk-app-heading>\n<govuk-app-text-field type=\"postcode\" name=\"postcode\" label=\"Postcode\" hint=\"For example SW1A 2AA\" error=\"Enter your postcode\"></govuk-app-text-field>"
+    }
+  ]
+}

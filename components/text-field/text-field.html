@@ -1,0 +1,14 @@
+<!-- A field to type a short answer in, such as a postcode, as the app asks
+     for one (LocalAuthorityPostcodeEntryView): a hint of what to type, then
+     any error, then the field.
+
+     The question it answers is the screen's heading, above it, so the field
+     has no label of its own on screen: its label is its name for screen
+     readers, who hear the hint and the error after it (text-field.js). -->
+<template>
+  <div class="govuk-app-text-field">
+    <p class="govuk-app-text-field__hint" data-if="hint" data-attr="id: hintId" data-text="hint"></p>
+    <p class="govuk-app-text-field__error" data-if="error" data-attr="id: errorId" data-text="error"></p>
+    <input class="govuk-app-text-field__input" data-attr="type: type, name: name, value: value, placeholder: placeholder, autocomplete: autocomplete, autocapitalize: autocapitalize, spellcheck: spellcheck, aria-label: label, aria-describedby: describedBy, aria-invalid: invalid">
+  </div>
+</template>

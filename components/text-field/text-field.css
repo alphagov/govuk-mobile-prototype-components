@@ -1,0 +1,55 @@
+/* The app's postcode field (LocalAuthorityPostcodeEntryView): Body text in a
+   box filled with fills.surfaceSearch, its corners rounded 4pt and its edge
+   0.5pt of strokes.listDivider, padded 10pt top and bottom and 8pt each side.
+   Its hint is Body in text.secondary, and its error Body in
+   text.buttonDestructive. */
+
+.govuk-app-text-field {
+  display: flex;
+  flex-direction: column;
+  /* The app's 15pt between the hint, the error and the field, off the grid. */
+  gap: 15px;
+}
+
+.govuk-app-text-field__hint,
+.govuk-app-text-field__error {
+  margin: 0;
+  font-size: var(--app-font-body-size);
+  font-weight: var(--app-font-body-weight);
+  line-height: var(--app-font-body-leading);
+}
+
+.govuk-app-text-field__hint {
+  color: var(--app-text-secondary);
+}
+
+.govuk-app-text-field__error {
+  color: var(--app-text-error);
+}
+
+.govuk-app-text-field__input {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  /* 10pt and 8pt, the app's, off the grid. */
+  padding: 10px 8px;
+  border: 0.5px solid var(--app-border-input);
+  border-radius: 4px;
+  appearance: none;
+  background: var(--app-surface-input);
+  color: var(--app-text-primary);
+  font: inherit;
+  font-size: var(--app-font-body-size);
+  font-weight: var(--app-font-body-weight);
+  line-height: var(--app-font-body-leading);
+}
+
+.govuk-app-text-field__input::placeholder {
+  color: var(--app-text-secondary);
+  opacity: 1;
+}
+
+.govuk-app-text-field__input:focus-visible {
+  outline: var(--app-focus-width) solid var(--app-focus);
+  outline-offset: 0;
+}
