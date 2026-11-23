@@ -62,7 +62,7 @@
   "rules": [
     "Put it in the screen's footer, with slot=\"footer\", so it's pinned below the conversation, and above the tab bar, if the screen has one.",
     "Use one on every GOV.UK Chat screen, including a new chat and while an answer is being generated, as the app does.",
-    "Give it the app's menu: Clear chat, Privacy notice, About and Give feedback.",
+    "Give it the app's menu: Clear chat, once there's a conversation to clear, then Privacy notice, About and Give feedback.",
     "Give it an action to take the user to the next page of a prototype when they send a question, such as its answer."
   ],
   "sources": {

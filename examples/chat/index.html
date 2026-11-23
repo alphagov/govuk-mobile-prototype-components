@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chat – GOV.UK app example</title>
+  <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../example.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/heading/heading.js"></script>
+  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module" src="../../components/chat-answer/chat-answer.js"></script>
+  <script type="module" src="../../components/chat-example-questions/chat-example-questions.js"></script>
+  <script type="module" src="../../components/chat-input/chat-input.js"></script>
+  <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
+</head>
+<body>
+  <div class="example-phone">
+    <govuk-app>
+      <govuk-app-screen>
+        <govuk-app-heading level="1" size="title-2" align="center">GOV.UK Chat</govuk-app-heading>
+
+        <govuk-app-chat-answer note="Messages will be saved for 90 days.">
+          <govuk-app-text>Hi, I’m GOV.UK Chat 👋. I use AI to help you find what you need on GOV.UK.</govuk-app-text>
+        </govuk-app-chat-answer>
+
+        <govuk-app-chat-example-questions>
+          <govuk-app-chat-example-question href="generating.html">How do I renew my passport?</govuk-app-chat-example-question>
+          <govuk-app-chat-example-question href="generating.html">What benefits can I get if I’m caring for someone?</govuk-app-chat-example-question>
+          <govuk-app-chat-example-question href="generating.html">When is my council tax due?</govuk-app-chat-example-question>
+        </govuk-app-chat-example-questions>
+
+        <govuk-app-chat-input slot="footer" action="generating.html">
+          <govuk-app-menu-button-item name="privacy">Privacy notice</govuk-app-menu-button-item>
+          <govuk-app-menu-button-item name="about">About</govuk-app-menu-button-item>
+          <govuk-app-menu-button-item name="feedback">Give feedback</govuk-app-menu-button-item>
+        </govuk-app-chat-input>
+
+        <govuk-app-tab-bar>
+          <govuk-app-tab-bar-item icon="home" href="../home/index.html">Home</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="chat_bubble" href="index.html" selected>Chat</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="settings" href="../settings/index.html">Settings</govuk-app-tab-bar-item>
+        </govuk-app-tab-bar>
+      </govuk-app-screen>
+    </govuk-app>
+  </div>
+</body>
+</html>
