@@ -29,6 +29,9 @@
  * other. Its data-each is not supported yet.
  */
 
+// What a root with highlight-actions does, for any page that uses a component.
+import './highlight-actions.js'
+
 /**
  * The icons' font: Material Symbols Rounded, filled, in place of SF Symbols,
  * which may only be used on Apple's platforms. A component that draws icons

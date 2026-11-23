@@ -27,6 +27,7 @@ The app’s colours and type exist only inside `<govuk-app>`.
 
 - `colour-scheme="light"` or `"dark"` fixes the scheme. Otherwise it follows the device.
 - Its size and position are the page’s to set.
+- `highlight-actions` shows what can be tapped when a tap goes nowhere. See [show what works](#show-what-works).
 
 Prototype pages shouldn’t style anything inside `<govuk-app>`. If a page loads stylesheets of its own, such as GOV.UK Frontend, load them into a cascade layer, so none of their styles reach the components:
 
@@ -50,6 +51,25 @@ document.addEventListener('click', event => {
   if (button) console.log(button.name, button.value)
 })
 ```
+
+## Show what works
+
+A prototype only works where you’ve made it work. Add `highlight-actions` to the root, and a tap that goes nowhere rings everything that works for a moment, so whoever is trying the prototype can find it:
+
+```html
+<govuk-app highlight-actions>
+```
+
+Links, fields and switches work. So do buttons a component acts on itself, such as a segmented control’s segments. A button only does something when your page listens for it, so say which ones do: add `works` to the component.
+
+```html
+<govuk-app-button name="sign-out" works>Sign out</govuk-app-button>
+<govuk-app-grouped-list-row name="licences" works>Open source licences</govuk-app-grouped-list-row>
+```
+
+On a grouped list or section heading, `works` is for its action, such as Edit.
+
+A tap goes nowhere if, within a third of a second, the page doesn’t leave or change, and no menu opens: tapping text, or a button no one listens for. So a button’s listener should go somewhere or change the page. One that only logs to the console counts as going nowhere.
 
 ## Serve the page
 

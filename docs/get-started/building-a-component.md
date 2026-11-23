@@ -48,6 +48,8 @@ There is no build step for components. `foundation/component.js` fetches the tem
 
 These are the same as in the app prototyping system’s kit (`exploration-2/kit`), which this structure is based on.
 
+A button the component acts on itself, such as a segmented control’s segment, carries `data-works`, so a root with [`highlight-actions`](/get-started/#show-what-works) rings it among what works. Any other button is rung only if the page says it works.
+
 `foundation/` holds what every component relies on: `tokens.css` (the app’s colours, type, spacing and sizes, each naming where it comes from), `base.css` (the `<govuk-app>` root) and `component.js`.
 
 ## Building one

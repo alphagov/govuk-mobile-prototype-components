@@ -8,6 +8,8 @@
    Attributes:
      colour-scheme="light" | "dark"   otherwise it follows the device
      text-size="accessibility-xxxl"   the largest Dynamic Type size
+     highlight-actions                a tap that goes nowhere rings what
+                                      can be tapped (highlight-actions.js)
 
    Custom properties a page may set on it, in its own styles or a style
    attribute:
@@ -57,6 +59,21 @@ govuk-app *::after {
 
 govuk-app :focus-visible {
   outline: var(--app-focus-width) solid var(--app-focus);
+}
+
+/* What can be tapped, ringed when a tap goes nowhere (highlight-actions.js),
+   then faded out. Not the app's: a prototype's. An outline, as a shadow would
+   take the place of a button's own; and inside the element, so a list's
+   rounded card, which clips its rows, doesn't cut it off. */
+govuk-app [data-govuk-app-highlight] {
+  outline: var(--app-focus-width) solid var(--app-highlight);
+  outline-offset: calc(-1 * var(--app-focus-width));
+  animation: govuk-app-highlight 1.2s ease-in forwards;
+}
+
+@keyframes govuk-app-highlight {
+  50% { outline-color: var(--app-highlight); }
+  to { outline-color: transparent; }
 }
 
 /* How iOS sets text, for any component to use: lines of a paragraph are the
