@@ -1,0 +1,28 @@
+/* GOV.UK Chat's question (ChatCellView's questionView): Body in white on
+   fills.surfaceChatQuestion, padded 16pt, its corners rounded 18pt, off the
+   grid, as the app has them. It is as wide as its text, at the right, and
+   no wider than the conversation less 20% of the window and the 8pt
+   between: the column is the window less 32pt, so 20% of the window is 20%
+   of the column and 6.4pt. */
+.govuk-app-chat-question {
+  width: fit-content;
+  margin-inline-start: auto;
+  max-width: calc(80% - 6.4px - var(--app-space-small));
+  padding: var(--app-space-medium);
+  border-radius: 18px;
+  background: var(--app-surface-chat-question);
+  color: var(--app-text-chat-question);
+  font-size: var(--app-font-body-size);
+  font-weight: var(--app-font-body-weight);
+  line-height: var(--app-font-body-leading);
+}
+
+/* Heard, not seen. */
+.govuk-app-chat-question__prompt {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
