@@ -4,9 +4,12 @@
    Its hint is Body in text.secondary, and its error Body in
    text.buttonDestructive. */
 
+/* It fills the width of what it sits in, as a button does, even in a stack,
+   which lines its items up in the middle. */
 .govuk-app-text-field {
   display: flex;
   flex-direction: column;
+  width: 100%;
   /* The app's 15pt between the hint, the error and the field, off the grid. */
   gap: 15px;
 }
