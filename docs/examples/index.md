@@ -62,6 +62,17 @@ The pages are plain HTML, so they move on with a link, a form and a page that re
 - **The menu’s other items.** Privacy notice, About and Give feedback go nowhere here.
 - **Clearing the chat.** The app asks the user to confirm in an alert first. Here it starts a new chat straight away.
 
+### Proposals
+
+Proposed changes to GOV.UK Chat, from a researcher’s mockups, as props for research sessions. Each is a conversation of its own, on the Chat tab:
+
+- [Using saved info](/examples/chat/universal-credit.html): Chat asks to use details the app has saved, and the user chooses which. Each detail’s info button says where the app got it. What would they choose, and what would they need to know to decide?
+- [Remembering what you tell it](/examples/chat/register-to-vote.html): Chat asks for an address, and the app picks up whatever is typed, to use again, in a yellow note set apart from Chat’s answers. Its link opens everything the app has picked up from chats, as a sheet, where each thing can be removed. How does it feel, and what controls would they expect?
+
+The saved details and the note of what was picked up are the example’s own, not the library’s, as the app doesn’t have them: they’re in `examples/chat/proposals/`, drawn the same way as the library’s, so either could join it later. The conversations also use the sheet, navigation bar and grouped list.
+
+Chat only answers what each conversation was written for, and anything else it says it can’t answer. The info picked up from chats is all back each time it opens.
+
 ## Settings
 
 [Open the Settings example](/examples/settings/)

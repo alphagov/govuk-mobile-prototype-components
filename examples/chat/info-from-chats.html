@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Info from chats – Chat – GOV.UK app example</title>
+  <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../example.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/sheet/sheet.js"></script>
+  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../components/heading/heading.js"></script>
+  <script type="module" src="../../components/grouped-list/grouped-list.js"></script>
+  <script type="module">
+    // Proposed, from a researcher's mockup: what controls would someone
+    // expect over what the app has picked up? Each can be removed, or all of
+    // them, and picking up more can be turned off. Nothing is kept: it's all
+    // back when the page loads.
+    import './proposals/chat.js'
+
+    const key = 'govuk-app-chat-example-address'
+    try {
+      const address = sessionStorage.getItem(key)
+      if (address) document.querySelector('[data-address]').setAttribute('description', address)
+    } catch {}
+
+    document.addEventListener('click', event => {
+      const button = event.target.closest('govuk-app button')
+      if (button?.name === 'remove') button.closest('govuk-app-grouped-list').remove()
+      if (button?.name === 'remove-all') {
+        for (const item of document.querySelectorAll('[data-picked-up]')) item.remove()
+        button.closest('govuk-app-grouped-list').remove()
+      }
+      // Once there's nothing left, say so, where it was.
+      const nothing = document.querySelector('#nothing')
+      if (nothing && !document.querySelector('[data-picked-up]')) nothing.replaceWith(nothing.content.cloneNode(true))
+    })
+  </script>
+</head>
+<body>
+  <div class="example-phone">
+    <govuk-app highlight-actions>
+      <govuk-app-sheet present label="Info picked up from chats">
+        <!-- The chat it was opened from: only its top, which is all that
+             shows behind the sheet. -->
+        <govuk-app-screen slot="behind" background="chat">
+          <govuk-app-heading level="1" size="title-2" align="center">GOV.UK Chat</govuk-app-heading>
+          <govuk-app-chat-answer note="Messages will be saved for 90 days.">
+            <govuk-app-text>Hi, I’m GOV.UK Chat 👋. I use AI to help you find what you need on GOV.UK.</govuk-app-text>
+          </govuk-app-chat-answer>
+          <govuk-app-chat-question>I just moved house and want to register to vote</govuk-app-chat-question>
+        </govuk-app-screen>
+
+        <govuk-app-screen>
+          <govuk-app-nav-bar title="Info from chats">
+            <govuk-app-nav-bar-item icon="close" href="register-to-vote.html#saved">Close</govuk-app-nav-bar-item>
+          </govuk-app-nav-bar>
+
+          <govuk-app-text>The app picks up information from your chats, to personalise your experience. You can remove anything it has picked up.</govuk-app-text>
+
+          <govuk-app-grouped-list footer="If you turn this off, the app will keep what it has already picked up until you remove it.">
+            <govuk-app-grouped-list-row type="toggle" name="pick-up" checked>Pick up info from chats</govuk-app-grouped-list-row>
+          </govuk-app-grouped-list>
+
+          <govuk-app-grouped-list data-picked-up footer="You told Chat on 23 November 2026.">
+            <govuk-app-grouped-list-row type="information" description="6 Market Street, Saxford, SX1 1CD" data-address>Your address</govuk-app-grouped-list-row>
+            <govuk-app-grouped-list-row type="detail" destructive name="remove" value="address" works>Remove</govuk-app-grouped-list-row>
+          </govuk-app-grouped-list>
+
+          <govuk-app-grouped-list data-picked-up footer="You told Chat on 2 October 2026.">
+            <govuk-app-grouped-list-row type="information" description="£6,238 per year">Your income</govuk-app-grouped-list-row>
+            <govuk-app-grouped-list-row type="detail" destructive name="remove" value="income" works>Remove</govuk-app-grouped-list-row>
+          </govuk-app-grouped-list>
+
+          <govuk-app-grouped-list data-picked-up footer="You told Chat on 2 October 2026.">
+            <govuk-app-grouped-list-row type="information" description="£730">Monthly rent</govuk-app-grouped-list-row>
+            <govuk-app-grouped-list-row type="detail" destructive name="remove" value="rent" works>Remove</govuk-app-grouped-list-row>
+          </govuk-app-grouped-list>
+
+          <govuk-app-grouped-list data-picked-up footer="You told Chat on 14 August 2026.">
+            <govuk-app-grouped-list-row type="information" description="£76.70 per week">You have a disability and get</govuk-app-grouped-list-row>
+            <govuk-app-grouped-list-row type="detail" destructive name="remove" value="disability" works>Remove</govuk-app-grouped-list-row>
+          </govuk-app-grouped-list>
+
+          <govuk-app-grouped-list>
+            <govuk-app-grouped-list-row type="detail" destructive name="remove-all" works>Remove everything</govuk-app-grouped-list-row>
+          </govuk-app-grouped-list>
+
+          <template id="nothing">
+            <govuk-app-text colour="secondary">The app hasn’t picked up anything from your chats.</govuk-app-text>
+          </template>
+        </govuk-app-screen>
+      </govuk-app-sheet>
+    </govuk-app>
+  </div>
+</body>
+</html>
