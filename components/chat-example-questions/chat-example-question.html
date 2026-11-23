@@ -1,0 +1,7 @@
+<!-- One question to try: a link if it has an href, otherwise a button. -->
+<template>
+  <li class="govuk-app-chat-example-question">
+    <a class="govuk-app-chat-example-question__card" data-if="href" data-attr="href: href" data-slot="content"></a>
+    <button class="govuk-app-chat-example-question__card" type="button" data-if="button" data-attr="name: name, value: value" data-slot="content"></button>
+  </li>
+</template>

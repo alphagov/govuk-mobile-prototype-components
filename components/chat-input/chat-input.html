@@ -1,0 +1,19 @@
+<!-- Where the user asks GOV.UK Chat a question: a form with a field that
+     grows as they type, a send button once there's a question, and, while
+     there isn't, a menu of the <govuk-app-menu-button-item> elements written
+     between its tags. Above it, near the limit, how many characters are left
+     (chat-input.js). -->
+<template>
+  <form class="govuk-app-chat-input" data-attr="action: action, method: method">
+    <p class="govuk-app-chat-input__message" aria-live="polite" data-attr="data-type: messageType" data-text="message"></p>
+    <div class="govuk-app-chat-input__row">
+      <div class="govuk-app-chat-input__field">
+        <textarea class="govuk-app-chat-input__textarea" rows="1" data-attr="name: name, placeholder: placeholder, aria-label: label" data-text="value"></textarea>
+        <button class="govuk-app-chat-input__send" type="submit" aria-label="Send message" data-attr="disabled: sendDisabled"><span class="govuk-app-icon govuk-app-chat-input__send-icon" aria-hidden="true">arrow_upward</span></button>
+      </div>
+      <span class="govuk-app-chat-input__menu" data-if="menu">
+        <govuk-app-menu-button variant="chat" data-slot="menu"></govuk-app-menu-button>
+      </span>
+    </div>
+  </form>
+</template>

@@ -1,0 +1,145 @@
+/* GOV.UK Chat's field (ChatActionView), pinned below the conversation:
+   16pt in from the sides and the bottom, a capsule of
+   fills.surfaceChatAction, 48pt tall for one line and growing as the
+   question does, then, 6pt after it, the menu button, while the field is
+   empty. Once there's a question, the menu goes, the field takes its room,
+   and a send button appears in the field's corner.
+
+   Off the grid, as the app has them: the 6pt beside the menu button and
+   below it, which centres it on a one-line field, and the 25pt corners. */
+
+.govuk-app-chat-input {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--app-space-medium) var(--app-space-medium);
+}
+
+/* With nothing below it, such as a tab bar, it leaves room for the home
+   indicator too. */
+govuk-app-chat-input:last-child .govuk-app-chat-input {
+  padding-bottom: max(var(--app-space-medium), var(--govuk-app-inset-bottom, 0px));
+}
+
+/* Near the limit, how many characters are left, and over it, how many too
+   many: Body, bold, in text.secondary, then in red, 32pt in from the sides
+   and 8pt from the field. */
+.govuk-app-chat-input__message {
+  padding: var(--app-space-small) var(--app-space-medium);
+  color: var(--app-text-secondary);
+  font-size: var(--app-font-body-size);
+  font-weight: 700;
+  line-height: var(--app-font-body-leading);
+}
+
+.govuk-app-chat-input__message:empty {
+  display: none;
+}
+
+.govuk-app-chat-input__message[data-type="error"] {
+  color: var(--app-surface-button-destructive);
+}
+
+.govuk-app-chat-input__row {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.govuk-app-chat-input__field {
+  position: relative;
+  flex: 1;
+  display: flex;
+  min-width: 0;
+  min-height: 48px;
+  border-radius: 25px;
+  background: var(--app-surface-chat-action);
+}
+
+.govuk-app-chat-input__field:has(.govuk-app-chat-input__textarea:focus-visible) {
+  outline: var(--app-focus-width) solid var(--app-focus);
+}
+
+/* Body, 13pt from the top and bottom of a one-line field and 16pt from its
+   side, as the app's text view sits in it. It grows a line at a time, as
+   far as six lines, then scrolls. */
+.govuk-app-chat-input__textarea {
+  flex: 1;
+  min-width: 0;
+  max-height: calc(6 * var(--app-font-body-leading) + 26px);
+  padding: 13px var(--app-space-medium);
+  border: 0;
+  /* The field's, so a ring round it, such as highlight-actions' (base.css),
+     follows the capsule. */
+  border-radius: 25px;
+  outline: 0;
+  resize: none;
+  field-sizing: content;
+  background: transparent;
+  color: var(--app-text-primary);
+  font-size: var(--app-font-body-size);
+  line-height: var(--app-font-body-leading);
+  scrollbar-width: none;
+}
+
+.govuk-app-chat-input__textarea::placeholder {
+  color: var(--app-text-chat-placeholder);
+  opacity: 1;
+}
+
+/* Room for the send button once there's a question. */
+.govuk-app-chat-input__textarea:not(:placeholder-shown) {
+  padding-inline-end: calc(var(--app-space-medium) + 36px);
+}
+
+/* A 36pt circle in text.buttonSecondary, holding SF's arrow.up, 16pt
+   semibold, in text.buttonPrimary, 6pt from the field's corner. It grows in
+   as the question is typed, and is faint while there's too much to send. */
+.govuk-app-chat-input__send {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-text-button-secondary);
+  color: var(--app-text-button-primary);
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out, scale 0.3s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.govuk-app-chat-input__send:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.govuk-app-chat-input__textarea:placeholder-shown + .govuk-app-chat-input__send {
+  visibility: hidden;
+  opacity: 0;
+  scale: 0.5;
+  transition: none;
+}
+
+.govuk-app-chat-input__send-icon {
+  font-family: "Material Symbols Rounded";
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+.govuk-app-chat-input__menu {
+  display: flex;
+  margin: 0 6px 6px 0;
+}
+
+.govuk-app-chat-input__row:has(.govuk-app-chat-input__textarea:not(:placeholder-shown)) .govuk-app-chat-input__menu {
+  display: none;
+}

@@ -1,0 +1,9 @@
+<!-- What GOV.UK Chat shows while it's busy: "Sending...", at the right,
+     while a question is sent, then "Generating your answer…", after the
+     app's animation, until the answer comes. -->
+<template>
+  <p class="govuk-app-chat-loading" role="status" data-attr="data-stage: stage">
+    <span class="govuk-app-chat-loading__mark" data-if="generating" aria-hidden="true"><span class="govuk-app-chat-loading__circle"></span><span class="govuk-app-chat-loading__circle"></span></span>
+    <span data-text="text"></span>
+  </p>
+</template>

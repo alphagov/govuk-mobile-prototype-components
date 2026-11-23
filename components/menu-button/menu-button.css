@@ -50,6 +50,23 @@
   opacity: 0.6;
 }
 
+/* GOV.UK Chat's, beside its field (ChatMenuView): SF's ellipsis, 18pt bold,
+   in text.buttonSecondary, on a 36pt circle of fills.surfaceChatAction.
+   Its three dots are each 4pt across, 6pt apart. */
+.govuk-app-menu-button__button[data-variant="chat"] {
+  background: var(--app-surface-chat-action);
+  color: var(--app-text-button-secondary);
+}
+
+.govuk-app-menu-button__button[data-variant="chat"]::before {
+  width: 18px;
+  height: 4px;
+  border-radius: 0;
+  background: radial-gradient(circle, currentColor 1.6px, transparent 2px) 0 50% / 6px 4px repeat-x;
+  -webkit-mask: none;
+  mask: none;
+}
+
 /* The menu: in the page's top layer, placed by menu-button.js. */
 .govuk-app-menu-button__menu {
   position: fixed;
@@ -68,7 +85,10 @@
 }
 
 .govuk-app-menu-button-item {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--app-space-medium);
   width: 100%;
   padding: 11px var(--app-space-medium); /* a 44pt row, iOS's, off the grid */
   border: 0;
@@ -77,6 +97,26 @@
   line-height: var(--app-font-body-leading);
   text-align: start;
   cursor: pointer;
+}
+
+/* An item that deletes something, such as Clear chat, in red, as iOS draws
+   a destructive one. */
+.govuk-app-menu-button-item[data-destructive] {
+  color: var(--app-text-error);
+}
+
+/* An icon at the end of its row, as iOS draws a Label's image. */
+.govuk-app-menu-button-item__icon {
+  flex-shrink: 0;
+  font-family: "Material Symbols Rounded";
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
 }
 
 .govuk-app-menu-button-item:active,

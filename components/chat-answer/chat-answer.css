@@ -1,0 +1,131 @@
+/* GOV.UK Chat's answer (ChatCellView's answerView), and its welcome message
+   (introView): a card the width of the conversation, in
+   fills.surfaceChatAnswer, padded 16pt, its corners rounded 18pt, off the
+   grid, as the app has them.
+
+   The app draws an answer from Markdown (ChatMarkdownTheme): paragraphs in
+   Body, headings in Body, semibold, and lists. Here it's drawn from the
+   library's own text, heading and bulleted list, 16pt apart. */
+
+.govuk-app-chat-answer {
+  display: flex;
+  flex-direction: column;
+  padding: var(--app-space-medium);
+  border-radius: 18px;
+  background: var(--app-surface-chat-answer);
+  color: var(--app-text-primary);
+}
+
+.govuk-app-chat-answer__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-medium);
+}
+
+/* The welcome message's note of how long messages are kept: Footnote, in
+   text.secondary, 24pt below the message. */
+.govuk-app-chat-answer__note {
+  margin-top: var(--app-space-large);
+  color: var(--app-text-secondary);
+  font-size: var(--app-font-footnote-size);
+  font-weight: var(--app-font-footnote-weight);
+  line-height: var(--app-font-footnote-leading);
+}
+
+/* Below a divider in strokes.chatDivider, 16pt from the answer: the warning,
+   then, 16pt below it, the pages the answer used. */
+.govuk-app-chat-answer__sources {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-medium);
+  margin-top: var(--app-space-medium);
+  padding-top: var(--app-space-medium);
+  border-top: 1px solid var(--app-border-chat-divider);
+}
+
+/* SF's exclamationmark.circle.fill in text.trailingIcon, before Body,
+   semibold, in text.primary. */
+.govuk-app-chat-answer__warning {
+  display: flex;
+  align-items: baseline;
+  gap: var(--app-space-small);
+  font-size: var(--app-font-body-emphasis-size);
+  font-weight: var(--app-font-body-emphasis-weight);
+  line-height: var(--app-font-body-emphasis-leading);
+}
+
+.govuk-app-chat-answer__warning-icon,
+.govuk-app-chat-answer__chevron {
+  flex-shrink: 0;
+  font-family: "Material Symbols Rounded";
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+.govuk-app-chat-answer__warning-icon {
+  color: var(--app-icon-trailing);
+  /* Sits on the first line, centred on its capitals, as SF's does. */
+  transform: translateY(3px);
+}
+
+/* A SwiftUI DisclosureGroup, which the app styles (ChatDisclosure): its
+   title in Body, text.primary, and a chevron in text.link at the end, down
+   while it's closed and up while it's open. */
+.govuk-app-chat-answer__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--app-space-small);
+  font-size: var(--app-font-body-size);
+  line-height: var(--app-font-body-leading);
+  list-style: none;
+  cursor: pointer;
+}
+
+.govuk-app-chat-answer__summary::-webkit-details-marker {
+  display: none;
+}
+
+.govuk-app-chat-answer__chevron {
+  color: var(--app-text-link);
+  font-size: 24px;
+}
+
+/* The app swaps the chevron for one pointing up, with no animation. */
+.govuk-app-chat-answer__details[open] .govuk-app-chat-answer__chevron {
+  transform: rotate(180deg);
+}
+
+.govuk-app-chat-answer__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-small);
+  margin-top: var(--app-space-small);
+  list-style: none;
+}
+
+/* Each page 4pt below what's above it, off the grid, as the app pads it,
+   and after the first, a divider 8pt above that. Each is in its own
+   element, so it's the elements that follow each other. */
+.govuk-app-chat-source {
+  padding-top: var(--app-space-extra-small);
+}
+
+govuk-app-chat-source + govuk-app-chat-source .govuk-app-chat-source {
+  padding-top: calc(var(--app-space-small) + var(--app-space-extra-small));
+  border-top: 1px solid var(--app-border-chat-divider);
+}
+
+/* Body, underlined, in text.linkSecondary. */
+.govuk-app-chat-source__link {
+  color: var(--app-text-link-secondary);
+  font-size: var(--app-font-body-size);
+  line-height: var(--app-font-body-leading);
+  text-decoration: underline;
+}
