@@ -1,0 +1,8 @@
+/* A link in a line of text, as GOV.UK Chat's answers draw one
+   (ChatMarkdownTheme): text.linkSecondary, underlined, in whatever size the
+   line around it is. */
+.govuk-app-link {
+  color: var(--app-text-link-secondary);
+  text-decoration: underline;
+  cursor: pointer;
+}
