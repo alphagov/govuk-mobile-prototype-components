@@ -1,0 +1,40 @@
+/* The app's StoredLocalAuthorityCardView, the user's council on Home: a card
+   in fills.surfaceList, its corners rounded 10pt, with a solid shadow 3pt
+   below it in strokes.cardDefault, padded 16pt. Its title is Title 2 Bold in
+   text.link, after its description, if it has one, in Body, text.secondary.
+
+   The title is one line at the font's own height, 1.193em, rather than the
+   type scale's leading, as the button's is: a card with only a title is
+   58pt tall, as the app measures. */
+
+.govuk-app-link-card {
+  display: flex;
+  flex-direction: column;
+  /* What SwiftUI's VStack puts between the description and the title, as
+     the snapshots measure: off the grid. */
+  gap: 6.5px;
+  padding: var(--app-space-medium);
+  border-radius: 10px; /* GovKit's roundedBorder, off the grid */
+  background: var(--app-surface-list);
+  box-shadow: 0 3px 0 var(--app-shadow-card); /* off the grid, the app's */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.govuk-app-link-card__description {
+  color: var(--app-text-secondary);
+  font-size: var(--app-font-body-size);
+  font-weight: var(--app-font-body-weight);
+  line-height: var(--app-font-body-leading);
+}
+
+.govuk-app-link-card__title {
+  color: var(--app-text-link);
+  font-size: var(--app-font-title-2-size);
+  font-weight: var(--app-font-title-2-weight);
+  line-height: 1.193em;
+}
+
+/* Inside the card's corners. */
+.govuk-app-link-card:focus-visible {
+  outline-offset: 0;
+}

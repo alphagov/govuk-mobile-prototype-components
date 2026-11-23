@@ -10,6 +10,8 @@
   <script type="module" src="../../components/home-header/home-header.js"></script>
   <script type="module" src="../../components/search-field/search-field.js"></script>
   <script type="module" src="../../components/grouped-list/grouped-list.js"></script>
+  <script type="module" src="../../components/section-heading/section-heading.js"></script>
+  <script type="module" src="../../components/link-card/link-card.js"></script>
   <script type="module" src="../../components/segmented-control/segmented-control.js"></script>
   <script type="module" src="../../components/text/text.js"></script>
   <script type="module" src="../../components/button/button.js"></script>
@@ -34,9 +36,8 @@
           <govuk-app-grouped-list-row type="topic" icon="travel" name="topic" value="travel-abroad">Travel abroad</govuk-app-grouped-list-row>
         </govuk-app-grouped-list>
 
-        <govuk-app-grouped-list title="Your local services" action="Edit" name="edit-local-services">
-          <govuk-app-grouped-list-row type="link" href="https://www.centralbedfordshire.gov.uk">Central Bedfordshire Council</govuk-app-grouped-list-row>
-        </govuk-app-grouped-list>
+        <govuk-app-section-heading action="Edit" name="edit-local-services">Your local services</govuk-app-section-heading>
+        <govuk-app-link-card href="https://www.centralbedfordshire.gov.uk">Central Bedfordshire Council</govuk-app-link-card>
 
         <govuk-app-grouped-list title="Pages you’ve visited" action="See all" name="see-all-visited">
           <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/register-to-vote" description="Last visited on 6 October">Register to vote</govuk-app-grouped-list-row>

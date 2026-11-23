@@ -1,0 +1,9 @@
+<!-- A card that is one link: its title, what was written between its tags,
+     large and in the link colour, with a description above it, if it has
+     one. The whole card goes to its href. -->
+<template>
+  <a class="govuk-app-link-card" data-attr="href: href">
+    <span class="govuk-app-link-card__description" data-if="description" data-text="description"></span>
+    <span class="govuk-app-link-card__title" data-slot="content"></span>
+  </a>
+</template>

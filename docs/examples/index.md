@@ -16,12 +16,11 @@ On a phone, an example fills the screen. Shake the phone to get back to this pag
 
 The Home tab, with the widgets a user sees once they’ve chosen some topics, set their council and visited some pages. For now it is mostly what’s missing, and it will grow as the components it needs are added. Its Settings tab opens the Settings example.
 
-It uses the screen, home header, search field, grouped list, segmented control, text, button, crown and tab bar. Its source is in `examples/home/` in the repository.
+It uses the screen, home header, search field, grouped list, segmented control, section heading, link card, text, button, crown and tab bar. Its source is in `examples/home/` in the repository.
 
 ### What’s missing
 
 - **Searching.** The search field works, but there are no previous searches or results to show while searching.
-- **Your local services’ card.** The council is drawn as a link row, rather than in the app’s large, bold link text on a card of its own, without an arrow.
 - **Give feedback as a link.** It is a grouped secondary button, the nearest the library has.
 - **Rows that go nowhere.** The topics other than Driving, the Edit and See all actions, Give feedback and the Chat tab have no screens of their own here. Driving opens the Driving example.
 
