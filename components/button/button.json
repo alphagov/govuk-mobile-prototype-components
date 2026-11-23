@@ -15,6 +15,12 @@
         "default": "primary",
         "description": "Which kind of button. black: the main action on a green screen. Anything else draws a primary button."
       },
+      "type": {
+        "type": "enum",
+        "values": ["button", "submit"],
+        "default": "button",
+        "description": "submit: pressing it sends the form it's in, with what the user typed or chose, and its own name and value if it has them. button: it does nothing until a page listens for it."
+      },
       "disabled": {
         "type": "boolean",
         "default": false,
@@ -36,6 +42,10 @@
       {
         "name": "click",
         "description": "From the <button> it draws, when it is pressed, and not when it is disabled. It bubbles, so a page can listen once for every button and use event.target.closest('button').name and .value to tell which was pressed."
+      },
+      {
+        "name": "submit",
+        "description": "From the form a submit button is in, when it is pressed. A page can stop the form being sent with event.preventDefault() and read its answers with new FormData(event.target, event.submitter), which includes the button's own name and value."
       }
     ]
   },
@@ -47,6 +57,7 @@
     "Use a destructive button only for an action that deletes or removes something, such as signing out or removing an account, and usually on a screen that asks the user to confirm it.",
     "Use a black button in place of a primary button on a green screen, as the app does, and not elsewhere.",
     "Write the label as a verb that says what will happen: 'Continue', 'Confirm postcode', 'Remove account'. Do not use 'Click here' or 'Submit'.",
+    "Make the button that sends a form's answers a submit button, inside the form, so pressing Return in a field sends them too.",
     "A button fills the width of what it sits in. Put it in a container to make it narrower.",
     "Disable a button only while the screen is waiting for something the user has to give first, such as a postcode, and make it clear what that is."
   ],
@@ -125,6 +136,7 @@
   "examples": [
     { "name": "Primary", "html": "<govuk-app-button name=\"continue\">Continue</govuk-app-button>" },
     { "name": "Primary, disabled until there is something to confirm", "html": "<govuk-app-button disabled>Confirm postcode</govuk-app-button>" },
+    { "name": "Submit, sending a form", "html": "<form>\n  <govuk-app-stack gap=\"large\">\n    <govuk-app-text-field type=\"postcode\" name=\"postcode\" label=\"Postcode\" hint=\"For example SW1A 2AA\"></govuk-app-text-field>\n    <govuk-app-button type=\"submit\">Confirm postcode</govuk-app-button>\n  </govuk-app-stack>\n</form>" },
     { "name": "Secondary", "html": "<govuk-app-button variant=\"secondary\">Select your address instead</govuk-app-button>" },
     { "name": "Grouped secondary, under a primary button", "html": "<govuk-app-button name=\"continue\">Continue</govuk-app-button>\n<govuk-app-button variant=\"grouped-secondary\" name=\"skip\">Skip</govuk-app-button>" },
     { "name": "Compact", "html": "<govuk-app-button variant=\"compact\">Add a vehicle</govuk-app-button>" },
