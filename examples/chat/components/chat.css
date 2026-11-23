@@ -4,9 +4,8 @@
 
    GOV.UK Chat's are drawn from the iOS app, govuk-mobile-ios-app
    (Production/govuk_ios/Views/Chat), read at fc2b3b1d on 2026-11-23: the
-   question and answer from ChatCellView, the example questions from
-   ChatExampleQuestionsView, and the text box and send button from
-   ChatActionView. Those marked as proposed aren't in the app.
+   question and answer from ChatCellView, and the text box and send button
+   from ChatActionView. Those marked as proposed aren't in the app.
 
    Icons are Material Symbols Rounded in place of SF Symbols, which may only be
    used on Apple's platforms. */
@@ -23,6 +22,11 @@ govuk-app {
   --app-border-chat-divider: light-dark(#d2e2f1, #16548a);    /* strokes.chatDivider */
   --app-border-chat-focused: light-dark(#1d70b8, #11e0f1);    /* strokes.focusedChatTextBox */
   --app-text-chat-input: light-dark(#4d4d4d, #ffffff);        /* text.chatTextArea */
+
+  /* Proposed: the note of what the app picked up, in GovKit's yellows, as
+     the mockups have it, so it stands apart from Chat's answers */
+  --app-surface-chat-remembered: light-dark(#fff8cc, #332c00); /* yellowTint80, and yellowShade80 in dark */
+  --app-border-chat-remembered: light-dark(#bfa600, #ffdd00);  /* yellowShade25, and primaryYellow in dark */
 }
 
 /* The conversation, top to bottom, 16pt between each message. */
@@ -91,37 +95,6 @@ govuk-app {
   .govuk-app-chat-answer__dot {
     animation: none;
   }
-}
-
-/* Example questions: "Try asking:" in Body, text.secondary, on the right,
-   then each question 44pt in from the left, in Body, text.link, on a card
-   with 18pt corners and a keyline in text.link. */
-.govuk-app-chat-suggestions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--app-space-small);
-}
-
-.govuk-app-chat-suggestions__title {
-  align-self: flex-end;
-  padding-right: var(--app-space-medium);
-  color: var(--app-text-secondary);
-}
-
-.govuk-app-chat-suggestions__list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--app-space-small);
-  margin-left: var(--app-size-touch-target);
-}
-
-.govuk-app-chat-suggestion {
-  display: block;
-  padding: var(--app-space-medium);
-  border: 1px solid var(--app-text-link);
-  border-radius: 18px; /* ChatExampleQuestionsView's cornerRadius, off the grid */
-  background: var(--app-surface-chat-answer);
-  color: var(--app-text-link);
 }
 
 /* The text box, a capsule with the send button in its corner, 16pt from the
@@ -336,17 +309,18 @@ govuk-app {
   outline: var(--app-focus-width) solid var(--app-focus);
 }
 
-/* Proposed: what the app has picked up, on a card with a keyline, so it
-   doesn't read as an answer. What it picked up is set apart on the chat's
-   background below, and the link to all of it is below that. */
+/* Proposed: what the app has picked up, on yellow with a dashed keyline, as
+   the mockups have it, so it doesn't read as one of Chat's answers. What it
+   picked up is set apart on a card of its own, and the link to all of it is
+   below that. */
 .govuk-app-chat-remembered {
   display: flex;
   flex-direction: column;
   gap: var(--app-space-medium);
   padding: var(--app-space-medium);
-  border: 1px solid var(--app-border-button-compact);
+  border: 2px dashed var(--app-border-chat-remembered);
   border-radius: 18px; /* as an answer's */
-  background: var(--app-surface-chat-answer);
+  background: var(--app-surface-chat-remembered);
   font-size: var(--app-font-subheadline-size);
   --leading: var(--app-font-subheadline-leading);
 }
@@ -354,7 +328,7 @@ govuk-app {
 .govuk-app-chat-remembered__fact {
   padding: var(--app-space-small) var(--app-space-medium);
   border-radius: 10px; /* as a grouped list's card */
-  background: var(--app-surface-page);
+  background: var(--app-surface-chat-answer);
 }
 
 .govuk-app-chat-remembered__fact.govuk-app-text {

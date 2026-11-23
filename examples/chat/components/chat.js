@@ -24,8 +24,6 @@ await Promise.all([
   defineComponent({ name: 'chat-conversation', template: new URL('./conversation.html', import.meta.url), styles }),
   defineComponent({ name: 'chat-question', template: new URL('./question.html', import.meta.url), styles }),
   defineComponent({ name: 'chat-answer', template: new URL('./answer.html', import.meta.url), styles, attributes: ['pending'], prepare: prepareAnswer }),
-  defineComponent({ name: 'chat-suggestions', template: new URL('./suggestions.html', import.meta.url), styles }),
-  defineComponent({ name: 'chat-suggestion', template: new URL('./suggestion.html', import.meta.url), styles, attributes: ['href'] }),
   defineComponent({ name: 'chat-input', template: new URL('./input.html', import.meta.url), styles, attributes: ['placeholder', 'value'], fonts }),
   defineComponent({ name: 'chat-saved-details', template: new URL('./saved-details.html', import.meta.url), styles, attributes: ['name', 'action'] }),
   defineComponent({ name: 'chat-saved-detail', template: new URL('./saved-detail.html', import.meta.url), styles, attributes: ['label', 'source', 'name', 'checked'], prepare: prepareDetail, fonts }),
