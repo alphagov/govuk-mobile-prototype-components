@@ -35,15 +35,22 @@ import './highlight-actions.js'
 /**
  * The icons' font: Material Symbols Rounded, filled, in place of SF Symbols,
  * which may only be used on Apple's platforms. A component that draws icons
- * names it in its fonts.
+ * names it in its fonts. The font is in foundation/fonts, so nothing is
+ * loaded from another site.
  */
-export const materialSymbols = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0&display=block'
+export const materialSymbols = {
+  family: 'Material Symbols Rounded',
+  stylesheet: new URL('./fonts/material-symbols-rounded.css', import.meta.url),
+}
 
 /**
  * Material Symbols Outlined, filled, which the app's own topic icons are
  * drawn from.
  */
-export const materialSymbolsOutlined = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0&display=block'
+export const materialSymbolsOutlined = {
+  family: 'Material Symbols Outlined',
+  stylesheet: new URL('./fonts/material-symbols-outlined.css', import.meta.url),
+}
 
 const templates = new Map()
 const stylesheets = new Map()
@@ -89,33 +96,21 @@ function fontLoading(change) {
 }
 
 /**
- * Adds a font's stylesheet to the page once, without waiting for it. It's
- * fetched and added as a <style>, not a <link>: Chrome holds every
- * stylesheet's load event until those added before it have loaded, so a font
- * from another site, which can take a second or more, would hold back every
- * component still loading. Google Fonts' stylesheets may be fetched from any
- * site.
+ * Adds a font's stylesheet to the page once, and marks the page as loading
+ * fonts until its font has loaded. Nothing waits for it, so a component is
+ * drawn straight away, its icons hidden until then.
  */
-function fontStylesheet(url) {
+function loadFont({ family, stylesheet: url }) {
   const key = String(url)
   if (fontStylesheets.has(key)) return
   fontStylesheets.add(key)
   fontLoading(+1)
-  fetch(key)
-    .then(response => {
-      if (!response.ok) throw new Error(`${response.status}`)
-      return response.text()
-    })
-    .then(css => {
-      document.head.append(Object.assign(document.createElement('style'), { textContent: css }))
-      // A stylesheet doesn't load its fonts until something uses them, so
-      // ask for each family it declares, and wait for them.
-      const families = new Set([...css.matchAll(/font-family:\s*['"]([^'"]+)['"]/g)].map(match => match[1]))
-      return Promise.all([...families].map(family => document.fonts.load(`24px "${family}"`)))
-    })
+  stylesheet(url)
+    // A stylesheet doesn't load its font until something uses it, so ask.
+    .then(() => document.fonts.load(`24px "${family}"`))
     // If it can't be loaded, its icons show as their names: better than
     // nothing, as they say what they are.
-    .catch(error => console.warn(`Could not load the font ${key}: ${error.message}`))
+    .catch(error => console.warn(`Could not load the font ${family}: ${error.message}`))
     .finally(() => fontLoading(-1))
 }
 
@@ -147,10 +142,9 @@ function load(url) {
  *               one left off is undefined
  *   prepare     turns that data into what the template is filled in from:
  *               defaults, and anything worked out from more than one value
- *   fonts       stylesheets of fonts it uses, such as materialSymbols, added
- *               to the page but not waited for: a font from another site can
- *               take a second or more, and the component would be drawn as
- *               bare text until then. Give anything drawn in an icon font
+ *   fonts       fonts it uses, such as materialSymbols, added to the page
+ *               but not waited for: a font this size can take a moment, and
+ *               the component would be drawn as bare text until then. Give anything drawn in an icon font
  *               the class govuk-app-icon, which base.css hides until every
  *               font has loaded, so it never shows as the icon's name
  *
@@ -164,7 +158,7 @@ export async function defineComponent({ name, template, styles, attributes = [],
     load(template),
     ...[...foundation, ...(styles ? [styles] : [])].map(stylesheet),
   ])
-  for (const font of fonts) fontStylesheet(font)
+  for (const font of fonts) loadFont(font)
   if (customElements.get(tag)) return
 
   elements.insertRule(`${tag} { display: contents; }`)

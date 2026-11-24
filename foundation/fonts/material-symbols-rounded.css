@@ -1,0 +1,11 @@
+/* Material Symbols Rounded, filled, at the settings the components draw it
+   with: optical size 24, weight 500, fill 1, grade 0. One fixed instance from
+   Google Fonts, kept here so the library loads nothing from another site.
+   Apache License 2.0: see LICENSE. */
+@font-face {
+  font-family: "Material Symbols Rounded";
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url("material-symbols-rounded.woff2") format("woff2");
+}

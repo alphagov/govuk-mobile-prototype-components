@@ -1,0 +1,11 @@
+/* Material Symbols Outlined, filled, at optical size 24, weight 400, fill 1
+   and grade 0: the app's own topic icons. One fixed instance from Google
+   Fonts, kept here so the library loads nothing from another site.
+   Apache License 2.0: see LICENSE. */
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("material-symbols-outlined.woff2") format("woff2");
+}
