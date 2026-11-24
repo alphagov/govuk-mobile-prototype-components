@@ -19,7 +19,25 @@
         "description": "Draws the list of GOV.UK pages open. The app starts it closed, and the user opens it."
       }
     },
-    "content": "The answer, written with <govuk-app-text>, <govuk-app-heading level=\"3\" size=\"body\"> and <govuk-app-bulleted-list spacing=\"compact\">, with <govuk-app-link> for links in them. Then a <govuk-app-chat-source href=\"…\"> for each GOV.UK page it used, holding the page's title. With sources, it draws the warning and the list of pages."
+    "content": "The answer, written with <govuk-app-text>, <govuk-app-heading level=\"3\" size=\"body\"> and <govuk-app-bulleted-list spacing=\"compact\">, with <govuk-app-link> for links in them. Then a <govuk-app-chat-source href=\"…\"> for each GOV.UK page it used, holding the page's title. With sources, it draws the warning and the list of pages.",
+    "contains": {
+      "elements": ["govuk-app-text", "govuk-app-heading", "govuk-app-bulleted-list", "govuk-app-chat-source"]
+    },
+    "parts": {
+      "govuk-app-chat-source": {
+        "description": "One GOV.UK page the answer used, holding the page's title, listed under the answer.",
+        "attributes": {
+          "href": {
+            "type": "string",
+            "required": true,
+            "description": "The page's address on GOV.UK."
+          }
+        },
+        "contains": {
+          "text": true
+        }
+      }
+    }
   },
   "outputs": {
     "events": [

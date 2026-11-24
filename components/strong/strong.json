@@ -12,7 +12,10 @@
   },
   "inputs": {
     "attributes": {},
-    "content": "The words to make bold. Put it inside a <govuk-app-text>, around the words, and it takes that text's size and colour."
+    "content": "The words to make bold. Put it inside a <govuk-app-text>, around the words, and it takes that text's size and colour.",
+    "contains": {
+      "text": true
+    }
   },
   "outputs": {
     "events": []

@@ -14,7 +14,10 @@
         "description": "The person's name, in bold above the address, such as Mrs Jane Bloggs. Leave it off for an address alone."
       }
     },
-    "content": "The address's lines, each on a line of its own, or separated by <br>. Blank lines and indents are left out, so they can be written however reads best in the HTML."
+    "content": "The address's lines, each on a line of its own, or separated by <br>. Blank lines and indents are left out, so they can be written however reads best in the HTML.",
+    "contains": {
+      "text": true
+    }
   },
   "outputs": {
     "events": []

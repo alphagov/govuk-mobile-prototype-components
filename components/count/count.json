@@ -18,7 +18,10 @@
         "description": "How many, such as 0 or 12."
       }
     },
-    "content": "What it counts, a word or two, such as Offences or Points."
+    "content": "What it counts, a word or two, such as Offences or Points.",
+    "contains": {
+      "text": true
+    }
   },
   "outputs": {
     "events": []

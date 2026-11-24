@@ -32,7 +32,8 @@
         "description": "The page to go to when the user searches, such as a page of results. Without it, the same page, with what they typed added to its address."
       }
     },
-    "content": "Nothing."
+    "content": "Nothing.",
+    "contains": {}
   },
   "outputs": {
     "events": [

@@ -19,7 +19,10 @@
         "description": "Shown above the name, in grey, saying what it's for, such as County councils are usually responsible for services like education, social care and transport."
       }
     },
-    "content": "The name of where it goes, as text, such as Central Bedfordshire Council."
+    "content": "The name of where it goes, as text, such as Central Bedfordshire Council.",
+    "contains": {
+      "text": true
+    }
   },
   "outputs": {
     "events": [

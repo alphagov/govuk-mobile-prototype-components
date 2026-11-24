@@ -16,7 +16,20 @@
         "description": "regular: the text 16pt after the bullet, and the points 8pt apart. compact: 8pt and 4pt, for a short list closely following its sentence, as on Your app data."
       }
     },
-    "content": "Two or more <govuk-app-bulleted-list-item> elements, in order, each holding one point as text, which may include a link."
+    "content": "Two or more <govuk-app-bulleted-list-item> elements, in order, each holding one point as text, which may include a link.",
+    "contains": {
+      "elements": ["govuk-app-bulleted-list-item"]
+    },
+    "parts": {
+      "govuk-app-bulleted-list-item": {
+        "description": "One point in the list, as text, which may include a link or a few words in bold.",
+        "attributes": {},
+        "contains": {
+          "text": true,
+          "inline": ["govuk-app-strong", "govuk-app-link"]
+        }
+      }
+    }
   },
   "outputs": {
     "events": []

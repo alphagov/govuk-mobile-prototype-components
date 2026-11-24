@@ -35,7 +35,10 @@
         "description": "Set on the button, alongside name, to say which of several choices was pressed."
       }
     },
-    "content": "The button's label, as text. Keep it to a few words."
+    "content": "The button's label, as text. Keep it to a few words.",
+    "contains": {
+      "text": true
+    }
   },
   "outputs": {
     "events": [

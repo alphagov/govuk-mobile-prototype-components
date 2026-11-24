@@ -28,7 +28,42 @@
         "description": "card: a filled circle with its dots cut out, in link blue, as on a vehicle's or a licence's card. chat: three blue dots on a white circle, as beside GOV.UK Chat's field. The chat input draws its own."
       }
     },
-    "content": "Its menu's items, <govuk-app-menu-button-item> elements, top to bottom. Each is a link, with an href, or a button, with a name and value. Its label is what's written between its tags. Give it destructive to draw it in red, for one that deletes something, such as Clear chat, and icon to draw a Material Symbol at its end, such as delete."
+    "content": "Its menu's items, <govuk-app-menu-button-item> elements, top to bottom. Each is a link, with an href, or a button, with a name and value. Its label is what's written between its tags. Give it destructive to draw it in red, for one that deletes something, such as Clear chat, and icon to draw a Material Symbol at its end, such as delete.",
+    "contains": {
+      "text": true,
+      "elements": ["govuk-app-menu-button-item"]
+    },
+    "parts": {
+      "govuk-app-menu-button-item": {
+        "description": "One item in the menu, holding its label: a link, with an href, or a button, with a name and value.",
+        "attributes": {
+          "href": {
+            "type": "string",
+            "description": "Makes it a link to this page."
+          },
+          "name": {
+            "type": "string",
+            "description": "Without an href, makes it a button with this name, so a page listening for clicks can tell which was pressed."
+          },
+          "value": {
+            "type": "string",
+            "description": "Set on the button, alongside name, to say which of several it was."
+          },
+          "destructive": {
+            "type": "boolean",
+            "default": false,
+            "description": "Draws it in red, for one that deletes something, such as Clear chat."
+          },
+          "icon": {
+            "type": "string",
+            "description": "A Material Symbol drawn at its end, such as delete."
+          }
+        },
+        "contains": {
+          "text": true
+        }
+      }
+    }
   },
   "outputs": {
     "events": [

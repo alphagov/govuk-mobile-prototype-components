@@ -22,7 +22,10 @@
         "description": "rear: yellow, as the app shows a vehicle's registration. front: white, with a thicker stroke, as the app draws the blank ABC plate on its vehicle search."
       }
     },
-    "content": "The registration number, as it's written on the plate, such as AB71 CDE."
+    "content": "The registration number, as it's written on the plate, such as AB71 CDE.",
+    "contains": {
+      "text": true
+    }
   },
   "outputs": {
     "events": []

@@ -42,6 +42,8 @@ export default function () {
       throw new Error(`components/${slug}/${slug}.json does not match component.schema.json:\n${errors}`)
     }
 
+    checkAgainstScript(slug, definition)
+
     // Prose about the component that the definition can't say well, if any.
     const prose = path.join('components', slug, `${slug}.md`)
     components.push({
@@ -53,6 +55,8 @@ export default function () {
     })
   }
 
+  checkContains(components)
+
   // By group, then by name. Each one's place is its order in the sidebar,
   // which groups them.
   return components
@@ -60,4 +64,61 @@ export default function () {
       groupOrder.indexOf(a.group) - groupOrder.indexOf(b.group) ||
       a.name.localeCompare(b.name))
     .map((component, index) => ({ ...component, order: index }))
+}
+
+/**
+ * The elements a component's script defines, each with the attributes it
+ * reads: what defineComponent is given, in components/<name>/<name>.js.
+ */
+function definedByScript(slug) {
+  const source = fs.readFileSync(path.join(directory, slug, `${slug}.js`), 'utf8')
+  return new Map(source.split('defineComponent(').slice(1).map(call => {
+    const options = call.slice(0, call.indexOf('})'))
+    const name = options.match(/name:\s*'([a-z-]+)'/)[1]
+    const list = options.match(/attributes:\s*\[([^\]]*)\]/)
+    return [`govuk-app-${name}`, list ? [...list[1].matchAll(/'([a-z-]+)'/g)].map(match => match[1]) : []]
+  }))
+}
+
+/**
+ * A definition says what its component and its parts read, so tools can build
+ * pages from it, such as a prototype's schema. Fail the build if it says
+ * anything different from what the script does.
+ */
+function checkAgainstScript(slug, definition) {
+  const defined = new Map([
+    [definition.element, Object.keys(definition.inputs.attributes)],
+    ...Object.entries(definition.inputs.parts ?? {}).map(([element, part]) => [element, Object.keys(part.attributes)]),
+  ])
+  const scripted = definedByScript(slug)
+  const describe = elements => [...elements].sort().join(', ') || 'nothing'
+  if (describe(defined.keys()) !== describe(scripted.keys())) {
+    throw new Error(`components/${slug}/${slug}.json defines ${describe(defined.keys())}, but its script defines ${describe(scripted.keys())}`)
+  }
+  for (const [element, attributes] of defined) {
+    if (describe(attributes) !== describe(scripted.get(element))) {
+      throw new Error(`components/${slug}/${slug}.json says ${element} reads ${describe(attributes)}, but its script reads ${describe(scripted.get(element))}`)
+    }
+  }
+}
+
+/**
+ * Every element a definition says may go inside its component is one of the
+ * library's components, or a part of one, such as the menu button's items,
+ * which Chat's field has too.
+ */
+function checkContains(components) {
+  const library = new Set(components.flatMap(component => [component.element, ...Object.keys(component.inputs.parts ?? {})]))
+  for (const component of components) {
+    const everything = [component.inputs.contains, ...Object.values(component.inputs.parts ?? {}).map(part => part.contains)]
+    for (const contains of everything) {
+      const named = [contains.inline, contains.elements, ...Object.values(contains.slots ?? {})]
+        .filter(Array.isArray).flat()
+      for (const element of named) {
+        if (!library.has(element)) {
+          throw new Error(`components/${component.slug}/${component.slug}.json says ${element} may go inside it, but there's no such component or part`)
+        }
+      }
+    }
+  }
 }

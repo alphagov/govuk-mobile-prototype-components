@@ -19,7 +19,13 @@
         "description": "The sheet's name for screen readers, such as Sign out. Leave it off if its screen has a heading or a navigation bar title."
       }
     },
-    "content": "The sheet's screen, a <govuk-app-screen>, usually with background=\"modal\", starting with a <govuk-app-nav-bar> that has a close action. Optionally, the screen it was presented from, with slot=\"behind\", which is drawn set back behind it and can't be used."
+    "content": "The sheet's screen, a <govuk-app-screen>, usually with background=\"modal\", starting with a <govuk-app-nav-bar> that has a close action. Optionally, the screen it was presented from, with slot=\"behind\", which is drawn set back behind it and can't be used.",
+    "contains": {
+      "elements": ["govuk-app-screen"],
+      "slots": {
+        "behind": ["govuk-app-screen"]
+      }
+    }
   },
   "outputs": {
     "events": []

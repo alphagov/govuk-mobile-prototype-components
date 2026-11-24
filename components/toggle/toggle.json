@@ -27,7 +27,8 @@
         "description": "Its value, sent with a form when it is on."
       }
     },
-    "content": null
+    "content": null,
+    "contains": {}
   },
   "outputs": {
     "events": [

@@ -21,6 +21,17 @@ Each component is one folder, `components/<name>/`:
 
 Every folder with a definition gets a page on this site, drawn from the definition. The build checks each definition against `component.schema.json`, and fails if one doesn’t match.
 
+### What goes inside it, as data
+
+A definition’s `inputs` say what a page can give the component, in a form tools can use as well as people, such as a schema for prototypes written as data:
+
+- `attributes`: each attribute it reads, with its type, any allowed values and its default.
+- `content`: what goes between its tags, in words, for its page.
+- `contains`: the same, as data. `text` if text goes between its tags, with any `inline` elements that can go around a few words of it, such as `govuk-app-strong`. `elements`, the elements that go between its tags, or `"any"` of the library’s components. `slots`, what goes in each slot a page fills with `slot="…"`. Empty if nothing goes inside it.
+- `parts`: the elements that only go inside it, such as a grouped list’s `govuk-app-grouped-list-row`, each with its own `description`, `attributes` and `contains`.
+
+The build fails if these disagree with the component’s script: the elements it defines, and the attributes each reads, must be exactly those its definition lists. Every element named in `contains` must be one of the library’s components or a part of one.
+
 ### Prose for a component’s page
 
 If a component has a `<name>.md`, it appears on its page after the introduction and before the examples. Start its headings at `##`. It can include live examples, since the component’s script is already on the page:

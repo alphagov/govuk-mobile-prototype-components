@@ -47,7 +47,10 @@
         "description": "For a warning, the name of a Material Symbol on its left, such as warning."
       }
     },
-    "content": "What it says, a sentence or two."
+    "content": "What it says, a sentence or two.",
+    "contains": {
+      "text": true
+    }
   },
   "outputs": {
     "events": [

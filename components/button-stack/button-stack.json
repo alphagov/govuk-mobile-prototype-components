@@ -9,7 +9,10 @@
   },
   "inputs": {
     "attributes": {},
-    "content": "One or two <govuk-app-button> elements, top to bottom: the main action, as a primary or destructive button, then any way out of it as a grouped secondary button. Give the stack slot=\"footer\" to pin it to the bottom of a <govuk-app-screen>."
+    "content": "One or two <govuk-app-button> elements, top to bottom: the main action, as a primary or destructive button, then any way out of it as a grouped secondary button. Give the stack slot=\"footer\" to pin it to the bottom of a <govuk-app-screen>.",
+    "contains": {
+      "elements": ["govuk-app-button"]
+    }
   },
   "outputs": {
     "events": []

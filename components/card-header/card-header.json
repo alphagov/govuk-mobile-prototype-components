@@ -24,7 +24,10 @@
         "description": "Makes it at least 120pt tall, its content at the bottom, as the designs show a state that is the card's whole point, such as Disqualified."
       }
     },
-    "content": "What it holds, such as a heading, or a line of text over one, 8pt apart."
+    "content": "What it holds, such as a heading, or a line of text over one, 8pt apart.",
+    "contains": {
+      "elements": "any"
+    }
   },
   "outputs": {
     "events": []

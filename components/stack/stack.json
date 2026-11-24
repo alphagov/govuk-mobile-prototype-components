@@ -34,7 +34,10 @@
         "description": "The space between its items, from the spacing scale: 0, 4, 8, 16 or 24pt."
       }
     },
-    "content": "The components it lays out, in order."
+    "content": "The components it lays out, in order.",
+    "contains": {
+      "elements": "any"
+    }
   },
   "outputs": {
     "events": []

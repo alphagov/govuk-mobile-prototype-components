@@ -14,7 +14,37 @@
         "description": "Its name for screen readers, such as Driving, as the app's picker's label."
       }
     },
-    "content": "Two or three <govuk-app-segmented-control-item> elements, left to right. Mark the one that's showing selected. Give each an href, to make it a link to another page, or name and value, to tell it apart as a button. Its label is what's written between its tags."
+    "content": "Two or three <govuk-app-segmented-control-item> elements, left to right. Mark the one that's showing selected. Give each an href, to make it a link to another page, or name and value, to tell it apart as a button. Its label is what's written between its tags.",
+    "contains": {
+      "elements": ["govuk-app-segmented-control-item"]
+    },
+    "parts": {
+      "govuk-app-segmented-control-item": {
+        "description": "One segment, holding its label: a link to another page, or a button.",
+        "attributes": {
+          "href": {
+            "type": "string",
+            "description": "Makes it a link to this page."
+          },
+          "name": {
+            "type": "string",
+            "description": "Without an href, makes it a button with this name, so a page listening for clicks can tell which was pressed."
+          },
+          "value": {
+            "type": "string",
+            "description": "Set on the button, alongside name, to say which of several it was."
+          },
+          "selected": {
+            "type": "boolean",
+            "default": false,
+            "description": "The segment that's showing."
+          }
+        },
+        "contains": {
+          "text": true
+        }
+      }
+    }
   },
   "outputs": {
     "events": [

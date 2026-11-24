@@ -28,7 +28,39 @@
         "description": "Shows a back button that is a link to this page. Use it in place of back in a prototype of several pages."
       }
     },
-    "content": "Up to three <govuk-app-nav-bar-item> elements, the screen's actions, drawn on the right in order. One with slot=\"leading\" is drawn on the left instead, where the back button would be, as the app draws close on a full-screen cover. Each takes an icon attribute, the name of a Material Symbol (such as close, check or more_horiz), or none, to draw its text instead; an href, to make it a link to another page, or name and value, to tell it apart as a button. What is written between its tags is its text, or, with an icon, its name for screen readers."
+    "content": "Up to three <govuk-app-nav-bar-item> elements, the screen's actions, drawn on the right in order. One with slot=\"leading\" is drawn on the left instead, where the back button would be, as the app draws close on a full-screen cover. Each takes an icon attribute, the name of a Material Symbol (such as close, check or more_horiz), or none, to draw its text instead; an href, to make it a link to another page, or name and value, to tell it apart as a button. What is written between its tags is its text, or, with an icon, its name for screen readers.",
+    "contains": {
+      "elements": ["govuk-app-nav-bar-item"],
+      "slots": {
+        "leading": ["govuk-app-nav-bar-item"]
+      }
+    },
+    "parts": {
+      "govuk-app-nav-bar-item": {
+        "description": "One of the screen's actions in the bar: its text, or with an icon, its name for screen readers.",
+        "attributes": {
+          "icon": {
+            "type": "string",
+            "description": "A Material Symbol to draw, such as close, check or more_horiz, in place of its text."
+          },
+          "href": {
+            "type": "string",
+            "description": "Makes it a link to this page."
+          },
+          "name": {
+            "type": "string",
+            "description": "Without an href, makes it a button with this name, so a page listening for clicks can tell which was pressed."
+          },
+          "value": {
+            "type": "string",
+            "description": "Set on the button, alongside name, to say which of several it was."
+          }
+        },
+        "contains": {
+          "text": true
+        }
+      }
+    }
   },
   "outputs": {
     "events": [

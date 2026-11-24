@@ -45,7 +45,8 @@
         "description": "What the browser may fill in for the user, such as email or postal-code."
       }
     },
-    "content": null
+    "content": null,
+    "contains": {}
   },
   "outputs": {
     "events": [

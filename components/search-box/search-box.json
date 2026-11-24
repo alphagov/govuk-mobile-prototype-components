@@ -34,7 +34,12 @@
         "description": "Where the search goes, such as the page of results. Without it, the page it's on."
       }
     },
-    "content": "Optionally, an element with slot=\"accessory\", inside the box after the text, hinting at what to type, such as <govuk-app-number-plate variant=\"front\">ABC</govuk-app-number-plate>. Screen readers don't hear it."
+    "content": "Optionally, an element with slot=\"accessory\", inside the box after the text, hinting at what to type, such as <govuk-app-number-plate variant=\"front\">ABC</govuk-app-number-plate>. Screen readers don't hear it.",
+    "contains": {
+      "slots": {
+        "accessory": "any"
+      }
+    }
   },
   "outputs": {
     "events": [

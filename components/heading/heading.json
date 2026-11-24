@@ -27,7 +27,10 @@
         "description": "center, as the app's onboarding and information screens set their titles."
       }
     },
-    "content": "The heading's text."
+    "content": "The heading's text.",
+    "contains": {
+      "text": true
+    }
   },
   "outputs": {
     "events": []

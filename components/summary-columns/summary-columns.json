@@ -9,7 +9,19 @@
   },
   "inputs": {
     "attributes": {},
-    "content": "Two to four <govuk-app-summary-column> elements, left to right, each holding one component, such as a <govuk-app-labelled-icon>, a <govuk-app-count> or a <govuk-app-status>."
+    "content": "Two to four <govuk-app-summary-column> elements, left to right, each holding one component, such as a <govuk-app-labelled-icon>, a <govuk-app-count> or a <govuk-app-status>.",
+    "contains": {
+      "elements": ["govuk-app-summary-column"]
+    },
+    "parts": {
+      "govuk-app-summary-column": {
+        "description": "One column, holding one component, such as a labelled icon, a count or a status.",
+        "attributes": {},
+        "contains": {
+          "elements": "any"
+        }
+      }
+    }
   },
   "outputs": {
     "events": []

@@ -9,7 +9,8 @@
   },
   "inputs": {
     "attributes": {},
-    "content": "None."
+    "content": "None.",
+    "contains": {}
   },
   "outputs": {
     "events": []

@@ -41,7 +41,10 @@
         "description": "The field's name for screen readers. Without one, it's the placeholder."
       }
     },
-    "content": "The menu's items, <govuk-app-menu-button-item> elements, top to bottom, as the app has them: Clear chat, destructive, with the delete icon, then Privacy notice, About and Give feedback. Without any, there's no menu."
+    "content": "The menu's items, <govuk-app-menu-button-item> elements, top to bottom, as the app has them: Clear chat, destructive, with the delete icon, then Privacy notice, About and Give feedback. Without any, there's no menu.",
+    "contains": {
+      "elements": ["govuk-app-menu-button-item"]
+    }
   },
   "outputs": {
     "events": [

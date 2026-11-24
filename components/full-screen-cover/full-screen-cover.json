@@ -19,7 +19,13 @@
         "description": "The cover's name for screen readers. Leave it off if its screen has a heading or a navigation bar title."
       }
     },
-    "content": "The cover's screen, a <govuk-app-screen>. Optionally, the screen it was presented from, with slot=\"behind\", which is seen only while the cover comes up over it, and can't be used."
+    "content": "The cover's screen, a <govuk-app-screen>. Optionally, the screen it was presented from, with slot=\"behind\", which is seen only while the cover comes up over it, and can't be used.",
+    "contains": {
+      "elements": ["govuk-app-screen"],
+      "slots": {
+        "behind": ["govuk-app-screen"]
+      }
+    }
   },
   "outputs": {
     "events": []

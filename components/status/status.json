@@ -37,7 +37,8 @@
         "description": "The line below, in Subheadline, grey, such as Valid, 23 days, Expired or Not required."
       }
     },
-    "content": null
+    "content": null,
+    "contains": {}
   },
   "outputs": {
     "events": []

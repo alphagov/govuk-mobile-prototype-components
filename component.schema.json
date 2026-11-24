@@ -55,27 +55,21 @@
     "inputs": {
       "description": "What it takes from the HTML that uses it.",
       "type": "object",
-      "required": ["attributes", "content"],
+      "required": ["attributes", "content", "contains"],
       "additionalProperties": false,
       "properties": {
-        "attributes": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object",
-            "required": ["type", "description"],
-            "additionalProperties": false,
-            "properties": {
-              "type": { "enum": ["string", "boolean", "enum"] },
-              "values": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
-              "default": { "type": ["string", "boolean"] },
-              "required": { "type": "boolean" },
-              "description": { "type": "string", "minLength": 1 }
-            }
-          }
-        },
+        "attributes": { "$ref": "#/$defs/attributes" },
         "content": {
-          "description": "What may be written between its tags, or null if nothing.",
+          "description": "What may be written between its tags, in words, or null if nothing. `contains` says the same as data.",
           "type": ["string", "null"]
+        },
+        "contains": { "$ref": "#/$defs/contains" },
+        "parts": {
+          "description": "The elements that go only inside it, such as a grouped list's rows, by element name, each with its own attributes and contents.",
+          "type": "object",
+          "propertyNames": { "$ref": "#/$defs/element" },
+          "additionalProperties": { "$ref": "#/$defs/part" },
+          "minProperties": 1
         }
       }
     },
@@ -151,6 +145,70 @@
     }
   },
   "$defs": {
+    "attributes": {
+      "description": "The attributes it reads, by name. The build checks these are exactly the ones its script reads.",
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-z][a-z-]*$" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["type", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "type": { "enum": ["string", "boolean", "enum"] },
+          "values": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "default": { "type": ["string", "boolean"] },
+          "required": { "type": "boolean" },
+          "description": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "contains": {
+      "description": "What may go between its tags, as data, for tools that build pages from definitions, such as a prototype's schema. Empty if nothing may.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": { "description": "Text may go between its tags.", "const": true },
+        "inline": {
+          "description": "Elements that may go inside its text, around a few words.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/element" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "elements": { "description": "Elements that may go between its tags.", "$ref": "#/$defs/elements" },
+        "slots": {
+          "description": "Elements that may go in each of its named slots, given slot=\"name\".",
+          "type": "object",
+          "propertyNames": { "pattern": "^[a-z][a-z-]*$" },
+          "additionalProperties": { "$ref": "#/$defs/elements" },
+          "minProperties": 1
+        }
+      },
+      "dependentRequired": { "inline": ["text"] }
+    },
+    "elements": {
+      "description": "Which elements: those listed, or \"any\" of the library's components, which doesn't include another component's parts.",
+      "oneOf": [
+        { "const": "any" },
+        { "type": "array", "items": { "$ref": "#/$defs/element" }, "minItems": 1, "uniqueItems": true }
+      ]
+    },
+    "element": {
+      "description": "An element of the library, such as govuk-app-grouped-list-row.",
+      "type": "string",
+      "pattern": "^govuk-app-[a-z][a-z-]*$"
+    },
+    "part": {
+      "description": "An element that goes only inside its component, such as a grouped list's row.",
+      "type": "object",
+      "required": ["description", "attributes", "contains"],
+      "additionalProperties": false,
+      "properties": {
+        "description": { "type": "string", "minLength": 1 },
+        "attributes": { "$ref": "#/$defs/attributes" },
+        "contains": { "$ref": "#/$defs/contains" }
+      }
+    },
     "link": {
       "type": "object",
       "required": ["title", "url"],

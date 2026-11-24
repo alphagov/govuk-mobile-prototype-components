@@ -9,7 +9,42 @@
   },
   "inputs": {
     "attributes": {},
-    "content": "Two to five <govuk-app-tab-bar-item> elements, one for each tab, in order. Each takes an icon attribute, the name of a Material Symbol (such as home, chat_bubble or settings); an href, to make the tab a link to another page, or name and value, to tell it apart as a button; and selected, on the tab of the section the screen is in. Its label is what is written between its tags."
+    "content": "Two to five <govuk-app-tab-bar-item> elements, one for each tab, in order. Each takes an icon attribute, the name of a Material Symbol (such as home, chat_bubble or settings); an href, to make the tab a link to another page, or name and value, to tell it apart as a button; and selected, on the tab of the section the screen is in. Its label is what is written between its tags.",
+    "contains": {
+      "elements": ["govuk-app-tab-bar-item"]
+    },
+    "parts": {
+      "govuk-app-tab-bar-item": {
+        "description": "One tab, holding its label.",
+        "attributes": {
+          "icon": {
+            "type": "string",
+            "required": true,
+            "description": "A Material Symbol, such as home, chat_bubble or settings."
+          },
+          "href": {
+            "type": "string",
+            "description": "Makes it a link to this page."
+          },
+          "name": {
+            "type": "string",
+            "description": "Without an href, makes it a button with this name, so a page listening for clicks can tell which was pressed."
+          },
+          "value": {
+            "type": "string",
+            "description": "Set on the button, alongside name, to say which of several it was."
+          },
+          "selected": {
+            "type": "boolean",
+            "default": false,
+            "description": "The tab of the section the screen is in."
+          }
+        },
+        "contains": {
+          "text": true
+        }
+      }
+    }
   },
   "outputs": {
     "events": [

@@ -9,7 +9,10 @@
   },
   "inputs": {
     "attributes": {},
-    "content": "Optionally, a <govuk-app-search-field>, drawn below the wordmark, as on the app's home screen. Without one, the header is the wordmark alone, as when the app's search is turned off."
+    "content": "Optionally, a <govuk-app-search-field>, drawn below the wordmark, as on the app's home screen. Without one, the header is the wordmark alone, as when the app's search is turned off.",
+    "contains": {
+      "elements": ["govuk-app-search-field"]
+    }
   },
   "outputs": {
     "events": []

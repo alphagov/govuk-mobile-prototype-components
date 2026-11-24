@@ -21,7 +21,13 @@
         "description": "page: the app's pale blue, for screens in its sections. modal: white, for a screen presented over them, such as a question or a confirmation. green: the app's green, the same in light and dark, with white text and its content set further down, for a screen that takes over the app, in a full-screen cover. chat: GOV.UK Chat's, the same pale blue, with its conversation kept below the status bar and above the chat input, rather than scrolling under them, as the app's chat screen does."
       }
     },
-    "content": "The screen's components, top to bottom. A <govuk-app-nav-bar>, or the home screen's <govuk-app-home-header>, goes at the top and sticks there. A <govuk-app-tab-bar> goes at the bottom of the content and floats over it. An element with slot=\"footer\", usually a <govuk-app-button-stack>, is pinned below the content, with the tab bar below it if there is one, as GOV.UK Chat's field is. Everything else is the content, 16pt in from the sides and 16pt apart, and scrolls."
+    "content": "The screen's components, top to bottom. A <govuk-app-nav-bar>, or the home screen's <govuk-app-home-header>, goes at the top and sticks there. A <govuk-app-tab-bar> goes at the bottom of the content and floats over it. An element with slot=\"footer\", usually a <govuk-app-button-stack>, is pinned below the content, with the tab bar below it if there is one, as GOV.UK Chat's field is. Everything else is the content, 16pt in from the sides and 16pt apart, and scrolls.",
+    "contains": {
+      "elements": "any",
+      "slots": {
+        "footer": "any"
+      }
+    }
   },
   "outputs": {
     "events": []

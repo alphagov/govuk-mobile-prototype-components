@@ -25,7 +25,10 @@
         "description": "What screen readers hear in place of the label alone, when the label doesn't say what it's about, such as Year of manufacture: 2021."
       }
     },
-    "content": "The fact, a word or two, such as 2021, Petrol or Yellow."
+    "content": "The fact, a word or two, such as 2021, Petrol or Yellow.",
+    "contains": {
+      "text": true
+    }
   },
   "outputs": {
     "events": []

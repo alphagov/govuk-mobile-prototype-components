@@ -16,7 +16,8 @@
         "description": "sending: Sending..., at the right, while the question is sent. generating: Generating your answer…, after the animation, while the answer is being written."
       }
     },
-    "content": null
+    "content": null,
+    "contains": {}
   },
   "outputs": {
     "events": []

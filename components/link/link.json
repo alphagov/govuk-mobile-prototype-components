@@ -15,7 +15,10 @@
         "description": "Where it goes, such as a GOV.UK page."
       }
     },
-    "content": "The words that are the link. Put it inside a <govuk-app-text> or a <govuk-app-bulleted-list-item>, around the words, and it takes that text's size."
+    "content": "The words that are the link. Put it inside a <govuk-app-text> or a <govuk-app-bulleted-list-item>, around the words, and it takes that text's size.",
+    "contains": {
+      "text": true
+    }
   },
   "outputs": {
     "events": [

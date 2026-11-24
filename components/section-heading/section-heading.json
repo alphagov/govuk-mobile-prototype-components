@@ -32,7 +32,10 @@
         "description": "The action's button's value."
       }
     },
-    "content": "The section's title."
+    "content": "The section's title.",
+    "contains": {
+      "text": true
+    }
   },
   "outputs": {
     "events": [

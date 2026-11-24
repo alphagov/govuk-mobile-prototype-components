@@ -25,7 +25,13 @@
         "description": "The title's place in the screen's outline. Drawn as h2 to h4."
       }
     },
-    "content": "What the section holds, such as a grouped list or an address, top to bottom, 16pt apart. Something with slot=\"accessory\", such as a <govuk-app-number-plate>, goes on the right of its title."
+    "content": "What the section holds, such as a grouped list or an address, top to bottom, 16pt apart. Something with slot=\"accessory\", such as a <govuk-app-number-plate>, goes on the right of its title.",
+    "contains": {
+      "elements": "any",
+      "slots": {
+        "accessory": "any"
+      }
+    }
   },
   "outputs": {
     "events": []

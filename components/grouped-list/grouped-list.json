@@ -50,7 +50,83 @@
         "description": "Draws the card in another colour, as GovKit lets the app: subtle, pale blue, for a card on a white screen; accent, a stronger blue, proposed by the future driving designs for Add vehicle. Without it, the card is white, or dark blue in dark mode."
       }
     },
-    "content": "The section's rows, <govuk-app-grouped-list-row> elements, in order. Each takes a type: navigation (the default: a chevron, to another screen), link (in the link colour, with an arrow out, to a web page), information (a value on the right, in grey, that can't be pressed), detail (a value on the right in the link colour, such as Off, to change it; destructive draws its title red), toggle (a switch, drawn by <govuk-app-toggle>; checked if it is on), count (a number on the right, with unread for a red dot) selectable (an icon on the right, if it names one, such as check) or topic (a navigation row with its icon on the left, in a circle, and its title in bold; icon names the symbol, such as currency_pound, or it draws a star). detail gives the value on the right; description, for information and link rows, a line of grey text below the title. Give href to make a row a link, or name and value to tell it apart as a button or switch. Its title is what is written between its tags. A link row with no-arrow has no arrow, as GovKit can draw one for a link that stays in the app. An action row is a single action, as the app's Add vehicle: its title, with an outlined plus on the right in the icon colour, or the icon it names. Anything given slot=\"control\", such as a segmented control, goes at the top of the card, above the rows, as the app's Topics widget has Your topics and All topics. An information or link row given an image, the URL of a picture, draws it on the left at its own size, as the app draws One Login's account icon on Settings (images/one-login.svg, in this component's folder). Proposed, from the future driving designs: content (anything written between its tags, such as a heading and text, 16pt in from the card's edges; with flush, none, for content with its own padding, such as summary columns)."
+    "content": "The section's rows, <govuk-app-grouped-list-row> elements, in order. Each takes a type: navigation (the default: a chevron, to another screen), link (in the link colour, with an arrow out, to a web page), information (a value on the right, in grey, that can't be pressed), detail (a value on the right in the link colour, such as Off, to change it; destructive draws its title red), toggle (a switch, drawn by <govuk-app-toggle>; checked if it is on), count (a number on the right, with unread for a red dot) selectable (an icon on the right, if it names one, such as check) or topic (a navigation row with its icon on the left, in a circle, and its title in bold; icon names the symbol, such as currency_pound, or it draws a star). detail gives the value on the right; description, for information and link rows, a line of grey text below the title. Give href to make a row a link, or name and value to tell it apart as a button or switch. Its title is what is written between its tags. A link row with no-arrow has no arrow, as GovKit can draw one for a link that stays in the app. An action row is a single action, as the app's Add vehicle: its title, with an outlined plus on the right in the icon colour, or the icon it names. Anything given slot=\"control\", such as a segmented control, goes at the top of the card, above the rows, as the app's Topics widget has Your topics and All topics. An information or link row given an image, the URL of a picture, draws it on the left at its own size, as the app draws One Login's account icon on Settings (images/one-login.svg, in this component's folder). Proposed, from the future driving designs: content (anything written between its tags, such as a heading and text, 16pt in from the card's edges; with flush, none, for content with its own padding, such as summary columns).",
+    "contains": {
+      "elements": ["govuk-app-grouped-list-row"],
+      "slots": {
+        "control": ["govuk-app-segmented-control"]
+      }
+    },
+    "parts": {
+      "govuk-app-grouped-list-row": {
+        "description": "One row of the list. Its title is what's written between its tags; its type decides what it draws on the right, and whether it can be pressed.",
+        "attributes": {
+          "type": {
+            "type": "enum",
+            "values": ["navigation", "link", "information", "detail", "toggle", "count", "selectable", "topic", "action", "content"],
+            "default": "navigation",
+            "description": "navigation: a chevron, to another screen. link: in the link colour, with an arrow out, to a web page. information: a value on the right, in grey, that can't be pressed. detail: a value on the right in the link colour, such as Off, to change it. toggle: a switch. count: a number on the right. selectable: an icon on the right, if it names one. topic: a navigation row with its icon on the left, in a circle, and its title in bold. action: a single action, with an outlined plus on the right, or the icon it names. content (proposed): anything written between its tags."
+          },
+          "detail": {
+            "type": "string",
+            "description": "The value on the right of an information, detail or count row, such as Off or 2."
+          },
+          "description": {
+            "type": "string",
+            "description": "A line of grey text below the title of an information or link row."
+          },
+          "icon": {
+            "type": "string",
+            "description": "A Material Symbol: on the right of a selectable or action row, such as check, or a topic's on its left, such as currency_pound."
+          },
+          "image": {
+            "type": "string",
+            "description": "The address of a picture on the left of an information or link row, at its own size."
+          },
+          "href": {
+            "type": "string",
+            "description": "Makes the row a link to this page."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the row's button or switch, so a page can tell which was pressed or switched."
+          },
+          "value": {
+            "type": "string",
+            "description": "Its button's or switch's value, alongside name."
+          },
+          "checked": {
+            "type": "boolean",
+            "default": false,
+            "description": "A toggle row's switch is on."
+          },
+          "unread": {
+            "type": "boolean",
+            "default": false,
+            "description": "A count row has a red dot, for something unread."
+          },
+          "destructive": {
+            "type": "boolean",
+            "default": false,
+            "description": "A detail row's title is red, for something that removes or deletes."
+          },
+          "no-arrow": {
+            "type": "boolean",
+            "default": false,
+            "description": "A link row has no arrow, for a link that stays in the app."
+          },
+          "flush": {
+            "type": "boolean",
+            "default": false,
+            "description": "A content row has no padding, for content with its own, such as summary columns."
+          }
+        },
+        "contains": {
+          "text": true,
+          "elements": "any"
+        }
+      }
+    }
   },
   "outputs": {
     "events": [

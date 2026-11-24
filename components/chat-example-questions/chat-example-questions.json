@@ -9,7 +9,32 @@
   },
   "inputs": {
     "attributes": {},
-    "content": "A <govuk-app-chat-example-question> for each question, holding its text. Give one an href to go to a page, such as the answer, or a name and value to be a button."
+    "content": "A <govuk-app-chat-example-question> for each question, holding its text. Give one an href to go to a page, such as the answer, or a name and value to be a button.",
+    "contains": {
+      "elements": ["govuk-app-chat-example-question"]
+    },
+    "parts": {
+      "govuk-app-chat-example-question": {
+        "description": "One example question, holding its text: a link to a page, such as the answer, or a button.",
+        "attributes": {
+          "href": {
+            "type": "string",
+            "description": "Makes it a link to this page."
+          },
+          "name": {
+            "type": "string",
+            "description": "Without an href, makes it a button with this name, so a page listening for clicks can tell which was pressed."
+          },
+          "value": {
+            "type": "string",
+            "description": "Set on the button, alongside name, to say which of several it was."
+          }
+        },
+        "contains": {
+          "text": true
+        }
+      }
+    }
   },
   "outputs": {
     "events": [

@@ -9,7 +9,10 @@
   },
   "inputs": {
     "attributes": {},
-    "content": "The question, as text, as the user typed it."
+    "content": "The question, as text, as the user typed it.",
+    "contains": {
+      "text": true
+    }
   },
   "outputs": {
     "events": []
