@@ -12,7 +12,7 @@
       "present": {
         "type": "boolean",
         "default": false,
-        "description": "Brings the sheet up from the bottom when the page loads, as UIKit presents it. Give it to the first screen of a modal journey, and not to the screens after it, which are already in the sheet."
+        "description": "Brings the sheet up from the bottom when the page loads, or when it's added to the page, as UIKit presents it. Give it to the first screen of a modal journey, and not to the screens after it, which are already in the sheet."
       },
       "label": {
         "type": "string",
