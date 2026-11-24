@@ -13,7 +13,7 @@ export const library = path.join(import.meta.dirname, 'node_modules', 'govuk-mob
  * patterns and templates. The package's root for now. When the library moves
  * them into src/, change this to 'src'.
  */
-export const source = ''
+export const source = 'src'
 
 /** That folder on disk. */
 export const libraryFiles = path.join(library, source)
