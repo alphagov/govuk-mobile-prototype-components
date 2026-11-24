@@ -10,6 +10,13 @@ You can make a prototype of the GOV.UK app by asking [Claude Code](https://code.
 
 It’s on your computer only, for now: there’s no way to share it yet. It looks like the app on iOS.
 
+## Sign in to GitHub
+
+The components are on GitHub, in a repository that’s private for now. Until it’s public, you need:
+
+- a GitHub account that can see [alphagov/govuk-mobile-prototype-components](https://github.com/alphagov/govuk-mobile-prototype-components). If that link says “Page not found” when you’re signed in, ask the library’s maintainers for access
+- your computer signed in to GitHub. If you haven’t done this before, open Claude Code and say “Sign this computer in to GitHub with the GitHub CLI”. Claude asks before installing GitHub’s own tool, `gh`, then opens GitHub in your browser for you to confirm (`gh auth login`, then `gh auth setup-git`)
+
 ## Add the plugin to Claude Code
 
 You only need to do this once. Open Claude Code in your terminal, and type these two lines, one at a time:

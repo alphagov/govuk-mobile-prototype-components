@@ -31,7 +31,11 @@ Documentation: <https://alphagov.github.io/govuk-mobile-prototype-components/>, 
 
 ## Make a prototype
 
-Designers can make a prototype of the GOV.UK app by asking [Claude Code](https://code.claude.com/docs/en/overview), with the plugin in [`plugin/`](plugin/). Add it once, in Claude Code:
+Designers can make a prototype of the GOV.UK app by asking [Claude Code](https://code.claude.com/docs/en/overview), with the plugin in [`plugin/`](plugin/).
+
+While this repository is private, they first need a GitHub account with access to it, and their computer signed in to GitHub: for example with GitHub's `gh` tool, `gh auth login` then `gh auth setup-git`, which Claude can do for them. Adding the plugin and installing the components both read from here.
+
+Then add it once, in Claude Code:
 
 ```text
 /plugin marketplace add alphagov/govuk-mobile-prototype-components
