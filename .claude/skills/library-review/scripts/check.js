@@ -50,6 +50,8 @@ if (options.base) {
       const start = Number(hunk[1])
       const count = hunk[2] === undefined ? 1 : Number(hunk[2])
       for (let n = start; n < start + count; n++) scope.get(file).add(n)
+      // Lines taken out leave none to point at: mark where they were.
+      if (count === 0) { scope.get(file).add(start); scope.get(file).add(start + 1) }
     }
   }
   for (const untracked of git('ls-files', '--others', '--exclude-standard').split('\n').filter(Boolean)) {
@@ -415,6 +417,25 @@ function checkDefinition(dir, slug, definition) {
     // element without being one, which the build would miss.
     if (/govuk-app-[a-z-]+/.test(avoid.instead)) {
       say('look', lineOf(avoid.instead.slice(0, 40)), 'Definition: avoid', `instead, "${avoid.instead}", names an element inside words, so the build can't check it or link to it. Write just the element, with any attributes, where that's what to use.`)
+    }
+  }
+
+  // Components that send people here instead of themselves are the ones
+  // most like this one, so it may need to send people back, for the times
+  // they're the right choice. Not always, so only a lead, and only when the
+  // change touches avoid: many on main don't, and rightly.
+  const avoidStart = lineOf('"avoid"')
+  const avoidEnd = source.slice(0, source.indexOf(']', source.indexOf('"avoid"'))).split('\n').length
+  const lines = scope.get(file)
+  const avoidChanged = lines instanceof Set && [...lines].some(n => n >= avoidStart && n <= avoidEnd + 1)
+  const newComponent = options.base && lines === true
+  const named = new Set(definition.avoid.map(avoid => avoid.instead.match(/govuk-app-[a-z-]+/)?.[0]).filter(Boolean))
+  for (const other of fs.readdirSync(path.join(root, 'components'))) {
+    if (other === slug || !exists(`components/${other}/${other}.json`)) continue
+    const theirs = JSON.parse(read(`components/${other}/${other}.json`))
+    const pointsHere = (theirs.avoid ?? []).some(avoid => avoid.instead.match(/^govuk-app-[a-z-]+/)?.[0] === definition.element)
+    if ((avoidChanged || newComponent) && pointsHere && !named.has(theirs.element)) {
+      say('look', lineOf('"avoid"'), 'Definition: avoid', `${other}'s avoid sends people to ${definition.element} instead, but this avoid never mentions ${theirs.element}. If someone might pick this when ${theirs.element} is right, add an entry for it.`)
     }
   }
 
