@@ -1,0 +1,121 @@
+name: Release
+
+# Makes a release that prototypes install from GitHub at its tag:
+#
+#   npm install github:alphagov/govuk-mobile-prototype-components#v1.2.3
+#
+# The catalogue is generated, so it isn't on main. A release is a commit on top
+# of main that adds it, with the version, and only the tag points to that
+# commit. Installing the tag then gets the catalogue ready made, with no
+# install script and no dev dependencies, and main never holds generated files.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to release, such as 0.4.0, without the v
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+# Two releases at once could both pass the check on the latest tag.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ inputs.version }}
+      TAG: v${{ inputs.version }}
+    steps:
+      # Always main, whichever branch the workflow was run from. All the history
+      # and tags, to find the latest release and write notes since it.
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Check the version
+        run: |
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Give the version as three numbers, such as 0.4.0, not '$VERSION'."
+            exit 1
+          fi
+
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" > /dev/null; then
+            echo "::error::$TAG has already been released."
+            exit 1
+          fi
+
+          latest=$(git tag --list 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -n 1)
+          if [ -n "$latest" ]; then
+            highest=$(printf '%s\n' "${latest#v}" "$VERSION" | sort -V | tail -n 1)
+            if [ "$highest" != "$VERSION" ] || [ "$latest" = "$TAG" ]; then
+              echo "::error::$TAG must be greater than the latest release, $latest."
+              exit 1
+            fi
+          fi
+          echo "LATEST=$latest" >> "$GITHUB_ENV"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Checks every definition, as the docs do, so a broken library isn't released.
+      - name: Build
+        run: npm run build
+
+      - name: Set the version
+        run: npm version "$VERSION" --no-git-tag-version
+
+      - name: Generate the catalogue
+        run: npm run catalogue
+
+      # Installing from GitHub runs these, and would need the dev dependencies.
+      # The promise is that installing the library runs nothing.
+      - name: Check the package runs nothing on install
+        run: |
+          node -e '
+            const { scripts = {} } = require("./package.json")
+            const found = ["preinstall", "install", "postinstall", "prepare", "prepack", "postpack"].filter(name => scripts[name])
+            if (found.length) {
+              console.error("::error::package.json has " + found.join(", ") + ", which npm would run on install.")
+              process.exit(1)
+            }
+          '
+
+      # catalogue/ is in .gitignore, so it's added by force.
+      - name: Make the release commit and tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          git add --force catalogue
+          git commit --quiet --message "Release $TAG" --message "Adds the generated catalogue, which isn't on main."
+          git tag --annotate "$TAG" --message "$TAG"
+
+      # Only the tag. Main stays as it was.
+      - name: Push the tag
+        run: git push origin "refs/tags/$TAG"
+
+      # Notes list the pull requests merged since the latest release.
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$TAG" \
+            --verify-tag \
+            --title "$TAG" \
+            --generate-notes \
+            ${LATEST:+--notes-start-tag "$LATEST"}
