@@ -10,7 +10,7 @@
   {#- Every component, not only this one, since examples put them together:
       a screen holds a navigation bar and buttons. -#}
   {%- for each in components %}
-  <script type="module" src="/components/{{ each.slug }}/{{ each.slug }}.js"></script>
+  <script type="module" src="/src/components/{{ each.slug }}/{{ each.slug }}.js"></script>
   {%- endfor %}
   <script type="module" src="/assets/docs.js"></script>
 {% endblock %}

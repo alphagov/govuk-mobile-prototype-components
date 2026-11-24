@@ -24,13 +24,14 @@ SOFTWARE.
 
 Not covered by the licence above:
 
-- The GOV.UK crown (components/crown) and the GOV.UK wordmark
-  (components/home-header) are Crown copyright, and may only be used to
+- The GOV.UK crown (src/components/crown) and the GOV.UK wordmark
+  (src/components/home-header) are Crown copyright, and may only be used to
   represent GOV.UK services, such as in prototypes of the GOV.UK app.
-- The Material Symbols fonts (foundation/fonts) are under the Apache License
-  2.0, in foundation/fonts/LICENSE.
-- The DVLA-VRM number plate font (components/number-plate) is under the SIL
-  Open Font License 1.1, in components/number-plate/DVLA-VRM-OFL.txt.
+- The Material Symbols fonts (src/foundation/fonts) are under the Apache
+  License 2.0, in src/foundation/fonts/LICENSE.
+- The DVLA-VRM number plate font (src/components/number-plate) is under the
+  SIL Open Font License 1.1, in
+  src/components/number-plate/DVLA-VRM-OFL.txt.
 - The screenshots in each component's reference folder, and the images in
-  components/grouped-list/images, are from the GOV.UK app. They are here for
-  this repository's documentation only, and are not in the package.
+  src/components/grouped-list/images, are from the GOV.UK app. They are here
+  for this repository's documentation only, and are not in the package.

@@ -17,7 +17,7 @@ Find the change, and the components, patterns and docs it touches.
 - **A branch, or "my changes"**: `git fetch origin`, then `git diff origin/main...HEAD` for what's committed and `git status` for what isn't, including new files. Review both.
 - **A named component** with no change ("review the status component"): its whole folder, as it stands.
 
-List the changed components (folders under `components/`), patterns (`patterns/`), and anything in `foundation/` or `docs/`. Read every changed file in full, not only the diff: a rule like "a comment says why" needs the lines around it. For a new component, read one or two existing components of the same kind too, such as `button` or `grouped-list`, to compare its voice and shape.
+List the changed components (folders under `src/components/`), patterns (`src/patterns/`), and anything in `src/foundation/` or `docs/`. Read every changed file in full, not only the diff: a rule like "a comment says why" needs the lines around it. For a new component, read one or two existing components of the same kind too, such as `button` or `grouped-list`, to compare its voice and shape.
 
 ## 2. Run the checks a machine can do
 
@@ -72,12 +72,12 @@ Fix: <what to change, specifically enough to do it>
 For example:
 
 ```
-**components/status/status.css:24**: The gap uses 13px, which isn't one of the library's spacing sizes, and nothing says why.
+**src/components/status/status.css:24**: The gap uses 13px, which isn't one of the library's spacing sizes, and nothing says why.
 Rule: "Spacing is on the 8pt grid ... Keep a value off the grid only where the app itself has it, and say so in a comment" (AGENTS.md, Styles)
 Fix: Use calc(var(--app-space-small) + var(--app-space-extra-small)) for 12pt. If the design really has 13pt, keep it and add a comment saying where it comes from.
 ```
 
-Write so a designer who has never written CSS can follow it. Explain a term the first time it appears, briefly, in brackets: "a token (a named value from `foundation/tokens.css`, such as `--app-space-medium` for 16pt)". Say what the reader would see, where you can: "in dark mode the label is dark grey on dark blue, and hard to read". Don't pad with praise or summaries of what's fine; a line saying which checks passed is enough.
+Write so a designer who has never written CSS can follow it. Explain a term the first time it appears, briefly, in brackets: "a token (a named value from `src/foundation/tokens.css`, such as `--app-space-medium` for 16pt)". Say what the reader would see, where you can: "in dark mode the label is dark grey on dark blue, and hard to read". Don't pad with praise or summaries of what's fine; a line saying which checks passed is enough.
 
 After the findings, list what you ran and what you looked at, briefly: build passed or failed, the checker, which screenshots you compared with which references, and anything you couldn't check.
 

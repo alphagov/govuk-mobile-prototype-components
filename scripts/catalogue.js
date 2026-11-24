@@ -72,7 +72,7 @@ export function buildCatalogue() {
       description: 'Web components that look and behave like the GOV.UK app’s own, for prototyping app journeys in HTML. Generated from the definitions by `npm run catalogue`: don’t edit it by hand.',
       docs: `${site}/`,
       index: 'index.md',
-      schemas: ['component.schema.json', 'pattern.schema.json']
+      schemas: ['src/schemas/component.schema.json', 'src/schemas/pattern.schema.json', 'src/schemas/template.schema.json']
     },
     patterns: patterns.map(pattern => ({
       name: pattern.name,
@@ -98,7 +98,7 @@ export function buildCatalogue() {
       notes: template.notes ?? [],
       screens: template.screens.map(screen => ({
         ...screen,
-        path: `templates/${template.slug}/${screen.file}`
+        path: `src/templates/${template.slug}/${screen.file}`
       })),
       card: `templates/${template.slug}.md`,
       url: `${site}/templates/${template.slug}/about/`
@@ -118,7 +118,7 @@ export function buildCatalogue() {
       rules: component.rules,
       avoid: component.avoid.map(resolve),
       examples: pickExamples(component),
-      script: `components/${component.slug}/${component.slug}.js`,
+      script: `src/components/${component.slug}/${component.slug}.js`,
       card: `components/${component.slug}.md`,
       url: `${site}/components/${component.slug}/`
     }))
@@ -201,13 +201,13 @@ function renderIndex({ about, patterns, templates, components }) {
     '',
     `${about.description} Docs: ${about.docs}`,
     '',
-    'Read this index first. Then read the cards it links to, each a few hundred words, only for what you might use. All of it, as data: catalogue.json.',
+    'Read this index first. Then read the cards it links to, each a few hundred words, only for what you might use. All of it, as data: catalogue.json. Paths to files, such as src/components/button/button.js, are from the root of the library: the same in its repository, its npm package and its docs site.',
     '',
     '## How to choose',
     '',
     '1. **A template or pattern that fits.** Start from it, and change its words. A pattern is one whole screen; a template is a journey of several.',
     '2. **Otherwise, components.** Put a screen together from them, following each one’s rules.',
-    '3. **Build something custom only when nothing fits.** Match the library’s look: style it with the `--app-*` tokens in foundation/tokens.css, for colour, type and spacing on the 8pt grid. Tell the user it isn’t one of the app’s components.',
+    '3. **Build something custom only when nothing fits.** Match the library’s look: style it with the `--app-*` tokens in src/foundation/tokens.css, for colour, type and spacing on the 8pt grid. Tell the user it isn’t one of the app’s components.',
     '',
     'Don’t choose from this index alone: a line here can’t say when something is the wrong choice. Read the cards of your candidates, and the cards their “Avoid” entries point to, then decide.',
     '',
@@ -215,8 +215,8 @@ function renderIndex({ about, patterns, templates, components }) {
     '',
     '## How a page is put together',
     '',
-    '- Write the components inside one `<govuk-app>`, with one `<govuk-app-screen>` in it for each screen. Put it in a `<govuk-prototype-frame>` (frame/frame.js) to show it on an iPhone.',
-    '- Load each component’s script, given on its card: `<script type="module" src="components/button/button.js"></script>`.',
+    '- Write the components inside one `<govuk-app>`, with one `<govuk-app-screen>` in it for each screen. Put it in a `<govuk-prototype-frame>` (src/frame/frame.js) to show it on an iPhone.',
+    '- Load each component’s script, given on its card: `<script type="module" src="src/components/button/button.js"></script>`.',
     '- Components send no events of their own: their buttons, links and fields do, with the `name` and `value` given them. A page listens for clicks by name, and goes where the app would. Add `works` to a button the page acts on.',
     '- Use Material Symbols names for icons, such as `check` or `directions_car`.',
     '',
@@ -241,7 +241,7 @@ function renderIndex({ about, patterns, templates, components }) {
   for (const component of components) {
     const group = Object.keys(groups).find(group => groups[group].includes(component.slug))
     if (!group) {
-      throw new Error(`components/${component.slug} isn't in any of the catalogue index's groups. Add '${component.slug}' to the group it belongs in, in groups in scripts/catalogue.js.`)
+      throw new Error(`src/components/${component.slug} isn't in any of the catalogue index's groups. Add '${component.slug}' to the group it belongs in, in groups in scripts/catalogue.js.`)
     }
     grouped.get(group).push(component)
   }

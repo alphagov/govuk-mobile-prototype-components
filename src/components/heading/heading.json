@@ -1,0 +1,116 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Heading",
+  "element": "govuk-app-heading",
+  "purpose": "Titles a screen, or a section of one. Its level says where it sits in the screen's outline, for screen readers; its size, which of the app's text styles it is drawn in.",
+  "origin": {
+    "kind": "native",
+    "notes": "iOS's own text styles, through GovKit's Font.govUK, at the weights the app gives its headings: largeTitleBold, title1 in bold (HeaderView), title2Bold, title3Semibold (SectionHeaderLabelView) and bodySemibold. GovKit adds nothing to them, so they grow with Dynamic Type as the system's do. For a section heading with an action beside it, such as Edit, use the section heading."
+  },
+  "inputs": {
+    "attributes": {
+      "level": {
+        "type": "enum",
+        "values": ["1", "2", "3", "4", "5", "6"],
+        "default": "2",
+        "description": "Its place in the screen's outline: 1 is the screen's title, 2 a section of it, 3 a part of a section. Drawn as h1 to h6."
+      },
+      "size": {
+        "type": "enum",
+        "values": ["large-title", "title-1", "title-2", "title-3", "body"],
+        "description": "The text style it is drawn in. Without one, level 1 is Large Title, level 2 is Title 3, and anything smaller is Body, emphasised."
+      },
+      "align": {
+        "type": "enum",
+        "values": ["start", "center"],
+        "default": "start",
+        "description": "center, as the app's onboarding and information screens set their titles."
+      }
+    },
+    "content": "The heading's text.",
+    "contains": {
+      "text": true
+    }
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Give every screen one level 1 heading, unless its navigation bar has a title, which is the screen's heading instead.",
+    "Don't skip levels: a level 3 heading goes inside a section with a level 2 one.",
+    "Pick the level for the outline and the size for the look. A screen's question, such as What is your postcode?, is level 1 in Title 1; an outcome, such as a confirmation, is level 1 in Large Title.",
+    "Centre a heading only on screens the app centres: onboarding, information and confirmation screens. Centre the text under it too.",
+    "Write headings in sentence case, without a full stop. A question ends with a question mark."
+  ],
+  "avoid": [
+    { "when": "Over a section the user can act on as a whole, such as a widget with Edit", "instead": "govuk-app-section-heading" },
+    { "when": "For a part of a long screen, with its title and the space above it", "instead": "govuk-app-section" },
+    { "when": "For a title over a list of rows", "instead": "govuk-app-grouped-list title=\"Privacy and legal\"" },
+    { "when": "For a screen's title, when it has a navigation bar", "instead": "govuk-app-nav-bar title=\"Settings\"" },
+    { "when": "For a line that should stand out, but doesn't head anything", "instead": "govuk-app-text emphasis" },
+    { "when": "For a few words that say what the rest of a line is", "instead": "govuk-app-strong" }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Styles/Font+Extensions.swift",
+        "symbol": "GOVUKFontBuilder",
+        "ref": "8a7641e"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SwiftUIViews/HeaderView.swift",
+        "symbol": "HeaderView",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Common/Info/InfoView.swift",
+        "symbol": "InfoView",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Components/Views/SectionHeaderLabelView.swift",
+        "symbol": "SectionHeaderLabelView",
+        "ref": "8a7641e"
+      }
+    ],
+    "android": [],
+    "other": [
+      {
+        "title": "Apple Human Interface Guidelines: Typography, the text styles",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/typography"
+      },
+      {
+        "title": "The app prototyping system's heading, which this follows (app-prototyping-system, exploration-2/kit/components/heading)",
+        "url": "https://github.com/thip/app-prototyping-system"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-title-1-light.webp", "description": "Title 1, bold: the sign-out confirmation's title, in light mode", "from": "SignOutConfirmationViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-title-1-dark.webp", "description": "Title 1, bold, in dark mode", "from": "SignOutConfirmationViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-large-title-centred-light.webp", "description": "Large Title, bold and centred: Allow notifications?", "from": "NotificationsOnboardingViewSnapshotTests at 1e520fc1" }
+  ],
+  "examples": [
+    {
+      "name": "Each size",
+      "html": "<govuk-app-heading level=\"1\" size=\"large-title\">Large Title</govuk-app-heading>\n<govuk-app-heading level=\"1\" size=\"title-1\">Title 1</govuk-app-heading>\n<govuk-app-heading level=\"2\" size=\"title-2\">Title 2</govuk-app-heading>\n<govuk-app-heading level=\"2\" size=\"title-3\">Title 3</govuk-app-heading>\n<govuk-app-heading level=\"3\" size=\"body\">Body</govuk-app-heading>"
+    },
+    {
+      "name": "A screen's question",
+      "html": "<govuk-app-heading level=\"1\" size=\"title-1\">Are you sure you want to sign out?</govuk-app-heading>"
+    },
+    {
+      "name": "Centred, on an onboarding screen",
+      "html": "<govuk-app-heading level=\"1\" align=\"center\">Allow notifications?</govuk-app-heading>"
+    },
+    {
+      "name": "Sizes by level, when none is given",
+      "html": "<govuk-app-heading level=\"1\">Your local council</govuk-app-heading>\n<govuk-app-heading level=\"2\">Bins and recycling</govuk-app-heading>\n<govuk-app-heading level=\"3\">Collection days</govuk-app-heading>"
+    }
+  ]
+}

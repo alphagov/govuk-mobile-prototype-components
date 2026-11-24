@@ -1,0 +1,75 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Link",
+  "element": "govuk-app-link",
+  "purpose": "Makes a few words of a line a link, such as a GOV.UK page named in one of GOV.UK Chat's answers.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "How GOV.UK Chat draws a link in an answer (ChatMarkdownTheme) and in its list of sources: text.linkSecondary, underlined. It takes the size and weight of the line around it."
+  },
+  "inputs": {
+    "attributes": {
+      "href": {
+        "type": "string",
+        "required": true,
+        "description": "Where it goes, such as a GOV.UK page."
+      }
+    },
+    "content": "The words that are the link. Put it inside a <govuk-app-text> or a <govuk-app-bulleted-list-item>, around the words, and it takes that text's size.",
+    "contains": {
+      "text": true
+    }
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "click",
+        "description": "From the link it draws, when it's pressed, before it goes to its href."
+      }
+    ]
+  },
+  "rules": [
+    "Make the link's words say where it goes, such as the page's title, not click here.",
+    "Use it inside a line of text. For a link on a row of its own, use a grouped list's link row, or a link card for one that should stand out."
+  ],
+  "avoid": [
+    { "when": "For a link on a row of its own", "instead": "govuk-app-grouped-list-row type=\"link\"" },
+    { "when": "For one destination that should stand out, such as the user's council", "instead": "govuk-app-link-card" },
+    { "when": "For an action, such as continuing a journey", "instead": "govuk-app-button" }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Chat/ChatMarkdownTheme.swift",
+        "symbol": "Theme.govUK, .link",
+        "ref": "fc2b3b1d"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Colors/GOVUKColors+Text.swift",
+        "symbol": "text.linkSecondary",
+        "ref": "21343f5"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "feature/chat/src/main/kotlin/uk/gov/govuk/chat/ui/component/Markdown.kt",
+        "symbol": "Markdown, its links in chatBotLinkText",
+        "ref": "9952400f"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "name": "In a sentence",
+      "html": "<govuk-app-text>You can <govuk-app-link href=\"https://www.gov.uk/apply-renew-passport\">apply for or renew your passport online</govuk-app-link>.</govuk-app-text>"
+    },
+    {
+      "name": "In a list",
+      "html": "<govuk-app-bulleted-list spacing=\"compact\">\n  <govuk-app-bulleted-list-item>you need a <govuk-app-link href=\"https://www.gov.uk/photos-for-passports\">digital photo</govuk-app-link></govuk-app-bulleted-list-item>\n  <govuk-app-bulleted-list-item><govuk-app-link href=\"https://www.gov.uk/apply-renew-passport\">start your online application</govuk-app-link></govuk-app-bulleted-list-item>\n</govuk-app-bulleted-list>"
+    }
+  ]
+}

@@ -28,7 +28,7 @@ eleventyComputed:
 {% set platforms = { ios: "iOS", android: "Android" } %}
 
 <div class="app-prose-scope">
-  <p class="govuk-body">From the app: {{ template.screen | escape }}. To start a prototype from it, copy the folder <code>templates/{{ template.slug }}/</code> from the repository.</p>
+  <p class="govuk-body">From the app: {{ template.screen | escape }}. To start a prototype from it, copy the folder <code>src/templates/{{ template.slug }}/</code> from the repository.</p>
 
   <h2 class="govuk-heading-l" id="when">When to start from it</h2>
   <ul class="govuk-list govuk-list--bullet">
@@ -44,7 +44,7 @@ eleventyComputed:
     {% set rows = (rows.push({
       key: { text: screen.title },
       value: { html: '<p class="govuk-body">' + (screen.description | escape) + '</p><p class="govuk-body"><code>' + (screen.file | escape) + '</code></p>' },
-      actions: { items: [{ href: '/templates/' + template.slug + '/' + screen.file, text: 'Open', visuallyHiddenText: screen.title }] }
+      actions: { items: [{ href: '/src/templates/' + template.slug + '/' + screen.file, text: 'Open', visuallyHiddenText: screen.title }] }
     }), rows) %}
   {% endfor %}
   {{ govukSummaryList({ rows: rows }) }}

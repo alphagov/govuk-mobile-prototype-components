@@ -6,18 +6,19 @@ import addFormats from 'ajv-formats'
 
 import loadComponents from './components.js'
 
-// Every pattern's definition, patterns/<name>/<name>.json, checked against
-// pattern.schema.json, with its HTML, patterns/<name>/<name>.html. A pattern's
-// page is drawn from these, so a folder with both is all it takes to get one.
+// Every pattern's definition, src/patterns/<name>/<name>.json, checked
+// against src/schemas/pattern.schema.json, with its HTML, <name>.html beside
+// it. A pattern's page is drawn from these, so a folder with both is all it
+// takes to get one.
 const root = path.resolve(import.meta.dirname, '../..')
-const directory = path.join(root, 'patterns')
+const directory = path.join(root, 'src', 'patterns')
 
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'))
 
 export default function () {
   const ajv = new Ajv2020({ allErrors: true })
   addFormats(ajv)
-  const validate = ajv.compile(readJson(path.join(root, 'pattern.schema.json')))
+  const validate = ajv.compile(readJson(path.join(root, 'src', 'schemas', 'pattern.schema.json')))
 
   // Each of the library's elements, and the component it belongs to: a part,
   // such as a grouped list's row, belongs to its list.
@@ -31,7 +32,7 @@ export default function () {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue
     const slug = entry.name
-    const where = `patterns/${slug}/${slug}`
+    const where = `src/patterns/${slug}/${slug}`
     const file = path.join(directory, slug, `${slug}.json`)
     if (!fs.existsSync(file)) continue
 

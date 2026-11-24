@@ -57,17 +57,17 @@ if (options.base) {
   for (const untracked of git('ls-files', '--others', '--exclude-standard').split('\n').filter(Boolean)) {
     scope.set(untracked, true)
   }
-  const touched = [...scope.keys()].map(file => file.match(/^components\/([^/]+)\//)?.[1]).filter(Boolean)
-  components = [...new Set([...touched, ...positionals])].filter(slug => exists(`components/${slug}/${slug}.json`))
+  const touched = [...scope.keys()].map(file => file.match(/^src\/components\/([^/]+)\//)?.[1]).filter(Boolean)
+  components = [...new Set([...touched, ...positionals])].filter(slug => exists(`src/components/${slug}/${slug}.json`))
 } else {
-  components = positionals.length ? positionals : fs.readdirSync(path.join(root, 'components'))
-    .filter(slug => exists(`components/${slug}/${slug}.json`))
+  components = positionals.length ? positionals : fs.readdirSync(path.join(root, 'src', 'components'))
+    .filter(slug => exists(`src/components/${slug}/${slug}.json`))
   for (const slug of components) {
-    if (!exists(`components/${slug}/${slug}.json`)) {
-      console.error(`There is no component called ${slug}: no components/${slug}/${slug}.json`)
+    if (!exists(`src/components/${slug}/${slug}.json`)) {
+      console.error(`There is no component called ${slug}: no src/components/${slug}/${slug}.json`)
       process.exit(1)
     }
-    for (const file of fs.readdirSync(path.join(root, 'components', slug))) scope.set(`components/${slug}/${file}`, true)
+    for (const file of fs.readdirSync(path.join(root, 'src', 'components', slug))) scope.set(`src/components/${slug}/${file}`, true)
   }
   for (const file of fs.globSync('docs/assets/*.scss', { cwd: root })) scope.set(file, true)
 }
@@ -82,17 +82,17 @@ const report = (level, file, line, rule, message) => {
   if (inScope(file, line)) findings.push({ level, file, line, rule, message })
 }
 
-// The tokens there are: --app-* in foundation/, and what base.css and the
+// The tokens there are: --app-* in src/foundation/, and what base.css and the
 // frame set for every component, such as --govuk-app-inset-top.
-const foundation = ['foundation/tokens.css', 'foundation/base.css', 'frame/frame.css'].filter(exists).map(read).join('\n')
+const foundation = ['src/foundation/tokens.css', 'src/foundation/base.css', 'src/frame/frame.css'].filter(exists).map(read).join('\n')
 const tokens = new Set([...foundation.matchAll(/(--[a-z0-9-]+)\s*:/gi)].map(match => match[1]))
 
 // Every element of the library, to tell another component's classes from a
 // longer one of this component's own, such as text's .govuk-app-text-block.
-const library = fs.readdirSync(path.join(root, 'components'))
-  .filter(slug => exists(`components/${slug}/${slug}.json`))
+const library = fs.readdirSync(path.join(root, 'src', 'components'))
+  .filter(slug => exists(`src/components/${slug}/${slug}.json`))
   .flatMap(slug => {
-    const definition = JSON.parse(read(`components/${slug}/${slug}.json`))
+    const definition = JSON.parse(read(`src/components/${slug}/${slug}.json`))
     return [definition.element, ...Object.keys(definition.inputs.parts ?? {})]
   })
 
@@ -100,7 +100,7 @@ const library = fs.readdirSync(path.join(root, 'components'))
 /* A component */
 
 function checkComponent(slug) {
-  const dir = `components/${slug}`
+  const dir = `src/components/${slug}`
   const definition = JSON.parse(read(`${dir}/${slug}.json`))
   // Its own elements: the component's and its parts', such as
   // govuk-app-grouped-list-row. Its classes are these, and these__part.
@@ -214,7 +214,7 @@ function checkComponentStyles(file, own) {
         const named = colourProperty.test(property) && unwrapped.match(namedColours)
         const raw = hex?.[0] ?? (fn && `${fn[1]}()`) ?? named?.[0]
         if (raw) {
-          report('must', file, line, 'Styles: --app-* tokens only', `\`${property}: ${value}\` uses a raw colour, ${raw}. Use an --app-* token from foundation/tokens.css, adding one there (naming where it comes from) if none fits. Tokens give light and dark.`)
+          report('must', file, line, 'Styles: --app-* tokens only', `\`${property}: ${value}\` uses a raw colour, ${raw}. Use an --app-* token from src/foundation/tokens.css, adding one there (naming where it comes from) if none fits. Tokens give light and dark.`)
         }
       }
 
@@ -252,7 +252,7 @@ function checkComponentStyles(file, own) {
         const name = match[1]
         const declaredHere = rules.some(other => other.declarations.some(d => d.property === name))
         if (name.startsWith('--app-') && !tokens.has(name)) {
-          report('must', file, line, 'Styles: --app-* tokens only', `${name} isn't in foundation/tokens.css. Add it there, naming where it comes from, or use one that is.`)
+          report('must', file, line, 'Styles: --app-* tokens only', `${name} isn't in src/foundation/tokens.css. Add it there, naming where it comes from, or use one that is.`)
         } else if (!name.startsWith('--app-') && !tokens.has(name) && !declaredHere) {
           report('should', file, line, 'Styles: --app-* tokens only', `${name} isn't an --app-* token, and nothing in this stylesheet sets it.`)
         }
@@ -320,10 +320,10 @@ function checkScript(file) {
       report('look', file, line, 'Markup and JS: no events of its own', 'dispatchEvent: fine if it re-sends a real field\'s own event, as the search field does with input when it clears; not if it\'s an event of the component\'s own.')
     }
     if (/attachShadow\(/.test(text)) {
-      report('must', file, line, 'Markup and JS: light DOM', 'attachShadow: components are drawn in the light DOM, from their template, by foundation/component.js.')
+      report('must', file, line, 'Markup and JS: light DOM', 'attachShadow: components are drawn in the light DOM, from their template, by src/foundation/component.js.')
     }
     if (/customElements\.define\(/.test(text)) {
-      report('should', file, line, 'Markup and JS: component.js template', 'customElements.define: define it with defineComponent, from foundation/component.js, which draws it from its template.')
+      report('should', file, line, 'Markup and JS: component.js template', 'customElements.define: define it with defineComponent, from src/foundation/component.js, which draws it from its template.')
     }
     if (/\.innerHTML\s*=|insertAdjacentHTML/.test(text)) {
       report('look', file, line, 'Markup and JS: component.js template', 'Writes HTML from script: the markup belongs in the component\'s template, filled in with data-text, data-attr, data-if and data-slot.')
@@ -430,9 +430,9 @@ function checkDefinition(dir, slug, definition) {
   const avoidChanged = lines instanceof Set && [...lines].some(n => n >= avoidStart && n <= avoidEnd + 1)
   const newComponent = options.base && lines === true
   const named = new Set(definition.avoid.map(avoid => avoid.instead.match(/govuk-app-[a-z-]+/)?.[0]).filter(Boolean))
-  for (const other of fs.readdirSync(path.join(root, 'components'))) {
-    if (other === slug || !exists(`components/${other}/${other}.json`)) continue
-    const theirs = JSON.parse(read(`components/${other}/${other}.json`))
+  for (const other of fs.readdirSync(path.join(root, 'src', 'components'))) {
+    if (other === slug || !exists(`src/components/${other}/${other}.json`)) continue
+    const theirs = JSON.parse(read(`src/components/${other}/${other}.json`))
     const pointsHere = (theirs.avoid ?? []).some(avoid => avoid.instead.match(/^govuk-app-[a-z-]+/)?.[0] === definition.element)
     if ((avoidChanged || newComponent) && pointsHere && !named.has(theirs.element)) {
       say('look', lineOf('"avoid"'), 'Definition: avoid', `${other}'s avoid sends people to ${definition.element} instead, but this avoid never mentions ${theirs.element}. If someone might pick this when ${theirs.element} is right, add an entry for it.`)

@@ -1,10 +1,10 @@
-import { defineComponent, materialSymbols } from '../../../foundation/component.js'
+import { defineComponent, materialSymbols } from '../../../src/foundation/component.js'
 // The library's chat components, which the conversation adds to.
-import '../../../components/text/text.js'
-import '../../../components/chat-question/chat-question.js'
-import '../../../components/chat-answer/chat-answer.js'
-import '../../../components/chat-loading/chat-loading.js'
-import '../../../components/chat-input/chat-input.js'
+import '../../../src/components/text/text.js'
+import '../../../src/components/chat-question/chat-question.js'
+import '../../../src/components/chat-answer/chat-answer.js'
+import '../../../src/components/chat-loading/chat-loading.js'
+import '../../../src/components/chat-input/chat-input.js'
 
 // The proposals' own components, drawn the same way as the library's so
 // either could join it later. chat.css says what they are.
