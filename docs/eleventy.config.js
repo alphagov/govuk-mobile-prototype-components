@@ -63,6 +63,11 @@ export default async function (eleventyConfig) {
   eleventyConfig.addWatchTarget('templates/')
   eleventyConfig.addWatchTarget('template.schema.json')
 
+  // Everything in the library, for tools that build prototypes: an index, a
+  // card for each thing, and all of it as data. `npm run build` writes it
+  // before it gets here.
+  eleventyConfig.addPassthroughCopy('catalogue')
+
   // The docs' own script, for the examples' "Copy code" buttons.
   eleventyConfig.addPassthroughCopy({ 'docs/assets/docs.js': 'assets/docs.js' })
 
