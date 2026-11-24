@@ -1,0 +1,176 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Navigation bar",
+  "element": "govuk-app-nav-bar",
+  "purpose": "Says which screen the user is on, takes them back to the screen they came from, and holds the screen's actions, such as close, done or edit. It sits at the top of every screen that isn't a top-level one, and of some that are.",
+  "origin": {
+    "kind": "native",
+    "notes": "The iOS navigation bar, UINavigationBar, in iOS 26's Liquid Glass style. The app draws the system's own, through its navigation controllers, and sets only its tint, text.linkSecondary (AppDelegate). Its icon actions, such as close and done, are in text.primary. The glass and the scroll edge effect are approximated, and the icons are Material Symbols in place of SF Symbols, which may only be used on Apple's platforms. Android has its own headers (ChildPageHeader, FullScreenHeader, ModalHeader and TabHeader), which this does not draw."
+  },
+  "inputs": {
+    "attributes": {
+      "title": {
+        "type": "string",
+        "description": "The screen's title, drawn in the bar as the screen's heading. Leave it off where the content starts with its own heading."
+      },
+      "large-title": {
+        "type": "boolean",
+        "default": false,
+        "description": "Draws the title large, below the bar. It scrolls with the content, and the title appears in the bar once it has gone under it."
+      },
+      "back": {
+        "type": "boolean",
+        "default": false,
+        "description": "Shows a back button, named back, for the page to listen for."
+      },
+      "back-href": {
+        "type": "string",
+        "description": "Shows a back button that is a link to this page. Use it in place of back in a prototype of several pages."
+      }
+    },
+    "content": "Up to three <govuk-app-nav-bar-item> elements, the screen's actions, drawn on the right in order. One with slot=\"leading\" is drawn on the left instead, where the back button would be, as the app draws close on a full-screen cover. Each takes an icon attribute, the name of a Material Symbol (such as close, check or more_horiz), or none, to draw its text instead; an href, to make it a link to another page, or name and value, to tell it apart as a button. What is written between its tags is its text, or, with an icon, its name for screen readers.",
+    "contains": {
+      "elements": ["govuk-app-nav-bar-item"],
+      "slots": {
+        "leading": ["govuk-app-nav-bar-item"]
+      }
+    },
+    "parts": {
+      "govuk-app-nav-bar-item": {
+        "description": "One of the screen's actions in the bar: its text, or with an icon, its name for screen readers.",
+        "attributes": {
+          "icon": {
+            "type": "string",
+            "description": "A Material Symbol to draw, such as close, check or more_horiz, in place of its text."
+          },
+          "href": {
+            "type": "string",
+            "description": "Makes it a link to this page."
+          },
+          "name": {
+            "type": "string",
+            "description": "Without an href, makes it a button with this name, so a page listening for clicks can tell which was pressed."
+          },
+          "value": {
+            "type": "string",
+            "description": "Set on the button, alongside name, to say which of several it was."
+          }
+        },
+        "contains": {
+          "text": true
+        }
+      }
+    }
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "click",
+        "description": "From the back button, a button named back, or from an action's button, with the name and value it was given, when it is pressed. A back button or action with an href goes to its page instead."
+      }
+    ]
+  },
+  "rules": [
+    "Put it first in the screen, before the content. It sticks to the top of the screen and the content scrolls under it.",
+    "Give a screen a title unless its content starts with its own heading, as the app's forms do, such as What is your address?",
+    "Use a large title where the app does, such as Settings and Pages you've visited. Use the inline title on other screens, and on forms and modals.",
+    "Show a back button on every screen pushed on top of another, and never on a top-level screen or the first screen of a modal.",
+    "Close a modal with an action on the right, icon close, named for what it does. Confirm one with icon check.",
+    "Use icons for the actions iOS draws as icons (close, check, more_horiz for a menu). Use a word, such as Edit, for anything else.",
+    "Put close on the left, with slot=\"leading\", only on a full-screen cover, as the app does: a sheet has it on the right.",
+    "Keep titles short enough to fit on one line. A long title is cut off."
+  ],
+  "avoid": [
+    { "when": "On Home", "instead": "govuk-app-home-header" },
+    { "when": "For the action that moves the journey on, such as Continue", "instead": "govuk-app-button-stack" },
+    { "when": "To move between the app's sections, Home, Chat and Settings", "instead": "govuk-app-tab-bar" },
+    { "when": "For a heading within the content, such as a form's question", "instead": "govuk-app-heading level=\"1\" size=\"title-1\"" }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SupportingFiles/AppDelegate.swift",
+        "symbol": "UINavigationBar.appearance().tintColor",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Extensions/UIKit/UINavigationController+Convenience.swift",
+        "symbol": "UINavigationController .home, .settings, .chat",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Builders/ViewControllerBuilder.swift",
+        "symbol": "largeTitleDisplayMode, navigationBarTintColor",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Travel/CountryListView.swift",
+        "symbol": "closeButton",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Topics/EditTopicsView.swift",
+        "symbol": "doneButton",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKit/Sources/ViewControllers/HostingViewController.swift",
+        "symbol": "HostingViewController",
+        "ref": "8a7641e"
+      }
+    ],
+    "android": [],
+    "other": [
+      {
+        "title": "Apple Human Interface Guidelines: Navigation bars",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/navigation-bars"
+      },
+      {
+        "title": "Material Symbols, the icons it draws",
+        "url": "https://fonts.google.com/icons"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-large-title-light.webp", "description": "Large title, Pages you've visited, in light mode", "from": "RecentActivityListViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-large-title-dark.webp", "description": "Large title, Pages you've visited, in dark mode", "from": "RecentActivityListViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-close-dark.webp", "description": "Close action on a modal, in dark mode. The snapshot tests draw bar buttons without their glass", "from": "AmbiguousAddressSelectionViewControllerSnapshotTests at 1e520fc1" }
+  ],
+  "examples": [
+    {
+      "name": "Back and an inline title",
+      "html": "<govuk-app-nav-bar title=\"Notifications\" back></govuk-app-nav-bar>"
+    },
+    {
+      "name": "Large title",
+      "html": "<govuk-app-nav-bar title=\"Settings\" large-title></govuk-app-nav-bar>"
+    },
+    {
+      "name": "Modal with close",
+      "html": "<govuk-app-nav-bar title=\"Select a country\">\n  <govuk-app-nav-bar-item icon=\"close\" name=\"close\">Close</govuk-app-nav-bar-item>\n</govuk-app-nav-bar>"
+    },
+    {
+      "name": "Back, large title and a text action",
+      "html": "<govuk-app-nav-bar title=\"Pages you've visited\" large-title back>\n  <govuk-app-nav-bar-item name=\"edit\">Edit</govuk-app-nav-bar-item>\n</govuk-app-nav-bar>"
+    },
+    {
+      "name": "Close on the left, on a full-screen cover",
+      "html": "<govuk-app-nav-bar>\n  <govuk-app-nav-bar-item icon=\"close\" name=\"close\" slot=\"leading\">Close</govuk-app-nav-bar-item>\n</govuk-app-nav-bar>"
+    },
+    {
+      "name": "Two actions, sharing their glass",
+      "html": "<govuk-app-nav-bar title=\"Vehicle\" back>\n  <govuk-app-nav-bar-item icon=\"share\" name=\"share\">Share</govuk-app-nav-bar-item>\n  <govuk-app-nav-bar-item icon=\"more_horiz\" name=\"menu\">More</govuk-app-nav-bar-item>\n</govuk-app-nav-bar>"
+    },
+    {
+      "name": "Links to other pages",
+      "html": "<govuk-app-nav-bar title=\"Notifications\" back-href=\"#settings\">\n  <govuk-app-nav-bar-item icon=\"check\" href=\"#settings\">Done</govuk-app-nav-bar-item>\n</govuk-app-nav-bar>"
+    }
+  ]
+}

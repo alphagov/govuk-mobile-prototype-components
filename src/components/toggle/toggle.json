@@ -1,0 +1,98 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Toggle",
+  "element": "govuk-app-toggle",
+  "purpose": "Switches something on or off straight away, such as sharing app usage statistics.",
+  "origin": {
+    "kind": "native",
+    "notes": "iOS's switch: SwiftUI's Toggle, in its switch style, as GovKit's ToggleRow draws it, tinted fills.surfaceToggleSelected when on. The rest is the system's. A grouped list's toggle row draws one. Android has its own, ToggleSwitch, Material's switch in the app's colours, which this does not draw."
+  },
+  "inputs": {
+    "attributes": {
+      "checked": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether it is on."
+      },
+      "label": {
+        "type": "string",
+        "description": "Its name for screen readers, such as Share app usage statistics. Leave it off inside a <label> that names it already."
+      },
+      "name": {
+        "type": "string",
+        "description": "Its name, to tell it apart in its change event or in a form."
+      },
+      "value": {
+        "type": "string",
+        "description": "Its value, sent with a form when it is on."
+      }
+    },
+    "content": null,
+    "contains": {}
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "change",
+        "description": "From its checkbox, with its name and value, when it is switched. Read event.target.checked for whether it is on."
+      }
+    ]
+  },
+  "rules": [
+    "Use a toggle for something that takes effect as soon as it is switched, not for a choice confirmed with a button.",
+    "For a setting in a list, use a grouped list's toggle row, as the app does on Settings. Use a toggle on its own only where there's no list for it.",
+    "Always give it a name: a label, or a <label> around it and the text beside it.",
+    "Name it for what it turns on, such as Share app usage statistics, not On or Off."
+  ],
+  "avoid": [
+    { "when": "For a setting in a list, as on Settings", "instead": "govuk-app-grouped-list-row type=\"toggle\"" },
+    { "when": "For a choice the user confirms with a button", "instead": "govuk-app-grouped-list-row type=\"selectable\"" },
+    { "when": "To switch between views of the same thing", "instead": "govuk-app-segmented-control" }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKit/Sources/SwiftUIViews/GroupedList/GroupedListRowView.swift",
+        "symbol": "ToggleRowView",
+        "ref": "8a7641e"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Colors/GOVUKColors+Fills.swift",
+        "symbol": "surfaceToggleSelected",
+        "ref": "8a7641e"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "design/src/main/kotlin/uk/gov/govuk/design/ui/component/Switch.kt",
+        "symbol": "ToggleSwitch",
+        "ref": "16621861"
+      }
+    ],
+    "other": [
+      {
+        "title": "Apple Human Interface Guidelines: Toggles",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/toggles"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-every-row-light.webp", "description": "On, in a grouped list's toggle row (Row title 4), in light mode", "from": "GovKit's GroupedListSnapshotTests at 8a7641e" },
+    { "platform": "ios", "image": "reference/ios-every-row-dark.webp", "description": "The same, in dark mode", "from": "GovKit's GroupedListSnapshotTests at 8a7641e" },
+    { "platform": "android", "image": "reference/android-on.webp", "description": "On", "from": "SwitchScreenshotTests/ToggleSwitchOnScreenshots, branch GOVUKAPP-4072-screenshot-test" }
+  ],
+  "examples": [
+    {
+      "name": "On",
+      "html": "<govuk-app-toggle name=\"statistics\" label=\"Share app usage statistics\" checked></govuk-app-toggle>"
+    },
+    {
+      "name": "Off",
+      "html": "<govuk-app-toggle name=\"statistics\" label=\"Share app usage statistics\"></govuk-app-toggle>"
+    }
+  ]
+}

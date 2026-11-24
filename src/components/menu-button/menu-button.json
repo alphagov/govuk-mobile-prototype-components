@@ -1,0 +1,142 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Menu button",
+  "element": "govuk-app-menu-button",
+  "purpose": "Offers a few more things the user can do with something on a card, such as a vehicle or a driving licence, without crowding the card: a round “…” button that opens a menu of them.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "The app's menuView on a vehicle's card (VehicleSummaryView) and on a driving licence (DrivingLicenceSummaryView): SF's ellipsis.circle.fill in Title 1 Bold, in text.link, in a 36pt box, which opens a SwiftUI Menu of links. The menu's look is iOS's, approximated."
+  },
+  "inputs": {
+    "attributes": {
+      "label": {
+        "type": "string",
+        "default": "More options",
+        "description": "The button's name for screen readers, as the app's moreOptionsButtonAccessibilityLabel."
+      },
+      "name": {
+        "type": "string",
+        "description": "The button's name, to tell it apart when it's pressed."
+      },
+      "variant": {
+        "type": "enum",
+        "values": [
+          "card",
+          "chat"
+        ],
+        "default": "card",
+        "description": "card: a filled circle with its dots cut out, in link blue, as on a vehicle's or a licence's card. chat: three blue dots on a white circle, as beside GOV.UK Chat's field. The chat input draws its own."
+      }
+    },
+    "content": "Its menu's items, <govuk-app-menu-button-item> elements, top to bottom. Each is a link, with an href, or a button, with a name and value. Its label is what's written between its tags. Give it destructive to draw it in red, for one that deletes something, such as Clear chat, and icon to draw a Material Symbol at its end, such as delete.",
+    "contains": {
+      "text": true,
+      "elements": ["govuk-app-menu-button-item"]
+    },
+    "parts": {
+      "govuk-app-menu-button-item": {
+        "description": "One item in the menu, holding its label: a link, with an href, or a button, with a name and value.",
+        "attributes": {
+          "href": {
+            "type": "string",
+            "description": "Makes it a link to this page."
+          },
+          "name": {
+            "type": "string",
+            "description": "Without an href, makes it a button with this name, so a page listening for clicks can tell which was pressed."
+          },
+          "value": {
+            "type": "string",
+            "description": "Set on the button, alongside name, to say which of several it was."
+          },
+          "destructive": {
+            "type": "boolean",
+            "default": false,
+            "description": "Draws it in red, for one that deletes something, such as Clear chat."
+          },
+          "icon": {
+            "type": "string",
+            "description": "A Material Symbol drawn at its end, such as delete."
+          }
+        },
+        "contains": {
+          "text": true
+        }
+      }
+    }
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "click",
+        "description": "From the button, which opens the menu, and from an item's link or button, when it's chosen; choosing one closes the menu."
+      }
+    ]
+  },
+  "rules": [
+    "Use it for a few things the user can do with what's on its card, that don't need to be on show. Anything they'll want often belongs on the card itself.",
+    "Put it at the top right of its card, as the app does.",
+    "Keep its menu short, a handful of items at most, each saying what it does, such as Change address.",
+    "Label it for screen readers if More options doesn't say enough."
+  ],
+  "avoid": [
+    { "when": "For an action the user will want often, on a card", "instead": "govuk-app-button variant=\"compact\"" },
+    { "when": "For an action on the whole screen, not one card", "instead": "govuk-app-nav-bar-item" },
+    { "when": "To switch between views of the same thing", "instead": "govuk-app-segmented-control" }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/VehicleSummaryView.swift",
+        "symbol": "menuView",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/DrivingLicenceSummaryView.swift",
+        "symbol": "its Menu",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Chat/ChatMenuView.swift",
+        "symbol": "ChatMenuView",
+        "ref": "fc2b3b1d"
+      }
+    ],
+    "android": [],
+    "other": [
+      {
+        "title": "Apple Human Interface Guidelines: Pull-down buttons",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/pull-down-buttons"
+      }
+    ]
+  },
+  "references": [
+    {
+      "platform": "ios",
+      "image": "reference/ios-vehicle-card-light.webp",
+      "description": "On a vehicle's card, beside its number plate, in light mode",
+      "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da"
+    },
+    {
+      "platform": "ios",
+      "image": "reference/ios-vehicle-card-dark.webp",
+      "description": "The same, in dark mode",
+      "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da"
+    }
+  ],
+  "examples": [
+    {
+      "name": "A vehicle's menu",
+      "html": "<govuk-app-menu-button name=\"vehicle-menu\">\n  <govuk-app-menu-button-item href=\"https://www.gov.uk/vehicle-tax\">Tax this vehicle</govuk-app-menu-button-item>\n  <govuk-app-menu-button-item href=\"https://www.gov.uk/getting-an-mot\">Book an MOT</govuk-app-menu-button-item>\n  <govuk-app-menu-button-item name=\"remove-vehicle\">Remove vehicle</govuk-app-menu-button-item>\n</govuk-app-menu-button>"
+    },
+    {
+      "name": "GOV.UK Chat's menu",
+      "frame": "page",
+      "html": "<govuk-app-menu-button variant=\"chat\" name=\"chat-menu\">\n  <govuk-app-menu-button-item name=\"clear-chat\" destructive icon=\"delete\">Clear chat</govuk-app-menu-button-item>\n  <govuk-app-menu-button-item name=\"privacy\">Privacy notice</govuk-app-menu-button-item>\n  <govuk-app-menu-button-item name=\"about\">About</govuk-app-menu-button-item>\n  <govuk-app-menu-button-item name=\"feedback\">Give feedback</govuk-app-menu-button-item>\n</govuk-app-menu-button>"
+    }
+  ]
+}

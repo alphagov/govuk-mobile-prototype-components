@@ -11,7 +11,7 @@ order: 1
 Load the component’s script, and write its element inside a `<govuk-app>`:
 
 ```html
-<script type="module" src="components/button/button.js"></script>
+<script type="module" src="src/components/button/button.js"></script>
 
 <govuk-app>
   <govuk-app-button name="continue">Continue</govuk-app-button>
@@ -44,7 +44,7 @@ See [styles stay apart](/get-started/building-a-component/#styles-stay-apart) fo
 To show a prototype as the app on an iPhone, put its `<govuk-app>` in a `<govuk-prototype-frame>`, and load the frame’s script:
 
 ```html
-<script type="module" src="frame/frame.js"></script>
+<script type="module" src="src/frame/frame.js"></script>
 
 <govuk-prototype-frame>
   <govuk-app>
@@ -64,7 +64,7 @@ Anything else in the frame, such as a link back to your prototype’s index, goe
 
 ## Inputs and outputs
 
-**Attributes and content are the inputs.** What each component takes is on its [page](/components/), and in its definition file, `components/<name>/<name>.json`.
+**Attributes and content are the inputs.** What each component takes is on its [page](/components/), and in its definition file, `src/components/<name>/<name>.json`.
 
 **The browser’s own events are the outputs.** Components draw real buttons and fields, so `click`, `input` and `change` bubble up as usual, carrying the `name` and `value` you gave them:
 

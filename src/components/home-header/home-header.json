@@ -1,0 +1,85 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Home header",
+  "element": "govuk-app-home-header",
+  "purpose": "Tops the home screen: the GOV.UK wordmark on blue, and the search field the user starts a search of GOV.UK from. It takes the place of the navigation bar, which the home screen hides.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "HomeViewController's header: the wordmark (homeLogo), 28pt tall, centred 16pt below the status bar, and a UISearchBar 16pt below it, on fills.surfaceHomeHeaderBackground, which fills the status bar too. The content scrolls under it. Android's HomeScreen draws the same: the wordmark, a heading, 16dp from the top, and below it a header widget, its search field. This draws the iOS spacing."
+  },
+  "inputs": {
+    "attributes": {},
+    "content": "Optionally, a <govuk-app-search-field>, drawn below the wordmark, as on the app's home screen. Without one, the header is the wordmark alone, as when the app's search is turned off.",
+    "contains": {
+      "elements": ["govuk-app-search-field"]
+    }
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Use it only on the home screen, in place of a navigation bar. Other screens have a navigation bar.",
+    "Put it first in a <govuk-app-screen>. It sticks to the top of the screen, and the content scrolls under it.",
+    "Give it a search field, as the app does, unless the prototype is of the app without search.",
+    "The wordmark is the screen's heading, so don't give the home screen another level 1 heading."
+  ],
+  "avoid": [
+    { "when": "On any screen but Home", "instead": "govuk-app-nav-bar" },
+    { "when": "To search on a screen other than Home", "instead": "govuk-app-search-field" }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/ViewControllers/HomeViewController.swift",
+        "symbol": "HomeViewController",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Home/HomeContentView.swift",
+        "symbol": "HomeContentView",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Resources/Assets.xcassets/homeLogo.imageset/logo.svg",
+        "symbol": "homeLogo",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Colors/GOVUKColors+Fills.swift",
+        "symbol": "fills.surfaceHomeHeaderBackground",
+        "ref": "8a7641e"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "feature/home/src/main/kotlin/uk/gov/govuk/home/ui/HomeScreen.kt",
+        "symbol": "HomeScreen",
+        "ref": "9952400f"
+      }
+    ],
+    "other": []
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-light.webp", "description": "The home screen's header, with search, in light mode", "from": "HomeViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-dark.webp", "description": "The home screen's header, with search, in dark mode", "from": "HomeViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "android", "image": "reference/android-light.webp", "description": "The Android home screen's header, the wordmark alone, in light mode", "from": "HomeScreenScreenshotTests at 16621861" }
+  ],
+  "examples": [
+    {
+      "name": "With search",
+      "frame": "screen",
+      "html": "<govuk-app-screen>\n  <govuk-app-home-header>\n    <govuk-app-search-field></govuk-app-search-field>\n  </govuk-app-home-header>\n  <govuk-app-section-heading action=\"Edit\">Topics</govuk-app-section-heading>\n  <p>Driving and transport. Money and tax. Benefits. Care. Health and disability. Parenting and guardianship. Employment.</p>\n  <govuk-app-tab-bar>\n    <govuk-app-tab-bar-item icon=\"home\" name=\"home\" selected>Home</govuk-app-tab-bar-item>\n    <govuk-app-tab-bar-item icon=\"settings\" name=\"settings\">Settings</govuk-app-tab-bar-item>\n  </govuk-app-tab-bar>\n</govuk-app-screen>"
+    },
+    {
+      "name": "Without search",
+      "frame": "screen",
+      "html": "<govuk-app-screen>\n  <govuk-app-home-header></govuk-app-home-header>\n  <govuk-app-section-heading action=\"Edit\">Topics</govuk-app-section-heading>\n  <p>Driving and transport. Money and tax. Benefits. Care. Health and disability. Parenting and guardianship. Employment.</p>\n  <govuk-app-tab-bar>\n    <govuk-app-tab-bar-item icon=\"home\" name=\"home\" selected>Home</govuk-app-tab-bar-item>\n    <govuk-app-tab-bar-item icon=\"settings\" name=\"settings\">Settings</govuk-app-tab-bar-item>\n  </govuk-app-tab-bar>\n</govuk-app-screen>"
+    }
+  ]
+}

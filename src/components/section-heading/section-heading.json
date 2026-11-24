@@ -1,0 +1,101 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Section heading",
+  "element": "govuk-app-section-heading",
+  "purpose": "Heads a section of a screen, such as a widget on the home screen, with an action for the whole section beside it if it has one, such as Edit or See all.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "GovKitUI's SectionHeaderLabelView: the title in Title 3 Semibold, and an action in Subheadline Semibold, in text.buttonSecondary, on the right. The app uses it over its home screen widgets: Topics, Your local services, Pages you've visited and Travel alerts."
+  },
+  "inputs": {
+    "attributes": {
+      "level": {
+        "type": "enum",
+        "values": ["1", "2", "3", "4", "5", "6"],
+        "default": "2",
+        "description": "Its place in the screen's outline. Drawn as h1 to h6, always in Title 3."
+      },
+      "action": {
+        "type": "string",
+        "description": "The action's text, such as Edit or See all. Without it, there is no action."
+      },
+      "href": {
+        "type": "string",
+        "description": "Makes the action a link to this page."
+      },
+      "name": {
+        "type": "string",
+        "description": "The action's button's name, to tell which was pressed."
+      },
+      "value": {
+        "type": "string",
+        "description": "The action's button's value."
+      }
+    },
+    "content": "The section's title.",
+    "contains": {
+      "text": true
+    }
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "click",
+        "description": "From the action's button, with its name and value, when it is pressed. An action with an href goes to its page instead."
+      }
+    ]
+  },
+  "rules": [
+    "Use it over a section the user can act on as a whole, such as a home screen widget. For any other heading, use the heading.",
+    "Give the action a short verb or phrase for what it does to the section: Edit, or See all. Never more than one action.",
+    "Keep the title short, so it and the action fit on one line."
+  ],
+  "avoid": [
+    { "when": "For a heading with no action", "instead": "govuk-app-heading" },
+    { "when": "For a screen's title", "instead": "govuk-app-heading level=\"1\"" },
+    { "when": "For a part of a long screen, with a line saying what it's for", "instead": "govuk-app-section" },
+    { "when": "For several actions on a section", "instead": "govuk-app-menu-button" }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKitUI/Sources/Components/Views/SectionHeaderLabelView.swift",
+        "symbol": "SectionHeaderLabelView",
+        "ref": "8a7641e"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Home/Topics/TopicsWidgetView.swift",
+        "symbol": "TopicsWidgetView",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Home/RecentActivity/RecentActivityWidgetView.swift",
+        "symbol": "RecentActivityWidgetView",
+        "ref": "1e520fc1"
+      }
+    ],
+    "android": []
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-with-action.webp", "description": "With an action", "from": "GovKit's SectionHeaderLabelViewSnapshotTests at 8a7641e" },
+    { "platform": "ios", "image": "reference/ios-without-action.webp", "description": "Without one", "from": "GovKit's SectionHeaderLabelViewSnapshotTests at 8a7641e" }
+  ],
+  "examples": [
+    {
+      "name": "With an action",
+      "html": "<govuk-app-section-heading action=\"Edit\" name=\"edit-topics\">Topics</govuk-app-section-heading>"
+    },
+    {
+      "name": "Without one",
+      "html": "<govuk-app-section-heading>Your local services</govuk-app-section-heading>"
+    },
+    {
+      "name": "An action that links to another page",
+      "html": "<govuk-app-section-heading action=\"See all\" href=\"#recent-activity\">Pages you’ve visited</govuk-app-section-heading>"
+    }
+  ]
+}

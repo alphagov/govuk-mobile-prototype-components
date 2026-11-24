@@ -1,0 +1,79 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Address",
+  "element": "govuk-app-address",
+  "purpose": "Shows a person's name and postal address, such as who a vehicle is registered to, or who holds a driving licence.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "The app's addressView in VehicleDetailView, under Registered to, and in DrivingLicenceSummaryView, on the licence: the name in Body Semibold, 8pt over the address's lines in Body, each line a paragraph of its own. The future driving designs keep it."
+  },
+  "inputs": {
+    "attributes": {
+      "name": {
+        "type": "string",
+        "description": "The person's name, in bold above the address, such as Mrs Jane Bloggs. Leave it off for an address alone."
+      }
+    },
+    "content": "The address's lines, each on a line of its own, or separated by <br>. Blank lines and indents are left out, so they can be written however reads best in the HTML.",
+    "contains": {
+      "text": true
+    }
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Write the name and address as the service holds them: the app shows DVLA's records as they are, which may be in capitals.",
+    "Put each part of the address on a line of its own, ending with the postcode.",
+    "Give it a heading that says whose address it is and why, such as Registered to.",
+    "Don't show an address the user hasn't proved is theirs, such as in a vehicle check for any vehicle."
+  ],
+  "avoid": [
+    { "when": "For one fact about a place, such as a postcode on its own", "instead": "govuk-app-grouped-list-row type=\"information\"" },
+    { "when": "To ask the user for their postcode", "instead": "govuk-app-text-field type=\"postcode\"" },
+    { "when": "For a place the user can go to, such as their local council", "instead": "govuk-app-link-card" }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/VehicleDetailView.swift",
+        "symbol": "addressView, under Registered to",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/DrivingLicenceSummaryView.swift",
+        "symbol": "addressView, the licence holder",
+        "ref": "8f1fe5da"
+      }
+    ],
+    "android": [],
+    "other": [
+      {
+        "title": "The app prototyping system's registered-to, which this follows (app-prototyping-system, exploration-2/components/registered-to)",
+        "url": "https://github.com/thip/app-prototyping-system"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-registered-to-light.webp", "description": "Registered to, on a vehicle's detail screen, in light mode", "from": "VehicleDetailViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-registered-to-dark.webp", "description": "The same, in dark mode", "from": "VehicleDetailViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-licence-holder-light.webp", "description": "A driving licence's holder, on the licence", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" }
+  ],
+  "examples": [
+    {
+      "name": "A name and address",
+      "html": "<govuk-app-address name=\"Mrs Jane Bloggs\">\n  75 St John's Street\n  Gateshead\n  NE8 2ED\n</govuk-app-address>"
+    },
+    {
+      "name": "Under a heading, as Registered to",
+      "html": "<govuk-app-heading level=\"2\" size=\"title-2\">Registered to</govuk-app-heading>\n<govuk-app-address name=\"Ms Anna Ornella Arenö\">\n  29 Orchard Drive\n  Milton Keynes\n  PA98 J83\n</govuk-app-address>"
+    },
+    {
+      "name": "An address alone",
+      "html": "<govuk-app-address>\n  Central Bedfordshire Council<br>\n  Priory House<br>\n  Chicksands<br>\n  SG17 5TQ\n</govuk-app-address>"
+    }
+  ]
+}

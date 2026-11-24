@@ -4,11 +4,11 @@ import path from 'node:path'
 import { Ajv2020 } from 'ajv/dist/2020.js'
 import addFormats from 'ajv-formats'
 
-// Every component's definition, components/<name>/<name>.json, checked against
-// component.schema.json. A component's page is drawn from this, so a folder
-// with a definition is all it takes to get one.
+// Every component's definition, src/components/<name>/<name>.json, checked
+// against src/schemas/component.schema.json. A component's page is drawn from
+// this, so a folder with a definition is all it takes to get one.
 const root = path.resolve(import.meta.dirname, '../..')
-const directory = path.join(root, 'components')
+const directory = path.join(root, 'src', 'components')
 
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'))
 
@@ -27,7 +27,7 @@ const groupOrder = [...Object.values(kinds).map(kind => kind.many), proposed]
 export default function () {
   const ajv = new Ajv2020({ allErrors: true, allowUnionTypes: true })
   addFormats(ajv)
-  const validate = ajv.compile(readJson(path.join(root, 'component.schema.json')))
+  const validate = ajv.compile(readJson(path.join(root, 'src', 'schemas', 'component.schema.json')))
 
   const components = []
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -39,13 +39,13 @@ export default function () {
     const definition = readJson(file)
     if (!validate(definition)) {
       const errors = validate.errors.map(error => `  ${error.instancePath || '/'} ${error.message}`).join('\n')
-      throw new Error(`components/${slug}/${slug}.json does not match component.schema.json:\n${errors}`)
+      throw new Error(`src/components/${slug}/${slug}.json does not match component.schema.json:\n${errors}`)
     }
 
     checkAgainstScript(slug, definition)
 
     // Prose about the component that the definition can't say well, if any.
-    const prose = path.join('components', slug, `${slug}.md`)
+    const prose = path.join('src', 'components', slug, `${slug}.md`)
     components.push({
       ...definition,
       slug,
@@ -69,7 +69,7 @@ export default function () {
 
 /**
  * The elements a component's script defines, each with the attributes it
- * reads: what defineComponent is given, in components/<name>/<name>.js.
+ * reads: what defineComponent is given, in src/components/<name>/<name>.js.
  */
 function definedByScript(slug) {
   const source = fs.readFileSync(path.join(directory, slug, `${slug}.js`), 'utf8')
@@ -94,11 +94,11 @@ function checkAgainstScript(slug, definition) {
   const scripted = definedByScript(slug)
   const describe = elements => [...elements].sort().join(', ') || 'nothing'
   if (describe(defined.keys()) !== describe(scripted.keys())) {
-    throw new Error(`components/${slug}/${slug}.json defines ${describe(defined.keys())}, but its script defines ${describe(scripted.keys())}`)
+    throw new Error(`src/components/${slug}/${slug}.json defines ${describe(defined.keys())}, but its script defines ${describe(scripted.keys())}`)
   }
   for (const [element, attributes] of defined) {
     if (describe(attributes) !== describe(scripted.get(element))) {
-      throw new Error(`components/${slug}/${slug}.json says ${element} reads ${describe(attributes)}, but its script reads ${describe(scripted.get(element))}`)
+      throw new Error(`src/components/${slug}/${slug}.json says ${element} reads ${describe(attributes)}, but its script reads ${describe(scripted.get(element))}`)
     }
   }
 }
@@ -117,7 +117,7 @@ function checkContains(components) {
         .filter(Array.isArray).flat()
       for (const element of named) {
         if (!library.has(element)) {
-          throw new Error(`components/${component.slug}/${component.slug}.json says ${element} may go inside it, but there's no such component or part`)
+          throw new Error(`src/components/${component.slug}/${component.slug}.json says ${element} may go inside it, but there's no such component or part`)
         }
       }
     }
@@ -140,7 +140,7 @@ function checkAvoid(components) {
       const written = avoid.instead.match(/^(govuk-app-[a-z-]+)((?:\s+[a-z][a-z-]*(?:="[^"]*")?)*)$/)
       if (!written) continue
       const [, element, attributes] = written
-      const where = `components/${component.slug}/${component.slug}.json says to use ${avoid.instead} instead`
+      const where = `src/components/${component.slug}/${component.slug}.json says to use ${avoid.instead} instead`
       const target = library.get(element)
       if (!target) throw new Error(`${where}, but there's no such component or part`)
       for (const [, name, value] of attributes.matchAll(/([a-z][a-z-]*)(?:="([^"]*)")?/g)) {

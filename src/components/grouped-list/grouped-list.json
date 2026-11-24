@@ -1,0 +1,293 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Grouped list",
+  "element": "govuk-app-grouped-list",
+  "purpose": "A section of rows on a rounded card, as on the Settings screen: rows that go to another screen, open a web page, switch something on or off, or show a value. Each section can have a title above it and a footer below.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "GovKit's GroupedList: GroupedListSectionView and GroupedListRowView, with its seven kinds of row (NavigationRow, LinkRow, InformationRow, DetailRow, ToggleRow, CountRow and SelectableRow). It looks like iOS's inset grouped list, but GovKit draws it itself, with its own colours, spacing and rows. Settings, the vehicle and licence screens, travel alerts and Pages you've visited use it. Its topic row is the app's TopicListItemView, as the Topics widget on Home draws it; Android draws the same with IconListItem, in its Bold style."
+  },
+  "inputs": {
+    "attributes": {
+      "title": {
+        "type": "string",
+        "description": "The section's title, above the card. Without it, the card stands alone, as on Settings."
+      },
+      "level": {
+        "type": "enum",
+        "values": ["1", "2", "3", "4", "5", "6"],
+        "default": "2",
+        "description": "The title's place in the screen's outline. Drawn as h1 to h6, always in Title 3."
+      },
+      "action": {
+        "type": "string",
+        "description": "Text for an action beside the title, such as See all."
+      },
+      "href": {
+        "type": "string",
+        "description": "Makes the title's action a link to this page."
+      },
+      "name": {
+        "type": "string",
+        "description": "The title's action's button's name."
+      },
+      "value": {
+        "type": "string",
+        "description": "The title's action's button's value."
+      },
+      "footer": {
+        "type": "string",
+        "description": "A note below the card, in Footnote, such as what a setting does."
+      },
+      "dividers": {
+        "type": "enum",
+        "values": ["full"],
+        "description": "Proposed, from the future driving designs: full draws the dividers between rows right across the card, in a paler blue, for a card whose rows are parts of one thing, such as a vehicle, rather than a list. Without it, they're GovKit's, 16pt in from each side."
+      },
+      "background": {
+        "type": "enum",
+        "values": ["subtle", "accent"],
+        "description": "Draws the card in another colour, as GovKit lets the app: subtle, pale blue, for a card on a white screen; accent, a stronger blue, proposed by the future driving designs for Add vehicle. Without it, the card is white, or dark blue in dark mode."
+      }
+    },
+    "content": "The section's rows, <govuk-app-grouped-list-row> elements, in order. Each takes a type: navigation (the default: a chevron, to another screen), link (in the link colour, with an arrow out, to a web page), information (a value on the right, in grey, that can't be pressed), detail (a value on the right in the link colour, such as Off, to change it; destructive draws its title red), toggle (a switch, drawn by <govuk-app-toggle>; checked if it is on), count (a number on the right, with unread for a red dot) selectable (an icon on the right, if it names one, such as check) or topic (a navigation row with its icon on the left, in a circle, and its title in bold; icon names the symbol, such as currency_pound, or it draws a star). detail gives the value on the right; description, for information and link rows, a line of grey text below the title. Give href to make a row a link, or name and value to tell it apart as a button or switch. Its title is what is written between its tags. A link row with no-arrow has no arrow, as GovKit can draw one for a link that stays in the app. An action row is a single action, as the app's Add vehicle: its title, with an outlined plus on the right in the icon colour, or the icon it names. Anything given slot=\"control\", such as a segmented control, goes at the top of the card, above the rows, as the app's Topics widget has Your topics and All topics. An information or link row given an image, the URL of a picture, draws it on the left at its own size, as the app draws One Login's account icon on Settings (images/one-login.svg, in this component's folder). Proposed, from the future driving designs: content (anything written between its tags, such as a heading and text, 16pt in from the card's edges; with flush, none, for content with its own padding, such as summary columns).",
+    "contains": {
+      "elements": ["govuk-app-grouped-list-row"],
+      "slots": {
+        "control": ["govuk-app-segmented-control"]
+      }
+    },
+    "parts": {
+      "govuk-app-grouped-list-row": {
+        "description": "One row of the list. Its title is what's written between its tags; its type decides what it draws on the right, and whether it can be pressed.",
+        "attributes": {
+          "type": {
+            "type": "enum",
+            "values": ["navigation", "link", "information", "detail", "toggle", "count", "selectable", "topic", "action", "content"],
+            "default": "navigation",
+            "description": "navigation: a chevron, to another screen. link: in the link colour, with an arrow out, to a web page. information: a value on the right, in grey, that can't be pressed. detail: a value on the right in the link colour, such as Off, to change it. toggle: a switch. count: a number on the right. selectable: an icon on the right, if it names one. topic: a navigation row with its icon on the left, in a circle, and its title in bold. action: a single action, with an outlined plus on the right, or the icon it names. content (proposed): anything written between its tags."
+          },
+          "detail": {
+            "type": "string",
+            "description": "The value on the right of an information, detail or count row, such as Off or 2."
+          },
+          "description": {
+            "type": "string",
+            "description": "A line of grey text below the title of an information or link row."
+          },
+          "icon": {
+            "type": "string",
+            "description": "A Material Symbol: on the right of a selectable or action row, such as check, or a topic's on its left, such as currency_pound."
+          },
+          "image": {
+            "type": "string",
+            "description": "The address of a picture on the left of an information or link row, at its own size."
+          },
+          "href": {
+            "type": "string",
+            "description": "Makes the row a link to this page."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the row's button or switch, so a page can tell which was pressed or switched."
+          },
+          "value": {
+            "type": "string",
+            "description": "Its button's or switch's value, alongside name."
+          },
+          "checked": {
+            "type": "boolean",
+            "default": false,
+            "description": "A toggle row's switch is on."
+          },
+          "unread": {
+            "type": "boolean",
+            "default": false,
+            "description": "A count row has a red dot, for something unread."
+          },
+          "destructive": {
+            "type": "boolean",
+            "default": false,
+            "description": "A detail row's title is red, for something that removes or deletes."
+          },
+          "no-arrow": {
+            "type": "boolean",
+            "default": false,
+            "description": "A link row has no arrow, for a link that stays in the app."
+          },
+          "flush": {
+            "type": "boolean",
+            "default": false,
+            "description": "A content row has no padding, for content with its own, such as summary columns."
+          }
+        },
+        "contains": {
+          "text": true,
+          "elements": "any"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "click",
+        "description": "From a row's button, with its name and value, when it is pressed. A row with an href goes to its page instead."
+      },
+      {
+        "name": "change",
+        "description": "From a toggle row's switch, a checkbox with its name and value, when it is switched. Read event.target.checked for whether it is on."
+      }
+    ]
+  },
+  "rules": [
+    "Group rows that belong together in one section, and give each section a title unless the screen makes it obvious, as Settings does.",
+    "Use navigation for a row that goes to another screen in the app, and link only for one that opens a web page.",
+    "Use toggle for a setting that takes effect straight away. Use detail for one that is changed on another screen, showing its value, such as Off.",
+    "Use information for a value the user can't change, such as the app's version.",
+    "Keep row titles to one line where you can, and put any explanation in the section's footer, not the row.",
+    "Use destructive only for a detail row that deletes or removes something, such as Sign out.",
+    "Use topic only for a list of the app's topics, as on Home, with the topic's own icon.",
+    "Use a content row for what a row type can't draw, such as a vehicle's name and its tax and MOT, and put anything more about it, such as Details, in a navigation row below. It's proposed, so isn't in the app yet.",
+    "Use the subtle background for cards on a white screen, so they stand apart from it. The accent background is proposed, for a card that's a single action, such as Add vehicle.",
+    "Use an action row on a card of its own, for an action that adds to the list above it, as Add vehicle does."
+  ],
+  "avoid": [
+    { "when": "For a few points that are read together, and can't be tapped", "instead": "govuk-app-bulleted-list" },
+    { "when": "For one destination that should stand out, such as the user's council", "instead": "govuk-app-link-card" },
+    { "when": "For the action that moves the journey on", "instead": "govuk-app-button variant=\"primary\"" },
+    { "when": "To switch between views of the same thing, such as Vehicles and Licence", "instead": "govuk-app-segmented-control" },
+    { "when": "For two to four short facts of the same kind, side by side", "instead": "govuk-app-summary-columns" }
+  ],
+  "sources": {
+    "figma": [
+      {
+        "title": "GOV.UK app library v2: topic icons",
+        "url": "https://www.figma.com/design/x5i4a5RT0xMhJAcjoIxefb/2025-06-GOV.UK-app-library-v2--UX-refresh?node-id=6962-20640"
+      }
+    ],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKit/Sources/SwiftUIViews/GroupedList/GroupedListSectionView.swift",
+        "symbol": "GroupedListSectionView",
+        "ref": "8a7641e"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKit/Sources/SwiftUIViews/GroupedList/GroupedListRowView.swift",
+        "symbol": "GroupedListRowView",
+        "ref": "8a7641e"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-gov-kit",
+        "path": "GovKit/Sources/ViewModels/GroupedListSection.swift",
+        "symbol": "GroupedListSection, and its rows",
+        "ref": "8a7641e"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Settings/SettingsView.swift",
+        "symbol": "SettingsView",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/VehiclesView.swift",
+        "symbol": "addVehiclesSmallCard, the action row",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SwiftUIViews/Topics/TopicListItemView.swift",
+        "symbol": "TopicListItemView",
+        "ref": "fc2b3b1d"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Home/Topics/TopicsWidgetView.swift",
+        "symbol": "TopicsWidgetView",
+        "ref": "fc2b3b1d"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "design/src/main/kotlin/uk/gov/govuk/design/ui/component/List.kt",
+        "symbol": "IconListItem",
+        "ref": "9952400f"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "feature/topics/src/main/kotlin/uk/gov/govuk/topics/ui/widget/TopicsWidget.kt",
+        "symbol": "TopicsWidget",
+        "ref": "9952400f"
+      }
+    ],
+    "other": [
+      {
+        "title": "Material Symbols, the icons it draws",
+        "url": "https://fonts.google.com/icons"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-every-row-light.webp", "description": "A titled section with one of each kind of row, and a footer, in light mode", "from": "GovKit's GroupedListSnapshotTests at 8a7641e" },
+    { "platform": "ios", "image": "reference/ios-every-row-dark.webp", "description": "The same, in dark mode", "from": "GovKit's GroupedListSnapshotTests at 8a7641e" },
+    { "platform": "ios", "image": "reference/ios-settings-light.webp", "description": "Settings, in light mode", "from": "SettingsViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-settings-dark.webp", "description": "Settings, in dark mode", "from": "SettingsViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-add-vehicle-light.webp", "description": "Add vehicle, an action row's card, in light mode", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-add-vehicle-dark.webp", "description": "Add vehicle, in dark mode", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-topics-light.webp", "description": "The Topics widget on Home, its rows topics, in light mode", "from": "TopicsWidgetViewSnapshotTests at fc2b3b1d" },
+    { "platform": "ios", "image": "reference/ios-topics-dark.webp", "description": "The same, in dark mode", "from": "TopicsWidgetViewSnapshotTests at fc2b3b1d" },
+    { "platform": "android", "image": "reference/android-topics-light.webp", "description": "The Topics widget on Home, in light mode", "from": "The Android app's TopicsWidgetScreenshotTests" }
+  ],
+  "examples": [
+    {
+      "name": "Every kind of row",
+      "html": "<govuk-app-grouped-list title=\"Section 1 header\" footer=\"Footer\">\n  <govuk-app-grouped-list-row name=\"row-1\">Row title 1</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"link\" href=\"https://www.gov.uk\">Row title 2</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"information\" detail=\"Detail\" description=\"Body text\">Row title 3</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"toggle\" name=\"row-4\" checked>Row title 4</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"detail\" detail=\"Body text\" name=\"row-5\">Row title 5</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"count\" detail=\"1\" unread name=\"row-6\">Row title 6</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"selectable\" icon=\"check\" name=\"row-7\">Row title 7</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    },
+    {
+      "name": "Settings",
+      "frame": "screen",
+      "html": "<govuk-app-screen>\n  <govuk-app-nav-bar title=\"Settings\" large-title></govuk-app-nav-bar>\n  <govuk-app-grouped-list footer=\"You might need to sign in again to manage your GOV.UK One Login details.\">\n    <govuk-app-grouped-list-row type=\"information\" description=\"test@example.com\" image=\"/components/grouped-list/images/one-login.svg\">Your GOV.UK One Login</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row type=\"link\" href=\"https://home.account.gov.uk\">Manage your GOV.UK One Login</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n  <govuk-app-grouped-list>\n    <govuk-app-grouped-list-row name=\"accounts\">Your accounts</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n  <govuk-app-grouped-list>\n    <govuk-app-grouped-list-row type=\"count\" detail=\"2\" unread name=\"messages\">Messages</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n  <govuk-app-grouped-list footer=\"You can share statistics about how you use the GOV.UK app so we can make improvements to it. We will not use these statistics to directly identify you.\">\n    <govuk-app-grouped-list-row type=\"detail\" detail=\"Off\" name=\"notifications\">Notifications</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row name=\"face-id\">Face ID</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row type=\"toggle\" name=\"statistics\" checked>Share app usage statistics</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n  <govuk-app-grouped-list>\n    <govuk-app-grouped-list-row type=\"information\" detail=\"1.2.3 (123)\">App version number</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row type=\"link\" href=\"https://www.gov.uk/contact/govuk-app\">Help and feedback</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n</govuk-app-screen>"
+    },
+    {
+      "name": "Topics, with a segmented control",
+      "html": "<govuk-app-grouped-list title=\"Topics\" action=\"Edit\" name=\"edit-topics\">\n  <govuk-app-segmented-control slot=\"control\" label=\"Topics\">\n    <govuk-app-segmented-control-item name=\"your-topics\" selected>Your topics</govuk-app-segmented-control-item>\n    <govuk-app-segmented-control-item name=\"all-topics\">All topics</govuk-app-segmented-control-item>\n  </govuk-app-segmented-control>\n  <govuk-app-grouped-list-row type=\"topic\" icon=\"currency_pound\" name=\"topic\" value=\"benefits\">Benefits</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"topic\" icon=\"directions_car\" name=\"topic\" value=\"driving\">Driving</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"topic\" icon=\"travel\" name=\"topic\" value=\"travel\">Travel abroad</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"topic\" name=\"topic\" value=\"other\">A topic without an icon</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    },
+    {
+      "name": "A title with an action",
+      "html": "<govuk-app-grouped-list title=\"Pages you’ve visited\" action=\"See all\" href=\"#recent-activity\">\n  <govuk-app-grouped-list-row type=\"link\" href=\"https://www.gov.uk/check-uk-visa\">Check if you need a UK visa</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"link\" href=\"https://www.gov.uk/vehicle-tax\" description=\"Visited today\">Tax your vehicle</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    },
+    {
+      "name": "A destructive detail row",
+      "html": "<govuk-app-grouped-list>\n  <govuk-app-grouped-list-row type=\"detail\" destructive name=\"sign-out\">Sign out</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    },
+    {
+      "name": "Proposed: a vehicle's card, with content rows",
+      "html": "<govuk-app-grouped-list>\n  <govuk-app-grouped-list-row type=\"content\">\n    <govuk-app-heading level=\"2\" size=\"title-2\">Lamborghini</govuk-app-heading>\n    <govuk-app-text size=\"subheadline\">Aventador LP 770-4 Super Veloce Jota 63 Edition Roadster</govuk-app-text>\n  </govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"content\" flush>\n    <govuk-app-summary-columns>\n      <govuk-app-summary-column>\n        <govuk-app-status state=\"due\" progress=\"0.6\" label=\"Tax due\" caption=\"18 days\"></govuk-app-status>\n      </govuk-app-summary-column>\n      <govuk-app-summary-column>\n        <govuk-app-status label=\"MOT\" caption=\"Valid\"></govuk-app-status>\n      </govuk-app-summary-column>\n    </govuk-app-summary-columns>\n  </govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row name=\"details\">Details</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    },
+    {
+      "name": "An action row, as Add vehicle",
+      "html": "<govuk-app-grouped-list>\n  <govuk-app-grouped-list-row type=\"action\" name=\"add-vehicle\">Add vehicle</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    },
+    {
+      "name": "Proposed: the accent background, for Add vehicle",
+      "html": "<govuk-app-grouped-list background=\"accent\">\n  <govuk-app-grouped-list-row type=\"action\" name=\"add-vehicle\">Add vehicle</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    },
+    {
+      "name": "Links without arrows",
+      "html": "<govuk-app-grouped-list title=\"Related\">\n  <govuk-app-grouped-list-row type=\"link\" no-arrow href=\"https://www.gov.uk/personalised-vehicle-registration-numbers\">Personalised number plates</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"link\" no-arrow href=\"https://www.gov.uk/vehicle-insurance\">Vehicle insurance</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    },
+    {
+      "name": "The subtle background, on a white screen",
+      "frame": "screen",
+      "html": "<govuk-app-screen background=\"modal\">\n  <govuk-app-grouped-list title=\"Overview\" background=\"subtle\">\n    <govuk-app-grouped-list-row type=\"content\" flush>\n      <govuk-app-summary-columns>\n        <govuk-app-summary-column>\n          <govuk-app-labelled-icon icon=\"calendar_month\">2017</govuk-app-labelled-icon>\n        </govuk-app-summary-column>\n        <govuk-app-summary-column>\n          <govuk-app-labelled-icon icon=\"local_gas_station\">Bi-fuel</govuk-app-labelled-icon>\n        </govuk-app-summary-column>\n        <govuk-app-summary-column>\n          <govuk-app-labelled-icon icon=\"palette\">Red</govuk-app-labelled-icon>\n        </govuk-app-summary-column>\n      </govuk-app-summary-columns>\n    </govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row name=\"tech-specs\">Tech specs</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n</govuk-app-screen>"
+    },
+    {
+      "name": "Proposed: full-width dividers, as a vehicle's card",
+      "html": "<govuk-app-grouped-list dividers=\"full\">\n  <govuk-app-grouped-list-row type=\"content\">\n    <govuk-app-heading level=\"2\" size=\"title-1\">Volkswagen</govuk-app-heading>\n    <govuk-app-text>ID4 2.0</govuk-app-text>\n  </govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"information\" detail=\"Valid\">Tax</govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row name=\"details\">Details</govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+    }
+  ]
+}

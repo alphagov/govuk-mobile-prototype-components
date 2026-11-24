@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Settings – GOV.UK app example</title>
   <link rel="stylesheet" href="../example.css">
-  <script type="module" src="../../frame/frame.js"></script>
+  <script type="module" src="../../src/frame/frame.js"></script>
   <script type="module" src="../example.js"></script>
-  <script type="module" src="../../components/screen/screen.js"></script>
-  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
-  <script type="module" src="../../components/grouped-list/grouped-list.js"></script>
-  <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
+  <script type="module" src="../../src/components/screen/screen.js"></script>
+  <script type="module" src="../../src/components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../src/components/grouped-list/grouped-list.js"></script>
+  <script type="module" src="../../src/components/tab-bar/tab-bar.js"></script>
 </head>
 <body>
   <govuk-prototype-frame>
@@ -20,7 +20,7 @@
         <govuk-app-nav-bar title="Settings" large-title></govuk-app-nav-bar>
 
         <govuk-app-grouped-list footer="You might need to sign in again to manage your GOV.UK One Login details.">
-          <govuk-app-grouped-list-row type="information" description="test@example.com" image="../../components/grouped-list/images/one-login.svg">Your GOV.UK One Login</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="information" description="test@example.com" image="../../src/components/grouped-list/images/one-login.svg">Your GOV.UK One Login</govuk-app-grouped-list-row>
           <govuk-app-grouped-list-row type="link" href="https://home.account.gov.uk">Manage your GOV.UK One Login</govuk-app-grouped-list-row>
         </govuk-app-grouped-list>
 

@@ -1,0 +1,125 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Banner",
+  "element": "govuk-app-banner",
+  "purpose": "Tells the user something they should know now, on the screen it's about: an alert on Home, such as an emergency, or a warning, such as that driving without tax can invalidate their insurance. It can have a link to find out more, and can be closed.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "The app's EmergencyBannerWidgetView, which shows an alert on Home in one of four types, information, local emergency, national emergency and notable death, each in its own colours from GovKit, with a link below and a close button. The future driving designs add a fifth, proposed: a yellow warning with an icon, such as Stay insured."
+  },
+  "inputs": {
+    "attributes": {
+      "type": {
+        "type": "enum",
+        "values": ["information", "local-emergency", "national-emergency", "notable-death", "warning"],
+        "default": "information",
+        "description": "information: white, or blue in dark mode, with a pale blue border. local-emergency: teal. national-emergency: red. notable-death: black. warning, proposed: yellow, with an icon and smaller type, as the future driving designs' Stay insured."
+      },
+      "title": {
+        "type": "string",
+        "description": "Its title, in bold, such as Emergency alerts. The app's banners can be without one."
+      },
+      "level": {
+        "type": "enum",
+        "values": ["2", "3", "4"],
+        "default": "2",
+        "description": "The title's place in the screen's outline. Drawn as h2 to h4."
+      },
+      "dismissible": {
+        "type": "boolean",
+        "default": false,
+        "description": "Shows a button to close it, which hides it. The app's national emergencies can't be closed."
+      },
+      "link": {
+        "type": "string",
+        "description": "Text for a link below, such as More information."
+      },
+      "href": {
+        "type": "string",
+        "description": "Where the link goes."
+      },
+      "name": {
+        "type": "string",
+        "description": "Tells the banner apart when it's closed: its close button's value."
+      },
+      "icon": {
+        "type": "string",
+        "description": "For a warning, the name of a Material Symbol on its left, such as warning."
+      }
+    },
+    "content": "What it says, a sentence or two.",
+    "contains": {
+      "text": true
+    }
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "click",
+        "description": "From its close button, named dismiss, with the banner's name as its value, when it's closed; the banner hides itself. From its link, which goes to its page."
+      }
+    ]
+  },
+  "rules": [
+    "Use a banner for something the user should know now, about the screen it's on. Don't use it for something they must act on to carry on: put that in the screen itself.",
+    "Use the emergency types only for the app's emergency alerts, as on Home, and only one at a time.",
+    "Keep what it says to a sentence or two, with a link to find out more.",
+    "Let it be closed unless it's an emergency the user must see, as the app's national emergencies can't be.",
+    "Use warning, which is proposed, for a warning about something on the screen, such as Stay insured on a vehicle with no tax."
+  ],
+  "avoid": [
+    { "when": "For something the user must do before they can carry on", "instead": "Say it in the screen itself, in its heading and text, with a button to do it." },
+    { "when": "For how something with a deadline stands, such as a vehicle's tax", "instead": "govuk-app-status" },
+    { "when": "For one card that needs attention, such as an expired licence", "instead": "govuk-app-card-header" },
+    { "when": "To confirm something worked, such as signing out", "instead": "A screen of its own, with a centred govuk-app-heading size=\"large-title\"." },
+    { "when": "For a few points that are read together", "instead": "govuk-app-bulleted-list" }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Home/EmergencyBannerWidgetView.swift",
+        "symbol": "EmergencyBannerWidgetView",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/ViewModels/EmergencyBannerWidgetViewModel.swift",
+        "symbol": "its colours, by type",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Extensions/GovKit/GOVUKColors+DVLA.swift",
+        "symbol": "stateLabelErrorBackgroundColor, stateLabelErrorForegroundColor: the warning's dark mode",
+        "ref": "8f1fe5da"
+      }
+    ],
+    "android": []
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-information-light.webp", "description": "Information, with a link, in light mode", "from": "EmergencyBannerSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-information-dark.webp", "description": "Information, in dark mode", "from": "EmergencyBannerSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-local-emergency.webp", "description": "Local emergency", "from": "EmergencyBannerSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-national-emergency.webp", "description": "National emergency, which can't be closed", "from": "EmergencyBannerSnapshotTests at 8f1fe5da" }
+  ],
+  "examples": [
+    {
+      "name": "Information",
+      "html": "<govuk-app-banner title=\"Emergency alerts\" dismissible name=\"emergency-alerts-test\" link=\"More information\" href=\"https://www.gov.uk/alerts\">\n  Test on Sunday 7 September, 3pm\n</govuk-app-banner>"
+    },
+    {
+      "name": "Local emergency",
+      "html": "<govuk-app-banner type=\"local-emergency\" title=\"Local emergency\" dismissible link=\"More information\" href=\"https://www.gov.uk/alerts\">\n  This is a level 2 incident. If this was a level 1 incident, it would be red\n</govuk-app-banner>"
+    },
+    {
+      "name": "National emergency, which can't be closed",
+      "html": "<govuk-app-banner type=\"national-emergency\" title=\"National emergency\" link=\"More information\" href=\"https://www.gov.uk/alerts\">\n  This is a level 1 incident\n</govuk-app-banner>"
+    },
+    {
+      "name": "Proposed: a warning",
+      "html": "<govuk-app-banner type=\"warning\" icon=\"warning\" title=\"Stay insured\" dismissible name=\"stay-insured\">\n  Driving without vehicle tax can invalidate your insurance\n</govuk-app-banner>"
+    }
+  ]
+}

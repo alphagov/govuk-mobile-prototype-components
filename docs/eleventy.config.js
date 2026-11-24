@@ -3,8 +3,8 @@ import { govukEleventyPlugin } from '@x-govuk/govuk-eleventy-plugin'
 import highlight from 'markdown-it-govuk/highlight'
 
 // Builds the documentation site from docs/. The components themselves have
-// no build step: components/ and foundation/ are copied into the site as they
-// are, so each page draws the real thing.
+// no build step: the library, in src/, is copied into the site as it
+// is, so each page draws the real thing.
 export default async function (eleventyConfig) {
   await eleventyConfig.addPlugin(govukEleventyPlugin, {
     // The plugin's styles, in a cascade layer: see assets/application.scss.
@@ -41,27 +41,18 @@ export default async function (eleventyConfig) {
   // Renders a component's optional <name>.md on its page.
   eleventyConfig.addPlugin(RenderPlugin)
 
-  // The live components, as they are in the repository. A component's .md is
-  // drawn into its page, so isn't published on its own.
-  eleventyConfig.addPassthroughCopy({ foundation: 'foundation' })
-  eleventyConfig.addPassthroughCopy({ components: 'components' }, { filter: path => !path.endsWith('.md') })
-  // The phone the examples are shown in, as it is in the repository.
-  eleventyConfig.addPassthroughCopy({ frame: 'frame' })
+  // The library, at the same paths as in the repository, so the examples'
+  // and templates' relative links work the same in both. A component's .md
+  // is drawn into its page, and a template's .json into its, so neither is
+  // published on its own. A pattern's HTML is drawn into its page too.
+  eleventyConfig.addPassthroughCopy({ 'src/foundation': 'src/foundation' })
+  eleventyConfig.addPassthroughCopy({ 'src/components': 'src/components' }, { filter: path => !path.endsWith('.md') })
+  eleventyConfig.addPassthroughCopy({ 'src/frame': 'src/frame' })
+  eleventyConfig.addPassthroughCopy({ 'src/templates': 'src/templates' }, { filter: path => !path.endsWith('.json') })
+  eleventyConfig.addWatchTarget('src/')
   // Examples of the components put together, as they are in the repository.
   eleventyConfig.addPassthroughCopy({ examples: 'examples' })
   eleventyConfig.addWatchTarget('examples/')
-  eleventyConfig.addWatchTarget('components/')
-  eleventyConfig.addWatchTarget('foundation/')
-  eleventyConfig.addWatchTarget('frame/')
-  eleventyConfig.addWatchTarget('component.schema.json')
-  // A pattern's HTML is drawn into its page, so it isn't copied.
-  eleventyConfig.addWatchTarget('patterns/')
-  eleventyConfig.addWatchTarget('pattern.schema.json')
-  // Templates, as they are in the repository, so each page can be opened
-  // live. Their definitions are drawn into their docs pages.
-  eleventyConfig.addPassthroughCopy({ templates: 'templates' }, { filter: path => !path.endsWith('.json') })
-  eleventyConfig.addWatchTarget('templates/')
-  eleventyConfig.addWatchTarget('template.schema.json')
 
   // Everything in the library, for tools that build prototypes: an index, a
   // card for each thing, and all of it as data. `npm run build` writes it

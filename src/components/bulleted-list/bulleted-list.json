@@ -1,0 +1,96 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Bulleted list",
+  "element": "govuk-app-bulleted-list",
+  "purpose": "Lists a few short points, each after a bullet, usually finishing a sentence that comes before it, such as what the app stores about the user or what sharing statistics shares.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "The app's BulletView: each point in Body after a heavy •, the list 10pt in from the edge. Its spacing is 16pt between the bullet and the text and 8pt between points, as on the screen asking to share statistics (AnalyticsConsentContainerView), or 8pt and 4pt, as on Your app data (SARExplainerView). The Android app draws its bullets as 6dp dots (AnalyticsConsentScreen)."
+  },
+  "inputs": {
+    "attributes": {
+      "spacing": {
+        "type": "enum",
+        "values": ["regular", "compact"],
+        "default": "regular",
+        "description": "regular: the text 16pt after the bullet, and the points 8pt apart. compact: 8pt and 4pt, for a short list closely following its sentence, as on Your app data."
+      }
+    },
+    "content": "Two or more <govuk-app-bulleted-list-item> elements, in order, each holding one point as text, which may include a link.",
+    "contains": {
+      "elements": ["govuk-app-bulleted-list-item"]
+    },
+    "parts": {
+      "govuk-app-bulleted-list-item": {
+        "description": "One point in the list, as text, which may include a link or a few words in bold.",
+        "attributes": {},
+        "contains": {
+          "text": true,
+          "inline": ["govuk-app-strong", "govuk-app-link"]
+        }
+      }
+    }
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Introduce the list with a sentence ending in a colon, and write each point to finish it: in lower case, with no full stop, as the app does.",
+    "Keep each point short, a line or two.",
+    "Use it for points that are read together, not for steps in order or for things to tap: use a grouped list for those.",
+    "Use one spacing throughout a journey's screens."
+  ],
+  "avoid": [
+    { "when": "For things the user can tap, such as other screens", "instead": "govuk-app-grouped-list-row type=\"navigation\"" },
+    { "when": "For two to four short facts, to take in at a glance", "instead": "govuk-app-summary-columns" },
+    { "when": "For a single point", "instead": "govuk-app-text" },
+    { "when": "For steps the user takes in order", "instead": "govuk-app-grouped-list" }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SwiftUIViews/BulletView.swift",
+        "symbol": "BulletView",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SwiftUIViews/AnalyticsConsentContainerView.swift",
+        "symbol": "AnalyticsConsentContainerView, its regular spacing",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SwiftUIViews/Settings/SARExplainerView.swift",
+        "symbol": "SARExplainerView, its compact spacing",
+        "ref": "1e520fc1"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "analytics/src/main/kotlin/uk/gov/govuk/analytics/ui/AnalyticsConsentScreen.kt",
+        "symbol": "BulletList, BulletItem",
+        "ref": "16621861"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-statistics-light.webp", "description": "Regular spacing, on the screen asking to share statistics, in light mode", "from": "AnalyticsConsentViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-statistics-dark.webp", "description": "The same, in dark mode", "from": "AnalyticsConsentViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-app-data-light.webp", "description": "Compact spacing, on Your app data, in light mode", "from": "SARExplainerViewControllerSnapshotTests at 1e520fc1" },
+    { "platform": "ios", "image": "reference/ios-app-data-dark.webp", "description": "The same, in dark mode", "from": "SARExplainerViewControllerSnapshotTests at 1e520fc1" }
+  ],
+  "examples": [
+    {
+      "name": "Regular, as on the screen asking to share statistics",
+      "html": "<govuk-app-text>You can help us improve this app by agreeing to share statistics about:</govuk-app-text>\n<govuk-app-bulleted-list>\n  <govuk-app-bulleted-list-item>the pages you visit within the app</govuk-app-bulleted-list-item>\n  <govuk-app-bulleted-list-item>how long you spend on each page</govuk-app-bulleted-list-item>\n  <govuk-app-bulleted-list-item>what you tap on while you're on each page</govuk-app-bulleted-list-item>\n  <govuk-app-bulleted-list-item>errors that happen</govuk-app-bulleted-list-item>\n</govuk-app-bulleted-list>"
+    },
+    {
+      "name": "Compact, as on Your app data",
+      "html": "<govuk-app-text>We store a small amount of data about you to improve your experience in the app, like:</govuk-app-text>\n<govuk-app-bulleted-list spacing=\"compact\">\n  <govuk-app-bulleted-list-item>your notification settings</govuk-app-bulleted-list-item>\n  <govuk-app-bulleted-list-item>a unique ID for this app (Push ID)</govuk-app-bulleted-list-item>\n</govuk-app-bulleted-list>"
+    }
+  ]
+}
