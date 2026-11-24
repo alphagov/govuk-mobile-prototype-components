@@ -56,6 +56,7 @@ export default function () {
   }
 
   checkContains(components)
+  checkAvoid(components)
 
   // By group, then by name. Each one's place is its order in the sidebar,
   // which groups them.
@@ -119,6 +120,37 @@ function checkContains(components) {
           throw new Error(`components/${component.slug}/${component.slug}.json says ${element} may go inside it, but there's no such component or part`)
         }
       }
+    }
+  }
+}
+
+/**
+ * What a definition says to use instead of its component, where that's an
+ * element of the library, such as govuk-app-button variant="destructive", is
+ * one, with attributes it reads and values it takes, so nobody is sent to
+ * something that isn't there. Each such one links to its page.
+ */
+function checkAvoid(components) {
+  const library = new Map(components.flatMap(component => [
+    [component.element, { slug: component.slug, attributes: component.inputs.attributes }],
+    ...Object.entries(component.inputs.parts ?? {}).map(([element, part]) => [element, { slug: component.slug, attributes: part.attributes }])
+  ]))
+  for (const component of components) {
+    for (const avoid of component.avoid ?? []) {
+      const written = avoid.instead.match(/^(govuk-app-[a-z-]+)((?:\s+[a-z][a-z-]*(?:="[^"]*")?)*)$/)
+      if (!written) continue
+      const [, element, attributes] = written
+      const where = `components/${component.slug}/${component.slug}.json says to use ${avoid.instead} instead`
+      const target = library.get(element)
+      if (!target) throw new Error(`${where}, but there's no such component or part`)
+      for (const [, name, value] of attributes.matchAll(/([a-z][a-z-]*)(?:="([^"]*)")?/g)) {
+        const spec = target.attributes[name]
+        if (!spec) throw new Error(`${where}, but ${element} doesn't read ${name}`)
+        if (spec.type === 'enum' && !spec.values.includes(value)) throw new Error(`${where}, but ${name} can't be "${value}"`)
+        if (spec.type === 'boolean' && value !== undefined) throw new Error(`${where}, but ${name} is true or false, so takes no value`)
+      }
+      avoid.element = element
+      avoid.slug = target.slug
     }
   }
 }

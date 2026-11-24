@@ -102,6 +102,25 @@ eleventyComputed:
     {% endfor %}
   </ul>
 
+  {% if component.avoid | length %}
+  <h2 class="govuk-heading-l" id="when-not-to-use-it">When not to use it</h2>
+  {#- What to use instead is code, linked to its page, when it's an element of
+      the library, and words otherwise. -#}
+  {% set rows = [] %}
+  {% for avoid in component.avoid %}
+    {% if avoid.slug %}
+      {% set instead = '<a class="govuk-link" href="/components/' + avoid.slug + '/"><code class="docs-avoid__element">' + (avoid.instead | escape) + '</code></a>' %}
+    {% else %}
+      {% set instead = avoid.instead | escape %}
+    {% endif %}
+    {% set rows = (rows.push([{ text: avoid.when }, { html: instead }]), rows) %}
+  {% endfor %}
+  {{ govukTable({
+    head: [{ text: "When" }, { text: "Use instead" }],
+    rows: rows
+  }) }}
+  {% endif %}
+
 </div>
 
 {#- What it was built from, and the app's own screenshots: there to check the

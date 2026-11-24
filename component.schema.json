@@ -98,6 +98,28 @@
       "type": "array",
       "items": { "type": "string", "minLength": 1 }
     },
+    "avoid": {
+      "description": "When it's the wrong choice, and what to use instead, so a designer, or a tool building a prototype, can choose between components that look alike or do similar things.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["when", "instead"],
+        "additionalProperties": false,
+        "properties": {
+          "when": {
+            "description": "A situation it's the wrong choice for, such as For an action on the whole screen, such as Edit.",
+            "type": "string",
+            "minLength": 1
+          },
+          "instead": {
+            "description": "What to use: an element of the library with any attributes it needs, as it's written in HTML, such as govuk-app-button variant=\"destructive\", which the build checks; or, where nothing in the library fits, what to do, in words.",
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
     "sources": {
       "description": "What it was built from.",
       "type": "object",
