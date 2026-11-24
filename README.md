@@ -11,6 +11,21 @@ Components for the GOV.UK app prototyping system: web components that look and b
 
 Documentation: <https://alphagov.github.io/govuk-mobile-prototype-components/>, with every component drawn live in light and dark beside the app's own screenshots.
 
+## Make a prototype
+
+Designers can make a prototype of the GOV.UK app by asking [Claude Code](https://code.claude.com/docs/en/overview), with the plugin in [`plugin/`](plugin/). Add it once, in Claude Code:
+
+```text
+/plugin marketplace add alphagov/govuk-mobile-prototype-components
+/plugin install govuk-app-prototyping@govuk-app
+```
+
+Then, in an empty folder, say "Make a new prototype of the GOV.UK app". Claude asks for a name and where to start (Home, Settings, Chat or a blank screen), gets the computer ready, asking before it installs anything, and opens the prototype in the browser. Next time, "Open my prototype". It's on the computer only, and iOS only, for now.
+
+Your organisation's managed Claude Code settings may not allow adding plugin marketplaces. If adding it fails, ask whoever runs your setup to allow this repository.
+
+See [Make a prototype](docs/get-started/make-a-prototype.md) for more, and [`plugin/starter/`](plugin/starter/) for what a new prototype is made of.
+
 ## Running the docs locally
 
 You need Node.js 26, the version in `.nvmrc` (`nvm use` picks it up). Anything from 22.16 works.
