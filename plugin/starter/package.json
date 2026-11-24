@@ -11,6 +11,6 @@
     "node": ">=22.16"
   },
   "dependencies": {
-    "govuk-mobile-prototype-components": "github:alphagov/govuk-mobile-prototype-components"
+    "govuk-mobile-prototype-components": "github:alphagov/govuk-mobile-prototype-components#main"
   }
 }

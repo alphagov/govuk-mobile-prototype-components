@@ -41,4 +41,4 @@ Open Claude Code in your prototype’s folder, and say:
 
 ## How it’s made
 
-The plugin is in this repository’s `plugin/` folder. A prototype is a folder of HTML pages that use this library’s components, templates and patterns, installed from GitHub, with a small server that reloads the browser when a page changes. Claude keeps a history of every change in the folder, so you can ask it to undo one.
+The plugin is in this repository’s `plugin/` folder. A prototype is a folder of HTML pages that use this library’s components, templates and patterns, installed from GitHub at the latest release when the prototype is made, with a small server that reloads the browser when a page changes. Claude keeps a history of every change in the folder, so you can ask it to undo one.

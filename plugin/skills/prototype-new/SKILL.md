@@ -38,15 +38,19 @@ cp -R "${CLAUDE_PLUGIN_ROOT}/starter/." <folder>/
 
 Then put the name in: `name` in `prototype.json` as they wrote it, and `name` in `package.json` as the folder's name.
 
-<!-- The starter's package.json installs the components from GitHub, at the
-     latest commit on main. When the library is published to npm, change it
-     to "govuk-mobile-prototype-components": "^<version>" there, so a
-     prototype gets a release, not whatever's on main, and no longer needs
-     git to install. -->
-
 ## 3. Install
 
-Follow steps 2 and 3 of the `prototype-setup` skill, in the new folder: check git and Node.js, asking before installing either, then install the prototype's parts. Its instructions are in `${CLAUDE_PLUGIN_ROOT}/skills/prototype-setup/SKILL.md`; read them now if you haven't.
+Follow step 2 of the `prototype-setup` skill, in the new folder: check git and Node.js, asking before installing either. Its instructions are in `${CLAUDE_PLUGIN_ROOT}/skills/prototype-setup/SKILL.md`; read them now if you haven't.
+
+Then point the prototype at the latest version of the components:
+
+```sh
+node scripts/use-latest-components.js
+```
+
+It finds the newest release on GitHub and writes it into `package.json`, so the prototype keeps that version until someone chooses to update it. Don't mention releases or tags: to the designer, it's "the latest version of the components". If it can't reach GitHub, that's the network: see the setup skill's troubleshooting.
+
+Then follow step 3 of `prototype-setup`, to install them.
 
 ## 4. Add the screens
 

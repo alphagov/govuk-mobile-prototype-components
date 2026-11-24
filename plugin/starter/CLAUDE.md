@@ -24,6 +24,7 @@ A designer, who may never have used a terminal, git or code. So:
 | `index.html` | The start page, at <http://localhost:3000/> |
 | `prototype.js` | Remembers answers across screens (read its comment) |
 | `scripts/add-screens.js` | Adds a template's screens, or a blank one |
+| `scripts/use-latest-components.js` | Points `package.json` at the latest version of the components |
 | `server.js` | Serves it all, at `/`, and the library's whole package at `/library/`. `npm start` |
 | `library.js` | Where the installed library's files are. The only place that says so |
 
@@ -36,7 +37,7 @@ Read `<catalogue>/index.md` first. Then read only the cards it links to for what
 1. **A template**: a whole part of the app, such as Settings, in `<library>/templates/`. Add it with `node scripts/add-screens.js <template>`, which copies its pages into `screens/<template>/`, points them at the library, adds prototype.js and lists them in prototype.json. Then change their words, following the comment at the top of each page.
 2. **A pattern**: one whole screen, in `<library>/patterns/`. Put it in a page like the screens already here.
 3. **Components**, put together following each one's rules on its card.
-4. **Something custom**, only when nothing in the library fits. Tell the designer it isn't one of the app's own, and make it the library's way: `components/<name>/` with `<name>.html`, `.css`, `.js`, using `defineComponent` from `<url>foundation/component.js`, styled only with the `--app-*` tokens in `<library>/foundation/tokens.css` (colour, type, and spacing on the 8pt grid), its own `govuk-app-<name>` classes, and light and dark both working. Look at a library component, such as `<library>/components/button/`, first.
+4. **Something custom**, only when nothing in the library fits. Tell the designer it isn't one of the app's own, and make it the library's way: `components/<name>/` with `<name>.html`, `.css`, `.js`, using `defineComponent` from `<url>foundation/component.js`, styled only with the `--app-*` tokens in `<library>/foundation/tokens.css` (colour, type, and spacing on the 8pt grid), its own `govuk-app-<name>` classes, and light and dark both working. Like the library, it must work offline and under a strict Content Security Policy: it loads nothing from other sites (no fonts, scripts, images or stylesheets from elsewhere: put any it needs in its folder), and has no inline styles or scripts (no `style="…"`, `<style>` or `<script>` in its template; its styles go in its `.css`, its behaviour in its `.js`). A screen's own `<script type="module">` that wires up its buttons is fine. Look at a library component, such as `<library>/components/button/`, first.
 
 Keep each page as the app has it: one `<govuk-app highlight-actions>` in a `<govuk-prototype-frame>`. Don't style anything inside `<govuk-app>` from the page. Buttons go nowhere unless the page listens for them by name: link screens with `href` where a component takes one, and add `works` to any button the page acts on.
 
@@ -49,3 +50,7 @@ This folder is a git repository, so every change can be undone. The designer doe
 - After each change that works, save a version quietly: `git add -A && git commit -q -m "<what changed, in plain words>"`.
 - Don't mention git, commits or branches. If they ask to undo, or a change went wrong, offer to go back to how it was before, and do it with git.
 - Never push anywhere: the prototype stays on this computer.
+
+## Updating the components
+
+The prototype keeps the version of the components it was made with. If the designer asks for the latest, run `node scripts/use-latest-components.js` then `npm install`, check every screen still loads, and save a version, so it can be undone.
