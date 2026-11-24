@@ -3,7 +3,7 @@ layout: sub-navigation
 title: Examples
 description: Screens of the app built from the components alone, to see them working together.
 sectionKey: Examples
-order: 3
+order: 4
 ---
 
 Each example is a few pages of plain HTML that link to each other, written with nothing but the library’s components. They show how the components fit together, and what’s still missing. They aren’t prototypes to build on: prototypes belong in their own repositories.

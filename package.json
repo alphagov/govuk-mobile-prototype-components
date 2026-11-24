@@ -17,7 +17,9 @@
     "components/*/*.ttf",
     "components/*/*.txt",
     "foundation",
-    "component.schema.json"
+    "component.schema.json",
+    "patterns",
+    "pattern.schema.json"
   ],
   "scripts": {
     "start": "eleventy --config=docs/eleventy.config.js --serve",

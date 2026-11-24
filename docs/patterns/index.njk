@@ -1,0 +1,17 @@
+---
+layout: sub-navigation
+title: Patterns
+description: Whole screens, arranged as the app arranges them, put together from the components.
+sectionKey: Patterns
+order: 3
+---
+<p class="govuk-body">Each pattern is one of the app’s screens, as a <code>&lt;govuk-app-screen&gt;</code> and what’s in it, to copy into a prototype and change the words of. Its page says when to use it, and when another pattern fits better.</p>
+
+<ul class="govuk-list">
+  {% for pattern in patterns %}
+  <li class="govuk-!-margin-bottom-6">
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link" href="/patterns/{{ pattern.slug }}/">{{ pattern.name | escape }}</a></h2>
+    <p class="govuk-body govuk-!-margin-bottom-0">{{ pattern.purpose | escape }}</p>
+  </li>
+  {% endfor %}
+</ul>
