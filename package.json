@@ -16,6 +16,7 @@
     "components/*/*.json",
     "components/*/*.ttf",
     "components/*/*.txt",
+    "components/*/images",
     "foundation",
     "frame",
     "component.schema.json",
