@@ -46,6 +46,22 @@ Load the component's script, and write its element inside a `<govuk-app>`:
 
 See [Get started](docs/get-started/index.md) for more.
 
+## Using it in another project
+
+Install it from GitHub, at a tag or commit, so it changes only when you choose:
+
+```sh
+npm install github:alphagov/govuk-mobile-prototype-components#<tag or commit>
+```
+
+Then serve `node_modules/govuk-mobile-prototype-components/` with your pages, and load each component's script from there. The components load their templates, styles and fonts from beside their scripts, and nothing from anywhere else, so they work under a strict Content Security Policy and offline.
+
+The package has the components and the foundation, and none of the app's screenshots, which are only for this repository's docs.
+
+## Licence
+
+MIT, except the GOV.UK crown and wordmark, which are Crown copyright and only for GOV.UK services, and the fonts, which have licences of their own. See [LICENSE](LICENSE).
+
 ## A component
 
 Each component is one folder, `components/<name>/`, holding its template (`.html`), styles (`.css`), element (`.js`), definition (`.json`), an optional `.md` of prose for its page, and the app's screenshots in `reference/`. Every folder with a definition gets a page on the site, with no list to update.

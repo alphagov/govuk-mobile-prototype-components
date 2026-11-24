@@ -1,8 +1,24 @@
 {
   "name": "govuk-mobile-prototype-components",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "description": "Web components that look and behave like the GOV.UK app's own, for prototyping app journeys in HTML.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alphagov/govuk-mobile-prototype-components.git"
+  },
+  "files": [
+    "components/*/*.html",
+    "components/*/*.css",
+    "components/*/*.js",
+    "components/*/*.json",
+    "components/*/*.ttf",
+    "components/*/*.txt",
+    "foundation",
+    "component.schema.json"
+  ],
   "scripts": {
     "start": "eleventy --config=docs/eleventy.config.js --serve",
     "build": "eleventy --config=docs/eleventy.config.js"
