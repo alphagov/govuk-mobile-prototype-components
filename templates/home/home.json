@@ -1,0 +1,71 @@
+{
+  "$schema": "../../template.schema.json",
+  "name": "Home",
+  "purpose": "The app’s Home tab, as a user sees it once they’ve chosen some topics, set their council and visited some pages: the header and search, then the Topics, Your local services and Pages you’ve visited widgets, and a way to give feedback.",
+  "when": [
+    "Prototyping a new widget on Home, or a change to one.",
+    "Prototyping a journey that starts on Home, such as from a topic or a page the user has visited.",
+    "Showing a new feature in the place a user would find it, in the app as it is."
+  ],
+  "screen": "Home, the root of the Home tab, with its topics, local services and recent activity widgets",
+  "screens": [
+    {
+      "file": "index.html",
+      "title": "Home",
+      "description": "The root of the Home tab. Your topics and All topics switch the topics shown; the local council and the pages visited open GOV.UK in the browser."
+    }
+  ],
+  "components": [
+    "govuk-app-screen",
+    "govuk-app-home-header",
+    "govuk-app-search-field",
+    "govuk-app-grouped-list",
+    "govuk-app-segmented-control",
+    "govuk-app-section-heading",
+    "govuk-app-link-card",
+    "govuk-app-text",
+    "govuk-app-button",
+    "govuk-app-crown",
+    "govuk-app-tab-bar"
+  ],
+  "sources": {
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/ViewControllers/HomeViewController.swift",
+        "symbol": "HomeViewController",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Home/HomeContentView.swift",
+        "symbol": "HomeContentView, its widgets in order",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Home/Topics/TopicsWidgetView.swift",
+        "symbol": "TopicsWidgetView",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Home/LocalAuthority/StoredLocalAuthorityWidgetView.swift",
+        "symbol": "StoredLocalAuthorityWidgetView",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Home/RecentActivity/RecentActivityWidgetView.swift",
+        "symbol": "RecentActivityWidgetView",
+        "ref": "3813aa2a"
+      }
+    ]
+  },
+  "notes": [
+    "The page has a comment at its top saying what to change and what to leave.",
+    "The topics, Edit, See all and Give feedback go nowhere, as the library has no screens for them. Give a row an href to a page of yours to make it open one.",
+    "Searching isn’t here: the field takes typing, but there are no results.",
+    "Settings on the tab bar opens the Settings template, if it’s beside this one. Chat goes nowhere."
+  ]
+}

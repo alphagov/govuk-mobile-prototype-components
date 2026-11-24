@@ -1,0 +1,40 @@
+<!doctype html>
+<!--
+  Template: Face ID, opened from Settings, as the GOV.UK app has it.
+
+  Change: the title and the paragraphs, to explain a setting of your own.
+  Leave out the button stack if there's nothing to do.
+
+  Leave: the back button, back-href, which returns to Settings, and that
+  there's no tab bar: a screen pushed on top of a tab's root has none. The
+  button goes nowhere: listen for its click by name, as sign-out.html does.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Face ID – GOV.UK app prototype</title>
+  <script type="module" src="../../frame/frame.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module" src="../../components/button/button.js"></script>
+  <script type="module" src="../../components/button-stack/button-stack.js"></script>
+</head>
+<body>
+  <govuk-prototype-frame>
+    <govuk-app highlight-actions>
+      <govuk-app-screen>
+        <govuk-app-nav-bar title="Face ID" large-title back-href="index.html"></govuk-app-nav-bar>
+        <govuk-app-text>If you have Face ID turned on, you’ll be able to use your face to unlock the app.</govuk-app-text>
+        <govuk-app-text>If you do not want to use Face ID, you can use your phone’s passcode instead.</govuk-app-text>
+        <govuk-app-text>Anyone who can unlock your phone with their face or with your phone’s passcode might be able to access your app.</govuk-app-text>
+        <govuk-app-text>You can turn off Face ID at any time.</govuk-app-text>
+        <govuk-app-button-stack slot="footer">
+          <govuk-app-button name="change-face-id">Change Face ID settings</govuk-app-button>
+        </govuk-app-button-stack>
+      </govuk-app-screen>
+    </govuk-app>
+  </govuk-prototype-frame>
+</body>
+</html>

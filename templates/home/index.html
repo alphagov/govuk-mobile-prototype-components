@@ -1,0 +1,103 @@
+<!doctype html>
+<!--
+  Template: Home, the root of the Home tab, as the GOV.UK app has it once
+  the user has chosen some topics, set their council and visited some pages.
+  Copy the folder, then change it.
+
+  Change: the widgets. Add, remove or reorder them, change the topics, the
+  council and the pages visited, and give a row an href to a page of yours
+  to make it open that page. The topics All topics shows are in the
+  <template> at the bottom.
+
+  Leave: the header with the search field, the crown at the bottom, and the
+  tab bar, with Home selected. Settings opens the Settings template, if it's
+  beside this one. Chat goes nowhere: give it an href to a page of yours to
+  make it work. Keep status-bar="light" on the frame, for the blue header.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Home – GOV.UK app prototype</title>
+  <script type="module" src="../../frame/frame.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/home-header/home-header.js"></script>
+  <script type="module" src="../../components/search-field/search-field.js"></script>
+  <script type="module" src="../../components/grouped-list/grouped-list.js"></script>
+  <script type="module" src="../../components/section-heading/section-heading.js"></script>
+  <script type="module" src="../../components/link-card/link-card.js"></script>
+  <script type="module" src="../../components/segmented-control/segmented-control.js"></script>
+  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module" src="../../components/button/button.js"></script>
+  <script type="module" src="../../components/crown/crown.js"></script>
+  <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
+</head>
+<body>
+  <govuk-prototype-frame status-bar="light">
+    <govuk-app highlight-actions>
+      <govuk-app-screen>
+        <govuk-app-home-header>
+          <govuk-app-search-field></govuk-app-search-field>
+        </govuk-app-home-header>
+
+        <govuk-app-grouped-list title="Topics" action="Edit" name="edit-topics">
+          <govuk-app-segmented-control slot="control" label="Topics">
+            <govuk-app-segmented-control-item name="topics" value="yours" selected>Your topics</govuk-app-segmented-control-item>
+            <govuk-app-segmented-control-item name="topics" value="all">All topics</govuk-app-segmented-control-item>
+          </govuk-app-segmented-control>
+          <govuk-app-grouped-list-row type="topic" icon="currency_pound" name="topic" value="benefits">Benefits</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="topic" icon="directions_car" name="topic" value="driving">Driving</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="topic" icon="travel" name="topic" value="travel-abroad">Travel abroad</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-section-heading action="Edit" name="edit-local-services">Your local services</govuk-app-section-heading>
+        <govuk-app-link-card href="https://www.centralbedfordshire.gov.uk">Central Bedfordshire Council</govuk-app-link-card>
+
+        <govuk-app-grouped-list title="Pages you’ve visited" action="See all" name="see-all-visited">
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/register-to-vote" description="Last visited on 6 October">Register to vote</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/check-mot-history" description="Last visited on 14 August">Check the MOT history of a vehicle</govuk-app-grouped-list-row>
+          <govuk-app-grouped-list-row type="link" no-arrow href="https://www.gov.uk/vehicle-tax" description="Last visited on 2 August">Tax your vehicle</govuk-app-grouped-list-row>
+        </govuk-app-grouped-list>
+
+        <govuk-app-text align="center">Tell us what you think about the app</govuk-app-text>
+        <govuk-app-button variant="grouped-secondary" name="feedback">Give feedback</govuk-app-button>
+        <govuk-app-crown></govuk-app-crown>
+
+        <govuk-app-tab-bar>
+          <govuk-app-tab-bar-item icon="home" href="index.html" selected>Home</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="chat_bubble" name="chat">Chat</govuk-app-tab-bar-item>
+          <govuk-app-tab-bar-item icon="settings" href="../settings/index.html">Settings</govuk-app-tab-bar-item>
+        </govuk-app-tab-bar>
+      </govuk-app-screen>
+    </govuk-app>
+  </govuk-prototype-frame>
+  <!-- All topics, shown in place of your topics when it's chosen, as the
+       app's Topics widget does. -->
+  <template id="all-topics">
+    <govuk-app-grouped-list-row type="topic" icon="currency_pound" name="topic" value="benefits">Benefits</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="business_center" name="topic" value="business">Business</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="volunteer_activism" name="topic" value="care">Care</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="directions_car" name="topic" value="driving">Driving</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="work" name="topic" value="employment">Employment</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="medical_services" name="topic" value="health-disability">Health and disability</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="account_balance" name="topic" value="money-tax">Money and tax</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="family_restroom" name="topic" value="parenting-guardianship">Parenting and guardianship</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="elderly" name="topic" value="retirement">Retirement</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="school" name="topic" value="studying-training">Studying and training</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="topic" icon="travel" name="topic" value="travel-abroad">Travel abroad</govuk-app-grouped-list-row>
+  </template>
+  <script type="module">
+    const list = document.querySelector('govuk-app-grouped-list[name="edit-topics"]')
+    const yours = [...list.querySelectorAll('govuk-app-grouped-list-row')]
+    const all = document.getElementById('all-topics')
+
+    // Before the segmented control draws its chosen segment again.
+    document.addEventListener('click', event => {
+      const item = event.target.closest?.('govuk-app-segmented-control-item[name="topics"]')
+      if (!item || !list.contains(item)) return
+      const rows = list.querySelectorAll('govuk-app-grouped-list-row')
+      rows[0].parentElement.replaceChildren(...(item.getAttribute('value') === 'all' ? all.content.cloneNode(true).children : yours))
+    }, true)
+  </script>
+</body>
+</html>
