@@ -83,6 +83,21 @@ A button the component acts on itself, such as a segmented control’s segment, 
 
 To check without a browser, `npm run screenshots -- <name>` draws each of its examples in light and dark into `screenshots-out/<name>/`, and `screenshots-out/index.html` shows them beside its references. Install the browser it uses first, once, with `npx playwright install chromium`. See the [README](https://github.com/alphagov/govuk-mobile-prototype-components#checking-what-a-component-looks-like) for its other options.
 
+## Check your work
+
+Before you open a pull request, ask Claude Code to review your changes. The repository has a skill for it, `library-review`, in `.claude/skills/`: say “review my changes”, or “review PR 80” for someone else’s.
+
+It runs `npm run build`, checks the changed lines for the rules a script can spot (raw colours, spacing off the grid, another component’s classes), draws your examples in light and dark and compares them with the references, and reads the change against the rest of the rules in `AGENTS.md`. It reports what must be fixed, what should be, and what’s worth a second look, each with the file, the line, the rule and how to fix it, and offers to fix them.
+
+You can run the script on its own, too:
+
+```sh
+node .claude/skills/library-review/scripts/check.js --base origin/main   # the lines you changed
+node .claude/skills/library-review/scripts/check.js status               # all of one component
+```
+
+It finds things to look at, not verdicts: read each in its file.
+
 ## Styles stay apart
 
 There is no shadow DOM. Components are kept apart from each other and from the page by convention:
