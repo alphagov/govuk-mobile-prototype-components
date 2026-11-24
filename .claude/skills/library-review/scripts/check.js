@@ -442,7 +442,7 @@ function checkDefinition(dir, slug, definition) {
   const prose = `${dir}/${slug}.md`
   const differences = exists(prose) && /^##\s+Known differences/m.test(read(prose))
   if (!differences && (scope.has(file) || scope.has(prose))) {
-    say('look', undefined, 'Definition: known differences', `No "Known differences from the app" in ${slug}.md. Fine if it matches the app (or, if proposed, its design) exactly; otherwise say where it differs.`)
+    say('look', undefined, 'Definition: known differences', `${exists(prose) ? `No "Known differences from the app" in ${slug}.md` : `No ${slug}.md, so no "Known differences from the app"`}. Fine if it matches the app (or, if proposed, its design) exactly; otherwise say where it differs.`)
   }
 }
 
