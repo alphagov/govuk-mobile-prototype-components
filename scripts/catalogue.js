@@ -1,14 +1,18 @@
-// The catalogue: everything in the library in two files at the repository's
-// root, so a tool building a prototype, such as a Claude Code skill, can choose
-// a pattern, template or component without opening every definition.
+// The catalogue: everything in the library, so a tool building a prototype,
+// such as a Claude Code skill, can choose a pattern, template or component
+// without opening every definition.
 //
-//   npm run catalogue                 writes catalogue.json and catalogue.md
-//   node scripts/catalogue.js --check fails if they aren't what it would write
+//   npm run catalogue                 writes it
+//   node scripts/catalogue.js --check fails if it isn't what it would write
 //
-// catalogue.json is the data. catalogue.md says the same, compactly, for a
-// model to read in one go. Both are committed, so they can be read from a
-// clone or the npm package without building anything, and `npm run build`
-// checks them, so they can't fall behind the definitions.
+// catalogue.json is all of it as data, for tools. catalogue/ is the same for a
+// model: a short index.md to read first, with one line for each pattern,
+// template and component, and a card for each, to read only for the ones it's
+// choosing between. Reading everything every time would cost far more.
+//
+// It's committed, so it can be read from a clone or the npm package without
+// building anything, and `npm run build` checks it, so it can't fall behind
+// the definitions.
 
 import fs from 'node:fs'
 import path from 'node:path'
@@ -21,27 +25,53 @@ import loadPatterns from '../docs/_data/patterns.js'
 
 const root = path.resolve(import.meta.dirname, '..')
 const site = 'https://alphagov.github.io/govuk-mobile-prototype-components'
-const files = {
-  json: path.join(root, 'catalogue.json'),
-  md: path.join(root, 'catalogue.md')
-}
+const cards = 'catalogue'
 
 // An example longer than this is a whole screen, which costs more to read than
 // it shows about one component.
 const longExample = 900
 
+// The index lists components by the job they do, so a reader can go straight
+// to the few that might fit. A component not named here is listed under Other:
+// add it to the group it belongs in.
+const groups = {
+  'Screens and structure': ['screen', 'nav-bar', 'tab-bar', 'sheet', 'full-screen-cover', 'section', 'stack'],
+  'Text': ['heading', 'text', 'strong', 'section-heading', 'bulleted-list', 'link'],
+  'Actions': ['button', 'button-stack', 'menu-button'],
+  'Lists and cards': ['grouped-list', 'link-card', 'summary-columns', 'card-header'],
+  'Inputs and controls': ['text-field', 'search-field', 'search-box', 'toggle', 'segmented-control'],
+  'Facts and statuses': ['status', 'count', 'labelled-icon', 'number-plate', 'address', 'banner'],
+  'Home': ['home-header', 'crown'],
+  'Chat': ['chat-question', 'chat-answer', 'chat-loading', 'chat-input', 'chat-example-questions']
+}
+
+// What nearly every screen is built from, so a reader knows to read these cards
+// whatever else it chooses.
+const everyScreen = ['screen', 'nav-bar', 'heading', 'text', 'button', 'button-stack']
+
+/**
+ * Every file the catalogue is made of, by its path from the repository's root,
+ * with what should be in it.
+ */
 export function buildCatalogue() {
   const components = loadComponents()
   const patterns = loadPatterns()
   const templates = loadTemplates()
 
-  const resolve = referee(components, [...patterns, ...templates])
+  // Each of the library's elements, and the component whose card it's on: a
+  // part, such as a grouped list's row, is on its list's.
+  const owners = new Map(components.flatMap(component => [
+    [component.element, component],
+    ...Object.entries(component.inputs.parts ?? {}).map(([element]) => [element, component])
+  ]))
+  const resolve = referee(owners, [...patterns, ...templates])
 
   const catalogue = {
     about: {
       name: 'GOV.UK app prototype components',
       description: 'Web components that look and behave like the GOV.UK app’s own, for prototyping app journeys in HTML. Generated from the definitions by `npm run catalogue`: don’t edit it by hand.',
       docs: `${site}/`,
+      index: `${cards}/index.md`,
       schemas: ['component.schema.json', 'pattern.schema.json']
     },
     patterns: patterns.map(pattern => ({
@@ -54,6 +84,7 @@ export function buildCatalogue() {
       screen: pattern.screen,
       notes: pattern.notes ?? [],
       html: pattern.html,
+      card: `${cards}/patterns/${pattern.slug}.md`,
       url: `${site}/patterns/${pattern.slug}/`
     })),
     templates: templates.map(template => ({
@@ -67,7 +98,9 @@ export function buildCatalogue() {
       screens: (template.screens ?? []).map(screen => ({
         ...screen,
         path: `templates/${template.slug}/${screen.file}`
-      }))
+      })),
+      card: `${cards}/templates/${template.slug}.md`,
+      url: `${site}/templates/${template.slug}/about/`
     })),
     components: components.map(component => ({
       name: component.name,
@@ -85,14 +118,25 @@ export function buildCatalogue() {
       avoid: component.avoid.map(resolve),
       examples: pickExamples(component),
       script: `components/${component.slug}/${component.slug}.js`,
+      card: `${cards}/components/${component.slug}.md`,
       url: `${site}/components/${component.slug}/`
     }))
   }
 
-  return {
-    json: `${JSON.stringify(catalogue, null, 2)}\n`,
-    md: toMarkdown(catalogue)
+  // Cards link to each other by their paths from one card to another.
+  const link = {
+    component: element => `../components/${owners.get(element).slug}.md`,
+    pattern: slug => `../patterns/${slug}.md`,
+    template: slug => `../templates/${slug}.md`
   }
+
+  return new Map([
+    ['catalogue.json', `${JSON.stringify(catalogue, null, 2)}\n`],
+    [`${cards}/index.md`, renderIndex(catalogue)],
+    ...catalogue.patterns.map(pattern => [pattern.card, renderPattern(pattern, link)]),
+    ...catalogue.templates.map(template => [template.card, renderTemplate(template, link)]),
+    ...catalogue.components.map(component => [component.card, renderComponent(component, link)])
+  ])
 }
 
 /**
@@ -116,11 +160,11 @@ function loadTemplates() {
  * element, with any attributes it's written with, or a pattern or template by
  * name, so a tool can follow it without reading the words.
  */
-function referee(components, screens) {
-  const elements = new Map(components.flatMap(component => [
-    [component.element, component.inputs.attributes],
-    ...Object.entries(component.inputs.parts ?? {}).map(([element, part]) => [element, part.attributes])
-  ]))
+function referee(owners, screens) {
+  const attributesOf = element => {
+    const owner = owners.get(element)
+    return owner.element === element ? owner.inputs.attributes : owner.inputs.parts[element].attributes
+  }
   // Longest first, so a name that starts with another's isn't taken for it.
   const named = [...screens].sort((a, b) => b.name.length - a.name.length)
 
@@ -135,13 +179,13 @@ function referee(components, screens) {
 
     // The first element it names, and the attributes written straight after it.
     const written = instead.match(/(govuk-app-[a-z-]+)((?:\s+[a-z][a-z-]*(?:="[^"]*")?)*)/)
-    if (!written || !elements.has(written[1])) return ref
+    if (!written || !owners.has(written[1])) return ref
     const [, element, list] = written
     ref.instead.element = element
     const attributes = {}
     for (const [, name, value] of list.matchAll(/([a-z][a-z-]*)(?:="([^"]*)")?/g)) {
       // Only what the element reads: the words after it are not attributes.
-      if (!elements.get(element)[name]) break
+      if (!attributesOf(element)[name]) break
       attributes[name] = value ?? true
     }
     if (Object.keys(attributes).length) ref.instead.attributes = attributes
@@ -166,119 +210,184 @@ function pickExamples(component) {
   return [first, second].filter(Boolean).map(({ name, html }) => ({ name, html }))
 }
 
-function toMarkdown({ about, patterns, templates, components }) {
-  const lines = []
-  const add = (...more) => lines.push(...more)
-
-  add(
+function renderIndex({ about, patterns, templates, components }) {
+  const lines = [
     `# ${about.name}: catalogue`,
     '',
-    `${about.description} The same as data: catalogue.json. Docs: ${about.docs}`,
+    `${about.description} Docs: ${about.docs}`,
+    '',
+    'Read this index first. Then read the cards it links to, each a few hundred words, only for what you might use. All of it, as data: ../catalogue.json.',
     '',
     '## How to choose',
     '',
-    '1. **A template or pattern that fits.** Start from it, and change its words. A pattern is one whole screen; a template is a journey of several. Each says when to use it, and what to use instead when not.',
-    '2. **Otherwise, components.** Put a screen together from them, following each one’s rules, and its “Avoid” to tell apart ones that look alike.',
+    '1. **A template or pattern that fits.** Start from it, and change its words. A pattern is one whole screen; a template is a journey of several.',
+    '2. **Otherwise, components.** Put a screen together from them, following each one’s rules.',
     '3. **Build something custom only when nothing fits.** Match the library’s look: style it with the `--app-*` tokens in foundation/tokens.css, for colour, type and spacing on the 8pt grid. Tell the user it isn’t one of the app’s components.',
+    '',
+    'Don’t choose from this index alone: a line here can’t say when something is the wrong choice. Read the cards of your candidates, and the cards their “Avoid” entries point to, then decide.',
     '',
     'A component marked **not in the app yet** is proposed, from future designs. Use it if it fits, and tell the user it isn’t in the app today.',
     '',
     '## How a page is put together',
     '',
     '- Write the components inside one `<govuk-app>`, with one `<govuk-app-screen>` in it for each screen. Put it in a `<govuk-prototype-frame>` (frame/frame.js) to show it on an iPhone.',
-    '- Load each component’s script, given on its entry: `<script type="module" src="components/button/button.js"></script>`.',
+    '- Load each component’s script, given on its card: `<script type="module" src="components/button/button.js"></script>`.',
     '- Components send no events of their own: their buttons, links and fields do, with the `name` and `value` given them. A page listens for clicks by name, and goes where the app would. Add `works` to a button the page acts on.',
     '- Use Material Symbols names for icons, such as `check` or `directions_car`.',
+    '',
+    `Every screen uses: ${everyScreen.map(slug => {
+      const component = components.find(component => component.slug === slug)
+      return `[${component.name}](components/${slug}.md)`
+    }).join(', ')}.`,
+    '',
+    '## Patterns',
+    '',
+    ...patterns.map(pattern => `- [${pattern.name}](patterns/${pattern.slug}.md): ${firstSentence(pattern.purpose)}`),
+    '',
+    '## Templates',
+    '',
+    ...(templates.length
+      ? templates.map(template => `- [${template.name}](templates/${template.slug}.md): ${firstSentence(template.purpose)}`)
+      : ['None yet.']),
     ''
-  )
+  ]
 
-  add('## Patterns', '')
-  for (const pattern of patterns) {
-    add(
-      `### ${pattern.name} (pattern: ${pattern.slug})`,
-      '',
-      pattern.purpose,
-      '',
-      'Use when:',
-      ...pattern.when.map(when => `- ${when}`),
-      '',
-      'Avoid:',
-      ...pattern.avoid.map(describeAvoid),
-      '',
-      `Components: ${pattern.components.map(element => `\`${element}\``).join(', ')}`,
-      ''
-    )
-    if (pattern.notes.length) add('Notes:', ...pattern.notes.map(note => `- ${note}`), '')
-    add('```html', pattern.html, '```', '', `Docs: ${pattern.url}`, '')
-  }
-
-  add('## Templates', '')
-  if (!templates.length) add('None yet.', '')
-  for (const template of templates) {
-    add(`### ${template.name} (template: ${template.slug})`, '', template.purpose, '')
-    if (template.when.length) add('Use when:', ...template.when.map(when => `- ${when}`), '')
-    if (template.avoid.length) add('Avoid:', ...template.avoid.map(describeAvoid), '')
-    if (template.screens.length) {
-      add('Screens:', ...template.screens.map(screen =>
-        `- ${screen.title} (${screen.path})${screen.description ? `: ${screen.description}` : ''}`), '')
-    }
-    if (template.components.length) add(`Components: ${template.components.map(element => `\`${element}\``).join(', ')}`, '')
-  }
-
-  add('## Components', '')
+  const grouped = new Map(Object.keys(groups).map(group => [group, []]))
   for (const component of components) {
-    const kind = component.kind === 'govuk' ? 'GOV.UK app component' : 'native component'
-    add(`### ${component.name} \`<${component.element}>\``, '')
-    add(`${kind}. ${component.inApp ? '' : `**Not in the app yet**: proposed, from ${component.proposed}. `}Script: ${component.script}`, '')
-    add(component.purpose, '')
-    describeAttributes(component.attributes, add)
-    if (component.content) add(`Content: ${component.content}`, '')
-    for (const [element, part] of Object.entries(component.parts ?? {})) {
-      add(`Part \`<${element}>\`: ${part.description}`, '')
-      describeAttributes(part.attributes, add)
-    }
-    add('Rules:', ...component.rules.map(rule => `- ${rule}`), '')
-    add('Avoid:', ...component.avoid.map(describeAvoid), '')
-    for (const example of component.examples) add(`Example, ${example.name}:`, '```html', example.html, '```', '')
-    add(`Docs: ${component.url}`, '')
+    const group = Object.keys(groups).find(group => groups[group].includes(component.slug)) ?? 'Other'
+    if (!grouped.has(group)) grouped.set(group, [])
+    grouped.get(group).push(component)
+  }
+  lines.push('## Components', '')
+  for (const [group, members] of grouped) {
+    if (!members.length) continue
+    const order = groups[group] ?? []
+    members.sort((a, b) => order.indexOf(a.slug) - order.indexOf(b.slug))
+    lines.push(`### ${group}`, '', ...members.map(component =>
+      `- [${component.name}](components/${component.slug}.md) \`${component.element}\`: ${component.inApp ? '' : '**Not in the app yet.** '}${firstSentence(component.purpose)}`), '')
   }
 
-  return `${lines.join('\n').trimEnd()}\n`
+  return finish(lines)
 }
 
-const escapeRegExp = text => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+function renderPattern(pattern, link) {
+  const lines = [
+    `# ${pattern.name} (pattern)`,
+    '',
+    pattern.purpose,
+    '',
+    'Use when:',
+    ...pattern.when.map(when => `- ${when}`),
+    ''
+  ]
+  if (pattern.avoid.length) lines.push('Avoid:', ...pattern.avoid.map(avoid => describeAvoid(avoid, link)), '')
+  lines.push(`Components: ${pattern.components.map(element => `[\`${element}\`](${link.component(element)})`).join(', ')}`, '')
+  if (pattern.notes.length) lines.push('Notes:', ...pattern.notes.map(note => `- ${note}`), '')
+  lines.push('```html', pattern.html, '```', '', `Docs: ${pattern.url}`)
+  return finish(lines)
+}
 
-function describeAttributes(attributes, add) {
+function renderTemplate(template, link) {
+  const lines = [`# ${template.name} (template)`, '', template.purpose, '']
+  if (template.when.length) lines.push('Use when:', ...template.when.map(when => `- ${when}`), '')
+  if (template.avoid.length) lines.push('Avoid:', ...template.avoid.map(avoid => describeAvoid(avoid, link)), '')
+  if (template.screens.length) {
+    lines.push('Screens, in the repository and the package:', ...template.screens.map(screen =>
+      `- ${screen.title}: ${screen.path}${screen.description ? `. ${screen.description}` : ''}`), '')
+  }
+  if (template.components.length) {
+    lines.push(`Components: ${template.components.map(element => `[\`${element}\`](${link.component(element)})`).join(', ')}`, '')
+  }
+  lines.push(`Docs: ${template.url}`)
+  return finish(lines)
+}
+
+function renderComponent(component, link) {
+  const kind = component.kind === 'govuk' ? 'GOV.UK app component' : 'Native component'
+  const lines = [
+    `# ${component.name} \`<${component.element}>\``,
+    '',
+    `${kind}. ${component.inApp ? 'In the app.' : `**Not in the app yet**: proposed, from ${component.proposed.replace(/\.$/, '')}.`}`,
+    '',
+    `Load: \`<script type="module" src="${component.script}"></script>\``,
+    '',
+    component.purpose,
+    ''
+  ]
+  lines.push(...describeAttributes(component.attributes))
+  if (component.content) lines.push(`Content: ${component.content}`, '')
+  for (const [element, part] of Object.entries(component.parts ?? {})) {
+    lines.push(`Part \`<${element}>\`: ${part.description}`, '', ...describeAttributes(part.attributes))
+  }
+  lines.push('Rules:', ...component.rules.map(rule => `- ${rule}`), '')
+  lines.push('Avoid:', ...component.avoid.map(avoid => describeAvoid(avoid, link)), '')
+  for (const example of component.examples) lines.push(`Example, ${example.name}:`, '```html', example.html, '```', '')
+  lines.push(`Docs: ${component.url}`)
+  return finish(lines)
+}
+
+function describeAttributes(attributes) {
   const entries = Object.entries(attributes)
-  if (!entries.length) return
-  add('Attributes:', ...entries.map(([name, spec]) => {
+  if (!entries.length) return []
+  return ['Attributes:', ...entries.map(([name, spec]) => {
     const type = spec.type === 'enum' ? spec.values.join(' | ') : spec.type
     const facts = [type, spec.required && 'required', spec.default !== undefined && `default ${spec.default}`]
     return `- \`${name}\` (${facts.filter(Boolean).join(', ')}): ${spec.description}`
-  }), '')
+  }), '']
 }
 
-function describeAvoid({ when, instead }) {
-  const target = instead.pattern ? ` (pattern: ${instead.pattern})` : instead.template ? ` (template: ${instead.template})` : ''
+function describeAvoid({ when, instead }, link) {
   const text = /^govuk-app-/.test(instead.text) ? `\`${instead.text}\`` : instead.text
-  return `- ${when.replace(/\.$/, '')}. Instead: ${text.replace(/\.$/, '')}${target}`
+  const card = instead.pattern ? link.pattern(instead.pattern)
+    : instead.template ? link.template(instead.template)
+      : instead.element ? link.component(instead.element)
+        : null
+  return `- ${when.replace(/\.$/, '')}. Instead: ${text.replace(/\.$/, '')}${card ? ` (see ${card})` : ''}`
+}
+
+// The first sentence, for the index's one line: up to a full stop that ends
+// one, not one inside a word, such as GOV.UK.
+const firstSentence = text => text.match(/^.*?[^.]\.(?=\s|$)/)?.[0] ?? text
+
+const escapeRegExp = text => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+
+const finish = lines => `${lines.join('\n').trimEnd()}\n`
+
+/** The cards there are now, by their paths from the repository's root. */
+function existingCards() {
+  const directory = path.join(root, cards)
+  if (!fs.existsSync(directory)) return []
+  return fs.readdirSync(directory, { recursive: true, withFileTypes: true })
+    .filter(entry => entry.isFile())
+    .map(entry => path.relative(root, path.join(entry.parentPath, entry.name)).split(path.sep).join('/'))
 }
 
 // Run, rather than imported.
 if (process.argv[1] && path.resolve(process.argv[1]) === import.meta.filename) {
   const { values: options } = parseArgs({ options: { check: { type: 'boolean' } } })
   const built = buildCatalogue()
+  // A card for something that's gone, or renamed, would send a reader to it.
+  const orphans = existingCards().filter(file => !built.has(file))
 
   if (options.check) {
-    const stale = Object.entries(files)
-      .filter(([kind, file]) => !fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== built[kind])
-      .map(([, file]) => path.basename(file))
-    if (stale.length) {
-      console.error(`${stale.join(' and ')} ${stale.length > 1 ? 'are' : 'is'} out of date with the definitions. Run \`npm run catalogue\`, and commit what it writes.`)
+    const stale = [...built]
+      .filter(([file, content]) => !fs.existsSync(path.join(root, file)) || fs.readFileSync(path.join(root, file), 'utf8') !== content)
+      .map(([file]) => file)
+    if (stale.length || orphans.length) {
+      const problems = [
+        ...stale.map(file => `  ${file} is out of date, or missing`),
+        ...orphans.map(file => `  ${file} is for nothing in the library`)
+      ]
+      console.error(`The catalogue is out of date with the definitions:\n${problems.join('\n')}\nRun \`npm run catalogue\`, and commit what it writes.`)
       process.exit(1)
     }
   } else {
-    for (const [kind, file] of Object.entries(files)) fs.writeFileSync(file, built[kind])
-    console.log(`Wrote catalogue.json (${Buffer.byteLength(built.json)} bytes) and catalogue.md (${Buffer.byteLength(built.md)} bytes)`)
+    for (const file of orphans) fs.rmSync(path.join(root, file))
+    for (const [file, content] of built) {
+      fs.mkdirSync(path.dirname(path.join(root, file)), { recursive: true })
+      fs.writeFileSync(path.join(root, file), content)
+    }
+    const index = Buffer.byteLength(built.get(`${cards}/index.md`))
+    console.log(`Wrote catalogue.json, ${cards}/index.md (${index} bytes) and ${built.size - 2} cards${orphans.length ? `, and removed ${orphans.length} for nothing in the library` : ''}`)
   }
 }

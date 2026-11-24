@@ -22,7 +22,7 @@
     "patterns",
     "pattern.schema.json",
     "catalogue.json",
-    "catalogue.md"
+    "catalogue"
   ],
   "scripts": {
     "start": "eleventy --config=docs/eleventy.config.js --serve",

@@ -3,6 +3,7 @@
     "name": "GOV.UK app prototype components",
     "description": "Web components that look and behave like the GOV.UK app’s own, for prototyping app journeys in HTML. Generated from the definitions by `npm run catalogue`: don’t edit it by hand.",
     "docs": "https://alphagov.github.io/govuk-mobile-prototype-components/",
+    "index": "catalogue/index.md",
     "schemas": [
       "component.schema.json",
       "pattern.schema.json"
@@ -63,6 +64,7 @@
         "On iOS it slides up as a sheet over the screen it was opened from. Put it in a govuk-app-sheet, with that screen behind it, to show that."
       ],
       "html": "<govuk-app-screen background=\"modal\">\n  <govuk-app-nav-bar>\n    <govuk-app-nav-bar-item icon=\"close\" name=\"cancel\">Close</govuk-app-nav-bar-item>\n  </govuk-app-nav-bar>\n  <govuk-app-heading level=\"1\" size=\"title-1\">Are you sure you want to delete your saved details?</govuk-app-heading>\n  <govuk-app-text>You’ll need to enter them again the next time you use this service. You cannot undo this.</govuk-app-text>\n  <govuk-app-button-stack slot=\"footer\">\n    <govuk-app-button variant=\"destructive\" name=\"confirm\">Delete saved details</govuk-app-button>\n    <govuk-app-button variant=\"grouped-secondary\" name=\"cancel\">Cancel</govuk-app-button>\n  </govuk-app-button-stack>\n</govuk-app-screen>",
+      "card": "catalogue/patterns/confirmation.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/patterns/confirmation/"
     },
     {
@@ -118,6 +120,7 @@
         "The button goes nowhere of its own. The page listens for a click on it, by name."
       ],
       "html": "<govuk-app-screen>\n  <govuk-app-nav-bar title=\"Your saved details\" large-title back></govuk-app-nav-bar>\n  <govuk-app-text>The app keeps a few details about you, so you do not have to enter them each time, like:</govuk-app-text>\n  <govuk-app-bulleted-list spacing=\"compact\">\n    <govuk-app-bulleted-list-item>your name</govuk-app-bulleted-list-item>\n    <govuk-app-bulleted-list-item>your postcode</govuk-app-bulleted-list-item>\n  </govuk-app-bulleted-list>\n  <govuk-app-text>They stay on this phone. We do not share them with other government services.</govuk-app-text>\n  <govuk-app-text>You can delete them at any time.</govuk-app-text>\n  <govuk-app-button-stack slot=\"footer\">\n    <govuk-app-button name=\"manage\">Manage your saved details</govuk-app-button>\n  </govuk-app-button-stack>\n</govuk-app-screen>",
+      "card": "catalogue/patterns/information-page.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/patterns/information-page/"
     },
     {
@@ -166,6 +169,7 @@
         "Its button goes nowhere of its own. The page listens for a click on it, by name, as examples/settings/signed-out.html does."
       ],
       "html": "<govuk-app-screen background=\"modal\">\n  <govuk-app-heading level=\"1\" align=\"center\">Your saved details have been deleted</govuk-app-heading>\n  <govuk-app-text align=\"center\">You can add them again at any time in Settings</govuk-app-text>\n  <govuk-app-button-stack slot=\"footer\">\n    <govuk-app-button name=\"continue\">Continue</govuk-app-button>\n  </govuk-app-button-stack>\n</govuk-app-screen>",
+      "card": "catalogue/patterns/outcome.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/patterns/outcome/"
     },
     {
@@ -220,6 +224,7 @@
         "Give each row that opens a screen an href to that page, in place of its name, in a prototype of several pages."
       ],
       "html": "<govuk-app-screen>\n  <govuk-app-nav-bar title=\"Settings\" large-title></govuk-app-nav-bar>\n\n  <govuk-app-grouped-list footer=\"A line under a group, to explain the rows in it.\">\n    <govuk-app-grouped-list-row type=\"information\" description=\"name@example.com\">Your account</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row type=\"link\" href=\"https://www.gov.uk\">Manage your account</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n\n  <govuk-app-grouped-list>\n    <govuk-app-grouped-list-row type=\"detail\" detail=\"Off\" name=\"notifications\">Notifications</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row name=\"face-id\">Face ID</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row type=\"toggle\" name=\"statistics\" checked>Share app usage statistics</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n\n  <govuk-app-grouped-list title=\"Privacy and legal\">\n    <govuk-app-grouped-list-row type=\"link\" href=\"https://www.gov.uk\">Privacy notice</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row type=\"link\" href=\"https://www.gov.uk\">Terms and conditions</govuk-app-grouped-list-row>\n    <govuk-app-grouped-list-row name=\"your-data\">Your app data</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n\n  <govuk-app-grouped-list>\n    <govuk-app-grouped-list-row type=\"detail\" destructive name=\"sign-out\">Sign out</govuk-app-grouped-list-row>\n  </govuk-app-grouped-list>\n\n  <govuk-app-tab-bar>\n    <govuk-app-tab-bar-item icon=\"home\" name=\"home\">Home</govuk-app-tab-bar-item>\n    <govuk-app-tab-bar-item icon=\"chat_bubble\" name=\"chat\">Chat</govuk-app-tab-bar-item>\n    <govuk-app-tab-bar-item icon=\"settings\" name=\"settings\" selected>Settings</govuk-app-tab-bar-item>\n  </govuk-app-tab-bar>\n</govuk-app-screen>",
+      "card": "catalogue/patterns/settings-list.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/patterns/settings-list/"
     }
   ],
@@ -288,6 +293,7 @@
         }
       ],
       "script": "components/address/address.js",
+      "card": "catalogue/components/address.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/address/"
     },
     {
@@ -407,6 +413,7 @@
         }
       ],
       "script": "components/banner/banner.js",
+      "card": "catalogue/components/banner.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/banner/"
     },
     {
@@ -496,6 +503,7 @@
         }
       ],
       "script": "components/bulleted-list/bulleted-list.js",
+      "card": "catalogue/components/bulleted-list.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/bulleted-list/"
     },
     {
@@ -632,6 +640,7 @@
         }
       ],
       "script": "components/button/button.js",
+      "card": "catalogue/components/button.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/button/"
     },
     {
@@ -700,6 +709,7 @@
         }
       ],
       "script": "components/button-stack/button-stack.js",
+      "card": "catalogue/components/button-stack.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/button-stack/"
     },
     {
@@ -787,6 +797,7 @@
         }
       ],
       "script": "components/chat-answer/chat-answer.js",
+      "card": "catalogue/components/chat-answer.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/chat-answer/"
     },
     {
@@ -863,6 +874,7 @@
         }
       ],
       "script": "components/chat-example-questions/chat-example-questions.js",
+      "card": "catalogue/components/chat-example-questions.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/chat-example-questions/"
     },
     {
@@ -951,6 +963,7 @@
         }
       ],
       "script": "components/chat-input/chat-input.js",
+      "card": "catalogue/components/chat-input.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/chat-input/"
     },
     {
@@ -1004,6 +1017,7 @@
         }
       ],
       "script": "components/chat-loading/chat-loading.js",
+      "card": "catalogue/components/chat-loading.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/chat-loading/"
     },
     {
@@ -1050,6 +1064,7 @@
         }
       ],
       "script": "components/chat-question/chat-question.js",
+      "card": "catalogue/components/chat-question.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/chat-question/"
     },
     {
@@ -1089,6 +1104,7 @@
         }
       ],
       "script": "components/crown/crown.js",
+      "card": "catalogue/components/crown.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/crown/"
     },
     {
@@ -1307,6 +1323,7 @@
         }
       ],
       "script": "components/grouped-list/grouped-list.js",
+      "card": "catalogue/components/grouped-list.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/grouped-list/"
     },
     {
@@ -1356,6 +1373,7 @@
         }
       ],
       "script": "components/home-header/home-header.js",
+      "card": "catalogue/components/home-header.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/home-header/"
     },
     {
@@ -1442,6 +1460,7 @@
         }
       ],
       "script": "components/labelled-icon/labelled-icon.js",
+      "card": "catalogue/components/labelled-icon.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/labelled-icon/"
     },
     {
@@ -1503,6 +1522,7 @@
         }
       ],
       "script": "components/link/link.js",
+      "card": "catalogue/components/link.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/link/"
     },
     {
@@ -1573,6 +1593,7 @@
         }
       ],
       "script": "components/link-card/link-card.js",
+      "card": "catalogue/components/link-card.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/link-card/"
     },
     {
@@ -1683,6 +1704,7 @@
         }
       ],
       "script": "components/menu-button/menu-button.js",
+      "card": "catalogue/components/menu-button.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/menu-button/"
     },
     {
@@ -1759,6 +1781,7 @@
         }
       ],
       "script": "components/number-plate/number-plate.js",
+      "card": "catalogue/components/number-plate.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/number-plate/"
     },
     {
@@ -1852,6 +1875,7 @@
         }
       ],
       "script": "components/section/section.js",
+      "card": "catalogue/components/section.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/section/"
     },
     {
@@ -1945,6 +1969,7 @@
         }
       ],
       "script": "components/section-heading/section-heading.js",
+      "card": "catalogue/components/section-heading.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/section-heading/"
     },
     {
@@ -2016,6 +2041,7 @@
         }
       ],
       "script": "components/summary-columns/summary-columns.js",
+      "card": "catalogue/components/summary-columns.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/summary-columns/"
     },
     {
@@ -2122,6 +2148,7 @@
         }
       ],
       "script": "components/text-field/text-field.js",
+      "card": "catalogue/components/text-field.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/text-field/"
     },
     {
@@ -2194,6 +2221,7 @@
         }
       ],
       "script": "components/full-screen-cover/full-screen-cover.js",
+      "card": "catalogue/components/full-screen-cover.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/full-screen-cover/"
     },
     {
@@ -2313,6 +2341,7 @@
         }
       ],
       "script": "components/heading/heading.js",
+      "card": "catalogue/components/heading.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/heading/"
     },
     {
@@ -2434,6 +2463,7 @@
         }
       ],
       "script": "components/nav-bar/nav-bar.js",
+      "card": "catalogue/components/nav-bar.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/nav-bar/"
     },
     {
@@ -2505,6 +2535,7 @@
         }
       ],
       "script": "components/screen/screen.js",
+      "card": "catalogue/components/screen.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/screen/"
     },
     {
@@ -2582,6 +2613,7 @@
         }
       ],
       "script": "components/search-field/search-field.js",
+      "card": "catalogue/components/search-field.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/search-field/"
     },
     {
@@ -2679,6 +2711,7 @@
         }
       ],
       "script": "components/segmented-control/segmented-control.js",
+      "card": "catalogue/components/segmented-control.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/segmented-control/"
     },
     {
@@ -2692,7 +2725,7 @@
         "present": {
           "type": "boolean",
           "default": false,
-          "description": "Brings the sheet up from the bottom when the page loads, as UIKit presents it. Give it to the first screen of a modal journey, and not to the screens after it, which are already in the sheet."
+          "description": "Brings the sheet up from the bottom when the page loads, or when it's added to the page, as UIKit presents it. Give it to the first screen of a modal journey, and not to the screens after it, which are already in the sheet."
         },
         "label": {
           "type": "string",
@@ -2754,6 +2787,7 @@
         }
       ],
       "script": "components/sheet/sheet.js",
+      "card": "catalogue/components/sheet.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/sheet/"
     },
     {
@@ -2856,6 +2890,7 @@
         }
       ],
       "script": "components/stack/stack.js",
+      "card": "catalogue/components/stack.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/stack/"
     },
     {
@@ -2945,6 +2980,7 @@
         }
       ],
       "script": "components/tab-bar/tab-bar.js",
+      "card": "catalogue/components/tab-bar.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/tab-bar/"
     },
     {
@@ -3057,6 +3093,7 @@
         }
       ],
       "script": "components/text/text.js",
+      "card": "catalogue/components/text.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/text/"
     },
     {
@@ -3133,6 +3170,7 @@
         }
       ],
       "script": "components/toggle/toggle.js",
+      "card": "catalogue/components/toggle.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/toggle/"
     },
     {
@@ -3206,6 +3244,7 @@
         }
       ],
       "script": "components/card-header/card-header.js",
+      "card": "catalogue/components/card-header.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/card-header/"
     },
     {
@@ -3269,6 +3308,7 @@
         }
       ],
       "script": "components/count/count.js",
+      "card": "catalogue/components/count.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/count/"
     },
     {
@@ -3348,6 +3388,7 @@
         }
       ],
       "script": "components/search-box/search-box.js",
+      "card": "catalogue/components/search-box.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/search-box/"
     },
     {
@@ -3431,6 +3472,7 @@
         }
       ],
       "script": "components/status/status.js",
+      "card": "catalogue/components/status.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/status/"
     },
     {
@@ -3488,6 +3530,7 @@
         }
       ],
       "script": "components/strong/strong.js",
+      "card": "catalogue/components/strong.md",
       "url": "https://alphagov.github.io/govuk-mobile-prototype-components/components/strong/"
     }
   ]

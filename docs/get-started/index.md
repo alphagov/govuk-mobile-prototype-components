@@ -77,7 +77,7 @@ document.addEventListener('click', event => {
 
 ## For tools that build prototypes
 
-Everything in the library, its patterns and components with what each is for and when to use another, is in [catalogue.md](/catalogue.md), to read in one go, and in [catalogue.json](/catalogue.json) as data. Both are in the package and the repository too, generated from the definitions.
+Everything in the library, its patterns and components with what each is for and when to use another, is in a catalogue generated from the definitions: a short [index](/catalogue/index.md) with a line for each, and a card for each to read only when choosing between them, or [catalogue.json](/catalogue.json) as data. Both are in the package and the repository too.
 
 ## Show what works
 
