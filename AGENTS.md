@@ -7,6 +7,7 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 - One folder per component, `components/<name>/`: `<name>.html`, `.css`, `.js`, `.json`, an optional `.md`, and `reference/` screenshots. A folder with a definition gets its docs page, index entry and sidebar entry with nothing else to update.
 - Web components in light DOM, vanilla JS, no build step, no framework. `foundation/component.js` draws each from its template.
 - Components send no events of their own: they draw real links, buttons and fields, whose events bubble.
+- `catalogue/` is generated from the definitions by `npm run catalogue` (and by `npm run build` and `npm pack`), and isn't committed. Run it before reading it. Put a new component in one of the index's groups, in `scripts/catalogue.js`, or the build fails.
 - Each definition follows `component.schema.json`. Say where it comes from: the iOS and Android source, with the commit read, and the app's screenshots in `reference/`.
 - Call the two kinds **GOV.UK app components** (`origin.kind: "govuk"`, the app's own) and **native components** (`"native"`, mirroring a platform control). The names live in `docs/_data/components.js`.
 - Match the app, or for a proposed component, its design. Where we can't, say so in the component's `.md` under "Known differences from the app".
