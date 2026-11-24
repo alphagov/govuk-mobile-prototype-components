@@ -27,6 +27,10 @@
     "Once the question is sent, show it with a chat question, and keep generating below it until the answer comes.",
     "Replace it with the answer. Never leave it in a conversation that has its answer."
   ],
+  "avoid": [
+    { "when": "Once the answer has come", "instead": "govuk-app-chat-answer" },
+    { "when": "For waiting on a screen that isn't GOV.UK Chat", "instead": "Go straight to what comes next: the library has no other loading indicator." }
+  ],
   "sources": {
     "figma": [],
     "ios": [

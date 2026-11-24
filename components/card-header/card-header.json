@@ -38,6 +38,11 @@
     "Match the tone to how serious the state is: caution for something to put right, warning for something that stops the user, danger for the most serious.",
     "Put it in a grouped list's first row, flush, so it fills the top of the card, and say what the state means, and what to do, in the rows below."
   ],
+  "avoid": [
+    { "when": "For a card that's fine, with nothing to put right", "instead": "Leave the header off, and say how it stands in the card's rows." },
+    { "when": "For how a vehicle's tax or MOT, or a licence, stands, when it needs no attention", "instead": "govuk-app-status" },
+    { "when": "For a warning about the whole screen, not one card", "instead": "govuk-app-banner type=\"warning\"" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

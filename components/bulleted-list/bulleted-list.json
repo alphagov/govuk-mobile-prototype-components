@@ -40,6 +40,12 @@
     "Use it for points that are read together, not for steps in order or for things to tap: use a grouped list for those.",
     "Use one spacing throughout a journey's screens."
   ],
+  "avoid": [
+    { "when": "For things the user can tap, such as other screens", "instead": "govuk-app-grouped-list-row type=\"navigation\"" },
+    { "when": "For two to four short facts, to take in at a glance", "instead": "govuk-app-summary-columns" },
+    { "when": "For a single point", "instead": "govuk-app-text" },
+    { "when": "For steps the user takes in order", "instead": "govuk-app-grouped-list" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

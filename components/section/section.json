@@ -42,6 +42,12 @@
     "Put sections one after another in a screen: each is spaced from what's above it, as the app spaces its sections. The first on a screen isn't.",
     "For a list with a title and nothing else, a grouped list's own title is enough."
   ],
+  "avoid": [
+    { "when": "For a list of rows that needs only a title", "instead": "govuk-app-grouped-list title=\"Privacy and legal\"" },
+    { "when": "For a section the user can act on as a whole, such as a widget with Edit", "instead": "govuk-app-section-heading" },
+    { "when": "For the screen's own title", "instead": "govuk-app-heading level=\"1\"" },
+    { "when": "To put a few components side by side", "instead": "govuk-app-stack direction=\"horizontal\"" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

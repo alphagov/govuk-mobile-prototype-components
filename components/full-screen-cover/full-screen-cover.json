@@ -37,6 +37,11 @@
     "Give present only to the first screen of the journey. Later screens of the same journey are already in the cover.",
     "To draw the app's green screens, give its screen background=\"green\", its text size=\"title-1\", and its button variant=\"black\"."
   ],
+  "avoid": [
+    { "when": "For a task the user finishes or cancels before going back, such as signing out or choosing a country", "instead": "govuk-app-sheet" },
+    { "when": "For the next screen of a journey, pushed on top of the last", "instead": "A govuk-app-screen of its own, with a back button in its navigation bar." },
+    { "when": "For a few things to do with something on a card", "instead": "govuk-app-menu-button" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

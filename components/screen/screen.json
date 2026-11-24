@@ -40,6 +40,11 @@
     "Use the green background only for a screen that takes over the app, in a full-screen cover, as the app does when adding a driver and vehicles account. Give it a black button.",
     "Use the chat background for GOV.UK Chat's screens, with a chat input in its footer."
   ],
+  "avoid": [
+    { "when": "For a task over the screen the user was on, such as signing out", "instead": "A govuk-app-sheet, with the screen inside it." },
+    { "when": "For a journey that takes over the app until it's done", "instead": "A govuk-app-full-screen-cover, with the screen inside it." },
+    { "when": "For a part of a screen", "instead": "govuk-app-section" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

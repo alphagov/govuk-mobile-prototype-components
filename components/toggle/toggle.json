@@ -44,6 +44,11 @@
     "Always give it a name: a label, or a <label> around it and the text beside it.",
     "Name it for what it turns on, such as Share app usage statistics, not On or Off."
   ],
+  "avoid": [
+    { "when": "For a setting in a list, as on Settings", "instead": "govuk-app-grouped-list-row type=\"toggle\"" },
+    { "when": "For a choice the user confirms with a button", "instead": "govuk-app-grouped-list-row type=\"selectable\"" },
+    { "when": "To switch between views of the same thing", "instead": "govuk-app-segmented-control" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

@@ -64,6 +64,15 @@
     "A button fills the width of what it sits in. Put it in a container to make it narrower.",
     "Disable a button only while the screen is waiting for something the user has to give first, such as a postcode, and make it clear what that is."
   ],
+  "avoid": [
+    { "when": "For an action on the whole screen, such as Close, Done or Edit", "instead": "govuk-app-nav-bar-item" },
+    { "when": "For a screen's main action and a way out of it, at the bottom of the screen", "instead": "govuk-app-button-stack" },
+    { "when": "For a row that goes to another screen, as on Settings", "instead": "govuk-app-grouped-list-row type=\"navigation\"" },
+    { "when": "For a link to a web page", "instead": "govuk-app-grouped-list-row type=\"link\"" },
+    { "when": "For an action that adds to a list, such as Add vehicle", "instead": "govuk-app-grouped-list-row type=\"action\"" },
+    { "when": "For a few less-used actions on a card, such as Change address", "instead": "govuk-app-menu-button" },
+    { "when": "To switch something on or off straight away", "instead": "govuk-app-grouped-list-row type=\"toggle\"" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

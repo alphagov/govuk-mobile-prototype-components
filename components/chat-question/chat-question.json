@@ -22,6 +22,10 @@
     "Follow it with the answer, or with a chat loading while the answer is being generated.",
     "Write the question as a user would type it: in their words, not GOV.UK's."
   ],
+  "avoid": [
+    { "when": "For GOV.UK Chat's answer, or its welcome message", "instead": "govuk-app-chat-answer" },
+    { "when": "For a question the user hasn't asked yet, suggested to them", "instead": "govuk-app-chat-example-questions" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

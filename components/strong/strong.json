@@ -25,6 +25,11 @@
     "For a whole line in bold, give the text emphasis instead. For a heading, use the heading.",
     "Use it once in a line at most: more, and nothing stands out."
   ],
+  "avoid": [
+    { "when": "For a whole line in bold", "instead": "govuk-app-text emphasis" },
+    { "when": "For a heading", "instead": "govuk-app-heading" },
+    { "when": "For words that go somewhere", "instead": "govuk-app-link" }
+  ],
   "sources": {
     "figma": [],
     "ios": [],

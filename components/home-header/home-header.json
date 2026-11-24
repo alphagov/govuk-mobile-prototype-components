@@ -23,6 +23,10 @@
     "Give it a search field, as the app does, unless the prototype is of the app without search.",
     "The wordmark is the screen's heading, so don't give the home screen another level 1 heading."
   ],
+  "avoid": [
+    { "when": "On any screen but Home", "instead": "govuk-app-nav-bar" },
+    { "when": "To search on a screen other than Home", "instead": "govuk-app-search-field" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

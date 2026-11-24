@@ -49,6 +49,11 @@
     "Suggest two or three questions, as the app does.",
     "Write each as a user would ask it, about something GOV.UK Chat can answer."
   ],
+  "avoid": [
+    { "when": "For things to do with the chat, such as clearing it", "instead": "govuk-app-menu-button-item" },
+    { "when": "For a question the user has asked", "instead": "govuk-app-chat-question" },
+    { "when": "For suggestions outside GOV.UK Chat, such as other screens to go to", "instead": "govuk-app-grouped-list-row type=\"navigation\"" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

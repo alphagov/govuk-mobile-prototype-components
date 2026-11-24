@@ -32,6 +32,11 @@
     "Keep what's in each column short, so it fits in a narrow column.",
     "Put it inside a card, such as a grouped list's content row with flush, with anything more about the facts, such as History, in a row below it."
   ],
+  "avoid": [
+    { "when": "For more than four facts, or longer ones", "instead": "govuk-app-grouped-list" },
+    { "when": "For facts of different kinds", "instead": "govuk-app-grouped-list-row type=\"information\"" },
+    { "when": "To put a few components side by side that aren't facts, such as a number plate and a menu button", "instead": "govuk-app-stack direction=\"horizontal\"" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

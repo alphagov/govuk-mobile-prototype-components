@@ -57,6 +57,11 @@
     "Write the answer as GOV.UK Chat would: short paragraphs, headings in Body, semibold, and lists, with links to GOV.UK pages.",
     "Start a new chat with the welcome message: Hi, I’m GOV.UK Chat 👋. I use AI to help you find what you need on GOV.UK., with the note Messages will be saved for 90 days. Leave its sources off."
   ],
+  "avoid": [
+    { "when": "For the user's own question", "instead": "govuk-app-chat-question" },
+    { "when": "While the answer is being generated", "instead": "govuk-app-chat-loading stage=\"generating\"" },
+    { "when": "For text on a screen that isn't GOV.UK Chat", "instead": "govuk-app-text" }
+  ],
   "sources": {
     "figma": [],
     "ios": [
