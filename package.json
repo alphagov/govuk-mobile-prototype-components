@@ -1,6 +1,6 @@
 {
   "name": "govuk-mobile-prototype-components",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
   "type": "module",
   "description": "Web components that look and behave like the GOV.UK app's own, for prototyping app journeys in HTML.",
@@ -27,7 +27,6 @@
     "start": "eleventy --config=docs/eleventy.config.js --serve",
     "build": "node scripts/catalogue.js && eleventy --config=docs/eleventy.config.js",
     "catalogue": "node scripts/catalogue.js",
-    "prepare": "node scripts/catalogue.js",
     "screenshots": "node scripts/screenshots.js"
   },
   "engines": {
