@@ -1,0 +1,110 @@
+{
+  "$schema": "../../template.schema.json",
+  "name": "Settings",
+  "purpose": "The app’s Settings tab and every screen it opens in the app today: Face ID, Your app data, and signing out, through the confirmation, to You’ve signed out. Their pages link to each other as the app’s screens do.",
+  "when": [
+    "Prototyping a new setting, or a change to an existing one.",
+    "Prototyping a new screen opened from Settings, such as a page about the user’s account or data.",
+    "Prototyping a journey that starts in Settings, such as signing out or managing notifications.",
+    "Testing a change to the wording of Settings or the screens it opens."
+  ],
+  "screen": "Settings, the root of the Settings tab, and the screens it opens: Face ID, Your app data, the sign-out confirmation and You’ve signed out",
+  "screens": [
+    {
+      "file": "index.html",
+      "title": "Settings",
+      "description": "The root of the Settings tab, with the app’s own rows. Face ID, Your app data and Sign out open the other screens."
+    },
+    {
+      "file": "face-id.html",
+      "title": "Face ID",
+      "description": "Opened from the Face ID row. Explains Face ID, with a button to change it in the phone’s settings, and a back button to Settings."
+    },
+    {
+      "file": "your-app-data.html",
+      "title": "Your app data",
+      "description": "Opened from the Your app data row. Explains the data the app keeps, with a button to request it, and a back button to Settings."
+    },
+    {
+      "file": "sign-out.html",
+      "title": "Are you sure you want to sign out?",
+      "description": "Opened from the Sign out row, as a sheet over Settings. Sign out goes on to You’ve signed out; Cancel and close return to Settings."
+    },
+    {
+      "file": "signed-out.html",
+      "title": "You’ve signed out",
+      "description": "After signing out. Signing in again returns to Settings."
+    }
+  ],
+  "components": [
+    "govuk-app-screen",
+    "govuk-app-nav-bar",
+    "govuk-app-grouped-list",
+    "govuk-app-tab-bar",
+    "govuk-app-text",
+    "govuk-app-bulleted-list",
+    "govuk-app-heading",
+    "govuk-app-button",
+    "govuk-app-button-stack",
+    "govuk-app-sheet"
+  ],
+  "sources": {
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Settings/SettingsView.swift",
+        "symbol": "SettingsView",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/ViewModels/Settings/SettingsViewModel.swift",
+        "symbol": "SettingsViewModel, its sections and rows",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SwiftUIViews/Settings/FaceIdSettingsView.swift",
+        "symbol": "FaceIdSettingsView",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/SwiftUIViews/Settings/SARExplainerView.swift",
+        "symbol": "SARExplainerView, Your app data",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/SignOut/SignOutConfirmationView.swift",
+        "symbol": "SignOutConfirmationView",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Coordinators/SignOutConfirmationCoordinator.swift",
+        "symbol": "SignOutConfirmationCoordinator, which presents it as a sheet",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/ViewModels/SignInSuccessViewModel.swift",
+        "symbol": "SignInSuccessViewModel, You’ve signed out",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Resources/Strings/SignOut.xcstrings",
+        "symbol": "signedOutTitle",
+        "ref": "3813aa2a"
+      }
+    ]
+  },
+  "notes": [
+    "Copy the whole folder, so the screens keep linking to each other. Delete the screens you don’t need, and the rows that open them.",
+    "Each page has a comment at its top saying what to change and what to leave.",
+    "Your accounts, Messages, Notifications and Open source licences go nowhere, as the library has no screens for them. Give a row an href to a page of yours to make it open one.",
+    "Home and Chat on the tab bar open the Home and Chat templates, if they’re beside this one.",
+    "Signing out and signing in again only move between pages: nothing is remembered."
+  ]
+}

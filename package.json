@@ -20,7 +20,9 @@
     "frame",
     "component.schema.json",
     "patterns",
-    "pattern.schema.json"
+    "pattern.schema.json",
+    "templates",
+    "template.schema.json"
   ],
   "scripts": {
     "start": "eleventy --config=docs/eleventy.config.js --serve",

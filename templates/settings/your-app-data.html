@@ -1,0 +1,44 @@
+<!doctype html>
+<!--
+  Template: Your app data, opened from Settings, as the GOV.UK app has it.
+
+  Change: the title, the paragraphs and the bulleted list, to explain a page
+  of your own. Leave out the list or the button stack if you don't need them.
+
+  Leave: the back button, back-href, which returns to Settings, and that
+  there's no tab bar. The button goes nowhere: listen for its click by name,
+  as sign-out.html does.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Your app data – GOV.UK app prototype</title>
+  <script type="module" src="../../frame/frame.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module" src="../../components/bulleted-list/bulleted-list.js"></script>
+  <script type="module" src="../../components/button/button.js"></script>
+  <script type="module" src="../../components/button-stack/button-stack.js"></script>
+</head>
+<body>
+  <govuk-prototype-frame>
+    <govuk-app highlight-actions>
+      <govuk-app-screen>
+        <govuk-app-nav-bar title="Your app data" large-title back-href="index.html"></govuk-app-nav-bar>
+        <govuk-app-text>We store a small amount of data about you to improve your experience in the app, like:</govuk-app-text>
+        <govuk-app-bulleted-list spacing="compact">
+          <govuk-app-bulleted-list-item>your notification settings</govuk-app-bulleted-list-item>
+          <govuk-app-bulleted-list-item>a unique ID for this app (Push ID)</govuk-app-bulleted-list-item>
+        </govuk-app-bulleted-list>
+        <govuk-app-text>This does not include any other information you have shared with us or with other government services.</govuk-app-text>
+        <govuk-app-text>You can ask us to delete your data at any time. Read more about this in the privacy notice.</govuk-app-text>
+        <govuk-app-button-stack slot="footer">
+          <govuk-app-button name="request-data">Request data</govuk-app-button>
+        </govuk-app-button-stack>
+      </govuk-app-screen>
+    </govuk-app>
+  </govuk-prototype-frame>
+</body>
+</html>

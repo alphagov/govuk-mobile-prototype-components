@@ -1,0 +1,91 @@
+{
+  "$schema": "../../template.schema.json",
+  "name": "Chat",
+  "purpose": "The app’s Chat tab, GOV.UK Chat, in its own words: a new chat with its welcome message and questions to try, a question being answered, and the answer, with the GOV.UK pages it used. Asking a question moves through all three.",
+  "when": [
+    "Prototyping a question and answer in GOV.UK Chat, such as how Chat should answer about a service.",
+    "Prototyping a change to how Chat looks or behaves, such as a new kind of answer or something new under the field.",
+    "Prototyping a journey that starts in Chat, or one that Chat hands on to another screen.",
+    "Testing different questions to try, or a change to Chat’s wording."
+  ],
+  "screen": "Chat, the root of the Chat tab: a new chat, a question being answered, and its answer",
+  "screens": [
+    {
+      "file": "index.html",
+      "title": "GOV.UK Chat",
+      "description": "A new chat: the welcome message and three questions to try. The first question, or typing one and sending it, asks it."
+    },
+    {
+      "file": "generating.html",
+      "title": "Generating your answer",
+      "description": "The question, with the loading indicator under it. Moves on to the answer by itself after 3 seconds."
+    },
+    {
+      "file": "answer.html",
+      "title": "Answer",
+      "description": "Chat’s answer, with headings, a bulleted list, links and the GOV.UK pages it used. Sending another question asks it; Clear chat, in the field’s menu, starts a new chat."
+    }
+  ],
+  "components": [
+    "govuk-app-screen",
+    "govuk-app-heading",
+    "govuk-app-text",
+    "govuk-app-bulleted-list",
+    "govuk-app-link",
+    "govuk-app-chat-answer",
+    "govuk-app-chat-question",
+    "govuk-app-chat-loading",
+    "govuk-app-chat-example-questions",
+    "govuk-app-chat-input",
+    "govuk-app-menu-button",
+    "govuk-app-tab-bar"
+  ],
+  "sources": {
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Chat/ChatView.swift",
+        "symbol": "ChatView",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/ViewModels/Chat/ChatViewModel.swift",
+        "symbol": "ChatViewModel, asking a question and its answer",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Chat/ChatCellView.swift",
+        "symbol": "ChatCellView, the question, answer and loading",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Chat/ChatExampleQuestionsView.swift",
+        "symbol": "ChatExampleQuestionsView",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Chat/ChatActionView.swift",
+        "symbol": "ChatActionView, the field and its menu",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Resources/Strings/Chat.xcstrings",
+        "symbol": "Chat’s wording",
+        "ref": "3813aa2a"
+      }
+    ]
+  },
+  "notes": [
+    "Copy the whole folder, so the screens keep linking to each other. Each page has a comment at its top saying what to change and what to leave.",
+    "The pages are plain HTML, so they move on with links, the field’s form and a page that refreshes. Whatever is typed, the answer is the one in answer.html.",
+    "To ask another question, change it in all three pages, and write its answer in answer.html. For a longer conversation, copy generating.html and answer.html for each question, and point each at the next.",
+    "Only the first question to try goes somewhere. Privacy notice, About and Give feedback, in the field’s menu, go nowhere.",
+    "The app asks the user to agree to GOV.UK Chat’s terms before their first chat. Those screens aren’t here.",
+    "Home and Settings on the tab bar open the Home and Settings templates, if they’re beside this one."
+  ]
+}

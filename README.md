@@ -6,6 +6,7 @@ Components for the GOV.UK app prototyping system: web components that look and b
 - [COMPONENTS.md](COMPONENTS.md): every component in the iOS and Android apps today, with screenshots. The backlog.
 - [patterns/](patterns/): whole screens, arranged as the app arranges them, to copy and change the words of, each with when to use it and when not to.
 - [frame/](frame/): `<govuk-prototype-frame>`, the iPhone around a prototype: its status bar and home indicator, fitted to the window. Not part of the app, so not a component.
+- [templates/](templates/): real screens of the app, such as Settings and Home, as whole pages that link to each other, to copy and change to start a prototype. iOS only for now.
 - [examples/](examples/): screens of the app built from the components alone, such as Home and Settings, to see them working together. Not prototypes to build on.
 
 Documentation: <https://alphagov.github.io/govuk-mobile-prototype-components/>, with every component drawn live in light and dark beside the app's own screenshots.
