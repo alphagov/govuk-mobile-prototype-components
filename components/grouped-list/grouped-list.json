@@ -152,6 +152,13 @@
     "Use the subtle background for cards on a white screen, so they stand apart from it. The accent background is proposed, for a card that's a single action, such as Add vehicle.",
     "Use an action row on a card of its own, for an action that adds to the list above it, as Add vehicle does."
   ],
+  "avoid": [
+    { "when": "For a few points that are read together, and can't be tapped", "instead": "govuk-app-bulleted-list" },
+    { "when": "For one destination that should stand out, such as the user's council", "instead": "govuk-app-link-card" },
+    { "when": "For the action that moves the journey on", "instead": "govuk-app-button variant=\"primary\"" },
+    { "when": "To switch between views of the same thing, such as Vehicles and Licence", "instead": "govuk-app-segmented-control" },
+    { "when": "For two to four short facts of the same kind, side by side", "instead": "govuk-app-summary-columns" }
+  ],
   "sources": {
     "figma": [
       {

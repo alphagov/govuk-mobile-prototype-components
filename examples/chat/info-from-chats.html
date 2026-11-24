@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Info from chats – Chat – GOV.UK app example</title>
   <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../../frame/frame.js"></script>
   <script type="module" src="../example.js"></script>
   <script type="module" src="../../components/screen/screen.js"></script>
   <script type="module" src="../../components/sheet/sheet.js"></script>
@@ -38,7 +39,8 @@
   </script>
 </head>
 <body>
-  <div class="example-phone">
+  <govuk-prototype-frame>
+    <a class="example-back" href="../">Back to examples</a>
     <govuk-app highlight-actions>
       <govuk-app-sheet present label="Info picked up from chats">
         <!-- The chat it was opened from: only its top, which is all that
@@ -92,6 +94,6 @@
         </govuk-app-screen>
       </govuk-app-sheet>
     </govuk-app>
-  </div>
+  </govuk-prototype-frame>
 </body>
 </html>

@@ -39,6 +39,12 @@
     "Give it a label for screen readers when the fact alone doesn't say what it's about, as 2021 doesn't.",
     "Put a few side by side in summary columns, as the app does a vehicle's year, fuel and colour."
   ],
+  "avoid": [
+    { "when": "For something with a deadline or a validity, such as a vehicle's tax", "instead": "govuk-app-status" },
+    { "when": "For a number that matters on its own, such as penalty points", "instead": "govuk-app-count" },
+    { "when": "For a fact that needs more than a word or two", "instead": "govuk-app-grouped-list-row type=\"information\"" },
+    { "when": "For a vehicle's registration", "instead": "govuk-app-number-plate size=\"small\"" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

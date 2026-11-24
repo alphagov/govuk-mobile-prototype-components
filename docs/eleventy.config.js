@@ -44,11 +44,14 @@ export default async function (eleventyConfig) {
   // drawn into its page, so isn't published on its own.
   eleventyConfig.addPassthroughCopy({ foundation: 'foundation' })
   eleventyConfig.addPassthroughCopy({ components: 'components' }, { filter: path => !path.endsWith('.md') })
+  // The phone the examples are shown in, as it is in the repository.
+  eleventyConfig.addPassthroughCopy({ frame: 'frame' })
   // Examples of the components put together, as they are in the repository.
   eleventyConfig.addPassthroughCopy({ examples: 'examples' })
   eleventyConfig.addWatchTarget('examples/')
   eleventyConfig.addWatchTarget('components/')
   eleventyConfig.addWatchTarget('foundation/')
+  eleventyConfig.addWatchTarget('frame/')
   eleventyConfig.addWatchTarget('component.schema.json')
   // A pattern's HTML is drawn into its page, so it isn't copied.
   eleventyConfig.addWatchTarget('patterns/')

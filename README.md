@@ -5,6 +5,7 @@ Components for the GOV.UK app prototyping system: web components that look and b
 - [PLAN.md](PLAN.md): what the library is for and how we build it.
 - [COMPONENTS.md](COMPONENTS.md): every component in the iOS and Android apps today, with screenshots. The backlog.
 - [patterns/](patterns/): whole screens, arranged as the app arranges them, to copy and change the words of, each with when to use it and when not to.
+- [frame/](frame/): `<govuk-prototype-frame>`, the iPhone around a prototype: its status bar and home indicator, fitted to the window. Not part of the app, so not a component.
 - [examples/](examples/): screens of the app built from the components alone, such as Home and Settings, to see them working together. Not prototypes to build on.
 
 Documentation: <https://alphagov.github.io/govuk-mobile-prototype-components/>, with every component drawn live in light and dark beside the app's own screenshots.
@@ -33,7 +34,29 @@ The site is built with the [GOV.UK Eleventy Plugin](https://github.com/x-govuk/g
 | `docs/patterns/pattern.njk` | Draws a page for each pattern from its definition and HTML |
 | `docs/eleventy.config.js` | The site's configuration |
 
-Only the docs have a build step. The components don't: the site copies `components/` and `foundation/` as they are.
+Only the docs have a build step. The components don't: the site copies `components/`, `foundation/` and `frame/` as they are.
+
+## Checking what a component looks like
+
+`npm run screenshots` draws every component's examples, and every page in `examples/`, in light and dark, in a headless Chromium, so you can see them without a browser. It builds the site first, and serves it itself.
+
+The first time, install the browser it draws with:
+
+```sh
+npx playwright install chromium
+```
+
+Then:
+
+```sh
+npm run screenshots                          # everything
+npm run screenshots -- button                # one component's examples
+npm run screenshots -- --examples            # only the pages in examples/
+npm run screenshots -- --url /examples/settings/index.html   # any page of the site
+npm run screenshots -- button --no-build     # use the site already in _site/
+```
+
+They go in `screenshots-out/`, which git ignores: `<component>/<example>-light.png` and `-dark.png`, `examples/…`, and `pages/…` for `--url`. Open `screenshots-out/index.html` to see each component's screenshots beside the app's own, from its `reference/` folder.
 
 ## Using a component
 
@@ -59,7 +82,7 @@ npm install github:alphagov/govuk-mobile-prototype-components#<tag or commit>
 
 Then serve `node_modules/govuk-mobile-prototype-components/` with your pages, and load each component's script from there. The components load their templates, styles and fonts from beside their scripts, and nothing from anywhere else, so they work under a strict Content Security Policy and offline.
 
-The package has the components and the foundation, and none of the app's screenshots, which are only for this repository's docs.
+The package has the components, the foundation and the frame, and none of the app's screenshots, which are only for this repository's docs.
 
 ## Licence
 

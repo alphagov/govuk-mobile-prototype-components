@@ -15,7 +15,7 @@ Each component is one folder, `components/<name>/`:
 | `<name>.html` | Its template: the markup it draws, in a `<template>` |
 | `<name>.css` | Its styles |
 | `<name>.js` | Defines its element, `<govuk-app-NAME>`, and works out anything the template can’t say for itself, such as defaults |
-| `<name>.json` | Its definition: what it is for, whether it’s a native component or a GOV.UK app component, its inputs and outputs, rules for its use, its sources (Figma, iOS, Android), and examples. It follows `component.schema.json` |
+| `<name>.json` | Its definition: what it is for, whether it’s a native component or a GOV.UK app component, whether it’s proposed, its inputs and outputs, rules for its use, when not to use it, its sources (Figma, iOS, Android), and examples. It follows `component.schema.json` |
 | `<name>.md` | Optional. Prose for its page that the definition can’t say well, such as longer guidance or known differences from the app |
 | `reference/` | Screenshots of the app’s own component, to compare it with |
 
@@ -31,6 +31,17 @@ A definition’s `inputs` say what a page can give the component, in a form tool
 - `parts`: the elements that only go inside it, such as a grouped list’s `govuk-app-grouped-list-row`, each with its own `description`, `attributes` and `contains`.
 
 The build fails if these disagree with the component’s script: the elements it defines, and the attributes each reads, must be exactly those its definition lists. Every element named in `contains` must be one of the library’s components or a part of one.
+
+### When not to use it
+
+A definition’s `avoid` lists the times the component is the wrong choice, each with what to use instead, so a designer, or a tool building a prototype, can choose between components that look alike or do similar things: a button or a grouped list’s row, a heading or a section heading, a sheet or a full-screen cover.
+
+- `when`: the situation, such as For an action on the whole screen, such as Edit.
+- `instead`: what to use. Where the library has something, write it as its element, with any attributes it needs, as in HTML: `govuk-app-nav-bar-item`, or `govuk-app-button variant="destructive"`. Its page links to it, and the build fails if the element, an attribute or a value isn’t one the library has. Where nothing in the library fits, say what to do, in words.
+
+### Proposed components
+
+A component that isn’t in the app yet, such as one from future designs, has `proposed` in its definition, saying where its design comes from. Match the design as you would the app, and say where it differs under “Known differences from the app”. Its page is tagged and warned, and it’s listed apart from the app’s components. If it ships, remove `proposed` and point its sources at the app.
 
 ### Prose for a component’s page
 
@@ -69,6 +80,8 @@ A button the component acts on itself, such as a segmented control’s segment, 
 2. Copy its reference screenshots into `reference/`.
 3. Write the four files. Use only `--app-*` tokens for colour, type and spacing; add any missing ones to `foundation/tokens.css`, naming where they come from. Spacing is on the 8pt grid (`--app-space-extra-small` to `--app-space-extra-large`: 4, 8, 16, 24 and 32). Keep a value off the grid only where the app itself has it, and say so in a comment.
 4. Run `npm start` and open its page. Check every example against the references, in each state.
+
+To check without a browser, `npm run screenshots -- <name>` draws each of its examples in light and dark into `screenshots-out/<name>/`, and `screenshots-out/index.html` shows them beside its references. Install the browser it uses first, once, with `npx playwright install chromium`. See the [README](https://github.com/alphagov/govuk-mobile-prototype-components#checking-what-a-component-looks-like) for its other options.
 
 ## Styles stay apart
 

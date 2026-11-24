@@ -20,6 +20,10 @@
     "Put it last in the <govuk-app-screen>, after the last widget and before the tab bar. It grows over the last 70pt of the screen's scroll, so anything after it would leave it part grown.",
     "It is decorative, so assistive technology skips it. Don't give it a label."
   ],
+  "avoid": [
+    { "when": "On any screen but Home", "instead": "Leave it out: other screens end with their last section." },
+    { "when": "For the GOV.UK wordmark at the top of Home", "instead": "govuk-app-home-header" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

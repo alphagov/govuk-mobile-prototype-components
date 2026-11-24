@@ -129,6 +129,12 @@
   max-width: none;
 }
 
+// An element to use instead of a component, which with its attributes can be
+// wider than its column on a phone.
+.docs-avoid__element {
+  overflow-wrap: anywhere;
+}
+
 // A platform's heading over its screenshots, with space above it when it
 // follows another platform's.
 .docs-references__heading:not(:first-child) {

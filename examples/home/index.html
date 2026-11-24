@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Home – GOV.UK app example</title>
   <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../../frame/frame.js"></script>
   <script type="module" src="../example.js"></script>
   <script type="module" src="../../components/screen/screen.js"></script>
   <script type="module" src="../../components/home-header/home-header.js"></script>
@@ -19,7 +20,8 @@
   <script type="module" src="../../components/tab-bar/tab-bar.js"></script>
 </head>
 <body>
-  <div class="example-phone example-phone--light-status-bar">
+  <govuk-prototype-frame status-bar="light">
+    <a class="example-back" href="../">Back to examples</a>
     <govuk-app highlight-actions>
       <govuk-app-screen>
         <govuk-app-home-header>
@@ -56,7 +58,7 @@
         </govuk-app-tab-bar>
       </govuk-app-screen>
     </govuk-app>
-  </div>
+  </govuk-prototype-frame>
   <!-- All topics, shown in place of your topics when it's chosen, as the
        app's Topics widget does. -->
   <template id="all-topics">

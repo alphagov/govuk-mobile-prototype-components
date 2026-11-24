@@ -31,6 +31,11 @@
     "Say what it counts in a word or two, and make it agree with the number: 0 Offences, 1 Offence, 12 Points.",
     "Put two or three side by side in summary columns, with a way to see more, such as History, in a row below them."
   ],
+  "avoid": [
+    { "when": "For a number in a list, such as of unread messages", "instead": "govuk-app-grouped-list-row type=\"count\"" },
+    { "when": "For how something with a deadline stands, such as days left on a vehicle's tax", "instead": "govuk-app-status" },
+    { "when": "For a number in a sentence", "instead": "govuk-app-text" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

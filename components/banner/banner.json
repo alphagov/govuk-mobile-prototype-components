@@ -67,6 +67,13 @@
     "Let it be closed unless it's an emergency the user must see, as the app's national emergencies can't be.",
     "Use warning, which is proposed, for a warning about something on the screen, such as Stay insured on a vehicle with no tax."
   ],
+  "avoid": [
+    { "when": "For something the user must do before they can carry on", "instead": "Say it in the screen itself, in its heading and text, with a button to do it." },
+    { "when": "For how something with a deadline stands, such as a vehicle's tax", "instead": "govuk-app-status" },
+    { "when": "For one card that needs attention, such as an expired licence", "instead": "govuk-app-card-header" },
+    { "when": "To confirm something worked, such as signing out", "instead": "A screen of its own, with a centred govuk-app-heading size=\"large-title\"." },
+    { "when": "For a few points that are read together", "instead": "govuk-app-bulleted-list" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

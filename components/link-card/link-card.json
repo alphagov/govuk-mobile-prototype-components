@@ -38,6 +38,11 @@
     "Keep the name to what the user will recognise, such as the council's own name.",
     "Give each card a description when there are two or more, saying how they differ, as the app does for a county council and a district council."
   ],
+  "avoid": [
+    { "when": "For a list of links", "instead": "govuk-app-grouped-list-row type=\"link\"" },
+    { "when": "For a link within a line of text", "instead": "govuk-app-link" },
+    { "when": "For a screen in the app, among others", "instead": "govuk-app-grouped-list-row type=\"navigation\"" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

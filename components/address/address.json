@@ -28,6 +28,11 @@
     "Give it a heading that says whose address it is and why, such as Registered to.",
     "Don't show an address the user hasn't proved is theirs, such as in a vehicle check for any vehicle."
   ],
+  "avoid": [
+    { "when": "For one fact about a place, such as a postcode on its own", "instead": "govuk-app-grouped-list-row type=\"information\"" },
+    { "when": "To ask the user for their postcode", "instead": "govuk-app-text-field type=\"postcode\"" },
+    { "when": "For a place the user can go to, such as their local council", "instead": "govuk-app-link-card" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

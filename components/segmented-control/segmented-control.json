@@ -60,6 +60,12 @@
     "Select exactly one segment: the one whose view is showing.",
     "Put it at the top of what it switches, 16pt in from the screen's edges, as the app does."
   ],
+  "avoid": [
+    { "when": "To go to another screen", "instead": "govuk-app-grouped-list-row type=\"navigation\"" },
+    { "when": "To move between the app's sections, Home, Chat and Settings", "instead": "govuk-app-tab-bar" },
+    { "when": "To switch a setting on or off", "instead": "govuk-app-toggle" },
+    { "when": "For more than three views", "instead": "A grouped list of navigation rows, one for each, each going to its own screen." }
+  ],
   "sources": {
     "figma": [],
     "ios": [

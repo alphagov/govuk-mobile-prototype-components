@@ -79,6 +79,11 @@
     "Keep its menu short, a handful of items at most, each saying what it does, such as Change address.",
     "Label it for screen readers if More options doesn't say enough."
   ],
+  "avoid": [
+    { "when": "For an action the user will want often, on a card", "instead": "govuk-app-button variant=\"compact\"" },
+    { "when": "For an action on the whole screen, not one card", "instead": "govuk-app-nav-bar-item" },
+    { "when": "To switch between views of the same thing", "instead": "govuk-app-segmented-control" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

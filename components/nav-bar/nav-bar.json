@@ -80,6 +80,12 @@
     "Put close on the left, with slot=\"leading\", only on a full-screen cover, as the app does: a sheet has it on the right.",
     "Keep titles short enough to fit on one line. A long title is cut off."
   ],
+  "avoid": [
+    { "when": "On Home", "instead": "govuk-app-home-header" },
+    { "when": "For the action that moves the journey on, such as Continue", "instead": "govuk-app-button-stack" },
+    { "when": "To move between the app's sections, Home, Chat and Settings", "instead": "govuk-app-tab-bar" },
+    { "when": "For a heading within the content, such as a form's question", "instead": "govuk-app-heading level=\"1\" size=\"title-1\"" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

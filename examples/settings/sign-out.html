@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Sign out – GOV.UK app example</title>
   <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../../frame/frame.js"></script>
   <script type="module" src="../example.js"></script>
   <script type="module" src="../../components/screen/screen.js"></script>
   <script type="module" src="../../components/heading/heading.js"></script>
@@ -25,7 +26,8 @@
   </script>
 </head>
 <body>
-  <div class="example-phone">
+  <govuk-prototype-frame>
+    <a class="example-back" href="../">Back to examples</a>
     <govuk-app highlight-actions>
       <govuk-app-sheet present>
         <!-- Settings, which it was presented from: only its top, which is
@@ -51,6 +53,6 @@
         </govuk-app-screen>
       </govuk-app-sheet>
     </govuk-app>
-  </div>
+  </govuk-prototype-frame>
 </body>
 </html>

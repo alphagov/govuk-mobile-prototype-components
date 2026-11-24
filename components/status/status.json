@@ -49,6 +49,11 @@
     "Use none, not valid, for something that doesn't apply, and say so: Not required.",
     "Keep the label to a word or two, and the caption to one short line, so two fit side by side."
   ],
+  "avoid": [
+    { "when": "For a number that matters on its own, such as penalty points", "instead": "govuk-app-count" },
+    { "when": "For a fact with no state, such as a vehicle's fuel", "instead": "govuk-app-labelled-icon" },
+    { "when": "For a state that needs attention, at the top of its card", "instead": "govuk-app-card-header" }
+  ],
   "sources": {
     "figma": [],
     "ios": [
