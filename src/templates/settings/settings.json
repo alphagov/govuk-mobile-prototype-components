@@ -105,6 +105,7 @@
     "Each page has a comment at its top saying what to change and what to leave.",
     "Your accounts, Messages, Notifications and Open source licences go nowhere, as the library has no screens for them. Give a row an href to a page of yours to make it open one.",
     "Home and Chat on the tab bar open the Home and Chat templates, if they’re beside this one.",
-    "Signing out and signing in again only move between pages: nothing is remembered."
+    "Signing out and signing in again only move between pages: nothing is remembered.",
+    "Unlike the app, Your GOV.UK One Login has no GOV.UK One Login picture on its left. The app’s picture is only for this repository’s docs, so it isn’t in the package, and an information row can’t draw an icon in its place."
   ]
 }
