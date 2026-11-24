@@ -57,10 +57,9 @@ export default async function (eleventyConfig) {
   eleventyConfig.addWatchTarget('patterns/')
   eleventyConfig.addWatchTarget('pattern.schema.json')
 
-  // Everything in the library, for tools that build prototypes: an index and a
-  // card for each thing, and all of it as data. `npm run build` checks they're
-  // up to date before it gets here.
-  eleventyConfig.addPassthroughCopy('catalogue.json')
+  // Everything in the library, for tools that build prototypes: an index, a
+  // card for each thing, and all of it as data. `npm run build` writes it
+  // before it gets here.
   eleventyConfig.addPassthroughCopy('catalogue')
 
   // The docs' own script, for the examples' "Copy code" buttons.

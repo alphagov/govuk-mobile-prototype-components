@@ -21,13 +21,13 @@
     "component.schema.json",
     "patterns",
     "pattern.schema.json",
-    "catalogue.json",
     "catalogue"
   ],
   "scripts": {
     "start": "eleventy --config=docs/eleventy.config.js --serve",
-    "build": "node scripts/catalogue.js --check && eleventy --config=docs/eleventy.config.js",
+    "build": "node scripts/catalogue.js && eleventy --config=docs/eleventy.config.js",
     "catalogue": "node scripts/catalogue.js",
+    "prepare": "node scripts/catalogue.js",
     "screenshots": "node scripts/screenshots.js"
   },
   "engines": {

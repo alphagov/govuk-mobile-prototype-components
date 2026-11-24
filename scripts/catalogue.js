@@ -2,21 +2,20 @@
 // such as a Claude Code skill, can choose a pattern, template or component
 // without opening every definition.
 //
-//   npm run catalogue                 writes it
-//   node scripts/catalogue.js --check fails if it isn't what it would write
+//   npm run catalogue    writes it to catalogue/
 //
-// catalogue.json is all of it as data, for tools. catalogue/ is the same for a
-// model: a short index.md to read first, with one line for each pattern,
-// template and component, and a card for each, to read only for the ones it's
-// choosing between. Reading everything every time would cost far more.
+// index.md is what a model reads first: how to choose, and one line for each
+// pattern, template and component. A card for each, in components/, patterns/
+// and templates/, says the rest, to read only for the ones it's choosing
+// between. Reading everything every time would cost far more. catalogue.json
+// is all of it as data, for tools.
 //
-// It's committed, so it can be read from a clone or the npm package without
-// building anything, and `npm run build` checks it, so it can't fall behind
-// the definitions.
+// Like _site/, it's built, not committed: `npm run build` writes it for the
+// docs site to publish, and `npm pack` for the package, so it's always made
+// from the definitions as they are.
 
 import fs from 'node:fs'
 import path from 'node:path'
-import { parseArgs } from 'node:util'
 
 // The docs site's loaders, so the catalogue says only what the site does, and
 // a definition the build would refuse never reaches it.
@@ -25,15 +24,15 @@ import loadPatterns from '../docs/_data/patterns.js'
 
 const root = path.resolve(import.meta.dirname, '..')
 const site = 'https://alphagov.github.io/govuk-mobile-prototype-components'
-const cards = 'catalogue'
+const out = path.join(root, 'catalogue')
 
 // An example longer than this is a whole screen, which costs more to read than
 // it shows about one component.
 const longExample = 900
 
 // The index lists components by the job they do, so a reader can go straight
-// to the few that might fit. A component not named here is listed under Other:
-// add it to the group it belongs in.
+// to the few that might fit. Every component must be in one: the build fails
+// on one that isn't, rather than leave it somewhere a reader won't look.
 const groups = {
   'Screens and structure': ['screen', 'nav-bar', 'tab-bar', 'sheet', 'full-screen-cover', 'section', 'stack'],
   'Text': ['heading', 'text', 'strong', 'section-heading', 'bulleted-list', 'link'],
@@ -71,7 +70,7 @@ export function buildCatalogue() {
       name: 'GOV.UK app prototype components',
       description: 'Web components that look and behave like the GOV.UK app’s own, for prototyping app journeys in HTML. Generated from the definitions by `npm run catalogue`: don’t edit it by hand.',
       docs: `${site}/`,
-      index: `${cards}/index.md`,
+      index: 'index.md',
       schemas: ['component.schema.json', 'pattern.schema.json']
     },
     patterns: patterns.map(pattern => ({
@@ -84,7 +83,7 @@ export function buildCatalogue() {
       screen: pattern.screen,
       notes: pattern.notes ?? [],
       html: pattern.html,
-      card: `${cards}/patterns/${pattern.slug}.md`,
+      card: `patterns/${pattern.slug}.md`,
       url: `${site}/patterns/${pattern.slug}/`
     })),
     templates: templates.map(template => ({
@@ -99,7 +98,7 @@ export function buildCatalogue() {
         ...screen,
         path: `templates/${template.slug}/${screen.file}`
       })),
-      card: `${cards}/templates/${template.slug}.md`,
+      card: `templates/${template.slug}.md`,
       url: `${site}/templates/${template.slug}/about/`
     })),
     components: components.map(component => ({
@@ -118,7 +117,7 @@ export function buildCatalogue() {
       avoid: component.avoid.map(resolve),
       examples: pickExamples(component),
       script: `components/${component.slug}/${component.slug}.js`,
-      card: `${cards}/components/${component.slug}.md`,
+      card: `components/${component.slug}.md`,
       url: `${site}/components/${component.slug}/`
     }))
   }
@@ -132,7 +131,7 @@ export function buildCatalogue() {
 
   return new Map([
     ['catalogue.json', `${JSON.stringify(catalogue, null, 2)}\n`],
-    [`${cards}/index.md`, renderIndex(catalogue)],
+    ['index.md', renderIndex(catalogue)],
     ...catalogue.patterns.map(pattern => [pattern.card, renderPattern(pattern, link)]),
     ...catalogue.templates.map(template => [template.card, renderTemplate(template, link)]),
     ...catalogue.components.map(component => [component.card, renderComponent(component, link)])
@@ -216,7 +215,7 @@ function renderIndex({ about, patterns, templates, components }) {
     '',
     `${about.description} Docs: ${about.docs}`,
     '',
-    'Read this index first. Then read the cards it links to, each a few hundred words, only for what you might use. All of it, as data: ../catalogue.json.',
+    'Read this index first. Then read the cards it links to, each a few hundred words, only for what you might use. All of it, as data: catalogue.json.',
     '',
     '## How to choose',
     '',
@@ -254,8 +253,10 @@ function renderIndex({ about, patterns, templates, components }) {
 
   const grouped = new Map(Object.keys(groups).map(group => [group, []]))
   for (const component of components) {
-    const group = Object.keys(groups).find(group => groups[group].includes(component.slug)) ?? 'Other'
-    if (!grouped.has(group)) grouped.set(group, [])
+    const group = Object.keys(groups).find(group => groups[group].includes(component.slug))
+    if (!group) {
+      throw new Error(`components/${component.slug} isn't in any of the catalogue index's groups. Add '${component.slug}' to the group it belongs in, in groups in scripts/catalogue.js.`)
+    }
     grouped.get(group).push(component)
   }
   lines.push('## Components', '')
@@ -353,41 +354,14 @@ const escapeRegExp = text => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 const finish = lines => `${lines.join('\n').trimEnd()}\n`
 
-/** The cards there are now, by their paths from the repository's root. */
-function existingCards() {
-  const directory = path.join(root, cards)
-  if (!fs.existsSync(directory)) return []
-  return fs.readdirSync(directory, { recursive: true, withFileTypes: true })
-    .filter(entry => entry.isFile())
-    .map(entry => path.relative(root, path.join(entry.parentPath, entry.name)).split(path.sep).join('/'))
-}
-
-// Run, rather than imported.
+// Run, rather than imported. Clears the folder first, so nothing is left from
+// a component or pattern that's gone.
 if (process.argv[1] && path.resolve(process.argv[1]) === import.meta.filename) {
-  const { values: options } = parseArgs({ options: { check: { type: 'boolean' } } })
   const built = buildCatalogue()
-  // A card for something that's gone, or renamed, would send a reader to it.
-  const orphans = existingCards().filter(file => !built.has(file))
-
-  if (options.check) {
-    const stale = [...built]
-      .filter(([file, content]) => !fs.existsSync(path.join(root, file)) || fs.readFileSync(path.join(root, file), 'utf8') !== content)
-      .map(([file]) => file)
-    if (stale.length || orphans.length) {
-      const problems = [
-        ...stale.map(file => `  ${file} is out of date, or missing`),
-        ...orphans.map(file => `  ${file} is for nothing in the library`)
-      ]
-      console.error(`The catalogue is out of date with the definitions:\n${problems.join('\n')}\nRun \`npm run catalogue\`, and commit what it writes.`)
-      process.exit(1)
-    }
-  } else {
-    for (const file of orphans) fs.rmSync(path.join(root, file))
-    for (const [file, content] of built) {
-      fs.mkdirSync(path.dirname(path.join(root, file)), { recursive: true })
-      fs.writeFileSync(path.join(root, file), content)
-    }
-    const index = Buffer.byteLength(built.get(`${cards}/index.md`))
-    console.log(`Wrote catalogue.json, ${cards}/index.md (${index} bytes) and ${built.size - 2} cards${orphans.length ? `, and removed ${orphans.length} for nothing in the library` : ''}`)
+  fs.rmSync(out, { recursive: true, force: true })
+  for (const [file, content] of built) {
+    fs.mkdirSync(path.dirname(path.join(out, file)), { recursive: true })
+    fs.writeFileSync(path.join(out, file), content)
   }
+  console.log(`Wrote catalogue/: index.md (${Buffer.byteLength(built.get('index.md'))} bytes), catalogue.json and ${built.size - 2} cards`)
 }
