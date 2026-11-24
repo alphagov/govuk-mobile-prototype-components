@@ -66,6 +66,6 @@
     "The page has a comment at its top saying what to change and what to leave.",
     "The topics, Edit, See all and Give feedback go nowhere, as the library has no screens for them. Give a row an href to a page of yours to make it open one.",
     "Searching isn’t here: the field takes typing, but there are no results.",
-    "Settings on the tab bar opens the Settings template, if it’s beside this one. Chat goes nowhere."
+    "Chat and Settings on the tab bar open the Chat and Settings templates, if they’re beside this one."
   ]
 }

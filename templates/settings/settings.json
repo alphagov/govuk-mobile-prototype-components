@@ -104,7 +104,7 @@
     "Copy the whole folder, so the screens keep linking to each other. Delete the screens you don’t need, and the rows that open them.",
     "Each page has a comment at its top saying what to change and what to leave.",
     "Your accounts, Messages, Notifications and Open source licences go nowhere, as the library has no screens for them. Give a row an href to a page of yours to make it open one.",
-    "Home on the tab bar opens the Home template, if it’s beside this one. Chat goes nowhere.",
+    "Home and Chat on the tab bar open the Home and Chat templates, if they’re beside this one.",
     "Signing out and signing in again only move between pages: nothing is remembered."
   ]
 }
