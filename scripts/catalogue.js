@@ -21,6 +21,7 @@ import path from 'node:path'
 // a definition the build would refuse never reaches it.
 import loadComponents from '../docs/_data/components.js'
 import loadPatterns from '../docs/_data/patterns.js'
+import loadTemplates from '../docs/_data/templates.js'
 
 const root = path.resolve(import.meta.dirname, '..')
 const site = 'https://alphagov.github.io/govuk-mobile-prototype-components'
@@ -90,11 +91,12 @@ export function buildCatalogue() {
       name: template.name,
       slug: template.slug,
       purpose: template.purpose,
-      when: template.when ?? [],
+      when: template.when,
       avoid: (template.avoid ?? []).map(resolve),
-      components: template.components ?? [],
+      components: template.components,
       screen: template.screen,
-      screens: (template.screens ?? []).map(screen => ({
+      notes: template.notes ?? [],
+      screens: template.screens.map(screen => ({
         ...screen,
         path: `templates/${template.slug}/${screen.file}`
       })),
@@ -136,22 +138,6 @@ export function buildCatalogue() {
     ...catalogue.templates.map(template => [template.card, renderTemplate(template, link)]),
     ...catalogue.components.map(component => [component.card, renderComponent(component, link)])
   ])
-}
-
-/**
- * Templates, whole journeys of several screens, from templates/<name>/<name>.json,
- * if there are any yet. The docs site has no loader for them yet, so this reads
- * them as they are.
- */
-function loadTemplates() {
-  const directory = path.join(root, 'templates')
-  if (!fs.existsSync(directory)) return []
-  return fs.readdirSync(directory, { withFileTypes: true })
-    .filter(entry => entry.isDirectory())
-    .map(entry => ({ slug: entry.name, file: path.join(directory, entry.name, `${entry.name}.json`) }))
-    .filter(({ file }) => fs.existsSync(file))
-    .map(({ slug, file }) => ({ ...JSON.parse(fs.readFileSync(file, 'utf8')), slug }))
-    .sort((a, b) => a.name.localeCompare(b.name))
 }
 
 /**
@@ -299,6 +285,7 @@ function renderTemplate(template, link) {
   if (template.components.length) {
     lines.push(`Components: ${template.components.map(element => `[\`${element}\`](${link.component(element)})`).join(', ')}`, '')
   }
+  if (template.notes.length) lines.push('Notes:', ...template.notes.map(note => `- ${note}`), '')
   lines.push(`Docs: ${template.url}`)
   return finish(lines)
 }
