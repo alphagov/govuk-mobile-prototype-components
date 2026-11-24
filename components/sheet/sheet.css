@@ -7,9 +7,10 @@
    own, so approximate. Behind it, the screen it was presented from is set
    back, smaller and dimmed, on black.
 
-   With present, it comes up from the bottom when the page loads, as UIKit
-   presents it, and the screen behind it sets back. Without it, it's
-   already there, for the second and later screens of a modal journey. */
+   With present, it comes up from the bottom when the page loads, or when
+   it's added to it, as UIKit presents it, and the screen behind it sets
+   back. Without it, it's already there, for the second and later screens of
+   a modal journey. */
 
 /* The root's inset, under another name, for the card, whose own is 0. */
 .govuk-app-sheet {

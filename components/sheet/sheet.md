@@ -17,6 +17,8 @@ A sheet is a page of its own. To present one from a screen, link to that page, a
 
 Its later screens are pages with the same sheet, without `present`.
 
+A page that draws screens itself, such as a prototype viewer, can add a sheet with `present` at any time, and it comes up from the bottom when it's added.
+
 Every screen in a sheet starts with a navigation bar with a close action, so it can always be dismissed, even if it has Cancel too. The sheet leaves room above the bar for it. To close the sheet, link the close action back to the screen it was presented from:
 
 ```html

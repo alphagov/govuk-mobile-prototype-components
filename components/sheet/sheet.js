@@ -39,3 +39,15 @@ await defineComponent({
 })
 
 for (const sheet of document.querySelectorAll('govuk-app-sheet')) whenDrawn(sheet)
+
+// And any sheet a page adds later, such as a prototype that presents a screen
+// when a button is pressed.
+new MutationObserver(records => {
+  for (const record of records) {
+    for (const node of record.addedNodes) {
+      if (node.nodeType !== Node.ELEMENT_NODE) continue
+      const sheets = node.localName === 'govuk-app-sheet' ? [node] : node.querySelectorAll('govuk-app-sheet')
+      for (const sheet of sheets) if (!sheet.hasAttribute('data-drawn')) whenDrawn(sheet)
+    }
+  }
+}).observe(document, { childList: true, subtree: true })
