@@ -1,0 +1,86 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Sheet",
+  "element": "govuk-app-sheet",
+  "purpose": "Presents a screen over the one the user was on, for a task they finish or cancel before going back, such as signing out, finding their local council or choosing a country. The screen it was presented from is set back behind it.",
+  "origin": {
+    "kind": "native",
+    "notes": "UIKit's page sheet. The app's coordinators present a navigation controller without asking for a style, which on an iPhone is a page sheet; a few screens ask for full screen instead. GovKit doesn't style it, and the app's snapshot tests draw each screen on its own, so the sheet's gap, corners and the screen set back behind it are approximate, following the app prototyping system's viewer."
+  },
+  "inputs": {
+    "attributes": {
+      "present": {
+        "type": "boolean",
+        "default": false,
+        "description": "Brings the sheet up from the bottom when the page loads, or when it's added to the page, as UIKit presents it. Give it to the first screen of a modal journey, and not to the screens after it, which are already in the sheet."
+      },
+      "label": {
+        "type": "string",
+        "description": "The sheet's name for screen readers, such as Sign out. Leave it off if its screen has a heading or a navigation bar title."
+      }
+    },
+    "content": "The sheet's screen, a <govuk-app-screen>, usually with background=\"modal\", starting with a <govuk-app-nav-bar> that has a close action. Optionally, the screen it was presented from, with slot=\"behind\", which is drawn set back behind it and can't be used.",
+    "contains": {
+      "elements": ["govuk-app-screen"],
+      "slots": {
+        "behind": ["govuk-app-screen"]
+      }
+    }
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Put a sheet directly in a <govuk-app>, in place of a screen. Give the root a size, as for a screen.",
+    "Use a sheet for a task the user finishes or cancels before going back, as the app does: signing out, finding their local council, choosing a country, linking an account.",
+    "Always give the sheet's screen a navigation bar with a close action, so it can be dismissed, even if it has Cancel in a button stack too. The sheet leaves room above the bar for it.",
+    "Draw the screen it was presented from behind it, with slot=\"behind\", so the user can see where they'll go back to.",
+    "Give present only to the first screen of the modal journey. Later screens of the same journey are already in the sheet."
+  ],
+  "avoid": [
+    { "when": "For a journey that takes over the app until it's done, such as adding a driver and vehicles account", "instead": "govuk-app-full-screen-cover" },
+    { "when": "For the next screen of a journey, pushed on top of the last", "instead": "A govuk-app-screen of its own, with a back button in its navigation bar." },
+    { "when": "For a few things to do with something on a card", "instead": "govuk-app-menu-button" },
+    { "when": "For something the user should know, that they needn't act on", "instead": "govuk-app-banner" }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Coordinators/BaseCoordinator.swift",
+        "symbol": "present(_:animated:)",
+        "ref": "1e520fc1"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Coordinators/SettingsCoordinator.swift",
+        "symbol": "startSignOut",
+        "ref": "1e520fc1"
+      }
+    ],
+    "android": [],
+    "other": [
+      {
+        "title": "Apple Human Interface Guidelines: Sheets",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/sheets"
+      },
+      {
+        "title": "The app prototyping system's viewer, whose sheet this follows (app-prototyping-system, exploration-2/viewer/css/app.css)",
+        "url": "https://github.com/thip/app-prototyping-system"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "name": "Over the screen it was presented from",
+      "frame": "screen",
+      "html": "<govuk-app-sheet>\n  <govuk-app-screen slot=\"behind\">\n    <govuk-app-nav-bar title=\"Settings\" large-title></govuk-app-nav-bar>\n    <govuk-app-grouped-list>\n      <govuk-app-grouped-list-row type=\"detail\" destructive>Sign out</govuk-app-grouped-list-row>\n    </govuk-app-grouped-list>\n  </govuk-app-screen>\n  <govuk-app-screen background=\"modal\">\n    <govuk-app-nav-bar>\n      <govuk-app-nav-bar-item icon=\"close\" name=\"close\">Close</govuk-app-nav-bar-item>\n    </govuk-app-nav-bar>\n    <govuk-app-heading level=\"1\" size=\"title-1\">Are you sure you want to sign out?</govuk-app-heading>\n    <govuk-app-text>If you’re using Face ID or Touch ID to unlock the app, this will be turned off.</govuk-app-text>\n    <govuk-app-button-stack slot=\"footer\">\n      <govuk-app-button variant=\"destructive\" name=\"sign-out\">Sign out</govuk-app-button>\n      <govuk-app-button variant=\"grouped-secondary\" name=\"cancel\">Cancel</govuk-app-button>\n    </govuk-app-button-stack>\n  </govuk-app-screen>\n</govuk-app-sheet>"
+    },
+    {
+      "name": "With a navigation bar and close action",
+      "frame": "screen",
+      "html": "<govuk-app-sheet>\n  <govuk-app-screen background=\"modal\">\n    <govuk-app-nav-bar title=\"Select a country\">\n      <govuk-app-nav-bar-item icon=\"close\" name=\"close\">Close</govuk-app-nav-bar-item>\n    </govuk-app-nav-bar>\n    <govuk-app-text>Get travel alerts for the countries you choose.</govuk-app-text>\n  </govuk-app-screen>\n</govuk-app-sheet>"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "../../schemas/pattern.schema.json",
+  "name": "Confirmation",
+  "purpose": "Asks the user to confirm an action that is hard or impossible to undo, such as signing out or deleting something, before the app does it. It slides up as a modal, with the question, what will happen, and a choice of going ahead or not.",
+  "when": [
+    "The user has asked to do something destructive or hard to undo, such as signing out, deleting data or removing an account.",
+    "The user needs to know what will happen before they go ahead.",
+    "There are exactly two choices: do it, or go back."
+  ],
+  "avoid": [
+    {
+      "when": "The action is easy to undo, or loses nothing, such as turning a setting on or off.",
+      "instead": "Do it straight away, with no confirmation"
+    },
+    {
+      "when": "The action has already happened, and the screen says so.",
+      "instead": "Outcome"
+    },
+    {
+      "when": "The screen explains something, and the user isn't choosing whether to go ahead.",
+      "instead": "Information page"
+    },
+    {
+      "when": "The user has more than two choices.",
+      "instead": "Settings list, with a row for each choice"
+    }
+  ],
+  "components": [
+    "govuk-app-screen",
+    "govuk-app-nav-bar",
+    "govuk-app-heading",
+    "govuk-app-text",
+    "govuk-app-button-stack",
+    "govuk-app-button"
+  ],
+  "screen": "Sign out, the confirmation opened from Settings",
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/SignOut/SignOutConfirmationView.swift",
+        "symbol": "SignOutConfirmationView",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Coordinators/SignOutConfirmationCoordinator.swift",
+        "symbol": "SignOutConfirmationCoordinator, which presents it as a sheet",
+        "ref": "3813aa2a"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "feature/settings/src/main/kotlin/uk/gov/govuk/settings/ui/SignOutScreen.kt",
+        "symbol": "SignOutScreen",
+        "ref": "ed6237d6"
+      }
+    ]
+  },
+  "notes": [
+    "Ask the question in the heading, and say in the text what will happen and whether it can be undone.",
+    "Say what the action does on its button, such as Sign out or Delete saved details, not Yes or Confirm.",
+    "Its buttons go nowhere of their own. The page listens for clicks on them, by name, confirm or cancel, and goes where the app would, as examples/settings/sign-out.html does. Add works to each button the page acts on.",
+    "On iOS it slides up as a sheet over the screen it was opened from. Put it in a govuk-app-sheet, with that screen behind it, to show that."
+  ]
+}

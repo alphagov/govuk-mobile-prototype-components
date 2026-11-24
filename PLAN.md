@@ -6,7 +6,7 @@ Build a library of components for prototyping the GOV.UK app. A designer should 
 
 ## Principles
 
-- **Match the app.** The library should contain the components that are available in the GOV.UK app, and each one should look and behave like its app counterpart. [COMPONENTS.md](COMPONENTS.md) lists what exists in the iOS and Android apps today, with screenshots, and is the starting backlog.
+- **Match the app.** The library should contain the components that are available in the GOV.UK app, and each one should look and behave like its app counterpart. [inventory/COMPONENTS.md](inventory/COMPONENTS.md) lists what exists in the iOS and Android apps today, with screenshots, and is the starting backlog.
 - **Web components, minimal vanilla JS.** Each component is a custom element. No frameworks, no build step beyond what is strictly needed.
 - **Self-contained components.** Each component carries all the HTML, CSS and JS needed to draw it, so it can be used on its own.
 - **Every component has a definition file.** A JSON file sits alongside each component and documents it (see below).

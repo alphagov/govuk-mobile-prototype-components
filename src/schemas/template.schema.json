@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "A template's definition",
+  "description": "What every src/templates/<name>/<name>.json says about its template: one of the app's real screens, or a few that link to each other, written as whole pages to copy and change. Its pages are beside it, in src/templates/<name>/.",
+  "type": "object",
+  "required": ["name", "purpose", "when", "screen", "screens", "components", "sources"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": {
+      "description": "What a designer calls it: the app's own name for the screen, such as Settings.",
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "description": "What it is, in a sentence or two.",
+      "type": "string",
+      "minLength": 1
+    },
+    "when": {
+      "description": "When to start from it, each a kind of prototype, so someone choosing a template can match theirs.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "screen": {
+      "description": "Which of the app's screens it is, in words, such as \"Settings, the Settings tab, and the screens it opens\".",
+      "type": "string",
+      "minLength": 1
+    },
+    "screens": {
+      "description": "Its pages, in the order a journey meets them. The first is where it starts.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "title", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "file": {
+            "description": "The page, beside the definition, such as index.html.",
+            "type": "string",
+            "pattern": "^[a-z0-9-]+\\.html$"
+          },
+          "title": { "type": "string", "minLength": 1 },
+          "description": {
+            "description": "What the screen is, and how the journey gets to it.",
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "components": {
+      "description": "The library's components its pages use, by element name. The build checks these are exactly the ones its pages use.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^govuk-app-[a-z][a-z0-9-]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "sources": {
+      "description": "The app's screens it was taken from. The same shape as a component's, but templates are iOS only for now, so only ios is needed.",
+      "type": "object",
+      "required": ["ios"],
+      "additionalProperties": false,
+      "properties": {
+        "figma": { "type": "array", "items": { "$ref": "#/$defs/link" } },
+        "ios": { "type": "array", "items": { "$ref": "#/$defs/source" }, "minItems": 1 },
+        "android": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+        "other": { "type": "array", "items": { "$ref": "#/$defs/link" } }
+      }
+    },
+    "notes": {
+      "description": "Anything else to know when changing it.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "$defs": {
+    "link": {
+      "type": "object",
+      "required": ["title", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["repo", "path", "symbol"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": { "type": "string", "minLength": 1 },
+        "path": { "type": "string", "minLength": 1 },
+        "symbol": { "type": "string", "minLength": 1 },
+        "ref": { "type": "string" }
+      }
+    }
+  }
+}

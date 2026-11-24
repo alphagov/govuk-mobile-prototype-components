@@ -151,7 +151,7 @@ eleventyComputed:
 <div class="docs-references">
   {% for reference in referencesByPlatform[platform] %}
   <figure class="docs-references__item">
-    <img src="/components/{{ component.slug }}/{{ reference.image }}" alt="{{ platforms[platform] }} app: {{ reference.description | escape }}" loading="lazy">
+    <img src="/src/components/{{ component.slug }}/{{ reference.image }}" alt="{{ platforms[platform] }} app: {{ reference.description | escape }}" loading="lazy">
     <figcaption class="govuk-body-s">{{ reference.description | escape }}</figcaption>
   </figure>
   {% endfor %}

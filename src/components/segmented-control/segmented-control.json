@@ -1,0 +1,113 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Segmented control",
+  "element": "govuk-app-segmented-control",
+  "purpose": "Switches between two or three views of the same thing, side by side, such as a driving account's Vehicles and Licence, or Your topics and All topics.",
+  "origin": {
+    "kind": "native",
+    "notes": "iOS's segmented control, which the app draws with SwiftUI's Picker in SegmentedPickerStyle, unstyled, on its driving account and topics widgets. Its colours, shape and type are the system's, as the app's snapshots measure them."
+  },
+  "inputs": {
+    "attributes": {
+      "label": {
+        "type": "string",
+        "description": "Its name for screen readers, such as Driving, as the app's picker's label."
+      }
+    },
+    "content": "Two or three <govuk-app-segmented-control-item> elements, left to right. Mark the one that's showing selected. Give each an href, to make it a link to another page, or name and value, to tell it apart as a button. Its label is what's written between its tags.",
+    "contains": {
+      "elements": ["govuk-app-segmented-control-item"]
+    },
+    "parts": {
+      "govuk-app-segmented-control-item": {
+        "description": "One segment, holding its label: a link to another page, or a button.",
+        "attributes": {
+          "href": {
+            "type": "string",
+            "description": "Makes it a link to this page."
+          },
+          "name": {
+            "type": "string",
+            "description": "Without an href, makes it a button with this name, so a page listening for clicks can tell which was pressed."
+          },
+          "value": {
+            "type": "string",
+            "description": "Set on the button, alongside name, to say which of several it was."
+          },
+          "selected": {
+            "type": "boolean",
+            "default": false,
+            "description": "The segment that's showing."
+          }
+        },
+        "contains": {
+          "text": true
+        }
+      }
+    }
+  },
+  "outputs": {
+    "events": [
+      {
+        "name": "click",
+        "description": "From the link or button a segment draws, when it's pressed. A segment with an href goes to its page. A segment without one is a button, and pressing it selects it, as iOS's does; use event.target.closest('button').name to tell which was pressed and show its view."
+      }
+    ]
+  },
+  "rules": [
+    "Use it to switch between views of the same thing, not to go somewhere new: for that, use a navigation row or the tab bar.",
+    "Use two or three segments, each one short word or two, so they fit side by side.",
+    "Select exactly one segment: the one whose view is showing.",
+    "Put it at the top of what it switches, 16pt in from the screen's edges, as the app does."
+  ],
+  "avoid": [
+    { "when": "To go to another screen", "instead": "govuk-app-grouped-list-row type=\"navigation\"" },
+    { "when": "To move between the app's sections, Home, Chat and Settings", "instead": "govuk-app-tab-bar" },
+    { "when": "To switch a setting on or off", "instead": "govuk-app-toggle" },
+    { "when": "For more than three views", "instead": "A grouped list of navigation rows, one for each, each going to its own screen." }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/DVLAAccountSummaryView.swift",
+        "symbol": "viewPicker",
+        "ref": "8f1fe5da"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Home/Topics/TopicsWidgetView.swift",
+        "symbol": "topicPicker",
+        "ref": "8f1fe5da"
+      }
+    ],
+    "android": [],
+    "other": [
+      {
+        "title": "Apple Human Interface Guidelines: Segmented controls",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/segmented-controls"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-driving-light.webp", "description": "Vehicles selected, on the driving account widget, in light mode", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-driving-dark.webp", "description": "Vehicles selected, in dark mode", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-driving-licence-light.webp", "description": "Licence selected", "from": "DVLAAccountSummaryViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-topics-light.webp", "description": "Your topics selected, on the topics widget", "from": "TopicsWidgetViewSnapshotTests at 8f1fe5da" }
+  ],
+  "examples": [
+    {
+      "name": "Two segments",
+      "html": "<govuk-app-segmented-control label=\"Driving\">\n  <govuk-app-segmented-control-item name=\"vehicles\" selected>Vehicles</govuk-app-segmented-control-item>\n  <govuk-app-segmented-control-item name=\"licence\">Licence</govuk-app-segmented-control-item>\n</govuk-app-segmented-control>"
+    },
+    {
+      "name": "Three segments",
+      "html": "<govuk-app-segmented-control label=\"Show\">\n  <govuk-app-segmented-control-item name=\"day\">Day</govuk-app-segmented-control-item>\n  <govuk-app-segmented-control-item name=\"week\">Week</govuk-app-segmented-control-item>\n  <govuk-app-segmented-control-item name=\"month\" selected>Month</govuk-app-segmented-control-item>\n</govuk-app-segmented-control>"
+    },
+    {
+      "name": "Segments that link to other pages",
+      "html": "<govuk-app-segmented-control label=\"Topics\">\n  <govuk-app-segmented-control-item href=\"#your-topics\" selected>Your topics</govuk-app-segmented-control-item>\n  <govuk-app-segmented-control-item href=\"#all-topics\">All topics</govuk-app-segmented-control-item>\n</govuk-app-segmented-control>"
+    }
+  ]
+}

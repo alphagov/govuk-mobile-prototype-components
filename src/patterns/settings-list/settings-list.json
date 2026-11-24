@@ -1,0 +1,66 @@
+{
+  "$schema": "../../schemas/pattern.schema.json",
+  "name": "Settings list",
+  "purpose": "A screen of settings and links, in grouped lists, for the user to scan and choose from. Each row opens a screen, opens a web page, shows a value or turns something on or off.",
+  "when": [
+    "The user needs to see and change several settings or preferences in one place.",
+    "A section of the app needs a menu of the screens and pages under it, such as account, privacy and help.",
+    "Rows fall into a few groups, each with an optional title above and line of explanation below.",
+    "It is the root screen of a tab, such as Settings."
+  ],
+  "avoid": [
+    {
+      "when": "The screen asks the user to confirm one action, such as signing out or deleting something.",
+      "instead": "Confirmation"
+    },
+    {
+      "when": "The screen explains one thing in paragraphs, with at most one action.",
+      "instead": "Information page"
+    },
+    {
+      "when": "The screen tells the user that something has finished.",
+      "instead": "Outcome"
+    },
+    {
+      "when": "The user is filling in details, such as a name or registration number.",
+      "instead": "A screen with the text field and a primary button in the button stack"
+    }
+  ],
+  "components": [
+    "govuk-app-screen",
+    "govuk-app-nav-bar",
+    "govuk-app-grouped-list",
+    "govuk-app-tab-bar"
+  ],
+  "screen": "Settings, the root of the Settings tab",
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Settings/SettingsView.swift",
+        "symbol": "SettingsView",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/ViewModels/Settings/SettingsViewModel.swift",
+        "symbol": "SettingsViewModel, its sections and rows",
+        "ref": "3813aa2a"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "feature/settings/src/main/kotlin/uk/gov/govuk/settings/ui/SettingsScreen.kt",
+        "symbol": "SettingsScreen",
+        "ref": "ed6237d6"
+      }
+    ]
+  },
+  "notes": [
+    "Keep the tab bar only on a tab's root screen. A list pushed from another screen has a back button in its navigation bar instead, and no tab bar.",
+    "Put a destructive row, such as Sign out, in a group of its own, last.",
+    "Give each row that opens a screen an href to that page, in place of its name, in a prototype of several pages."
+  ]
+}

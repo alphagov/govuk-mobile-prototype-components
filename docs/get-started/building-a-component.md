@@ -8,18 +8,18 @@ order: 2
 
 ## A component
 
-Each component is one folder, `components/<name>/`:
+Each component is one folder, `src/components/<name>/`:
 
 | File | What it holds |
 | --- | --- |
 | `<name>.html` | Its template: the markup it draws, in a `<template>` |
 | `<name>.css` | Its styles |
 | `<name>.js` | Defines its element, `<govuk-app-NAME>`, and works out anything the template can’t say for itself, such as defaults |
-| `<name>.json` | Its definition: what it is for, whether it’s a native component or a GOV.UK app component, whether it’s proposed, its inputs and outputs, rules for its use, when not to use it, its sources (Figma, iOS, Android), and examples. It follows `component.schema.json` |
+| `<name>.json` | Its definition: what it is for, whether it’s a native component or a GOV.UK app component, whether it’s proposed, its inputs and outputs, rules for its use, when not to use it, its sources (Figma, iOS, Android), and examples. It follows `src/schemas/component.schema.json` |
 | `<name>.md` | Optional. Prose for its page that the definition can’t say well, such as longer guidance or known differences from the app |
 | `reference/` | Screenshots of the app’s own component, to compare it with |
 
-Every folder with a definition gets a page on this site, drawn from the definition. The build checks each definition against `component.schema.json`, and fails if one doesn’t match.
+Every folder with a definition gets a page on this site, drawn from the definition. The build checks each definition against `src/schemas/component.schema.json`, and fails if one doesn’t match.
 
 ### What goes inside it, as data
 
@@ -58,7 +58,7 @@ If a component has a `<name>.md`, it appears on its page after the introduction 
 
 ## Templates
 
-There is no build step for components. `foundation/component.js` fetches the template when the page runs and fills it in from the element’s attributes and content, using a few attributes in the template:
+There is no build step for components. `src/foundation/component.js` fetches the template when the page runs and fills it in from the element’s attributes and content, using a few attributes in the template:
 
 | Attribute | |
 | --- | --- |
@@ -72,13 +72,13 @@ These are the same as in the app prototyping system’s kit (`exploration-2/kit`
 
 A button the component acts on itself, such as a segmented control’s segment, carries `data-works`, so a root with [`highlight-actions`](/get-started/#show-what-works) rings it among what works. Any other button is rung only if the page says it works.
 
-`foundation/` holds what every component relies on: `tokens.css` (the app’s colours, type, spacing and sizes, each naming where it comes from), `base.css` (the `<govuk-app>` root) and `component.js`.
+`src/foundation/` holds what every component relies on: `tokens.css` (the app’s colours, type, spacing and sizes, each naming where it comes from), `base.css` (the `<govuk-app>` root) and `component.js`.
 
 ## Building one
 
-1. Find the component in `COMPONENTS.md`, and read its iOS and Android source.
+1. Find the component in `inventory/COMPONENTS.md`, and read its iOS and Android source.
 2. Copy its reference screenshots into `reference/`.
-3. Write the four files. Use only `--app-*` tokens for colour, type and spacing; add any missing ones to `foundation/tokens.css`, naming where they come from. Spacing is on the 8pt grid (`--app-space-extra-small` to `--app-space-extra-large`: 4, 8, 16, 24 and 32). Keep a value off the grid only where the app itself has it, and say so in a comment.
+3. Write the four files. Use only `--app-*` tokens for colour, type and spacing; add any missing ones to `src/foundation/tokens.css`, naming where they come from. Spacing is on the 8pt grid (`--app-space-extra-small` to `--app-space-extra-large`: 4, 8, 16, 24 and 32). Keep a value off the grid only where the app itself has it, and say so in a comment.
 4. Run `npm start` and open its page. Check every example against the references, in each state.
 
 To check without a browser, `npm run screenshots -- <name>` draws each of its examples in light and dark into `screenshots-out/<name>/`, and `screenshots-out/index.html` shows them beside its references. Install the browser it uses first, once, with `npx playwright install chromium`. See the [README](https://github.com/alphagov/govuk-mobile-prototype-components#checking-what-a-component-looks-like) for its other options.

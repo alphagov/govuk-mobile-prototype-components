@@ -44,7 +44,7 @@ if (options.url) {
   if (!options.examples) {
     for (const slug of components.length ? components : Object.keys(definitions)) {
       if (!definitions[slug]) {
-        console.error(`There is no component called ${slug}: no components/${slug}/${slug}.json`)
+        console.error(`There is no component called ${slug}: no src/components/${slug}/${slug}.json`)
         process.exit(1)
       }
       clean(slug)
@@ -178,7 +178,7 @@ function serve(folder) {
 
 function readDefinitions() {
   const definitions = {}
-  for (const file of fs.globSync('components/*/*.json', { cwd: root })) {
+  for (const file of fs.globSync('src/components/*/*.json', { cwd: root })) {
     const slug = path.basename(path.dirname(file))
     if (path.basename(file) === `${slug}.json`) definitions[slug] = JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'))
   }
@@ -226,7 +226,7 @@ function writeIndex() {
     }
     const references = (definition.references ?? []).map(reference => `
       <figure><figcaption>${escape(`${reference.platform}: ${reference.description ?? ''}`)}</figcaption>
-        <img src="../components/${slug}/${reference.image}" alt="">
+        <img src="../src/components/${slug}/${reference.image}" alt="">
       </figure>`)
     sections.push(`
   <section id="${slug}">

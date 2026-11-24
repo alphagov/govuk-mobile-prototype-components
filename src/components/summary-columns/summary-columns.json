@@ -1,0 +1,77 @@
+{
+  "$schema": "../../schemas/component.schema.json",
+  "name": "Summary columns",
+  "element": "govuk-app-summary-columns",
+  "purpose": "Lays out a few short facts side by side, in equal columns with a divider between them, so they can be taken in at a glance: a vehicle's year, fuel and colour, a driver's offences and points, or a vehicle's tax and MOT.",
+  "origin": {
+    "kind": "govuk",
+    "notes": "The app's VehicleSpecView lays out a vehicle's year, fuel and colour this way: equal columns, each padded 16pt, with the system's separator between them. It only lays them out: what goes in each column is a component of its own, such as a labelled icon. The counts and statuses the future driving designs put in columns are proposed components."
+  },
+  "inputs": {
+    "attributes": {},
+    "content": "Two to four <govuk-app-summary-column> elements, left to right, each holding one component, such as a <govuk-app-labelled-icon>, a <govuk-app-count> or a <govuk-app-status>.",
+    "contains": {
+      "elements": ["govuk-app-summary-column"]
+    },
+    "parts": {
+      "govuk-app-summary-column": {
+        "description": "One column, holding one component, such as a labelled icon, a count or a status.",
+        "attributes": {},
+        "contains": {
+          "elements": "any"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "events": []
+  },
+  "rules": [
+    "Use it for two to four facts of the same kind, worth taking in at a glance. For more, or for longer ones, use a grouped list.",
+    "Put the same kind of component in every column: all labelled icons, all counts, or all statuses.",
+    "Keep what's in each column short, so it fits in a narrow column.",
+    "Put it inside a card, such as a grouped list's content row with flush, with anything more about the facts, such as History, in a row below it."
+  ],
+  "avoid": [
+    { "when": "For more than four facts, or longer ones", "instead": "govuk-app-grouped-list" },
+    { "when": "For facts of different kinds", "instead": "govuk-app-grouped-list-row type=\"information\"" },
+    { "when": "To put a few components side by side that aren't facts, such as a number plate and a menu button", "instead": "govuk-app-stack direction=\"horizontal\"" }
+  ],
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/DVLA/VehicleSpecView.swift",
+        "symbol": "VehicleSpecView, its horizontalView",
+        "ref": "8f1fe5da"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "design/src/main/kotlin/uk/gov/govuk/design/ui/component/SpecificationsIcons.kt",
+        "symbol": "SpecificationsIcons",
+        "ref": "f50fcd71"
+      }
+    ]
+  },
+  "references": [
+    { "platform": "ios", "image": "reference/ios-vehicle-spec-light.webp", "description": "A vehicle's year, fuel and colour, on its detail screen, in light mode", "from": "VehicleDetailViewSnapshotTests at 8f1fe5da" },
+    { "platform": "ios", "image": "reference/ios-vehicle-spec-dark.webp", "description": "The same, in dark mode", "from": "VehicleDetailViewSnapshotTests at 8f1fe5da" }
+  ],
+  "examples": [
+    {
+      "name": "Labelled icons, as a vehicle's year, fuel and colour",
+      "html": "<govuk-app-summary-columns>\n  <govuk-app-summary-column>\n    <govuk-app-labelled-icon icon=\"calendar_month\" label=\"Year of manufacture: 2021\">2021</govuk-app-labelled-icon>\n  </govuk-app-summary-column>\n  <govuk-app-summary-column>\n    <govuk-app-labelled-icon icon=\"local_gas_station\" label=\"Fuel: Petrol\">Petrol</govuk-app-labelled-icon>\n  </govuk-app-summary-column>\n  <govuk-app-summary-column>\n    <govuk-app-labelled-icon icon=\"palette\" label=\"Colour: Yellow\">Yellow</govuk-app-labelled-icon>\n  </govuk-app-summary-column>\n</govuk-app-summary-columns>"
+    },
+    {
+      "name": "Counts (proposed), as a driver's offences and points",
+      "html": "<govuk-app-summary-columns>\n  <govuk-app-summary-column>\n    <govuk-app-count value=\"2\">Offences</govuk-app-count>\n  </govuk-app-summary-column>\n  <govuk-app-summary-column>\n    <govuk-app-count value=\"12\">Points</govuk-app-count>\n  </govuk-app-summary-column>\n</govuk-app-summary-columns>"
+    },
+    {
+      "name": "Statuses (proposed), as a vehicle's tax and MOT",
+      "html": "<govuk-app-summary-columns>\n  <govuk-app-summary-column>\n    <govuk-app-status label=\"Tax\" caption=\"Valid\"></govuk-app-status>\n  </govuk-app-summary-column>\n  <govuk-app-summary-column>\n    <govuk-app-status state=\"due\" progress=\"0.75\" label=\"MOT due\" caption=\"23 days\"></govuk-app-status>\n  </govuk-app-summary-column>\n</govuk-app-summary-columns>"
+    }
+  ]
+}

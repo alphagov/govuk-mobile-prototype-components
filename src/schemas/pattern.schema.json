@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "A pattern's definition",
+  "description": "What every src/patterns/<name>/<name>.json says about its pattern: a whole screen, as the app arranges it, put together from the library's components. Its HTML is beside it, in src/patterns/<name>/<name>.html.",
+  "type": "object",
+  "required": ["name", "purpose", "when", "avoid", "components", "screen", "sources"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": {
+      "description": "What a designer calls it.",
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "description": "What the screen is for, in a sentence or two.",
+      "type": "string",
+      "minLength": 1
+    },
+    "when": {
+      "description": "When to use it, each a situation in a journey, so someone choosing between patterns can match theirs.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "avoid": {
+      "description": "When it's the wrong pattern, and what to use instead.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["when", "instead"],
+        "additionalProperties": false,
+        "properties": {
+          "when": { "type": "string", "minLength": 1 },
+          "instead": {
+            "description": "What to use instead: another pattern, by name, or a component, or a few words.",
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "components": {
+      "description": "The library's components it uses, by element name. The build checks these are exactly the ones its HTML uses.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^govuk-app-[a-z][a-z0-9-]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "screen": {
+      "description": "Which of the app's screens it is taken from, in words, such as \"Settings, the Settings tab\".",
+      "type": "string",
+      "minLength": 1
+    },
+    "sources": {
+      "description": "The app's screens it was taken from, in the iOS and Android source, and anything else. The same shape as a component's.",
+      "type": "object",
+      "required": ["figma", "ios", "android"],
+      "additionalProperties": false,
+      "properties": {
+        "figma": { "type": "array", "items": { "$ref": "#/$defs/link" } },
+        "ios": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+        "android": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+        "other": { "type": "array", "items": { "$ref": "#/$defs/link" } }
+      }
+    },
+    "notes": {
+      "description": "Anything else to know when using it, such as what to change in its HTML.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "$defs": {
+    "link": {
+      "type": "object",
+      "required": ["title", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["repo", "path", "symbol"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": { "type": "string", "minLength": 1 },
+        "path": { "type": "string", "minLength": 1 },
+        "symbol": { "type": "string", "minLength": 1 },
+        "ref": { "type": "string" }
+      }
+    }
+  }
+}
