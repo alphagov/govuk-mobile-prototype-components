@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Face ID – GOV.UK app example</title>
   <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../../frame/frame.js"></script>
   <script type="module" src="../example.js"></script>
   <script type="module" src="../../components/screen/screen.js"></script>
   <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
@@ -13,7 +14,8 @@
   <script type="module" src="../../components/button-stack/button-stack.js"></script>
 </head>
 <body>
-  <div class="example-phone">
+  <govuk-prototype-frame>
+    <a class="example-back" href="../">Back to examples</a>
     <govuk-app highlight-actions>
       <govuk-app-screen>
         <govuk-app-nav-bar title="Face ID" large-title back-href="index.html"></govuk-app-nav-bar>
@@ -26,6 +28,6 @@
         </govuk-app-button-stack>
       </govuk-app-screen>
     </govuk-app>
-  </div>
+  </govuk-prototype-frame>
 </body>
 </html>

@@ -17,6 +17,7 @@
     "components/*/*.ttf",
     "components/*/*.txt",
     "foundation",
+    "frame",
     "component.schema.json"
   ],
   "scripts": {
