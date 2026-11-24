@@ -1,0 +1,60 @@
+/* The start page's styles: plain, as it isn't part of the app. */
+
+:root {
+  color-scheme: light dark;
+  --text: light-dark(#0b0c0c, #f3f2f1);
+  --secondary: light-dark(#505a5f, #b1b4b6);
+  --link: light-dark(#1d70b8, #8fc1ec);
+  --line: light-dark(#cecece, #4a4a4a);
+  --background: light-dark(#ffffff, #1d1d1d);
+}
+body {
+  margin: 0;
+  padding: 32px 16px;
+  background: var(--background);
+  color: var(--text);
+  font: 19px/1.4 system-ui, -apple-system, sans-serif;
+}
+.start {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.start__title {
+  margin: 0 0 8px;
+  font-size: 36px;
+  line-height: 1.1;
+}
+.start__description,
+.start__hint {
+  margin: 0 0 24px;
+  color: var(--secondary);
+}
+.start__group {
+  margin: 32px 0 8px;
+  font-size: 24px;
+}
+.start__screens {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+.start__screen {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.start__screen a,
+.start__clear {
+  color: var(--link);
+  font-weight: 600;
+}
+.start__screen p {
+  margin: 4px 0 0;
+  color: var(--secondary);
+  font-size: 16px;
+}
+.start__clear {
+  display: inline-block;
+  margin-top: 32px;
+  font-size: 16px;
+}
