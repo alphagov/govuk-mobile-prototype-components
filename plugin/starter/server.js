@@ -6,8 +6,8 @@
 // No dependencies, so there's nothing to install but the library itself:
 //
 //   /             this folder: index.html, prototype.js, screens/, components/
-//   /library/     the GOV.UK app prototype components, from node_modules,
-//                 wherever library.js says they are
+//   /library/     the GOV.UK app prototype components' package, from
+//                 node_modules, where library.js says it is
 //
 // Only this computer can see it: it listens on localhost, not the network.
 
@@ -15,7 +15,7 @@ import fs from 'node:fs'
 import http from 'node:http'
 import path from 'node:path'
 
-import { catalogue, library, libraryFiles } from './library.js'
+import { library } from './library.js'
 
 const root = import.meta.dirname
 const firstPort = Number(process.env.PORT) || 3000
@@ -64,11 +64,9 @@ function within(base, urlPath) {
 
 /** The file to serve for a request's path, or nothing. */
 function resolve(urlPath) {
-  const [base, rest] = urlPath.startsWith('/library/catalogue/')
-    ? [catalogue, urlPath.slice('/library/catalogue'.length)]
-    : urlPath.startsWith('/library/')
-      ? [libraryFiles, urlPath.slice('/library'.length)]
-      : [root, urlPath]
+  const [base, rest] = urlPath.startsWith('/library/')
+    ? [library, urlPath.slice('/library'.length)]
+    : [root, urlPath]
   let file = within(base, rest)
   if (!file) return null
   // node_modules and .git are the server's business, not the prototype's.

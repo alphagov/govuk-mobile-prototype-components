@@ -45,7 +45,7 @@ If `catalogue/index.md` isn't in the installed library, the version installed is
 
 ## A screen is blank, or shows plain text and no phone
 
-The page can't load the components. Open the address of one of its scripts, such as `/library/components/screen/screen.js`, with curl: a 404 means the path is wrong. Screens must load the library from `/library/...`, not `../../` or `node_modules/`. Look in the browser's console too, if you can: a component's error names what it couldn't load.
+The page can't load the components. Open the address of one of its scripts with curl: a 404 means the path is wrong. Screens must load the library from `/library/`, at the URL `node library.js` prints as `libraryUrl`, not from `../../` or `node_modules/`. If the library was updated and moved its files, `source` in `library.js` must match. Look in the browser's console too, if you can: a component's error names what it couldn't load.
 
 ## The page doesn't update after a change
 

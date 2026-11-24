@@ -32,7 +32,7 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 ## The prototyping plugin
 
 - `plugin/` is a Claude Code plugin, listed by `.claude-plugin/marketplace.json`, for designers who've never used a terminal. Its skills make and run a prototype from `plugin/starter/`. Write them, and what they tell the designer, in plain words, with no jargon.
-- A prototype finds the library through `library.js` alone, and serves it at `/library/`. Keep it that way, so moving the library's files is a one-line change.
+- A prototype serves the library's whole package at `/library/`, so a catalogue path is `/library/` and that path. Where the shipped files are inside the package is `source` in `plugin/starter/library.js` alone: keep it that way, so moving them is a one-line change.
 - Check a change to it end to end in an empty folder: `claude plugin validate .`, then make a prototype as the skills say and look at it.
 
 ## Styles

@@ -4,7 +4,8 @@
 //   node scripts/add-screens.js blank
 //
 // Each template's pages are copied from the installed library into
-// screens/<template>/, with their paths to the library changed to /library/,
+// screens/<template>/, with their paths to the library changed to its URL
+// (library.js),
 // where the prototype's server has it, and prototype.js added, so answers
 // carry from screen to screen. Each page is listed in prototype.json, for the
 // start page. A blank screen goes in screens/start/.
@@ -14,7 +15,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import { libraryFiles as library } from '../library.js'
+import { libraryFiles as library, libraryUrl } from '../library.js'
 
 const choices = process.argv.slice(2)
 if (!choices.length) {
@@ -38,9 +39,9 @@ manifest.screens ??= []
 function adapt(html) {
   return html
     // ../../components/button/button.js, and the like, to /library/components/button/button.js.
-    .replace(/(?:\.\.\/)+(components|foundation|frame)\//g, '/library/$1/')
+    .replace(/(?:\.\.\/)+(components|foundation|frame)\//g, `${libraryUrl}$1/`)
     // Answers carry between screens. After the frame, before the components.
-    .replace(/(<script type="module" src="\/library\/frame\/frame\.js"><\/script>\n)/, '$1  <script type="module" src="/prototype.js"></script>\n')
+    .replace(/(<script type="module" src="[^"]*\/frame\/frame\.js"><\/script>\n)/, '$1  <script type="module" src="/prototype.js"></script>\n')
 }
 
 function addTemplate(name) {
@@ -79,11 +80,11 @@ const blank = `<!doctype html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Start – GOV.UK app prototype</title>
-  <script type="module" src="/library/frame/frame.js"></script>
+  <script type="module" src="${libraryUrl}frame/frame.js"></script>
   <script type="module" src="/prototype.js"></script>
-  <script type="module" src="/library/components/screen/screen.js"></script>
-  <script type="module" src="/library/components/nav-bar/nav-bar.js"></script>
-  <script type="module" src="/library/components/text/text.js"></script>
+  <script type="module" src="${libraryUrl}components/screen/screen.js"></script>
+  <script type="module" src="${libraryUrl}components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="${libraryUrl}components/text/text.js"></script>
 </head>
 <body>
   <govuk-prototype-frame>
