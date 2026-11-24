@@ -1,0 +1,118 @@
+<!doctype html>
+<!--
+  The prototype's start page: every screen in it, from prototype.json.
+
+  Not part of the app, so it's plain HTML, styled here, outside <govuk-app>.
+  To add a screen to it, add it to prototype.json, with its title, its path
+  and, if it's in a group, such as Settings, the group's name.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prototype</title>
+  <script type="module" src="/prototype.js"></script>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --text: light-dark(#0b0c0c, #f3f2f1);
+      --secondary: light-dark(#505a5f, #b1b4b6);
+      --link: light-dark(#1d70b8, #8fc1ec);
+      --line: light-dark(#cecece, #4a4a4a);
+      --background: light-dark(#ffffff, #1d1d1d);
+    }
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      background: var(--background);
+      color: var(--text);
+      font: 19px/1.4 system-ui, -apple-system, sans-serif;
+    }
+    .start {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .start__title {
+      margin: 0 0 8px;
+      font-size: 36px;
+      line-height: 1.1;
+    }
+    .start__description,
+    .start__hint {
+      margin: 0 0 24px;
+      color: var(--secondary);
+    }
+    .start__group {
+      margin: 32px 0 8px;
+      font-size: 24px;
+    }
+    .start__screens {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .start__screen {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .start__screen a,
+    .start__clear {
+      color: var(--link);
+      font-weight: 600;
+    }
+    .start__screen p {
+      margin: 4px 0 0;
+      color: var(--secondary);
+      font-size: 16px;
+    }
+    .start__clear {
+      display: inline-block;
+      margin-top: 32px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <main class="start">
+    <h1 class="start__title" id="name">Prototype</h1>
+    <p class="start__description" id="description" hidden></p>
+    <div id="screens">
+      <p class="start__hint">No screens yet. Ask Claude to make one.</p>
+    </div>
+    <a class="start__clear" href="/" data-clear-answers>Start again, forgetting every answer</a>
+  </main>
+  <script type="module">
+    const escape = text => String(text ?? '').replace(/[&<>"]/g, character => `&#${character.charCodeAt(0)};`)
+    const response = await fetch('/prototype.json', { cache: 'no-store' })
+    const prototype = await response.json()
+
+    document.title = prototype.name || 'Prototype'
+    document.getElementById('name').textContent = prototype.name || 'Prototype'
+    if (prototype.description) {
+      const description = document.getElementById('description')
+      description.textContent = prototype.description
+      description.hidden = false
+    }
+
+    // Screens in the order they're listed, under their group's name, if any.
+    const groups = new Map()
+    for (const screen of prototype.screens ?? []) {
+      const group = screen.group ?? ''
+      if (!groups.has(group)) groups.set(group, [])
+      groups.get(group).push(screen)
+    }
+    if (groups.size) {
+      document.getElementById('screens').innerHTML = [...groups].map(([group, screens]) => `
+        ${group ? `<h2 class="start__group">${escape(group)}</h2>` : ''}
+        <ul class="start__screens">
+          ${screens.map(screen => `
+            <li class="start__screen">
+              <a href="${escape(screen.path)}">${escape(screen.title)}</a>
+              ${screen.description ? `<p>${escape(screen.description)}</p>` : ''}
+            </li>`).join('')}
+        </ul>`).join('')
+    }
+  </script>
+</body>
+</html>

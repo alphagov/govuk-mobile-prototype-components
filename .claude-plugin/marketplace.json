@@ -1,0 +1,15 @@
+{
+  "name": "govuk-app",
+  "description": "Claude Code plugins for prototyping the GOV.UK app.",
+  "owner": {
+    "name": "Government Digital Service",
+    "url": "https://github.com/alphagov/govuk-mobile-prototype-components"
+  },
+  "plugins": [
+    {
+      "name": "govuk-app-prototyping",
+      "source": "./plugin",
+      "description": "Make a prototype of the GOV.UK app on your computer, from the app's own screens and components, by asking Claude in plain words."
+    }
+  ]
+}

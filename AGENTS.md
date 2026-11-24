@@ -28,6 +28,12 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 - List its pages in `screens`, the first where the journey starts, and in `components` exactly the components they use: the build checks. Its docs page is at `/templates/<name>/about/`, since its own `index.html` is at `/templates/<name>/`.
 - Templates are their own thing: leave `examples/` as it is.
 
+## The prototyping plugin
+
+- `plugin/` is a Claude Code plugin, listed by `.claude-plugin/marketplace.json`, for designers who've never used a terminal. Its skills make and run a prototype from `plugin/starter/`. Write them, and what they tell the designer, in plain words, with no jargon.
+- A prototype finds the library through `library.js` alone, and serves it at `/library/`. Keep it that way, so moving the library's files is a one-line change.
+- Check a change to it end to end in an empty folder: `claude plugin validate .`, then make a prototype as the skills say and look at it.
+
 ## Styles
 
 - A component styles only its own classes, `govuk-app-NAME` and `govuk-app-NAME__part`, with a single class where it can. Never another component's classes, and never a bare element.
