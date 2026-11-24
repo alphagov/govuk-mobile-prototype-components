@@ -5,7 +5,7 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 ## Where things go
 
 - `src/` is the library, and only the library: components, patterns, templates, foundation, frame and schemas. It's what the package ships, and the docs site publishes it at the same paths.
-- Everything else sits around it: `examples/`, `docs/`, `scripts/`, and `inventory/` for the survey of the apps. Generated output (`_site/`, `catalogue/`, `screenshots-out/`) is never committed.
+- Everything else sits around it: `examples/`, `docs/`, `scripts/`, and `inventory/` for the survey of the apps. Generated output (`_site/`, `catalogue/`, `screenshots-out/`) is never committed to a branch. Only a release's commit holds `catalogue/`.
 - Keep the root to these and the project's own files. Ask before adding a folder there.
 
 ## Components
@@ -13,7 +13,7 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 - One folder per component, `src/components/<name>/`: `<name>.html`, `.css`, `.js`, `.json`, an optional `.md`, and `reference/` screenshots. A folder with a definition gets its docs page, index entry and sidebar entry with nothing else to update.
 - Web components in light DOM, vanilla JS, no build step, no framework. `src/foundation/component.js` draws each from its template.
 - Components send no events of their own: they draw real links, buttons and fields, whose events bubble.
-- `catalogue/` is generated from the definitions by `npm run catalogue` (and by `npm run build` and `npm pack`), and isn't committed. Run it before reading it. Put a new component in one of the index's groups, in `scripts/catalogue.js`, or the build fails.
+- `catalogue/` is generated from the definitions by `npm run catalogue` (and by `npm run build`). It's in every release, but never on `main`. Run it before reading it. Put a new component in one of the index's groups, in `scripts/catalogue.js`, or the build fails.
 - Each definition follows `src/schemas/component.schema.json`. Say where it comes from: the iOS and Android source, with the commit read, and the app's screenshots in `reference/`.
 - Call the two kinds **GOV.UK app components** (`origin.kind: "govuk"`, the app's own) and **native components** (`"native"`, mirroring a platform control). The names live in `docs/_data/components.js`.
 - Match the app, or for a proposed component, its design. Where we can't, say so in the component's `.md` under "Known differences from the app".
@@ -55,3 +55,9 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 
 - Plain, short UK English, in the voice of the existing docs and comments. Comments say why, not what.
 - Commits: a short imperative subject, then a body saying why.
+
+## Releasing
+
+- Release only with the Release workflow (see the README). It adds the catalogue and the version in a commit that only the tag points to, so `main` stays free of generated files.
+- Nothing may run when the package is installed: no `prepare`, `install` or other install script. Installing from GitHub would run it, after installing the dev dependencies. The workflow refuses a release that has one.
+- Don't tag by hand, or change `version` on `main`: it stays `0.0.0`.

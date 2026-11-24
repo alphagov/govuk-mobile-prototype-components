@@ -11,8 +11,9 @@
 // is all of it as data, for tools.
 //
 // Like _site/, it's built, not committed: `npm run build` writes it for the
-// docs site to publish, and `npm pack` for the package, so it's always made
-// from the definitions as they are.
+// docs site to publish, and the Release workflow for each release's commit, so
+// it's always made from the definitions as they are. Nothing builds it on
+// install, which would need the dev dependencies.
 
 import fs from 'node:fs'
 import path from 'node:path'
