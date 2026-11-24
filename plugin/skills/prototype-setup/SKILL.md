@@ -42,8 +42,6 @@ nvm only works in a shell that has loaded it, and each command you run starts a 
 
 If `node_modules/govuk-mobile-prototype-components` isn't there, or the prototype's `package.json` has changed since, run `npm install`. Say first: "I'm downloading the GOV.UK app components. It can take a minute or two."
 
-npm may warn that a package "has install scripts not yet covered by allowScripts", naming `govuk-mobile-prototype-components` and `prepare`. That's expected: it's the components building their catalogue as they install. Don't mention it unless they ask.
-
 Then check `node_modules/govuk-mobile-prototype-components/catalogue/index.md` is there. If it isn't, see the troubleshooting.
 
 ## 4. Start it

@@ -14,8 +14,8 @@ import path from 'node:path'
 
 const repository = 'alphagov/govuk-mobile-prototype-components'
 
-// The first release with its files in src/ and its catalogue built in, which
-// library.js and the skills expect. Before there's one, use main.
+// The first release with its files in src/ and its catalogue in it, which
+// library.js and the skills expect. main has no catalogue, so never main.
 const first = [0, 4, 0]
 
 const file = path.join(import.meta.dirname, '..', 'package.json')
@@ -45,10 +45,12 @@ const tags = listTags()
 
 const compare = (a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2]
 const latest = tags.sort((a, b) => compare(b.version, a.version))[0]
-const ref = latest && compare(latest.version, first) >= 0 ? latest.tag : 'main'
+if (!latest || compare(latest.version, first) < 0) {
+  console.error('The components haven’t been released yet, so there’s no version to make a prototype from. Ask the library’s maintainers.')
+  process.exit(1)
+}
+const ref = latest.tag
 
 pkg.dependencies['govuk-mobile-prototype-components'] = `github:${repository}#${ref}`
 fs.writeFileSync(file, `${JSON.stringify(pkg, null, 2)}\n`)
-console.log(ref === 'main'
-  ? `No release from v${first.join('.')} yet, so using main`
-  : `Using ${ref}`)
+console.log(`Using ${ref}`)

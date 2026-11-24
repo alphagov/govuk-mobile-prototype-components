@@ -31,13 +31,13 @@ Read the error, then say in plain words what's happening.
 - **Permissions**: `EACCES`. Don't use sudo. The prototype folder may belong to another user: `ls -ld .` shows who. If it's in a folder they can't write to, offer to make the prototype in their Documents folder instead.
 - **A half-finished install**: anything else. Delete `node_modules` and `package-lock.json` and run `npm install` once more. If it fails again, tell them what the error says in plain words, and suggest they share it with whoever looks after the prototype kit.
 
-## The install-scripts warning
-
-`npm warn install-scripts 1 package has install scripts not yet covered by allowScripts`, naming `govuk-mobile-prototype-components (prepare: node scripts/catalogue.js)`. Expected: it's the components building their catalogue as they install. Nothing to do.
-
 ## There's no catalogue
 
-If `catalogue/index.md` isn't in the installed library, the version installed is older than the catalogue. The prototype still works; you just choose without it. Read the template definitions (`<library>/templates/*/*.json`), patterns (`<library>/patterns/*/*.json`) and the components' definitions (`<library>/components/*/*.json`) instead, where `<library>` is what `node library.js` prints as `libraryFiles`. Don't mention it to the person.
+The catalogue comes ready-made in each release of the components, from v0.4.0. If `catalogue/index.md` isn't in the installed library, `package.json` points at something that isn't such a release: `main`, a commit, or an older version. Fix it: run `node scripts/use-latest-components.js`, then `npm install`, check the screens still load, and save a version. If the script says there's no release yet, see below.
+
+## "The components haven't been released yet"
+
+`use-latest-components.js` found no release from v0.4.0 on GitHub. There's nothing the designer can do: tell them the components aren't ready to make prototypes with yet, and to ask the library's maintainers. Don't install from `main` instead: it has no catalogue, and isn't a version anyone has checked.
 
 ## The browser says it can't connect
 

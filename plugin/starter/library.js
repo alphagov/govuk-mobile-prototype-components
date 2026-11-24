@@ -21,7 +21,7 @@ export const libraryFiles = path.join(library, source)
 /** Its URL, where a page loads components from: /library/ or /library/src/. */
 export const libraryUrl = `/library/${source ? `${source}/` : ''}`
 
-/** Its catalogue, built when it's installed, always at the package's root. */
+/** Its catalogue, ready-made in each release, always at the package's root. */
 export const catalogue = path.join(library, 'catalogue')
 
 // `node library.js` says where they are, for a tool that needs to read them.

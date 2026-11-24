@@ -48,7 +48,7 @@ Then point the prototype at the latest version of the components:
 node scripts/use-latest-components.js
 ```
 
-It finds the newest release on GitHub and writes it into `package.json`, so the prototype keeps that version until someone chooses to update it. Don't mention releases or tags: to the designer, it's "the latest version of the components". If it can't reach GitHub, that's the network: see the setup skill's troubleshooting.
+It finds the newest release on GitHub and writes it into `package.json`, so the prototype keeps that version until someone chooses to update it. Don't mention releases or tags: to the designer, it's "the latest version of the components". If it can't reach GitHub, or says the components haven't been released yet, see the setup skill's troubleshooting. Don't carry on without a release: stop, and tell them plainly.
 
 Then follow step 3 of `prototype-setup`, to install them.
 
