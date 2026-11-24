@@ -21,7 +21,8 @@ export default async function (eleventyConfig) {
         { text: 'Get started', href: '/get-started/' },
         { text: 'Components', href: '/components/' },
         { text: 'Patterns', href: '/patterns/' },
-        { text: 'Examples', href: '/examples/' }
+        { text: 'Examples', href: '/examples/' },
+        { text: 'Templates', href: '/templates/' }
       ]
     },
     markdown: {
@@ -56,6 +57,11 @@ export default async function (eleventyConfig) {
   // A pattern's HTML is drawn into its page, so it isn't copied.
   eleventyConfig.addWatchTarget('patterns/')
   eleventyConfig.addWatchTarget('pattern.schema.json')
+  // Templates, as they are in the repository, so each page can be opened
+  // live. Their definitions are drawn into their docs pages.
+  eleventyConfig.addPassthroughCopy({ templates: 'templates' }, { filter: path => !path.endsWith('.json') })
+  eleventyConfig.addWatchTarget('templates/')
+  eleventyConfig.addWatchTarget('template.schema.json')
 
   // Everything in the library, for tools that build prototypes: an index, a
   // card for each thing, and all of it as data. `npm run build` writes it
@@ -71,12 +77,14 @@ export default async function (eleventyConfig) {
     highlight(code, 'html').replace('<pre class="', '<pre class="docs-example__pre '))
 
   // Every component's page links to every other in its sidebar, and every
-  // pattern's to every other pattern's. Fail the build if one doesn't: Eleventy
-  // leaves all but the first page of a paginated template out of collections,
-  // and so out of the sidebar, unless told not to.
+  // pattern's to every other pattern's, and every template's to every other
+  // template's. Fail the build if one doesn't: Eleventy leaves all but the
+  // first page of a paginated template out of collections, and so out of the
+  // sidebar, unless told not to. A template's page is at about/, since its
+  // own index.html is at /templates/<name>/.
   eleventyConfig.on('eleventy.after', ({ results }) => {
-    for (const section of ['components', 'patterns']) {
-      const pages = results.filter(result => new RegExp(`^/${section}/[^/]+/$`).test(result.url))
+    for (const section of ['components/[^/]+', 'patterns/[^/]+', 'templates/[^/]+/about']) {
+      const pages = results.filter(result => new RegExp(`^/${section}/$`).test(result.url))
       for (const page of pages) {
         const missing = pages.filter(other => !page.content.includes(`${other.url}"`))
         if (missing.length) {

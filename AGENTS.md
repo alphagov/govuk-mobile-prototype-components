@@ -21,6 +21,14 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 - Write `when` and `avoid` so someone could choose between patterns from them alone. `avoid.instead` names another pattern exactly, so its page links to it.
 - List in `components` exactly the components the HTML uses: the build checks.
 
+## Templates
+
+- A template is a real screen of the app, or a few that link to each other, as whole pages to copy and change: `templates/<name>/`, its pages and `<name>.json`, following `template.schema.json`. iOS only for now.
+- Each page is complete: `<govuk-prototype-frame>`, the scripts it needs from `../../components/` and `../../frame/`, and a comment at its top saying what to change and what to leave. Nothing from `examples/`.
+- Links between its own pages work. A link to a screen no template has is a named button, not an href to a page that isn't there. The tab bar's tabs link to the other templates' first pages, such as `../home/index.html`.
+- List its pages in `screens`, the first where the journey starts, and in `components` exactly the components they use: the build checks. Its docs page is at `/templates/<name>/about/`, since its own `index.html` is at `/templates/<name>/`.
+- Templates are their own thing: leave `examples/` as it is.
+
 ## Styles
 
 - A component styles only its own classes, `govuk-app-NAME` and `govuk-app-NAME__part`, with a single class where it can. Never another component's classes, and never a bare element.

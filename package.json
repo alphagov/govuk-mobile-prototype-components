@@ -21,6 +21,8 @@
     "component.schema.json",
     "patterns",
     "pattern.schema.json",
+    "templates",
+    "template.schema.json",
     "catalogue"
   ],
   "scripts": {

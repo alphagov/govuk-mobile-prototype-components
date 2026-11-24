@@ -1,0 +1,19 @@
+---
+layout: sub-navigation
+title: Templates
+description: Real screens of the app, written as whole pages to copy and change.
+sectionKey: Templates
+order: 5
+---
+<p class="govuk-body">Each template is one of the app’s screens as it is today, or a few that link to each other, written as whole pages to start a prototype from. Copy its folder from <code>templates/</code> in the repository, then change it: a comment at the top of each page says what to change, and what to leave as the app has it.</p>
+
+<p class="govuk-body">Templates are iOS only for now.</p>
+
+<ul class="govuk-list">
+  {% for template in templates %}
+  <li class="govuk-!-margin-bottom-6">
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link" href="/templates/{{ template.slug }}/about/">{{ template.name | escape }}</a></h2>
+    <p class="govuk-body govuk-!-margin-bottom-0">{{ template.purpose | escape }}</p>
+  </li>
+  {% endfor %}
+</ul>

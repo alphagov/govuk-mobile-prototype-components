@@ -1,0 +1,93 @@
+---
+pagination:
+  data: templates
+  size: 1
+  alias: template
+  # Every template's page, not only the first, so each is in the sidebar.
+  addAllPagesToCollections: true
+# At about/, since the template itself is at /templates/<name>/, so its
+# pages link to the components as they do in the repository.
+permalink: "/templates/{{ template.slug }}/about/"
+# The component layout, for its page title without "(page 2 of 3)".
+layout: component
+sectionKey: Templates
+eleventyNavigation:
+  parent: Templates
+eleventyComputed:
+  # A key of its own, since a template is named after its screen, and the
+  # site already has a Home.
+  eleventyNavigation:
+    key: "Template: {{ template.name }}"
+    title: "{{ template.name }}"
+  order: "{{ template.order }}"
+  title: "{{ template.name }}"
+  description: "{{ template.purpose | escape }}"
+---
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% set platforms = { ios: "iOS", android: "Android" } %}
+
+<div class="app-prose-scope">
+  <p class="govuk-body">From the app: {{ template.screen | escape }}. To start a prototype from it, copy the folder <code>templates/{{ template.slug }}/</code> from the repository.</p>
+
+  <h2 class="govuk-heading-l" id="when">When to start from it</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {% for when in template.when %}
+    <li>{{ when | escape }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2 class="govuk-heading-l" id="screens">Screens</h2>
+  <p class="govuk-body">The journey starts on the first. Open one to try it, in a phone.</p>
+  {% set rows = [] %}
+  {% for screen in template.screens %}
+    {% set rows = (rows.push({
+      key: { text: screen.title },
+      value: { html: '<p class="govuk-body">' + (screen.description | escape) + '</p><p class="govuk-body"><code>' + (screen.file | escape) + '</code></p>' },
+      actions: { items: [{ href: '/templates/' + template.slug + '/' + screen.file, text: 'Open', visuallyHiddenText: screen.title }] }
+    }), rows) %}
+  {% endfor %}
+  {{ govukSummaryList({ rows: rows }) }}
+
+  {% if template.notes | length %}
+  <h2 class="govuk-heading-l" id="notes">Using it</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {% for note in template.notes %}
+    <li>{{ note | escape }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <h2 class="govuk-heading-l" id="components">Components it uses</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {% for component in template.uses %}
+    <li><a class="govuk-link" href="/components/{{ component.slug }}/">{{ component.name | escape }}</a>, <code>&lt;{{ component.element }}&gt;</code></li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% set sourcesHtml %}
+<ul class="govuk-list govuk-list--bullet">
+  {% for platform in ["ios", "android"] %}
+  {% for source in template.sources[platform] %}
+  <li>{{ platforms[platform] }}: <code>{{ source.symbol | escape }}</code> in {{ source.repo | escape }}/{{ source.path | escape }}{% if source.ref %} at {{ source.ref | escape }}{% endif %}</li>
+  {% endfor %}
+  {% endfor %}
+  {% for link in template.sources.figma %}
+  <li>Figma: <a class="govuk-link" href="{{ link.url | escape }}">{{ link.title | escape }}</a></li>
+  {% endfor %}
+  {% for link in template.sources.other %}
+  <li><a class="govuk-link" href="{{ link.url | escape }}">{{ link.title | escape }}</a></li>
+  {% endfor %}
+</ul>
+{% endset %}
+
+{{ govukAccordion({
+  id: "template-details",
+  headingLevel: 2,
+  items: [{
+    heading: { text: "Sources" },
+    summary: { text: "The app’s iOS screens it was taken from" },
+    content: { html: sourcesHtml }
+  }]
+}) }}

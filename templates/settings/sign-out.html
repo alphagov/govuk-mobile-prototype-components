@@ -1,0 +1,67 @@
+<!doctype html>
+<!--
+  Template: the sign-out confirmation, opened from Sign out in Settings, as
+  the GOV.UK app has it. It slides up as a sheet over Settings.
+
+  Change: the question, the text and the buttons' words, to confirm another
+  action. Say what the action does on its button, not Yes. Change where each
+  button goes in the script below, by the button's name.
+
+  Leave: the sheet, with the top of Settings behind it, the close button, and
+  the destructive button above Cancel. Keep works on each button the script
+  acts on, so highlight-actions knows they do something.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sign out – GOV.UK app prototype</title>
+  <script type="module" src="../../frame/frame.js"></script>
+  <script type="module" src="../../components/screen/screen.js"></script>
+  <script type="module" src="../../components/heading/heading.js"></script>
+  <script type="module" src="../../components/text/text.js"></script>
+  <script type="module" src="../../components/button/button.js"></script>
+  <script type="module" src="../../components/button-stack/button-stack.js"></script>
+  <script type="module" src="../../components/sheet/sheet.js"></script>
+  <script type="module" src="../../components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../components/grouped-list/grouped-list.js"></script>
+  <script type="module">
+    // Buttons go nowhere of their own: the page listens for which was
+    // pressed, by its name, and goes where the app would.
+    const next = { 'sign-out': 'signed-out.html', cancel: 'index.html' }
+    document.addEventListener('click', event => {
+      const button = event.target.closest('govuk-app button')
+      if (next[button?.name]) location.href = next[button.name]
+    })
+  </script>
+</head>
+<body>
+  <govuk-prototype-frame>
+    <govuk-app highlight-actions>
+      <govuk-app-sheet present>
+        <!-- Settings, which it was presented from: only its top, which is
+             all that shows behind the sheet. -->
+        <govuk-app-screen slot="behind">
+          <govuk-app-nav-bar title="Settings" large-title></govuk-app-nav-bar>
+          <govuk-app-grouped-list footer="You might need to sign in again to manage your GOV.UK One Login details.">
+            <govuk-app-grouped-list-row type="information" description="test@example.com">Your GOV.UK One Login</govuk-app-grouped-list-row>
+            <govuk-app-grouped-list-row type="link">Manage your GOV.UK One Login</govuk-app-grouped-list-row>
+          </govuk-app-grouped-list>
+        </govuk-app-screen>
+
+        <govuk-app-screen background="modal">
+          <govuk-app-nav-bar>
+            <govuk-app-nav-bar-item icon="close" href="index.html">Close</govuk-app-nav-bar-item>
+          </govuk-app-nav-bar>
+          <govuk-app-heading level="1" size="title-1">Are you sure you want to sign out?</govuk-app-heading>
+          <govuk-app-text>If you’re using Face ID or Touch ID to unlock the app, this will be turned off. You can turn it on again the next time you sign in.</govuk-app-text>
+          <govuk-app-button-stack slot="footer">
+            <govuk-app-button variant="destructive" name="sign-out" works>Sign out</govuk-app-button>
+            <govuk-app-button variant="grouped-secondary" name="cancel" works>Cancel</govuk-app-button>
+          </govuk-app-button-stack>
+        </govuk-app-screen>
+      </govuk-app-sheet>
+    </govuk-app>
+  </govuk-prototype-frame>
+</body>
+</html>
