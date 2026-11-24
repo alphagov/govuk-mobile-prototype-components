@@ -1,0 +1,68 @@
+{
+  "$schema": "../../pattern.schema.json",
+  "name": "Outcome",
+  "purpose": "Tells the user that something has finished, such as signing in or out, with a short centred heading and line of text, and one action to go on.",
+  "when": [
+    "Something the user did has finished, and they need to know before they go on, such as after signing out or signing in.",
+    "There is one obvious next step.",
+    "The screen ends a journey, or a step in one, and the user can't go back into it."
+  ],
+  "avoid": [
+    {
+      "when": "The user hasn't done it yet, and is choosing whether to.",
+      "instead": "Confirmation"
+    },
+    {
+      "when": "The screen needs more than a line or two to explain things.",
+      "instead": "Information page"
+    },
+    {
+      "when": "The user has more than one thing they could do next.",
+      "instead": "Settings list, or a screen with a primary and a grouped secondary button in the button stack"
+    }
+  ],
+  "components": [
+    "govuk-app-screen",
+    "govuk-app-heading",
+    "govuk-app-text",
+    "govuk-app-button-stack",
+    "govuk-app-button"
+  ],
+  "screen": "You’ve signed out, shown after signing out from Settings",
+  "sources": {
+    "figma": [],
+    "ios": [
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Views/Common/Info/InfoView.swift",
+        "symbol": "InfoView",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/ViewModels/SignInSuccessViewModel.swift",
+        "symbol": "SignInSuccessViewModel",
+        "ref": "3813aa2a"
+      },
+      {
+        "repo": "govuk-once/govuk-mobile-ios-app",
+        "path": "Production/govuk_ios/Resources/Strings/SignOut.xcstrings",
+        "symbol": "signedOutTitle",
+        "ref": "3813aa2a"
+      }
+    ],
+    "android": [
+      {
+        "repo": "govuk-once/govuk-mobile-android-app",
+        "path": "design/src/main/kotlin/uk/gov/govuk/design/ui/component/Screen.kt",
+        "symbol": "CentreAlignedScreen",
+        "ref": "ed6237d6"
+      }
+    ]
+  },
+  "notes": [
+    "Say what happened in the heading, in the past tense, and what it means for the user in the text.",
+    "It has no navigation bar: the user goes on with its button, not back.",
+    "Its button goes nowhere of its own. The page listens for a click on it, by name, as examples/settings/signed-out.html does."
+  ]
+}

@@ -14,6 +14,12 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 - Give each definition `avoid`: when the component is the wrong choice, and what to use instead, such as `govuk-app-button variant="destructive"`. Think of the components a designer, or a tool building a prototype, might pick it over by mistake. Write it as an element where the library has one, which the build checks, and in words where it doesn't.
 - Use Material Symbols in place of SF Symbols, which may only be used on Apple's platforms. Load their font with `fonts: [materialSymbols]` in `defineComponent` (or `materialSymbolsOutlined`, for the app's topic icons), never an `@import` in the component's CSS: a component waits for its stylesheet, and the font is too big to wait for. The fonts are in `foundation/fonts/`, so the library loads nothing from another site: a page with a strict Content Security Policy, or offline, can use it. Give each element drawn in the font the class `govuk-app-icon` as well as its own, so it's hidden until the font has loaded, rather than showing as its name.
 
+## Patterns
+
+- A pattern is a whole screen the app has, in `patterns/<name>/`: `<name>.html`, one `<govuk-app-screen>` with generic but real content, and `<name>.json`, following `pattern.schema.json`. Take it from a real screen, and name it in `screen` and `sources`.
+- Write `when` and `avoid` so someone could choose between patterns from them alone. `avoid.instead` names another pattern exactly, so its page links to it.
+- List in `components` exactly the components the HTML uses: the build checks.
+
 ## Styles
 
 - A component styles only its own classes, `govuk-app-NAME` and `govuk-app-NAME__part`, with a single class where it can. Never another component's classes, and never a bare element.

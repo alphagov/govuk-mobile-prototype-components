@@ -1,0 +1,30 @@
+<govuk-app-screen>
+  <govuk-app-nav-bar title="Settings" large-title></govuk-app-nav-bar>
+
+  <govuk-app-grouped-list footer="A line under a group, to explain the rows in it.">
+    <govuk-app-grouped-list-row type="information" description="name@example.com">Your account</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="link" href="https://www.gov.uk">Manage your account</govuk-app-grouped-list-row>
+  </govuk-app-grouped-list>
+
+  <govuk-app-grouped-list>
+    <govuk-app-grouped-list-row type="detail" detail="Off" name="notifications">Notifications</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row name="face-id">Face ID</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="toggle" name="statistics" checked>Share app usage statistics</govuk-app-grouped-list-row>
+  </govuk-app-grouped-list>
+
+  <govuk-app-grouped-list title="Privacy and legal">
+    <govuk-app-grouped-list-row type="link" href="https://www.gov.uk">Privacy notice</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row type="link" href="https://www.gov.uk">Terms and conditions</govuk-app-grouped-list-row>
+    <govuk-app-grouped-list-row name="your-data">Your app data</govuk-app-grouped-list-row>
+  </govuk-app-grouped-list>
+
+  <govuk-app-grouped-list>
+    <govuk-app-grouped-list-row type="detail" destructive name="sign-out">Sign out</govuk-app-grouped-list-row>
+  </govuk-app-grouped-list>
+
+  <govuk-app-tab-bar>
+    <govuk-app-tab-bar-item icon="home" name="home">Home</govuk-app-tab-bar-item>
+    <govuk-app-tab-bar-item icon="chat_bubble" name="chat">Chat</govuk-app-tab-bar-item>
+    <govuk-app-tab-bar-item icon="settings" name="settings" selected>Settings</govuk-app-tab-bar-item>
+  </govuk-app-tab-bar>
+</govuk-app-screen>

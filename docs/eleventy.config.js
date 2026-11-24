@@ -20,6 +20,7 @@ export default async function (eleventyConfig) {
       navigation: [
         { text: 'Get started', href: '/get-started/' },
         { text: 'Components', href: '/components/' },
+        { text: 'Patterns', href: '/patterns/' },
         { text: 'Examples', href: '/examples/' }
       ]
     },
@@ -52,6 +53,9 @@ export default async function (eleventyConfig) {
   eleventyConfig.addWatchTarget('foundation/')
   eleventyConfig.addWatchTarget('frame/')
   eleventyConfig.addWatchTarget('component.schema.json')
+  // A pattern's HTML is drawn into its page, so it isn't copied.
+  eleventyConfig.addWatchTarget('patterns/')
+  eleventyConfig.addWatchTarget('pattern.schema.json')
 
   // The docs' own script, for the examples' "Copy code" buttons.
   eleventyConfig.addPassthroughCopy({ 'docs/assets/docs.js': 'assets/docs.js' })
@@ -61,15 +65,18 @@ export default async function (eleventyConfig) {
   eleventyConfig.addFilter('highlightHtml', code =>
     highlight(code, 'html').replace('<pre class="', '<pre class="docs-example__pre '))
 
-  // Every component's page links to every other in its sidebar. Fail the build
-  // if one doesn't: Eleventy leaves all but the first page of a paginated
-  // template out of collections, and so out of the sidebar, unless told not to.
+  // Every component's page links to every other in its sidebar, and every
+  // pattern's to every other pattern's. Fail the build if one doesn't: Eleventy
+  // leaves all but the first page of a paginated template out of collections,
+  // and so out of the sidebar, unless told not to.
   eleventyConfig.on('eleventy.after', ({ results }) => {
-    const pages = results.filter(result => /^\/components\/[^/]+\/$/.test(result.url))
-    for (const page of pages) {
-      const missing = pages.filter(other => !page.content.includes(`${other.url}"`))
-      if (missing.length) {
-        throw new Error(`${page.url} doesn't link to ${missing.map(other => other.url).join(', ')} in its sidebar`)
+    for (const section of ['components', 'patterns']) {
+      const pages = results.filter(result => new RegExp(`^/${section}/[^/]+/$`).test(result.url))
+      for (const page of pages) {
+        const missing = pages.filter(other => !page.content.includes(`${other.url}"`))
+        if (missing.length) {
+          throw new Error(`${page.url} doesn't link to ${missing.map(other => other.url).join(', ')} in its sidebar`)
+        }
       }
     }
   })

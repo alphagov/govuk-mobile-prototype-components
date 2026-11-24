@@ -4,6 +4,7 @@ Components for the GOV.UK app prototyping system: web components that look and b
 
 - [PLAN.md](PLAN.md): what the library is for and how we build it.
 - [COMPONENTS.md](COMPONENTS.md): every component in the iOS and Android apps today, with screenshots. The backlog.
+- [patterns/](patterns/): whole screens, arranged as the app arranges them, to copy and change the words of, each with when to use it and when not to.
 - [frame/](frame/): `<govuk-prototype-frame>`, the iPhone around a prototype: its status bar and home indicator, fitted to the window. Not part of the app, so not a component.
 - [examples/](examples/): screens of the app built from the components alone, such as Home and Settings, to see them working together. Not prototypes to build on.
 
@@ -20,7 +21,7 @@ npm start
 
 Then open <http://localhost:8080>. The site reloads when you change a component, its definition, or a page.
 
-`npm run build` builds the site into `_site/`. It fails if any component's definition doesn't match [`component.schema.json`](component.schema.json).
+`npm run build` builds the site into `_site/`. It fails if any component's definition doesn't match [`component.schema.json`](component.schema.json), or any pattern's [`pattern.schema.json`](pattern.schema.json).
 
 The site is built with the [GOV.UK Eleventy Plugin](https://github.com/x-govuk/govuk-eleventy-plugin), and published to GitHub Pages from `main` by [`.github/workflows/docs.yml`](.github/workflows/docs.yml). Its source is in `docs/`:
 
@@ -29,6 +30,8 @@ The site is built with the [GOV.UK Eleventy Plugin](https://github.com/x-govuk/g
 | `docs/*.md`, `docs/get-started/` | Pages of prose. Add a Markdown file to add a page |
 | `docs/_data/components.js` | Reads and checks every `components/<name>/<name>.json` |
 | `docs/components/component.njk` | Draws a page for each component from its definition |
+| `docs/_data/patterns.js` | Reads and checks every `patterns/<name>/<name>.json`, and that its HTML uses only the library's components |
+| `docs/patterns/pattern.njk` | Draws a page for each pattern from its definition and HTML |
 | `docs/eleventy.config.js` | The site's configuration |
 
 Only the docs have a build step. The components don't: the site copies `components/`, `foundation/` and `frame/` as they are.
@@ -90,3 +93,7 @@ MIT, except the GOV.UK crown and wordmark, which are Crown copyright and only fo
 Each component is one folder, `components/<name>/`, holding its template (`.html`), styles (`.css`), element (`.js`), definition (`.json`), an optional `.md` of prose for its page, and the app's screenshots in `reference/`. Every folder with a definition gets a page on the site, with no list to update.
 
 See [Build a component](docs/get-started/building-a-component.md) for how they work and how to add one.
+
+## A pattern
+
+A pattern is one of the app's screens, put together from the components: a folder, `patterns/<name>/`, holding its HTML (`<name>.html`, one `<govuk-app-screen>` and what's in it) and its definition (`<name>.json`, following `pattern.schema.json`). The definition says what it's for, when to use it, when to use another pattern instead, the components it uses and which of the app's screens it's taken from, so a person or a tool can choose between patterns. Every folder with both gets a page on the site.

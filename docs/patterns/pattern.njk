@@ -1,0 +1,103 @@
+---
+pagination:
+  data: patterns
+  size: 1
+  alias: pattern
+  # Every pattern's page, not only the first, so each is in the sidebar.
+  addAllPagesToCollections: true
+permalink: "/patterns/{{ pattern.slug }}/"
+# The component layout, since it loads every component's script, and keeps the
+# prose styles off the live screen.
+layout: component
+sectionKey: Patterns
+eleventyNavigation:
+  parent: Patterns
+eleventyComputed:
+  order: "{{ pattern.order }}"
+  title: "{{ pattern.name }}"
+  description: "{{ pattern.purpose | escape }}"
+---
+{% from "component-example.njk" import componentExample %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% set platforms = { ios: "iOS", android: "Android" } %}
+
+<div class="app-prose-scope">
+  <p class="govuk-body">From the app: {{ pattern.screen | escape }}.</p>
+
+  <h2 class="govuk-heading-l" id="when">When to use it</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {% for when in pattern.when %}
+    <li>{{ when | escape }}</li>
+    {% endfor %}
+  </ul>
+
+  {% if pattern.avoid | length %}
+  <h2 class="govuk-heading-l" id="avoid">When not to use it</h2>
+  {% set rows = [] %}
+  {% for avoid in pattern.avoid %}
+    {#- Another pattern, named as what to use instead, links to its page. A
+        loop's sets stay in the loop, so the link is pushed out of it. -#}
+    {% set links = [] %}
+    {% for other in patterns %}
+      {% if other.name == avoid.instead %}
+        {% set links = (links.push('<a class="govuk-link" href="/patterns/' + other.slug + '/">' + (other.name | escape) + '</a>'), links) %}
+      {% endif %}
+    {% endfor %}
+    {% set rows = (rows.push([{ text: avoid.when }, { html: links[0] or (avoid.instead | escape) }]), rows) %}
+  {% endfor %}
+  {{ govukTable({
+    head: [{ text: "If" }, { text: "Use instead" }],
+    rows: rows
+  }) }}
+  {% endif %}
+</div>
+
+<h2 class="govuk-heading-l" id="example">Example</h2>
+{{ componentExample({ name: pattern.name + ", in light and dark", html: pattern.html, frame: "screen" }, "example") }}
+
+<div class="app-prose-scope">
+  {% if pattern.notes | length %}
+  <h2 class="govuk-heading-l" id="notes">Using it</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {% for note in pattern.notes %}
+    <li>{{ note | escape }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <h2 class="govuk-heading-l" id="components">Components it uses</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {% for component in pattern.uses %}
+    <li><a class="govuk-link" href="/components/{{ component.slug }}/">{{ component.name | escape }}</a>, <code>&lt;{{ component.element }}&gt;</code></li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% set sourcesHtml %}
+<ul class="govuk-list govuk-list--bullet">
+  {% for platform in ["ios", "android"] %}
+  {% for source in pattern.sources[platform] %}
+  <li>{{ platforms[platform] }}: <code>{{ source.symbol | escape }}</code> in {{ source.repo | escape }}/{{ source.path | escape }}{% if source.ref %} at {{ source.ref | escape }}{% endif %}</li>
+  {% endfor %}
+  {% endfor %}
+  {% for link in pattern.sources.figma %}
+  <li>Figma: <a class="govuk-link" href="{{ link.url | escape }}">{{ link.title | escape }}</a></li>
+  {% else %}
+  <li>Figma: none linked yet</li>
+  {% endfor %}
+  {% for link in pattern.sources.other %}
+  <li><a class="govuk-link" href="{{ link.url | escape }}">{{ link.title | escape }}</a></li>
+  {% endfor %}
+</ul>
+{% endset %}
+
+{{ govukAccordion({
+  id: "pattern-details",
+  headingLevel: 2,
+  items: [{
+    heading: { text: "Sources" },
+    summary: { text: "The app’s iOS and Android screens it was taken from" },
+    content: { html: sourcesHtml }
+  }]
+}) }}
