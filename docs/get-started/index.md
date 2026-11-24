@@ -75,6 +75,10 @@ document.addEventListener('click', event => {
 })
 ```
 
+## For tools that build prototypes
+
+Everything in the library, its patterns and components with what each is for and when to use another, is in [catalogue.md](/catalogue.md), to read in one go, and in [catalogue.json](/catalogue.json) as data. Both are in the package and the repository too, generated from the definitions.
+
 ## Show what works
 
 A prototype only works where you’ve made it work. Add `highlight-actions` to the root, and a tap that goes nowhere rings everything that works for a moment, so whoever is trying the prototype can find it:

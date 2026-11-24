@@ -20,11 +20,14 @@
     "frame",
     "component.schema.json",
     "patterns",
-    "pattern.schema.json"
+    "pattern.schema.json",
+    "catalogue.json",
+    "catalogue.md"
   ],
   "scripts": {
     "start": "eleventy --config=docs/eleventy.config.js --serve",
-    "build": "eleventy --config=docs/eleventy.config.js",
+    "build": "node scripts/catalogue.js --check && eleventy --config=docs/eleventy.config.js",
+    "catalogue": "node scripts/catalogue.js",
     "screenshots": "node scripts/screenshots.js"
   },
   "engines": {
