@@ -16,6 +16,7 @@ Every rule here is one the repository already has. Each says where it comes from
 - [Styles](#styles)
 - [Docs site](#docs-site)
 - [Icons](#icons)
+- [Works anywhere](#works-anywhere)
 - [Writing](#writing)
 - [Patterns](#patterns)
 - [Looks like the app](#looks-like-the-app)
@@ -83,6 +84,15 @@ Every rule here is one the repository already has. Each says where it comes from
 | Material Symbols in place of SF Symbols, which may only be used on Apple's platforms. No SF Symbols images or font, and no SF glyphs copied into SVG. | AGENTS.md, Components | Script (font-family); eye on images |
 | The font is loaded with `fonts: [materialSymbols]` (or `materialSymbolsOutlined` for topic icons) in `defineComponent`, never `@import` in the CSS. Its files are in `src/foundation/fonts/`: nothing loads from another site. | AGENTS.md, Components | Script |
 | Each element drawn in the font has the class `govuk-app-icon` as well as its own. | AGENTS.md, Components | Script |
+
+## Works anywhere
+
+Components, `src/foundation/` and `src/frame/`.
+
+| Rule | From | Checked by |
+| --- | --- | --- |
+| It works under a strict Content Security Policy (`default-src 'self'`, no `unsafe-inline` or `unsafe-eval`) and offline, as the prototyping system's viewer does. It loads nothing from another site: no font, stylesheet, script or image by an `http(s)://` URL. | AGENTS.md, Components; PR #70 | Script |
+| It adds no inline styles or scripts to the page: no `<style>` or `<script>` in a template or written from script, no `style` attribute (in a template, through `data-attr`, or with `setAttribute`), and no `eval` or `new Function`. Its styles are in its `.css`, loaded as a file; a value worked out in script is one custom property, set with `element.style.setProperty`, which a policy allows. | AGENTS.md, Components; PR #70 | Script |
 
 ## Writing
 
