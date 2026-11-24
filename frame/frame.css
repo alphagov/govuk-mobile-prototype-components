@@ -1,0 +1,228 @@
+/* <govuk-prototype-frame> (frame.js): the window, with an iPhone in the
+   middle of it, 402pt by 874pt like an iPhone 17 Pro, and iOS's status bar
+   over its top and its home indicator over its bottom. The phone shrinks,
+   all of it together, by --govuk-prototype-frame-scale, which frame.js sets,
+   to fit a window too small for it.
+
+   It is outside <govuk-app>, so the app's tokens don't reach it: its
+   colours are iOS's own, and the window's around the phone. Its sizes are
+   the iPhone's, in pt, and aren't on the 8pt grid. */
+
+govuk-prototype-frame {
+  display: contents;
+}
+
+/* The whole window, whatever the page's own margins, so a page needs no
+   styles of its own to show the phone. */
+.govuk-prototype-frame {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 16px;
+  padding: 24px;
+  overflow: auto;
+  box-sizing: border-box;
+  background: #dee0e2;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Anything the page put in the frame besides the app, such as a link back
+   to the prototype's index. */
+.govuk-prototype-frame__above {
+  display: grid;
+  justify-items: start;
+}
+
+.govuk-prototype-frame__above[hidden] {
+  display: none;
+}
+
+/* The room for the phone, which frame.js fits it to. It takes the room the
+   window leaves it, however big the phone is. */
+.govuk-prototype-frame__stage {
+  grid-row: 2;
+  display: grid;
+  place-items: center;
+  contain: size;
+}
+
+.govuk-prototype-frame__phone {
+  zoom: var(--govuk-prototype-frame-scale, 1);
+  position: relative;
+  width: 402px;
+  height: 874px;
+  overflow: hidden;
+  border-radius: 48px;
+  /* The bezel, 10pt, and the phone's shadow on the window. */
+  box-shadow: 0 0 0 10px #0b0c0c, 0 24px 60px rgb(0 0 0 / 0.3);
+  /* The room iOS's status bar and home indicator take over the app. */
+  --govuk-app-inset-top: 62px;
+  --govuk-app-inset-bottom: 34px;
+}
+
+.govuk-prototype-frame__app {
+  height: 100%;
+}
+
+/* The screen is hidden until every component on it has drawn, so it never
+   flashes up as bare text. If one never does, because the page doesn't load
+   it, it shows anyway after two seconds. */
+.govuk-prototype-frame__app:has(:not(:defined)) {
+  visibility: hidden;
+  animation: govuk-prototype-frame-show 0s 2s forwards;
+}
+
+@keyframes govuk-prototype-frame-show {
+  to { visibility: visible; }
+}
+
+/* iOS's status bar: the time and the icons either side of the Dynamic
+   Island, 126pt by 37pt and 11pt from the top, and centred on it. It
+   doesn't grow with the app's text. */
+.govuk-prototype-frame__status-bar {
+  position: absolute;
+  top: 11px;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 126px 1fr;
+  align-items: center;
+  height: 37px;
+  color: #000000;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 22px;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+.govuk-prototype-frame__time {
+  justify-self: center;
+  padding-left: 12px;
+}
+
+.govuk-prototype-frame__island {
+  height: 37px;
+  border-radius: 9999px;
+  background: #000000;
+}
+
+.govuk-prototype-frame__icons {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  gap: 6px;
+  padding-right: 6px;
+  fill: currentColor;
+}
+
+.govuk-prototype-frame__signal {
+  width: 18px;
+  height: 12px;
+}
+
+.govuk-prototype-frame__wifi {
+  width: 16px;
+  height: 12px;
+  stroke: currentColor;
+}
+
+.govuk-prototype-frame__battery {
+  width: 27px;
+  height: 13px;
+}
+
+.govuk-prototype-frame__battery-case {
+  fill: none;
+  stroke: currentColor;
+  stroke-opacity: 0.35;
+}
+
+.govuk-prototype-frame__battery-cap {
+  fill-opacity: 0.4;
+}
+
+/* The home indicator: 134pt by 5pt, 8pt from the bottom. */
+.govuk-prototype-frame__home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  z-index: 2;
+  width: 134px;
+  height: 5px;
+  border-radius: 9999px;
+  background: #000000;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .govuk-prototype-frame {
+    background: #1b1d1f;
+  }
+
+  .govuk-prototype-frame__status-bar {
+    color: #ffffff;
+  }
+
+  .govuk-prototype-frame__home-indicator {
+    background: #ffffff;
+  }
+}
+
+/* An app fixed in one scheme, with colour-scheme, has the status bar and
+   home indicator of that scheme, whatever the device's. Without adding to
+   how specific these are, so a white status bar, below, wins over them. */
+.govuk-prototype-frame__phone:has(> :where([colour-scheme="light"])) .govuk-prototype-frame__status-bar {
+  color: #000000;
+}
+
+.govuk-prototype-frame__phone:has(> :where([colour-scheme="light"])) .govuk-prototype-frame__home-indicator {
+  background: #000000;
+}
+
+.govuk-prototype-frame__phone:has(> :where([colour-scheme="dark"])) .govuk-prototype-frame__status-bar {
+  color: #ffffff;
+}
+
+.govuk-prototype-frame__phone:has(> :where([colour-scheme="dark"])) .govuk-prototype-frame__home-indicator {
+  background: #ffffff;
+}
+
+/* White for a screen dark at its top, such as Home under its blue header
+   (HomeViewController's preferredStatusBarStyle). And over a sheet, where the
+   status bar is on the black behind it, so iOS draws it white, in light mode
+   as in dark. */
+.govuk-prototype-frame--light-status-bar .govuk-prototype-frame__status-bar,
+.govuk-prototype-frame__phone:has(govuk-app-sheet) .govuk-prototype-frame__status-bar {
+  color: #ffffff;
+}
+
+/* No phone: the app fills the window, as on a phone, where the phone's own
+   status bar and home indicator are the ones over it. */
+.govuk-prototype-frame--bare {
+  padding: 0;
+}
+
+.govuk-prototype-frame--bare .govuk-prototype-frame__above,
+.govuk-prototype-frame--bare .govuk-prototype-frame__status-bar,
+.govuk-prototype-frame--bare .govuk-prototype-frame__home-indicator {
+  display: none;
+}
+
+.govuk-prototype-frame--bare .govuk-prototype-frame__stage {
+  grid-row: 1 / -1;
+  place-items: stretch;
+}
+
+.govuk-prototype-frame--bare .govuk-prototype-frame__phone {
+  zoom: 1;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none;
+  --govuk-app-inset-top: env(safe-area-inset-top, 0px);
+  --govuk-app-inset-bottom: env(safe-area-inset-bottom, 0px);
+}

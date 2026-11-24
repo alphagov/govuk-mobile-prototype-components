@@ -39,6 +39,29 @@ Prototype pages shouldn’t style anything inside `<govuk-app>`. If a page loads
 
 See [styles stay apart](/get-started/building-a-component/#styles-stay-apart) for why.
 
+## Put it in a phone
+
+To show a prototype as the app on an iPhone, put its `<govuk-app>` in a `<govuk-prototype-frame>`, and load the frame’s script:
+
+```html
+<script type="module" src="frame/frame.js"></script>
+
+<govuk-prototype-frame>
+  <govuk-app>
+    …
+  </govuk-app>
+</govuk-prototype-frame>
+```
+
+The frame fills the window, with the phone in the middle of it: an iPhone’s screen, with iOS’s status bar and home indicator over the app. It shrinks the phone to fit a window too small for it. The [examples](/examples/) are shown in it.
+
+On a phone, or a window as narrow as one, there’s no phone drawn: the app fills the screen, with the phone’s own status bar over it. So the same page can be tried on a real phone.
+
+- `bare` leaves the phone out in any window, as on a phone.
+- `status-bar="light"` draws the status bar white, for a screen dark at its top, such as Home under its blue header. Over a sheet it’s white already, as iOS draws it.
+
+Anything else in the frame, such as a link back to your prototype’s index, goes above the phone, and is hidden when the app fills the screen.
+
 ## Inputs and outputs
 
 **Attributes and content are the inputs.** What each component takes is on its [page](/components/), and in its definition file, `components/<name>/<name>.json`.

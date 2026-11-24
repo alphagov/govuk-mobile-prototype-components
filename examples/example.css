@@ -1,33 +1,16 @@
-/* How an example's pages are shown: each <govuk-app> as a phone, 402pt by
-   874pt like an iPhone 17 Pro, in the middle of the window, with iOS's status
-   bar over its top and its home indicator over its bottom (example.js). It
-   shrinks, all of it together, to fit a window too small for it, by
-   --example-scale, which example.js sets. On a phone, it fills the screen
-   instead, and the phone's own are the ones over it.
+/* What the examples have that a prototype doesn't: the link back to the
+   docs site above the phone, and the shake menu (example.js). The phone is
+   <govuk-prototype-frame> (frame/frame.css).
 
    In a cascade layer, so none of this reaches inside <govuk-app>. */
 
 @layer example {
-  html {
-    height: 100%;
-  }
-
   body {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    place-items: center;
-    gap: 16px;
-    min-height: 100%;
-    margin: 0;
-    padding: 24px;
-    box-sizing: border-box;
-    background: #dee0e2;
     font-family: system-ui, -apple-system, sans-serif;
   }
 
   /* Back to the docs site, in the style of GOV.UK Frontend's back link. */
   .example-back {
-    justify-self: start;
     position: relative;
     padding-left: 14px;
     color: #0b0c0c;
@@ -63,153 +46,10 @@
     text-decoration: none;
   }
 
-  .example-phone {
-    zoom: var(--example-scale, 1);
-    position: relative;
-    width: 402px;
-    height: 874px;
-    overflow: hidden;
-    border-radius: 48px;
-    box-shadow: 0 0 0 10px #0b0c0c, 0 24px 60px rgb(0 0 0 / 0.3);
-  }
-
-  .example-phone govuk-app {
-    height: 100%;
-    --govuk-app-inset-top: 62px;
-    --govuk-app-inset-bottom: 34px;
-  }
-
-  /* iOS's status bar, over whatever is under it (example.js): the time and
-     the icons either side of the Dynamic Island, 126pt by 37pt and 11pt
-     from the top, and centred on it. It doesn't grow with the app's text. */
-  .example-status-bar {
-    position: absolute;
-    top: 11px;
-    right: 0;
-    left: 0;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr 126px 1fr;
-    align-items: center;
-    height: 37px;
-    color: #000000;
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 22px;
-    font-variant-numeric: tabular-nums;
-    pointer-events: none;
-  }
-
-  .example-status-bar__time {
-    justify-self: center;
-    padding-left: 12px;
-  }
-
-  .example-status-bar__island {
-    height: 37px;
-    border-radius: 9999px;
-    background: #000000;
-  }
-
-  .example-status-bar__icons {
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    gap: 6px;
-    padding-right: 6px;
-    fill: currentColor;
-  }
-
-  .example-status-bar__signal {
-    width: 18px;
-    height: 12px;
-  }
-
-  .example-status-bar__wifi {
-    width: 16px;
-    height: 12px;
-    stroke: currentColor;
-  }
-
-  .example-status-bar__battery {
-    width: 27px;
-    height: 13px;
-  }
-
-  .example-status-bar__battery-case {
-    fill: none;
-    stroke: currentColor;
-    stroke-opacity: 0.35;
-  }
-
-  .example-status-bar__battery-cap {
-    fill-opacity: 0.4;
-  }
-
-  /* The screen is hidden until every component on it has drawn, so it
-     never flashes up as bare text. If one never does, because the page
-     doesn't load it, it shows anyway after two seconds. */
-  .example-phone govuk-app:has(:not(:defined)) {
-    visibility: hidden;
-    animation: example-show 0s 2s forwards;
-  }
-
-  @keyframes example-show {
-    to { visibility: visible; }
-  }
-
-  /* Over a sheet, the status bar is on the black behind it, so iOS draws it
-     white, in light mode as in dark. */
-  .example-phone:has(govuk-app-sheet) .example-status-bar {
-    color: #ffffff;
-  }
-
-  /* The home indicator: 134pt by 5pt, 8pt from the bottom. */
-  .example-home-indicator {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    z-index: 2;
-    width: 134px;
-    height: 5px;
-    border-radius: 9999px;
-    background: #000000;
-    transform: translateX(-50%);
-    pointer-events: none;
-  }
-
   @media (prefers-color-scheme: dark) {
-    body {
-      background: #1b1d1f;
-    }
-
     .example-back {
       color: #ffffff;
     }
-
-    .example-status-bar {
-      color: #ffffff;
-    }
-
-    .example-home-indicator {
-      background: #ffffff;
-    }
-  }
-
-  /* White in light mode too, as iOS draws them over a dark screen, such as
-     the app's green ones. */
-  .example-phone--light-content .example-status-bar {
-    color: #ffffff;
-  }
-
-  .example-phone--light-content .example-home-indicator {
-    background: #ffffff;
-  }
-
-  /* The status bar alone, for a screen dark only at its top, such as Home
-     under its blue header (HomeViewController's preferredStatusBarStyle). */
-  .example-phone--light-status-bar .example-status-bar {
-    color: #ffffff;
   }
 
   /* The shake menu (example.js), as an iOS action sheet: its actions in one
@@ -275,36 +115,6 @@
 
     .example-menu__item--cancel {
       background: #2c2c2e;
-    }
-  }
-
-  @media (max-width: 460px) {
-    body {
-      padding: 0;
-    }
-
-    .example-phone {
-      zoom: 1;
-      width: 100vw;
-      height: 100dvh;
-      border-radius: 0;
-      box-shadow: none;
-    }
-
-    .example-phone govuk-app {
-      --govuk-app-inset-top: env(safe-area-inset-top, 0px);
-      --govuk-app-inset-bottom: env(safe-area-inset-bottom, 0px);
-    }
-
-    body {
-      display: block;
-    }
-
-    /* The phone's own back gesture and browser are the way out here. */
-    .example-back,
-    .example-status-bar,
-    .example-home-indicator {
-      display: none;
     }
   }
 }
