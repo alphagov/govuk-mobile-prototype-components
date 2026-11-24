@@ -56,6 +56,11 @@
     "Leave the placeholder as Search, as the app does everywhere. Where the field searches something narrower than GOV.UK, such as a list of countries, say so to screen readers with a label.",
     "Give it an action to go to a page of results in a prototype of several pages."
   ],
+  "avoid": [
+    { "when": "To search for something on a card of its own, such as a vehicle's registration", "instead": "govuk-app-search-box" },
+    { "when": "To ask a question the user answers to carry on, such as their postcode", "instead": "govuk-app-text-field type=\"postcode\"" },
+    { "when": "To ask GOV.UK Chat", "instead": "govuk-app-chat-input" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

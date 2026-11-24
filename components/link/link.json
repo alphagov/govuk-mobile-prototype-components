@@ -32,6 +32,11 @@
     "Make the link's words say where it goes, such as the page's title, not click here.",
     "Use it inside a line of text. For a link on a row of its own, use a grouped list's link row, or a link card for one that should stand out."
   ],
+  "avoid": [
+    { "when": "For a link on a row of its own", "instead": "govuk-app-grouped-list-row type=\"link\"" },
+    { "when": "For one destination that should stand out, such as the user's council", "instead": "govuk-app-link-card" },
+    { "when": "For an action, such as continuing a journey", "instead": "govuk-app-button" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

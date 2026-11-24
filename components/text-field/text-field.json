@@ -67,6 +67,12 @@
     "Say what to do in the error, not what went wrong: Enter your postcode, not Postcode is empty.",
     "Put it in a form, so pressing Return on the keyboard sends it."
   ],
+  "avoid": [
+    { "when": "To search", "instead": "govuk-app-search-field" },
+    { "when": "To ask GOV.UK Chat", "instead": "govuk-app-chat-input" },
+    { "when": "For something that's on or off", "instead": "govuk-app-toggle" },
+    { "when": "For a choice from a short list", "instead": "govuk-app-grouped-list-row type=\"selectable\"" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

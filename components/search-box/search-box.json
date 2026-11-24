@@ -59,6 +59,11 @@
     "Give it an accessory only where it shows what to type, as a blank number plate does for a registration.",
     "For a search bar in the system's style, such as at the top of a screen or a list, use the search field."
   ],
+  "avoid": [
+    { "when": "To search GOV.UK, or filter a list, such as of countries", "instead": "govuk-app-search-field" },
+    { "when": "To ask a question on a form, with a button below to carry on", "instead": "govuk-app-text-field" },
+    { "when": "To ask GOV.UK Chat", "instead": "govuk-app-chat-input" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

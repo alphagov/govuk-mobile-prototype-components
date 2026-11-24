@@ -50,6 +50,13 @@
     "Use the secondary colour only for supporting text, never for something the user must read to act.",
     "Centre text only under a centred heading."
   ],
+  "avoid": [
+    { "when": "For a screen's title, or a section's", "instead": "govuk-app-heading" },
+    { "when": "For a few words that say what the rest of a line is", "instead": "govuk-app-strong" },
+    { "when": "For a few points that are read together", "instead": "govuk-app-bulleted-list" },
+    { "when": "For a name and postal address", "instead": "govuk-app-address" },
+    { "when": "For something the user should know now, set apart from the screen", "instead": "govuk-app-banner" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

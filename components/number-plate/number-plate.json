@@ -36,6 +36,11 @@
     "Use small beside a vehicle's name, such as on its card, and large on its own on the vehicle's detail screen.",
     "Use the rear plate for a vehicle's registration. Use the front plate for a blank one, ABC, that stands for any vehicle, such as on a search for one."
   ],
+  "avoid": [
+    { "when": "For any other number or reference, such as a driving licence number", "instead": "govuk-app-grouped-list-row type=\"information\"" },
+    { "when": "For the user to type in a registration", "instead": "govuk-app-search-box" },
+    { "when": "For a vehicle's other facts, such as its year or fuel", "instead": "govuk-app-labelled-icon" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

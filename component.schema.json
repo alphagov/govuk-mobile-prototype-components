@@ -3,7 +3,7 @@
   "title": "A component's definition",
   "description": "What every components/<name>/<name>.json says about its component. See PLAN.md.",
   "type": "object",
-  "required": ["name", "element", "purpose", "origin", "inputs", "outputs", "rules", "sources", "examples"],
+  "required": ["name", "element", "purpose", "origin", "inputs", "outputs", "rules", "avoid", "sources", "examples"],
   "additionalProperties": false,
   "properties": {
     "$schema": { "type": "string" },

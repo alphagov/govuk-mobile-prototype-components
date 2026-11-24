@@ -62,6 +62,11 @@
     "Keep each label to one short word. Labels don't wrap, and are cut off if they are too long.",
     "In a prototype of several pages, give each tab an href to its section's first page, and mark that tab selected on each of its pages."
   ],
+  "avoid": [
+    { "when": "On a screen that asks the user to act, such as confirm or continue", "instead": "govuk-app-button-stack" },
+    { "when": "On a screen pushed on top of another, or a modal", "instead": "Leave it out, and give the screen a back button or a close action in its navigation bar." },
+    { "when": "To switch between views of the same thing", "instead": "govuk-app-segmented-control" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

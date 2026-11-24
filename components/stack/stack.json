@@ -47,6 +47,12 @@
     "Keep a row to a few short items, so they fit side by side on a phone.",
     "Leave gap at small, SwiftUI's own spacing, unless the design asks for another."
   ],
+  "avoid": [
+    { "when": "To space a screen's parts apart", "instead": "govuk-app-section" },
+    { "when": "For a few short facts side by side, with dividers between them", "instead": "govuk-app-summary-columns" },
+    { "when": "For buttons at the bottom of a screen", "instead": "govuk-app-button-stack" },
+    { "when": "For rows on a card", "instead": "govuk-app-grouped-list" }
+  ],
   "sources": {
     "figma": [],
     "ios": [],

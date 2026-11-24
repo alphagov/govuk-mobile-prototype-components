@@ -50,6 +50,12 @@
     "Give the action a short verb or phrase for what it does to the section: Edit, or See all. Never more than one action.",
     "Keep the title short, so it and the action fit on one line."
   ],
+  "avoid": [
+    { "when": "For a heading with no action", "instead": "govuk-app-heading" },
+    { "when": "For a screen's title", "instead": "govuk-app-heading level=\"1\"" },
+    { "when": "For a part of a long screen, with a line saying what it's for", "instead": "govuk-app-section" },
+    { "when": "For several actions on a section", "instead": "govuk-app-menu-button" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

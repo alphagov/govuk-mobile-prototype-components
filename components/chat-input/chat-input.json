@@ -68,6 +68,11 @@
     "Give it the app's menu: Clear chat, once there's a conversation to clear, then Privacy notice, About and Give feedback.",
     "Give it an action to take the user to the next page of a prototype when they send a question, such as its answer."
   ],
+  "avoid": [
+    { "when": "To ask the user a question on a form, such as their postcode", "instead": "govuk-app-text-field" },
+    { "when": "To search GOV.UK", "instead": "govuk-app-search-field" },
+    { "when": "To search for something on a card of its own, such as a vehicle", "instead": "govuk-app-search-box" }
+  ],
   "sources": {
     "figma": [],
     "ios": [

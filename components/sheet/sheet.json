@@ -37,6 +37,12 @@
     "Draw the screen it was presented from behind it, with slot=\"behind\", so the user can see where they'll go back to.",
     "Give present only to the first screen of the modal journey. Later screens of the same journey are already in the sheet."
   ],
+  "avoid": [
+    { "when": "For a journey that takes over the app until it's done, such as adding a driver and vehicles account", "instead": "govuk-app-full-screen-cover" },
+    { "when": "For the next screen of a journey, pushed on top of the last", "instead": "A govuk-app-screen of its own, with a back button in its navigation bar." },
+    { "when": "For a few things to do with something on a card", "instead": "govuk-app-menu-button" },
+    { "when": "For something the user should know, that they needn't act on", "instead": "govuk-app-banner" }
+  ],
   "sources": {
     "figma": [],
     "ios": [
