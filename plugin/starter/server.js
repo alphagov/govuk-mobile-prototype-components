@@ -41,12 +41,11 @@ const types = {
   '.woff2': 'font/woff2'
 }
 
-// Added to every page, so it reloads when a file changes.
-const reloader = `
-<script>
-  new EventSource('/__reload').addEventListener('change', () => location.reload())
-</script>
-`
+// Added to every page, so it reloads when a file changes. A script from this
+// server, not one written into the page, so a page with a strict Content
+// Security Policy (script-src 'self') still reloads.
+const reloader = '<script src="/__reload.js"></script>\n'
+const reloaderScript = "new EventSource('/__reload').addEventListener('change', () => location.reload())\n"
 
 // Every browser tab that's open on the prototype, to tell when to reload.
 const tabs = new Set()
@@ -95,6 +94,12 @@ const server = http.createServer((request, response) => {
     response.write(': connected\n\n')
     tabs.add(response)
     request.on('close', () => tabs.delete(response))
+    return
+  }
+
+  if (url.pathname === '/__reload.js') {
+    response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' })
+    response.end(reloaderScript)
     return
   }
 
