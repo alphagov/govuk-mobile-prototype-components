@@ -81,6 +81,8 @@ A button the component acts on itself, such as a segmented control’s segment, 
 3. Write the four files. Use only `--app-*` tokens for colour, type and spacing; add any missing ones to `foundation/tokens.css`, naming where they come from. Spacing is on the 8pt grid (`--app-space-extra-small` to `--app-space-extra-large`: 4, 8, 16, 24 and 32). Keep a value off the grid only where the app itself has it, and say so in a comment.
 4. Run `npm start` and open its page. Check every example against the references, in each state.
 
+To check without a browser, `npm run screenshots -- <name>` draws each of its examples in light and dark into `screenshots-out/<name>/`, and `screenshots-out/index.html` shows them beside its references. Install the browser it uses first, once, with `npx playwright install chromium`. See the [README](https://github.com/alphagov/govuk-mobile-prototype-components#checking-what-a-component-looks-like) for its other options.
+
 ## Styles stay apart
 
 There is no shadow DOM. Components are kept apart from each other and from the page by convention:

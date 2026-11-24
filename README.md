@@ -33,6 +33,28 @@ The site is built with the [GOV.UK Eleventy Plugin](https://github.com/x-govuk/g
 
 Only the docs have a build step. The components don't: the site copies `components/`, `foundation/` and `frame/` as they are.
 
+## Checking what a component looks like
+
+`npm run screenshots` draws every component's examples, and every page in `examples/`, in light and dark, in a headless Chromium, so you can see them without a browser. It builds the site first, and serves it itself.
+
+The first time, install the browser it draws with:
+
+```sh
+npx playwright install chromium
+```
+
+Then:
+
+```sh
+npm run screenshots                          # everything
+npm run screenshots -- button                # one component's examples
+npm run screenshots -- --examples            # only the pages in examples/
+npm run screenshots -- --url /examples/settings/index.html   # any page of the site
+npm run screenshots -- button --no-build     # use the site already in _site/
+```
+
+They go in `screenshots-out/`, which git ignores: `<component>/<example>-light.png` and `-dark.png`, `examples/…`, and `pages/…` for `--url`. Open `screenshots-out/index.html` to see each component's screenshots beside the app's own, from its `reference/` folder.
+
 ## Using a component
 
 Load the component's script, and write its element inside a `<govuk-app>`:
