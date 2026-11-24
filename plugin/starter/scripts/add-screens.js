@@ -3,11 +3,10 @@
 //   node scripts/add-screens.js settings home chat
 //   node scripts/add-screens.js blank
 //
-// Each template's pages are copied from the installed library into
-// screens/<template>/, with their paths to the library changed to its URL
-// (library.js),
-// where the prototype's server has it, and prototype.js added, so answers
-// carry from screen to screen. Each page is listed in prototype.json, for the
+// Each template's pages, and the scripts beside them, are copied from the
+// installed library into screens/<template>/, with their paths to the
+// library changed to where the prototype's server has it (library.js), and
+// prototype.js added, so answers carry from screen to screen. Each page is listed in prototype.json, for the
 // start page. A blank screen goes in screens/start/.
 //
 // It never overwrites a screen that's there already: it says so and stops.
@@ -36,10 +35,15 @@ const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'))
 manifest.screens ??= []
 
 /** A page from the library, ready to serve from the prototype. */
+// ../../components/button/button.js, and the like, to /library/src/components/button/button.js.
+// Only paths up and out of the template, into the library: a page's own
+// files, such as settings.js beside it, stay as they are.
+function toLibrary(text) {
+  return text.replace(/(?:\.\.\/)+(components|foundation|frame)\//g, `${libraryUrl}$1/`)
+}
+
 function adapt(html) {
-  return html
-    // ../../components/button/button.js, and the like, to /library/components/button/button.js.
-    .replace(/(?:\.\.\/)+(components|foundation|frame)\//g, `${libraryUrl}$1/`)
+  return toLibrary(html)
     // Answers carry between screens. After the frame, before the components.
     .replace(/(<script type="module" src="[^"]*\/frame\/frame\.js"><\/script>\n)/, '$1  <script type="module" src="/prototype.js"></script>\n')
 }
@@ -56,9 +60,16 @@ function addTemplate(name) {
 
   const definition = JSON.parse(fs.readFileSync(definitionFile, 'utf8'))
   fs.mkdirSync(target, { recursive: true })
+  // Its pages, and the scripts beside them that wire up their buttons, kept
+  // out of the pages so they work under a strict Content Security Policy.
+  // Not its definition, which is the library's.
   for (const file of fs.readdirSync(source)) {
-    if (!file.endsWith('.html')) continue
-    fs.writeFileSync(path.join(target, file), adapt(fs.readFileSync(path.join(source, file), 'utf8')))
+    const from = path.join(source, file)
+    if (file === `${name}.json` || !fs.statSync(from).isFile()) continue
+    const to = path.join(target, file)
+    if (file.endsWith('.html')) fs.writeFileSync(to, adapt(fs.readFileSync(from, 'utf8')))
+    else if (file.endsWith('.js')) fs.writeFileSync(to, toLibrary(fs.readFileSync(from, 'utf8')))
+    else fs.copyFileSync(from, to)
   }
   for (const screen of definition.screens) {
     manifest.screens.push({
