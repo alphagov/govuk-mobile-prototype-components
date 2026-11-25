@@ -1,0 +1,13 @@
+<!-- Proposed: tiles two across. Past its limit, the rest wait behind a See
+     more button, which young-people.js opens and closes. -->
+<template>
+  <div class="govuk-app-tile-grid">
+    <div class="govuk-app-tile-grid__tiles" data-slot="shown"></div>
+    <div class="govuk-app-tile-grid__tiles govuk-app-tile-grid__more" hidden data-if="more" data-slot="more"></div>
+    <button class="govuk-app-tile-grid__toggle" type="button" aria-expanded="false" data-works data-if="more">
+      <span class="govuk-app-tile-grid__see-more govuk-app-text">See more</span>
+      <span class="govuk-app-tile-grid__see-less govuk-app-text">See less</span>
+      <span class="govuk-app-tile-grid__chevron govuk-app-icon" aria-hidden="true">expand_more</span>
+    </button>
+  </div>
+</template>

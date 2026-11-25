@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Your National Insurance number – GOV.UK app example</title>
+  <link rel="stylesheet" href="../example.css">
+  <script type="module" src="../../src/frame/frame.js"></script>
+  <script type="module" src="../example.js"></script>
+  <script type="module" src="../../src/components/screen/screen.js"></script>
+  <script type="module" src="../../src/components/nav-bar/nav-bar.js"></script>
+  <script type="module" src="../../src/components/text/text.js"></script>
+  <script type="module" src="../../src/components/bulleted-list/bulleted-list.js"></script>
+  <script type="module" src="../../src/components/button/button.js"></script>
+  <script type="module" src="../../src/components/button-stack/button-stack.js"></script>
+  <script type="module">
+    // The button goes nowhere of its own: the page listens for it, by its
+    // name, and opens GOV.UK, as the app would.
+    document.addEventListener('click', event => {
+      if (event.target.closest('govuk-app button')?.name === 'find-number') {
+        location.href = 'https://www.gov.uk/lost-national-insurance-number'
+      }
+    })
+  </script>
+</head>
+<body>
+  <govuk-prototype-frame>
+    <a class="example-back" href="../">Back to examples</a>
+    <govuk-app highlight-actions>
+      <govuk-app-screen>
+        <govuk-app-nav-bar title="National Insurance" large-title back-href="index.html"></govuk-app-nav-bar>
+        <govuk-app-text>Your National Insurance number makes sure the tax and National Insurance you pay are recorded against your name only.</govuk-app-text>
+        <govuk-app-text>You’ll usually get a letter with it just before you turn 16. Keep it somewhere safe.</govuk-app-text>
+        <govuk-app-text>You’ll need it when you:</govuk-app-text>
+        <govuk-app-bulleted-list spacing="compact">
+          <govuk-app-bulleted-list-item>start work</govuk-app-bulleted-list-item>
+          <govuk-app-bulleted-list-item>register to vote</govuk-app-bulleted-list-item>
+          <govuk-app-bulleted-list-item>apply for student finance</govuk-app-bulleted-list-item>
+        </govuk-app-bulleted-list>
+        <govuk-app-text>If you cannot find your letter, you can find your number online.</govuk-app-text>
+        <govuk-app-button-stack slot="footer">
+          <govuk-app-button name="find-number" works>Find your National Insurance number</govuk-app-button>
+        </govuk-app-button-stack>
+      </govuk-app-screen>
+    </govuk-app>
+  </govuk-prototype-frame>
+</body>
+</html>
