@@ -34,7 +34,7 @@ Documentation: <https://alphagov.github.io/govuk-mobile-prototype-components/>, 
 
 Designers can make a prototype of the GOV.UK app with [Claude Code](https://code.claude.com/docs/en/overview). Open Claude Code in the folder where you keep your work, and paste:
 
-> Make me a prototype of the GOV.UK app using alphagov/govuk-mobile-prototype-components
+> Make me a prototype of the GOV.UK app using https://github.com/alphagov/govuk-mobile-prototype-components
 
 Claude asks for a name and where to start (Home, Settings, Chat or a blank screen), gets your computer ready, asking before it installs anything, makes the prototype and opens it in your browser. Next time, open Claude Code in the prototype's folder and say "open my prototype". It's on your computer only, and iOS only, for now.
 
