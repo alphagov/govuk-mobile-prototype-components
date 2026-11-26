@@ -1,6 +1,6 @@
 <!-- One segment: its label, what was written between its tags. A link to
      another page if it has an href, otherwise a button, which selects it. -->
 <template>
-  <a class="govuk-app-segmented-control-item" role="tab" data-if="href" data-attr="href: href, aria-selected: selectedText, aria-current: current" data-slot="content"></a>
+  <a class="govuk-app-segmented-control-item" role="tab" data-if="link" data-attr="href: href, aria-selected: selectedText, aria-current: current" data-slot="content"></a>
   <button class="govuk-app-segmented-control-item" type="button" data-works role="tab" data-if="button" data-attr="name: name, value: value, aria-selected: selectedText" data-slot="content"></button>
 </template>

@@ -8,8 +8,8 @@
  * Light DOM, no shadow DOM: the component's stylesheet styles what it draws,
  * and the element itself is `display: contents`, set here for every element,
  * so it takes no part in layout. Components send no events of their own: they
- * draw the browser's own
- * controls, whose events (click, input, change) bubble as usual.
+ * draw the browser's own controls, whose events (click, input, change) bubble
+ * as usual.
  *
  * A template is plain HTML inside <template>, with attributes that say how
  * it is filled in. Each names one value of the data the component prepares:
@@ -70,7 +70,7 @@ document.adoptedStyleSheets = [...document.adoptedStyleSheets, elements]
  * Adds the stylesheet at `url` to the page once, at the end of <head> so it
  * comes after the page's own styles, and resolves when it has loaded.
  */
-function stylesheet(url) {
+export function stylesheet(url) {
   const key = String(url)
   if (!stylesheets.has(key)) {
     const link = Object.assign(document.createElement('link'), { rel: 'stylesheet', href: key })
@@ -83,7 +83,6 @@ function stylesheet(url) {
   return stylesheets.get(key)
 }
 
-const fontStylesheets = new Set()
 let fontsLoading = 0
 
 /**
@@ -101,9 +100,9 @@ function fontLoading(change) {
  * drawn straight away, its icons hidden until then.
  */
 function loadFont({ family, stylesheet: url }) {
-  const key = String(url)
-  if (fontStylesheets.has(key)) return
-  fontStylesheets.add(key)
+  // Its stylesheet is only added here, so one already on the page is a font
+  // already loading, or loaded.
+  if (stylesheets.has(String(url))) return
   fontLoading(+1)
   stylesheet(url)
     // A stylesheet doesn't load its font until something uses it, so ask.
@@ -141,18 +140,24 @@ function load(url) {
  *               named in camelCase: an attribute given with no value is true,
  *               one left off is undefined
  *   prepare     turns that data into what the template is filled in from:
- *               defaults, and anything worked out from more than one value
+ *               defaults, and anything worked out from more than one value.
+ *               It's given the element too, for idFor
  *   fonts       fonts it uses, such as materialSymbols, added to the page
  *               but not waited for: a font this size can take a moment, and
- *               the component would be drawn as bare text until then. Give anything drawn in an icon font
- *               the class govuk-app-icon, which base.css hides until every
- *               font has loaded, so it never shows as the icon's name
+ *               the component would be drawn as bare text until then. Give
+ *               anything drawn in an icon font the class govuk-app-icon,
+ *               which base.css hides until every font has loaded, so it
+ *               never shows as the icon's name
  *
  * The element is defined once its template and styles have loaded, so it is
  * never drawn unstyled.
  */
 export async function defineComponent({ name, template, styles, attributes = [], prepare = data => data, fonts = [] }) {
   const tag = `govuk-app-${name}`
+  // A page can load the same script twice, by two URLs that name it
+  // differently, and each defines its element. Checking first saves loading
+  // anything; checking again after catches the other having defined it while
+  // this one waited, as defining a name twice throws.
   if (customElements.get(tag)) return
   const [source] = await Promise.all([
     load(template),
@@ -182,8 +187,86 @@ export async function defineComponent({ name, template, styles, attributes = [],
         const value = this.getAttribute(attribute)
         data[camelCase(attribute)] = value === null ? undefined : value === '' ? true : value
       }
-      this.replaceChildren(fill(source.content.cloneNode(true), prepare(data)))
+      this.replaceChildren(fill(source.content.cloneNode(true), prepare(data, this)))
     }
+  })
+}
+
+/*
+ * What several components do the same way, in one place so they stay alike.
+ */
+
+/** Whether an attribute was given some text: not left off, and not empty. */
+export function filled(value) {
+  return typeof value === 'string' && value !== ''
+}
+
+/**
+ * What was written between a component's tags, sorted by slot: each element
+ * with slot="NAME", for each of `names`, under that name, and everything
+ * else, text too, under rest. Each keeps the order it was written in.
+ */
+export function bySlot(content, ...names) {
+  const parts = Object.fromEntries([...names, 'rest'].map(name => [name, []]))
+  for (const node of content) {
+    const slot = node.nodeType === Node.ELEMENT_NODE ? node.getAttribute('slot') : null
+    parts[names.includes(slot) ? slot : 'rest'].push(node)
+  }
+  return parts
+}
+
+/**
+ * A heading's level, from its level attribute: the one it names if that's
+ * one of the `allowed`, and `fallback` otherwise. Each component says which
+ * it allows, as not every one can take any level.
+ */
+export function headingLevel(value, allowed, fallback = 2) {
+  const level = Number(value)
+  return allowed.includes(level) ? level : fallback
+}
+
+/**
+ * Whether something that can be pressed is drawn as a link or a button: a
+ * link if it has an href, since it goes to another page, and a button
+ * otherwise, for the page to act on. Neither if it isn't `shown`. Its
+ * template has an <a data-if="link"> and a <button data-if="button">.
+ */
+export function linkOrButton(href, shown = true) {
+  return { link: shown && href !== undefined, button: shown && href === undefined }
+}
+
+const ids = new WeakMap()
+const idCounts = new Map()
+
+/**
+ * An id for something an element draws, unique on the page, such as a menu
+ * its button opens. It's the same each time the element is drawn, so what
+ * points at it, such as aria-describedby, isn't changed by a redraw.
+ */
+export function idFor(element, prefix) {
+  if (!ids.has(element)) {
+    const count = (idCounts.get(prefix) ?? 0) + 1
+    idCounts.set(prefix, count)
+    ids.set(element, `${prefix}-${count}`)
+  }
+  return ids.get(element)
+}
+
+/**
+ * Pressing an `item` of a `group` that is a button selects it, and only it,
+ * as a native tab bar or segmented control does. One that is a link goes to
+ * its page instead, which marks its own item selected.
+ */
+export function selectOnPress(group, item) {
+  document.addEventListener('click', event => {
+    const pressed = event.target.closest?.(`${item}:not([href])`)
+    const parent = pressed?.closest(group)
+    if (!parent || pressed.hasAttribute('selected')) return
+    for (const other of parent.querySelectorAll(`${item}[selected]`)) other.removeAttribute('selected')
+    // Selecting it draws it again, so give focus back to its new button.
+    const focused = pressed.contains(document.activeElement)
+    pressed.setAttribute('selected', '')
+    if (focused) pressed.querySelector('button').focus()
   })
 }
 

@@ -1,8 +1,6 @@
-import { defineComponent } from '../../foundation/component.js'
+import { defineComponent, filled, idFor } from '../../foundation/component.js'
 
 const types = ['text', 'email', 'tel', 'url', 'password', 'postcode']
-
-let fields = 0
 
 /**
  * Screen readers hear the hint and the error after the field's label, so
@@ -11,11 +9,11 @@ let fields = 0
  * A postcode is text in capitals, as the app's postcode field has it, with
  * the browser offering the user's own.
  */
-export function prepare(data) {
-  const id = `govuk-app-text-field-${++fields}`
+function prepare(data, element) {
+  const id = idFor(element, 'govuk-app-text-field')
   const type = types.includes(data.type) ? data.type : 'text'
-  const hint = typeof data.hint === 'string' && data.hint !== '' ? data.hint : null
-  const error = typeof data.error === 'string' && data.error !== '' ? data.error : null
+  const hint = filled(data.hint) ? data.hint : null
+  const error = filled(data.error) ? data.error : null
   const postcode = type === 'postcode'
   return {
     ...data,

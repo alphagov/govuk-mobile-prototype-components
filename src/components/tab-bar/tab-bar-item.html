@@ -2,7 +2,7 @@
      the icon attribute, over its label, whatever is written between the tags.
      A link to another page if it has an href, otherwise a button. -->
 <template>
-  <a class="govuk-app-tab-bar-item" data-if="href" data-attr="href: href, aria-current: current">
+  <a class="govuk-app-tab-bar-item" data-if="link" data-attr="href: href, aria-current: current">
     <span class="govuk-app-tab-bar-item__icon govuk-app-icon" aria-hidden="true" data-text="icon"></span>
     <span class="govuk-app-tab-bar-item__label" data-slot="content"></span>
   </a>

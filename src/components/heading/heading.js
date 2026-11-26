@@ -1,4 +1,4 @@
-import { defineComponent } from '../../foundation/component.js'
+import { defineComponent, headingLevel } from '../../foundation/component.js'
 
 const sizes = ['large-title', 'title-1', 'title-2', 'title-3', 'body']
 
@@ -10,9 +10,8 @@ const sizes = ['large-title', 'title-1', 'title-2', 'title-3', 'body']
 const sizeForLevel = level => (level === 1 ? 'large-title' : level === 2 ? 'title-3' : 'body')
 
 /** Its tag from its level, h2 if it has none or one out of range. */
-export function prepare(data) {
-  const number = Number(data.level)
-  const level = Number.isInteger(number) && number >= 1 && number <= 6 ? number : 2
+function prepare(data) {
+  const level = headingLevel(data.level, [1, 2, 3, 4, 5, 6])
   return {
     ...data,
     tag: `h${level}`,

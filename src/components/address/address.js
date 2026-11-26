@@ -5,7 +5,7 @@ import { defineComponent } from '../../foundation/component.js'
  * each line of text, or each <br>, with blank lines and indents left out, so
  * it can be written however reads best in the HTML.
  */
-export function prepare(data) {
+function prepare(data) {
   let text = ''
   for (const node of data.content) {
     text += node.nodeName === 'BR' ? '\n' : node.textContent

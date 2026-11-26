@@ -1,10 +1,10 @@
-import { defineComponent, materialSymbols } from '../../foundation/component.js'
+import { defineComponent, headingLevel, materialSymbols } from '../../foundation/component.js'
 
 const types = ['information', 'local-emergency', 'national-emergency', 'notable-death', 'warning']
 
 /** Information unless it names another type; its title an h2 unless level says. */
-export function prepare(data) {
-  const level = ['3', '4'].includes(data.level) ? data.level : '2'
+function prepare(data) {
+  const level = headingLevel(data.level, [2, 3, 4])
   return {
     ...data,
     type: types.includes(data.type) ? data.type : 'information',
