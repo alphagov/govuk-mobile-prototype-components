@@ -1,15 +1,14 @@
-import { defineComponent } from '../../foundation/component.js'
+import { defineComponent, filled, headingLevel, linkOrButton } from '../../foundation/component.js'
 
 /** h2 unless it names another level; its action a link if it has an href. */
 export function prepare(data) {
-  const number = Number(data.level)
-  const level = Number.isInteger(number) && number >= 1 && number <= 6 ? number : 2
-  const action = typeof data.action === 'string' && data.action !== ''
+  const level = headingLevel(data.level, [1, 2, 3, 4, 5, 6])
+  const action = linkOrButton(data.href, filled(data.action))
   return {
     ...data,
     tag: `h${level}`,
-    actionLink: action && data.href !== undefined,
-    actionButton: action && data.href === undefined,
+    actionLink: action.link,
+    actionButton: action.button,
   }
 }
 

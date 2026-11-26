@@ -1,4 +1,4 @@
-import { defineComponent, materialSymbols } from '../../foundation/component.js'
+import { bySlot, defineComponent, filled, linkOrButton, materialSymbols } from '../../foundation/component.js'
 
 /**
  * The back button is a link if it has a back-href, otherwise a button. The
@@ -8,13 +8,8 @@ import { defineComponent, materialSymbols } from '../../foundation/component.js'
  * full-screen cover, and the rest at the end.
  */
 export function prepareBar(data) {
-  const title = typeof data.title === 'string' && data.title !== ''
-  const leading = []
-  const actions = []
-  for (const node of data.content) {
-    if (node.nodeType === Node.ELEMENT_NODE && node.getAttribute('slot') === 'leading') leading.push(node)
-    else actions.push(node)
-  }
+  const title = filled(data.title)
+  const { leading, rest: actions } = bySlot(data.content, 'leading')
   return {
     ...data,
     backButton: Boolean(data.back) && data.backHref === undefined,
@@ -29,7 +24,7 @@ export function prepareBar(data) {
 export function prepareItem(data) {
   return {
     ...data,
-    button: data.href === undefined,
+    ...linkOrButton(data.href),
     hasIcon: data.icon !== undefined,
   }
 }

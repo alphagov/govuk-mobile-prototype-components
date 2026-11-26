@@ -1,8 +1,8 @@
-import { defineComponent } from '../../foundation/component.js'
+import { defineComponent, linkOrButton } from '../../foundation/component.js'
 
 /** A link if it has an href, otherwise a button. */
 export function prepareQuestion(data) {
-  return { ...data, button: data.href === undefined }
+  return { ...data, ...linkOrButton(data.href) }
 }
 
 // Both elements share one stylesheet.

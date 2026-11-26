@@ -1,10 +1,10 @@
-import { defineComponent, materialSymbols } from '../../foundation/component.js'
+import { defineComponent, linkOrButton, materialSymbols } from '../../foundation/component.js'
 
 /** A link if it has an href, otherwise a button. Selected is the current tab. */
 export function prepareItem(data) {
   return {
     ...data,
-    button: data.href === undefined,
+    ...linkOrButton(data.href),
     current: data.selected ? 'page' : undefined,
   }
 }

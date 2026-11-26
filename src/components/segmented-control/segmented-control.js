@@ -1,12 +1,14 @@
-import { defineComponent } from '../../foundation/component.js'
+import { defineComponent, linkOrButton } from '../../foundation/component.js'
 
 /** A link if it has an href, otherwise a button; selected says so. */
 export function prepareItem(data) {
+  const { link, button } = linkOrButton(data.href)
   return {
     ...data,
-    button: data.href === undefined,
+    link,
+    button,
     selectedText: data.selected ? 'true' : 'false',
-    current: data.selected && data.href !== undefined ? 'page' : undefined,
+    current: data.selected && link ? 'page' : undefined,
   }
 }
 

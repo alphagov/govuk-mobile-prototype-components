@@ -1,15 +1,15 @@
-import { defineComponent, materialSymbols } from '../../foundation/component.js'
+import { bySlot, defineComponent, filled, materialSymbols } from '../../foundation/component.js'
 
 /**
  * Sorts out what goes inside it. The box's name for screen readers is its
  * label, or its placeholder, and its value is sent as q unless it has a name.
  */
 export function prepare(data) {
-  const accessory = data.content.filter(node => node.nodeType === Node.ELEMENT_NODE && node.getAttribute('slot') === 'accessory')
+  const { accessory } = bySlot(data.content, 'accessory')
   return {
     ...data,
     accessory,
-    name: typeof data.name === 'string' && data.name !== '' ? data.name : 'q',
+    name: filled(data.name) ? data.name : 'q',
     spoken: data.label || data.placeholder,
   }
 }

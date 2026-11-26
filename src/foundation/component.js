@@ -191,6 +191,50 @@ export async function defineComponent({ name, template, styles, attributes = [],
   })
 }
 
+/*
+ * What several components' prepare work out the same way, so each works it
+ * out alike.
+ */
+
+/** Whether an attribute was given some text: not left off, and not empty. */
+export function filled(value) {
+  return typeof value === 'string' && value !== ''
+}
+
+/**
+ * What was written between a component's tags, sorted by slot: each element
+ * with slot="NAME", for each of `names`, under that name, and everything
+ * else, text too, under rest. Each keeps the order it was written in.
+ */
+export function bySlot(content, ...names) {
+  const parts = Object.fromEntries([...names, 'rest'].map(name => [name, []]))
+  for (const node of content) {
+    const slot = node.nodeType === Node.ELEMENT_NODE ? node.getAttribute('slot') : null
+    parts[names.includes(slot) ? slot : 'rest'].push(node)
+  }
+  return parts
+}
+
+/**
+ * A heading's level, from its level attribute: the one it names if that's
+ * one of the `allowed`, and `fallback` otherwise. Each component says which
+ * it allows, as not every one can take any level.
+ */
+export function headingLevel(value, allowed, fallback = 2) {
+  const level = Number(value)
+  return allowed.includes(level) ? level : fallback
+}
+
+/**
+ * Whether something that can be pressed is drawn as a link or a button: a
+ * link if it has an href, since it goes to another page, and a button
+ * otherwise, for the page to act on. Neither if it isn't `shown`. Its
+ * template has an <a data-if="link"> and a <button data-if="button">.
+ */
+export function linkOrButton(href, shown = true) {
+  return { link: shown && href !== undefined, button: shown && href === undefined }
+}
+
 /** Fills in a copy of a template's content from `data`. */
 function fill(fragment, data) {
   // First, so the new element keeps the attributes the steps below read.

@@ -1,4 +1,4 @@
-import { defineComponent, materialSymbols } from '../../foundation/component.js'
+import { defineComponent, linkOrButton, materialSymbols } from '../../foundation/component.js'
 
 let count = 0
 
@@ -16,7 +16,7 @@ export function prepareButton(data) {
 
 /** A link if it has an href, otherwise a button. */
 export function prepareItem(data) {
-  return { ...data, button: data.href === undefined }
+  return { ...data, ...linkOrButton(data.href) }
 }
 
 /* Below its button, its right edge under the button's, as iOS's menu, or
