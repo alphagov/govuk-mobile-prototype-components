@@ -62,6 +62,14 @@ With Claude Code, two skills in this repository do this for you:
 - **library-contribute** adds or changes a component, pattern or template, from the app’s source, a Figma design or screenshots, and opens a pull request.
 - **library-review** checks a change, yours or a pull request, against the rules in AGENTS.md, and reports what to fix in plain words.
 
+## Patterns and templates
+
+A pattern is one of the app’s screens, put together from the components: a folder, `src/patterns/<name>/`, holding its HTML (`<name>.html`, one `<govuk-app-screen>` and what’s in it) and its definition (`<name>.json`, following `src/schemas/pattern.schema.json`). The definition says what it’s for, when to use it, when to use another pattern instead, the components it uses and which of the app’s screens it’s taken from, so a person or a tool can choose between patterns.
+
+A template is a real screen of the app, or a few that link to each other, as whole pages to copy and change: a folder, `src/templates/<name>/`, holding its pages and its definition (`<name>.json`, following `src/schemas/template.schema.json`). Each page is complete, in a `<govuk-prototype-frame>`, with a comment at its top saying what to change and what to leave. The definition says what it’s for and when to use it, and lists its pages, the first where the journey starts, and the components they use.
+
+Every folder with a definition gets a page on this site. A template’s is at `/templates/<name>/about/`, since its own first page is at `/templates/<name>/`. [AGENTS.md](https://github.com/alphagov/govuk-mobile-prototype-components/blob/main/AGENTS.md) has the rules for both.
+
 ## How this site is made
 
 It’s built with the [GOV.UK Eleventy Plugin](https://github.com/x-govuk/govuk-eleventy-plugin), and published to GitHub Pages from `main`. Its source is in `docs/`:
