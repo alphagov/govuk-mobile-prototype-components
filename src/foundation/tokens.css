@@ -7,10 +7,10 @@
    Source: govuk-once/govuk-mobile-ios-gov-kit, GovKitUI/Sources/Colors
    (GOVUKColors+Fills, +Text, +Strokes), read at ad8590b on 2026-11-17.
    Each role names the GovKit token it comes from. The roles down to
-   --app-illustration-shadow, and the type, are carried over from the app
-   prototyping system's kit (exploration-2/kit/tokens.css); the button roles
-   were added for components/button. The glass and tab bar roles are the
-   system's, not GovKit's, and were added for components/tab-bar.
+   --app-focus, and the type, are carried over from the app prototyping
+   system's kit (exploration-2/kit/tokens.css); the button roles were added
+   for components/button. The glass and tab bar roles are the system's, not
+   GovKit's, and were added for components/tab-bar.
 
    light-dark() picks a value by the root's color-scheme, which base.css
    sets from the colour-scheme attribute, or the device's setting. */
@@ -35,13 +35,8 @@ govuk-app {
   --app-border-input: light-dark(#d2e2f1, #263d54);         /* strokes.listDivider */
   --app-border-button-stack: light-dark(rgb(0 0 0 / 0.3), rgb(255 255 255 / 0.3)); /* strokes.fixedContainer */
   --app-border-row: light-dark(rgb(60 60 67 / 0.29), rgb(84 84 88 / 0.6));
-  --app-border-nav-bar: light-dark(rgb(0 0 0 / 0.3), rgb(255 255 255 / 0.15));
-  --app-radio-selected: light-dark(#11875a, #66f39e);
-  --app-radio-unselected: light-dark(#808080, #b2b2b2);
   --app-focus: light-dark(#ffdd00, #ffdd00);
   --app-highlight: #ffdd00;                                 /* the library's own, for highlight-actions: GOV.UK's focus yellow, which stands out on every surface */
-  --app-illustration-mark: light-dark(#1d70b8, #1d70b8);
-  --app-illustration-shadow: light-dark(#8eb8dc, #11e0f1);
 
   /* Buttons: shared */
   --app-surface-button-focussed: #ffdd00;                   /* fills.surfaceButton{Primary,Secondary,Compact}Focussed */
@@ -140,6 +135,7 @@ govuk-app {
   --app-surface-number-plate-front: #ffffff;                  /* Color.white: VehicleCheckSectionView's blank plate */
   --app-text-number-plate: #000000;
   --app-surface-search-box-button: #1d70b8;                   /* primaryBlue, in dark mode too: VehicleCheckSectionView's search icon */
+  --app-icon-search-box-button: #ffffff;                      /* white, in dark mode too: the magnifier on it */
 
   /* Banners: EmergencyBannerWidgetViewModel's fills and strokes, and the
      designs' proposed warning */

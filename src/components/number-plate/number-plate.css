@@ -11,18 +11,13 @@
 
    The typeface is the app's own file, unchanged, under the SIL Open Font
    License, whose text is beside it: it may be shared with software, but not
-   changed and keep its name, so it isn't converted or subsetted. */
-
-@font-face {
-  font-family: "DVLA-VRM";
-  src: url("./DVLA-VRM.ttf") format("truetype");
-  font-display: block;
-}
+   changed and keep its name, so it isn't converted or subsetted. Its
+   @font-face is in dvla-vrm.css, which number-plate.js loads as a font. */
 
 .govuk-app-number-plate {
   display: block;
   width: fit-content;
-  padding: 7px 7px 4px;
+  padding: 7px 7px var(--app-space-extra-small);
   border-radius: 7px;
   background: var(--app-surface-number-plate);
   box-shadow: inset 0 0 0 0.5px var(--app-text-number-plate);
@@ -36,7 +31,7 @@
 }
 
 .govuk-app-number-plate[data-size="large"] {
-  padding: 20px 24px 10px;
+  padding: 20px var(--app-space-large) 10px;
   border-radius: 16px;
   font-size: var(--app-font-number-plate-large-size);
 }
@@ -46,13 +41,13 @@
    as the app draws the blank ABC plate in VehicleCheckSectionView, the only
    front plate it has. Its padding is the app's, off the grid. */
 .govuk-app-number-plate[data-variant="front"] {
-  padding: 8px 8px 5px;
+  padding: var(--app-space-small) var(--app-space-small) 5px;
   border-radius: 6px;
   background: var(--app-surface-number-plate-front);
   box-shadow: 0 0 0 0.75px var(--app-text-number-plate), inset 0 0 0 0.75px var(--app-text-number-plate);
 }
 
 .govuk-app-number-plate[data-variant="front"][data-size="large"] {
-  padding: 20px 24px 10px;
+  padding: 20px var(--app-space-large) 10px;
   border-radius: 16px;
 }
