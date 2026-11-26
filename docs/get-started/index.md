@@ -1,17 +1,35 @@
 ---
 layout: sub-navigation
 title: Get started
-description: Use the components to build a prototype app journey in HTML.
+description: Make a prototype of the GOV.UK app, use the components in your own pages, or work on the library.
 sectionKey: Get started
 order: 1
 ---
 
+There are three ways in:
+
+- **[Make a prototype](/get-started/make-a-prototype/)** by asking Claude Code for it in plain words. You don’t need to write any code. Start here if you’re a designer.
+- **Use the components in your own pages**, written in HTML. The rest of this page is how.
+- **[Work on the library](/get-started/work-on-the-library/)**, to change a component or add one. [Build a component](/get-started/building-a-component/) says how one is put together.
+
+## Install a release
+
+Install a [release](https://github.com/alphagov/govuk-mobile-prototype-components/releases), so the components change only when you choose. Each has the package attached, as a plain download:
+
+```sh
+npm install https://github.com/alphagov/govuk-mobile-prototype-components/releases/download/v0.5.0/govuk-mobile-prototype-components.tgz
+```
+
+Use a release, not `main` or a commit on it: only a release has the [catalogue](#for-tools-that-build-prototypes). Installing one adds this package alone, with no dependencies, and runs nothing.
+
+The package has the components, patterns, templates, the foundation and the frame. It leaves out the app’s screenshots, which are only for these docs.
+
 ## Use a component
 
-Load the component’s script, and write its element inside a `<govuk-app>`:
+Serve `node_modules/govuk-mobile-prototype-components/` with your pages. Load a component’s script from there, and write its element inside a `<govuk-app>`:
 
 ```html
-<script type="module" src="src/components/button/button.js"></script>
+<script type="module" src="node_modules/govuk-mobile-prototype-components/src/components/button/button.js"></script>
 
 <govuk-app>
   <govuk-app-button name="continue">Continue</govuk-app-button>
@@ -19,7 +37,13 @@ Load the component’s script, and write its element inside a `<govuk-app>`:
 </govuk-app>
 ```
 
-The script adds everything else the component needs to the page: the app’s colours and type, the root’s styles, and the component’s own stylesheet.
+The script adds everything else the component needs to the page: the app’s colours and type, the root’s styles, and the component’s own stylesheet. It loads them from beside itself, and nothing from another site, so a prototype works offline.
+
+Browsers won’t load scripts like these from a page opened from disk, so serve the folder from any web server, such as:
+
+```sh
+python3 -m http.server 8000
+```
 
 ## The root, `<govuk-app>`
 
@@ -44,7 +68,7 @@ See [styles stay apart](/get-started/building-a-component/#styles-stay-apart) fo
 To show a prototype as the app on an iPhone, put its `<govuk-app>` in a `<govuk-prototype-frame>`, and load the frame’s script:
 
 ```html
-<script type="module" src="src/frame/frame.js"></script>
+<script type="module" src="node_modules/govuk-mobile-prototype-components/src/frame/frame.js"></script>
 
 <govuk-prototype-frame>
   <govuk-app>
@@ -77,7 +101,7 @@ document.addEventListener('click', event => {
 
 ## For tools that build prototypes
 
-Everything in the library, its patterns and components with what each is for and when to use another, is in a catalogue generated from the definitions: a short [index](/catalogue/index.md) with a line for each, a card for each to read only when choosing between them, and [catalogue.json](/catalogue/catalogue.json) as data. It’s in every release too, in `catalogue/`, but not on `main`: install a release’s tag.
+Everything in the library, its templates, patterns and components with what each is for and when to use another, is in a catalogue generated from the definitions: a short [index](/catalogue/index.md) with a line for each, a card for each to read only when choosing between them, and [catalogue.json](/catalogue/catalogue.json) as data. It’s in every release, in `catalogue/`, but not on `main`.
 
 ## Show what works
 
@@ -98,21 +122,3 @@ On a grouped list or section heading, `works` is for its action, such as Edit.
 
 A tap goes nowhere if, within a third of a second, the page doesn’t leave or change, and no menu opens: tapping text, or a button no one listens for. So a button’s listener should go somewhere or change the page. One that only logs to the console counts as going nowhere.
 
-## Serve the page
-
-Browsers won’t load modules from a page opened from disk, so serve the folder from any static server:
-
-```sh
-python3 -m http.server 8000
-```
-
-## Run this site locally
-
-To work on the components or this site, you need Node.js 26, the version in `.nvmrc`. Anything from 22.16 works:
-
-```sh
-npm install
-npm start
-```
-
-Then open <http://localhost:8080>. The site reloads when you change a component, its definition or a page.

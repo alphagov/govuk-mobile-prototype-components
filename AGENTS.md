@@ -65,6 +65,6 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 
 ## Releasing
 
-- Release only with the Release workflow (see the README). It adds the catalogue and the version in a commit that only the tag points to, so `main` stays free of generated files.
+- Release only with the Release workflow (see [Work on the library](docs/get-started/work-on-the-library.md#release-the-library)). It adds the catalogue and the version in a commit that only the tag points to, so `main` stays free of generated files.
 - Nothing may run when the package is installed: no `prepare`, `install` or other install script. Installing from GitHub would run it, after installing the dev dependencies. The workflow refuses a release that has one.
 - Don't tag by hand, or change `version` on `main`: it stays `0.0.0`.
