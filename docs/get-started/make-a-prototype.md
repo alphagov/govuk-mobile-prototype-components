@@ -30,6 +30,8 @@ Open Claude Code in your prototype’s folder, and say:
 
 > Open my prototype
 
+A prototype keeps the version of the components it was made with. Say “get the latest components” to update it: Claude says what’s new, asks first, and checks your screens afterwards. If Claude made something for your prototype that the library hasn’t got, say “add this to the library” and Claude sends it to the library’s team to review.
+
 ## If you’d rather type it
 
 If you have [Node.js](https://nodejs.org/) 22.16 or newer, this makes a prototype called My prototype, starting at Settings, in the folder you run it in:

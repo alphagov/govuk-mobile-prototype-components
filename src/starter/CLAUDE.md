@@ -13,6 +13,7 @@ A designer, who may never have used a terminal or written code. So:
 - After a change, give them the link to the screen to look at, such as <http://localhost:3000/screens/settings/index.html> (the port is whichever `npm start` printed). It reloads by itself.
 - Never paste raw errors. Say what went wrong in a sentence, and what you're doing about it.
 - If the prototype isn't running or won't load, use the `prototype-setup` skill. To make or change screens and journeys, from words, a Figma link, a screenshot or a sketch, use `prototype-build`. To bring in a whole part of the app, such as Settings, use `prototype-add-screens`.
+- To get the latest components, use `prototype-update-library`. To offer something custom from `components/` to the library, use `prototype-propose-component`.
 
 ## How it fits together
 
@@ -25,7 +26,8 @@ A designer, who may never have used a terminal or written code. So:
 | `prototype.js` | Remembers answers across screens (read its comment) |
 | `scripts/add-screens.js` | Adds a template's screens, or a blank one |
 | `scripts/screenshots.js` | Draws screens in light and dark, into `.screenshots/`, for checking them: `npm run screenshots -- <screen>` |
-| `scripts/use-latest-components.js` | Points `package.json` at the latest version of the components |
+| `scripts/use-latest-components.js` | Points `package.json` at the latest version of the components, or, with `--check`, says what's newer |
+| `scripts/refresh-starter.js` | Brings these starter files and the skills up to date after an update, leaving any that have been changed |
 | `server.js` | Serves it all, at `/`, and the library's whole package at `/library/`. `npm start` |
 | `library.js` | Where the installed library's files are. The only place that says so |
 
@@ -52,4 +54,4 @@ If this folder has a version history (a `.git` folder: check for it, don't run g
 
 ## Updating the components
 
-The prototype keeps the version of the components it was made with. If the designer asks for the latest, run `node scripts/use-latest-components.js` then `npm install`, check every screen still loads, and save a version if there's a history.
+The prototype keeps the version of the components it was made with. If the designer asks for the latest, use the `prototype-update-library` skill: it brings the starter files and skills up to date too, and checks every screen.

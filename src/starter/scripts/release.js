@@ -30,14 +30,14 @@ export function downloadUrl(tag, hasAsset = true) {
 }
 
 /**
- * The latest release, as { tag, version, url }. Asks GitHub without signing
- * in, which it allows 60 times an hour from one network. Throws an error
- * whose message can be shown to anyone.
+ * GitHub's answer to one question, as JSON. Asks without signing in, which
+ * GitHub allows 60 times an hour from one network. Throws an error whose
+ * message can be shown to anyone.
  */
-export async function latestRelease() {
+async function ask(url) {
   let response
   try {
-    response = await fetch(api, {
+    response = await fetch(url, {
       headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'govuk-app-prototype' },
       signal: AbortSignal.timeout(15000)
     })
@@ -53,9 +53,42 @@ export async function latestRelease() {
   if (!response.ok) {
     throw new Error(`GitHub didn’t say what the latest version of the components is (it answered ${response.status}). Try again in a few minutes.`)
   }
-  const release = await response.json()
+  return response.json()
+}
+
+/** The latest release, as { tag, version, url }. */
+export async function latestRelease() {
+  const release = await ask(api)
   const version = parseVersion(release.tag_name)
   if (!version) throw new Error(`The latest release of the components, ${release.tag_name}, isn’t a version this understands.`)
-  const hasAsset = (release.assets ?? []).some(asset => asset.name === assetName)
-  return { tag: release.tag_name, version, url: downloadUrl(release.tag_name, hasAsset) }
+  // The address GitHub gives for the package, which is downloadUrl's, or a
+  // test's stand-in's.
+  const asset = (release.assets ?? []).find(asset => asset.name === assetName)
+  return { tag: release.tag_name, version, url: asset?.browser_download_url ?? downloadUrl(release.tag_name, Boolean(asset)) }
+}
+
+/**
+ * The releases newer than `version` (three numbers), oldest first, each as
+ * { tag, version, date, notes }. A release's notes list the pull requests
+ * merged since the one before, as the release workflow writes them.
+ */
+export async function releasesSince(version) {
+  // The list is beside the latest, at GitHub and at a test's stand-in.
+  const list = await ask(`${api.replace(/\/latest$/, '')}?per_page=100`)
+  return list
+    .filter(release => !release.draft && !release.prerelease)
+    .map(release => ({
+      tag: release.tag_name,
+      version: parseVersion(release.tag_name),
+      date: release.published_at?.slice(0, 10),
+      notes: release.body ?? ''
+    }))
+    .filter(release => release.version && compareVersions(release.version, version) > 0)
+    .sort((a, b) => compareVersions(a.version, b.version))
+}
+
+/** The version a release's download address is of, such as package.json has, or nothing. */
+export function versionOf(address) {
+  const tag = String(address ?? '').match(/\/(?:releases\/download|archive\/refs\/tags)\/(v?\d+\.\d+\.\d+)[/.]/)?.[1]
+  return tag ? parseVersion(tag) : null
 }

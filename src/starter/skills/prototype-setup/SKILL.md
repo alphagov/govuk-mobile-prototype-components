@@ -43,6 +43,6 @@ Then tell them, in two or three sentences, something like:
 
 > Your prototype is open in your browser at http://localhost:3000. It's only on your computer, and it updates by itself whenever I change it, so you can keep that tab open while we work. It runs while this Claude window is open; next time, open Claude in this folder and say "open my prototype".
 
-If it's new, or they're not sure what to do next, add what they can ask for, in a sentence or two: a new journey or screen, described in words ("a journey to add a vehicle and get MOT reminders"), from a Figma link or a screenshot, or a change to a screen that's there ("add a Vehicles row to Settings"). The `prototype-build` skill does those.
+If it's new, or they're not sure what to do next, add what they can ask for, in a sentence or two: a new journey or screen, described in words ("a journey to add a vehicle and get MOT reminders"), from a Figma link or a screenshot, or a change to a screen that's there ("add a Vehicles row to Settings"). The `prototype-build` skill does those. They can also say "get the latest components" (`prototype-update-library`), or "add this to the library" for something made just for this prototype (`prototype-propose-component`).
 
 If they ask how to stop it: you stop it (stop the background task), or it stops when they close Claude. To restart, run steps 4 and 5 again.

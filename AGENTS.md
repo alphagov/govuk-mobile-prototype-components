@@ -38,6 +38,7 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 ## Making prototypes
 
 - `src/bin/govuk-app-prototype.js new "<name>"` makes a prototype, for designers who've never used a terminal, run with `npx` from a release's download. It copies `src/starter/` into a new folder, its `skills/` into the prototype's `.claude/skills/`, and installs the components from the latest release's download. It has no dependencies, and the package runs nothing on install.
+- A prototype updates with its `prototype-update-library` skill, which runs the new release's `src/starter/scripts/refresh-starter.js`: it replaces a starter file only if the prototype's copy is just as the old release had it, so the designer's changes are kept. Where each file goes in a prototype is its `prototypePath`, which the command uses too.
 - Write the starter's `CLAUDE.md` and skills, and anything they tell the designer, in plain words, with no jargon.
 - A prototype serves the library's whole package at `/library/`, so a catalogue path is `/library/` and that path. Where the shipped files are inside the package is `source` in `src/starter/library.js` alone: keep it that way, so moving them is a one-line change.
 - Check a change to it end to end: `npm pack`, serve the file, and in an empty folder run `npx --yes <its address> new "Test" --components <its address>`. Then open the prototype in Claude Code and say "open my prototype".

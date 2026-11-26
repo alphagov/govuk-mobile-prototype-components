@@ -89,7 +89,7 @@ Each screen is a page of its own in `screens/`, in a folder for the journey: `sc
 
 When no template, pattern or arrangement of components can show what's needed, make a component of the prototype's own, in `components/<name>/`, the library's way, so it looks like the app in light and dark. [references/custom-component.md](references/custom-component.md) has the skeleton files and the rules. Tell the designer, in a sentence, that it isn't one of the app's own and why you made it.
 
-Never change the installed library, in `node_modules/`. If they'd like something you made added to the library for everyone, say a developer can help with that.
+Never change the installed library, in `node_modules/`. If they'd like something you made added to the library for everyone, use the `prototype-propose-component` skill.
 
 ## 6. Check your work
 
