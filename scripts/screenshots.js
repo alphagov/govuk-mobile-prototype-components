@@ -19,6 +19,8 @@ import { parseArgs } from 'node:util'
 
 import { chromium } from 'playwright'
 
+import { loadComponents } from './definitions.js'
+
 const root = path.resolve(import.meta.dirname, '..')
 const site = path.join(root, '_site')
 const out = path.join(root, 'screenshots-out')
@@ -36,7 +38,10 @@ const { values: options, positionals: components } = parseArgs({
 
 if (options.build) execSync('npm run build', { cwd: root, stdio: 'inherit' })
 
-const definitions = readDefinitions()
+// Every component's definition, by its folder's name, in that order.
+const definitions = Object.fromEntries(loadComponents()
+  .map(component => [component.slug, component])
+  .sort(([a], [b]) => a.localeCompare(b)))
 const jobs = []
 if (options.url) {
   jobs.push(...pageJobs(options.url))
@@ -174,15 +179,6 @@ function serve(folder) {
     fs.createReadStream(file).pipe(response)
   })
   return new Promise(resolve => server.listen(0, () => resolve(server)))
-}
-
-function readDefinitions() {
-  const definitions = {}
-  for (const file of fs.globSync('src/components/*/*.json', { cwd: root })) {
-    const slug = path.basename(path.dirname(file))
-    if (path.basename(file) === `${slug}.json`) definitions[slug] = JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'))
-  }
-  return Object.fromEntries(Object.entries(definitions).sort(([a], [b]) => a.localeCompare(b)))
 }
 
 /** A file name for each example's name, numbered where two would be the same. */

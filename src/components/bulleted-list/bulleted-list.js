@@ -4,7 +4,7 @@ import { defineComponent } from '../../foundation/component.js'
 const styles = new URL('./bulleted-list.css', import.meta.url)
 
 /** Regular spacing unless it says compact. */
-export function prepare(data) {
+function prepare(data) {
   return { ...data, spacing: data.spacing === 'compact' ? 'compact' : null }
 }
 

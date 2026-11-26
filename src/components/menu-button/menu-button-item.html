@@ -1,6 +1,6 @@
 <!-- One item in a menu: a link if it has an href, otherwise a button. Its
      label, then any icon, at the end, as iOS draws a menu's items. -->
 <template>
-  <a class="govuk-app-menu-button-item" role="menuitem" data-if="href" data-attr="href: href, data-destructive: destructive"><span data-slot="content"></span><span class="govuk-app-icon govuk-app-menu-button-item__icon" data-if="icon" data-text="icon" aria-hidden="true"></span></a>
+  <a class="govuk-app-menu-button-item" role="menuitem" data-if="link" data-attr="href: href, data-destructive: destructive"><span data-slot="content"></span><span class="govuk-app-icon govuk-app-menu-button-item__icon" data-if="icon" data-text="icon" aria-hidden="true"></span></a>
   <button class="govuk-app-menu-button-item" type="button" role="menuitem" data-if="button" data-attr="name: name, value: value, data-destructive: destructive"><span data-slot="content"></span><span class="govuk-app-icon govuk-app-menu-button-item__icon" data-if="icon" data-text="icon" aria-hidden="true"></span></button>
 </template>

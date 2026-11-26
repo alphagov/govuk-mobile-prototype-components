@@ -47,7 +47,7 @@
 .govuk-app-sheet__card {
   --govuk-app-inset-top: var(--app-space-medium);
   position: absolute;
-  inset: calc(var(--govuk-app-inset-top-outer, 0px) + 10px) 0 0;
+  inset: calc(var(--govuk-app-inset-top-outer, 0px) + 10px) 0 0; /* the system's 10pt, as above */
   overflow: hidden;
   border-radius: 10px 10px 0 0;
 }

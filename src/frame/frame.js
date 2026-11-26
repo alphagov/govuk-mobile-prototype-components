@@ -20,6 +20,9 @@
  * above the phone, and is hidden when the app fills the window.
  */
 
+// Its stylesheet is added the way a component's is, so a page never has two.
+import { stylesheet } from '../foundation/component.js'
+
 const styles = new URL('./frame.css', import.meta.url)
 
 // iOS's status bar: the time, the Dynamic Island, and the signal, wifi and
@@ -45,27 +48,17 @@ const bezel = 10
 // Narrower than this, the window is a phone's, so the app fills it.
 const phoneSized = matchMedia('(max-width: 460px)')
 
-/** Adds the frame's stylesheet to the page, and resolves when it has loaded. */
-function loadStyles() {
-  const link = Object.assign(document.createElement('link'), { rel: 'stylesheet', href: String(styles) })
-  const loaded = new Promise((resolve, reject) => {
-    link.addEventListener('load', resolve, { once: true })
-    link.addEventListener('error', () => reject(new Error(`Could not load the stylesheet ${styles}`)), { once: true })
-  })
-  document.head.append(link)
-  return loaded
-}
-
 class PrototypeFrame extends HTMLElement {
   static observedAttributes = ['bare', 'status-bar']
   #frame = null
+  #stage = null
   #phone = null
   #resize = new ResizeObserver(() => this.#fit())
   #update = () => this.#draw()
 
   connectedCallback() {
     if (!this.#frame) this.#build()
-    this.#resize.observe(this.#frame.querySelector('.govuk-prototype-frame__stage'))
+    this.#resize.observe(this.#stage)
     phoneSized.addEventListener('change', this.#update)
     this.#draw()
   }
@@ -96,6 +89,7 @@ class PrototypeFrame extends HTMLElement {
           <div class="govuk-prototype-frame__home-indicator" aria-hidden="true"></div>
         </div>
       </div>`
+    this.#stage = this.#frame.querySelector('.govuk-prototype-frame__stage')
     this.#phone = this.#frame.querySelector('.govuk-prototype-frame__phone')
 
     const aboveArea = this.#frame.querySelector('.govuk-prototype-frame__above')
@@ -121,11 +115,10 @@ class PrototypeFrame extends HTMLElement {
   // this works out the scale, from the room the stage has for the phone and
   // its bezel. Never below 0.4, where the screen would be too small to use.
   #fit() {
-    const stage = this.#frame.querySelector('.govuk-prototype-frame__stage')
     const scale = Math.min(
       1,
-      (stage.clientHeight - 2 * bezel) / screen.height,
-      (stage.clientWidth - 2 * bezel) / screen.width,
+      (this.#stage.clientHeight - 2 * bezel) / screen.height,
+      (this.#stage.clientWidth - 2 * bezel) / screen.width,
     )
     this.#phone.style.setProperty('--govuk-prototype-frame-scale', String(Math.max(scale, 0.4)))
   }
@@ -133,6 +126,6 @@ class PrototypeFrame extends HTMLElement {
 
 // Defined once its styles have loaded, so the phone is never drawn unstyled.
 if (!customElements.get('govuk-prototype-frame')) {
-  await loadStyles()
+  await stylesheet(styles)
   customElements.get('govuk-prototype-frame') || customElements.define('govuk-prototype-frame', PrototypeFrame)
 }

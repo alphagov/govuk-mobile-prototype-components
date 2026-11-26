@@ -31,7 +31,7 @@
   color: var(--app-text-link);
   font-size: var(--app-font-title-2-size);
   font-weight: var(--app-font-title-2-weight);
-  line-height: 1.193em;
+  line-height: 1.193em; /* the font's own height, as above */
 }
 
 /* Inside the card's corners. */

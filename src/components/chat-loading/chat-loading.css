@@ -33,10 +33,11 @@
   height: 32px;
 }
 
+/* Each circle starts in the middle of the box, and moves from there. */
 .govuk-app-chat-loading__circle {
   position: absolute;
-  top: 7px;
-  left: 7px;
+  inset: 0;
+  margin: auto;
   width: 18px;
   height: 18px;
   border-radius: 50%;

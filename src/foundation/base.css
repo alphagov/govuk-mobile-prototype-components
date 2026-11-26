@@ -87,10 +87,28 @@ govuk-app [data-govuk-app-highlight] {
   margin-block: calc((1.193em - var(--leading)) / 2);
 }
 
-/* An icon, drawn from an icon font as a word, such as "close", is hidden
-   while any font is loading (component.js), so it never shows as that word
-   in the page's own font. Any component that draws icons gives them this
-   class, besides its own. */
+/* An icon, drawn from an icon font as a word, such as "close". Any component
+   that draws icons gives them this class, besides its own, which names the
+   font it loads (fonts in defineComponent), and the icon's size and colour.
+
+   A word is drawn as its icon through the font's ligatures, on one line, and
+   a line only as tall as the icon. At 500, the weight of the one instance of
+   Material Symbols Rounded in foundation/fonts, which most icons are in.
+
+   A single class, so it wins over the reset above, and the component's own
+   class, whose stylesheet comes after this one, wins over it. */
+.govuk-app-icon {
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* It's hidden while any font is loading (component.js), so it never shows as
+   that word in the page's own font. */
 :root[data-govuk-app-fonts-loading] .govuk-app-icon {
   visibility: hidden;
 }

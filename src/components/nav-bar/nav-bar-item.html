@@ -3,7 +3,7 @@
      between the tags is its name for screen readers. Without one, it draws
      that text. A link to another page if it has an href, otherwise a button. -->
 <template>
-  <a class="govuk-app-nav-bar-item" data-if="href" data-attr="href: href, data-icon: hasIcon">
+  <a class="govuk-app-nav-bar-item" data-if="link" data-attr="href: href, data-icon: hasIcon">
     <span class="govuk-app-nav-bar-item__icon govuk-app-icon" aria-hidden="true" data-if="icon" data-text="icon"></span>
     <span class="govuk-app-nav-bar-item__label" data-attr="data-hidden: hasIcon" data-slot="content"></span>
   </a>

@@ -9,7 +9,7 @@ const backgrounds = ['page', 'modal', 'green', 'chat']
  * the bottom of what scrolls, anything marked slot="footer", such as a button
  * stack, is pinned below that, and the rest is the content.
  */
-export function prepare(data) {
+function prepare(data) {
   const parts = { bar: [], body: [], tabs: [], footer: [] }
   for (const node of data.content) {
     const tag = node.nodeType === Node.ELEMENT_NODE ? node.localName : null

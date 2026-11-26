@@ -6,7 +6,7 @@ const states = ['valid', 'due', 'expired', 'none']
  * Valid unless it names another state. A due status's ring is filled by its
  * progress, from 0 to 1, given to the stylesheet as a custom property.
  */
-export function prepare(data) {
+function prepare(data) {
   const state = states.includes(data.state) ? data.state : 'valid'
   const progress = Math.min(1, Math.max(0, Number(data.progress)))
   return {
