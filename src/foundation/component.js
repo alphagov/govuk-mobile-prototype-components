@@ -208,7 +208,11 @@ function fill(fragment, data) {
     for (const pair of element.dataset.attr.split(',')) {
       const [attribute, property] = pair.split(':').map(part => part.trim())
       const value = data[property]
-      if (value === true) element.setAttribute(attribute, '')
+      // Styles go through the CSSOM, not the attribute, so they still apply
+      // under a Content Security Policy that blocks inline styles, as a
+      // prototype viewer's does.
+      if (attribute === 'style') setStyles(element, value)
+      else if (value === true) element.setAttribute(attribute, '')
       else if (value !== false && value !== null && value !== undefined) element.setAttribute(attribute, String(value))
     }
     element.removeAttribute('data-attr')
@@ -224,6 +228,15 @@ function fill(fragment, data) {
     element.removeAttribute('data-slot')
   }
   return fragment
+}
+
+/** Sets each declaration of `declarations`, such as `--x: 1; --y: 2`, on `element`. */
+function setStyles(element, declarations) {
+  if (typeof declarations !== 'string') return
+  for (const declaration of declarations.split(';')) {
+    const colon = declaration.indexOf(':')
+    if (colon > 0) element.style.setProperty(declaration.slice(0, colon).trim(), declaration.slice(colon + 1).trim())
+  }
 }
 
 function present(value) {

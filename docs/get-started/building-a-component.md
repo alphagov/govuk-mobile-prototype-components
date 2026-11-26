@@ -63,7 +63,7 @@ There is no build step for components. `src/foundation/component.js` fetches the
 | Attribute | |
 | --- | --- |
 | `data-text="x"` | The element’s text is `x` |
-| `data-attr="a: x, b: y"` | Attribute `a` is `x`. `true` sets it empty; `false` or absent leaves it off |
+| `data-attr="a: x, b: y"` | Attribute `a` is `x`. `true` sets it empty; `false` or absent leaves it off. `style` is set through the CSSOM, declaration by declaration, so it applies under a Content Security Policy that blocks inline styles |
 | `data-if="x"` | The element is left out unless `x` is present |
 | `data-slot="content"` | The element holds what was written between the component’s tags |
 | `data-tag="x: h1 h2"` | The element’s tag is `x`, if it is one of those listed, and as written otherwise |
