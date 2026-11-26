@@ -235,6 +235,24 @@ export function linkOrButton(href, shown = true) {
   return { link: shown && href !== undefined, button: shown && href === undefined }
 }
 
+/**
+ * Pressing an `item` of a `group` that is a button selects it, and only it,
+ * as a native tab bar or segmented control does. One that is a link goes to
+ * its page instead, which marks its own item selected.
+ */
+export function selectOnPress(group, item) {
+  document.addEventListener('click', event => {
+    const pressed = event.target.closest?.(`${item}:not([href])`)
+    const parent = pressed?.closest(group)
+    if (!parent || pressed.hasAttribute('selected')) return
+    for (const other of parent.querySelectorAll(`${item}[selected]`)) other.removeAttribute('selected')
+    // Selecting it draws it again, so give focus back to its new button.
+    const focused = pressed.contains(document.activeElement)
+    pressed.setAttribute('selected', '')
+    if (focused) pressed.querySelector('button').focus()
+  })
+}
+
 /** Fills in a copy of a template's content from `data`. */
 function fill(fragment, data) {
   // First, so the new element keeps the attributes the steps below read.
