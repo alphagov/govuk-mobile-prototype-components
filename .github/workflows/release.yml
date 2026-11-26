@@ -16,13 +16,28 @@ name: Release
 # commit. Installing the tag then gets the catalogue ready made, with no
 # install script and no dev dependencies, and main never holds generated files.
 
+# The workflow works out the next version from the latest release, so nobody
+# has to remember it: the form can't show it, as it's drawn from this file.
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: Version to release, such as 0.4.0, without the v
+      bump:
+        description: "What's changed since the latest release: minor for new components, templates or skills; patch for fixes only; major for changes that break prototypes made before"
         required: true
+        type: choice
+        options:
+          - minor
+          - patch
+          - major
+        default: minor
+      version:
+        description: Or an exact version, such as 1.0.0, without the v. Leave empty to work it out
+        required: false
         type: string
+
+# The run's title, in the list of runs. It can't know the version yet, so it
+# says what was asked for; the run's summary says which version it made.
+run-name: Release (${{ inputs.version || inputs.bump }})
 
 permissions:
   contents: write
@@ -36,8 +51,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     env:
-      VERSION: ${{ inputs.version }}
-      TAG: v${{ inputs.version }}
+      BUMP: ${{ inputs.bump }}
+      REQUESTED: ${{ inputs.version }}
     steps:
       # Always main, whichever branch the workflow was run from. All the history
       # and tags, to find the latest release and write notes since it.
@@ -47,6 +62,26 @@ jobs:
           ref: main
           fetch-depth: 0
           fetch-tags: true
+
+      # The latest release's version, with minor, patch or major added, unless
+      # an exact version was given.
+      - name: Work out the version
+        run: |
+          latest=$(git tag --list 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -n 1)
+          if [ -n "$REQUESTED" ]; then
+            VERSION="${REQUESTED#v}"
+          else
+            IFS=. read -r major minor patch <<< "${latest#v}"
+            major=${major:-0} minor=${minor:-0} patch=${patch:-0}
+            case "$BUMP" in
+              major) VERSION="$((major + 1)).0.0" ;;
+              minor) VERSION="$major.$((minor + 1)).0" ;;
+              patch) VERSION="$major.$minor.$((patch + 1))" ;;
+            esac
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "TAG=v$VERSION" >> "$GITHUB_ENV"
+          echo "Latest release: ${latest:-none}. Releasing v$VERSION." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Check the version
         run: |
@@ -134,3 +169,12 @@ jobs:
             --generate-notes \
             ${LATEST:+--notes-start-tag "$LATEST"} \
             govuk-mobile-prototype-components.tgz
+
+      - name: Say what was released
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo
+            echo "**Released $TAG**${LATEST:+, after $LATEST}: $(gh release view "$TAG" --json url --jq .url)"
+          } >> "$GITHUB_STEP_SUMMARY"
