@@ -48,7 +48,6 @@ An action row is the app’s Add vehicle card (`VehiclesView`): its title, with 
 
 ## Known differences from the app
 
-- GovKit’s rows can have an image on the left, as Your GOV.UK One Login does on Settings. These can’t yet.
 - GovKit can draw a section’s title in a coloured band at the top of the card, with an icon. This can’t yet.
 - A count row can’t yet show the spinner the app shows while it loads.
 - A toggle row’s switch is the [toggle](../toggle/), with its differences from the app.

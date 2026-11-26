@@ -5,7 +5,7 @@
   "purpose": "Makes a few words of a line a link, such as a GOV.UK page named in one of GOV.UK Chat's answers.",
   "origin": {
     "kind": "govuk",
-    "notes": "How GOV.UK Chat draws a link in an answer (ChatMarkdownTheme) and in its list of sources: text.linkSecondary, underlined. It takes the size and weight of the line around it."
+    "notes": "How GOV.UK Chat draws a link in an answer (ChatMarkdownTheme) and in its list of sources: text.linkSecondary, underlined. It's the app's own: iOS draws a link in a colour alone, without the underline. It takes the size and weight of the line around it."
   },
   "inputs": {
     "attributes": {

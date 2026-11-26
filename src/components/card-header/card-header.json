@@ -41,7 +41,10 @@
   "avoid": [
     { "when": "For a card that's fine, with nothing to put right", "instead": "Leave the header off, and say how it stands in the card's rows." },
     { "when": "For how a vehicle's tax or MOT, or a licence, stands, when it needs no attention", "instead": "govuk-app-status" },
-    { "when": "For a warning about the whole screen, not one card", "instead": "govuk-app-banner type=\"warning\"" }
+    { "when": "For a warning about the whole screen, not one card", "instead": "govuk-app-banner type=\"warning\"" },
+    { "when": "For a card's title, when the card needs no attention", "instead": "govuk-app-heading level=\"2\"" },
+    { "when": "For a title over part of a screen", "instead": "govuk-app-section" },
+    { "when": "For a title with an action beside it, such as Edit", "instead": "govuk-app-section-heading" }
   ],
   "sources": {
     "figma": [],
@@ -66,7 +69,7 @@
     },
     {
       "name": "Caution, as an expired licence",
-      "html": "<govuk-app-grouped-list>\n  <govuk-app-grouped-list-row type=\"content\" flush>\n    <govuk-app-card-header>\n      <govuk-app-text size=\"subheadline\" emphasis>Expired 28 March 2026</govuk-app-text>\n      <govuk-app-heading level=\"2\" size=\"title-1\">ARENO803236AA170</govuk-app-heading>\n    </govuk-app-card-header>\n  </govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"content\">\n    <govuk-app-address name=\"Ms Anna Ornella Arenö\">\n      29 Orchard Drive\n      Milton Keynes\n      PA98 J83\n    </govuk-app-address>\n  </govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
+      "html": "<govuk-app-grouped-list>\n  <govuk-app-grouped-list-row type=\"content\" flush>\n    <govuk-app-card-header>\n      <govuk-app-text size=\"subheadline\"><govuk-app-strong>Expired</govuk-app-strong> 28 March 2026</govuk-app-text>\n      <govuk-app-heading level=\"2\" size=\"title-1\">ARENO803236AA170</govuk-app-heading>\n    </govuk-app-card-header>\n  </govuk-app-grouped-list-row>\n  <govuk-app-grouped-list-row type=\"content\">\n    <govuk-app-address name=\"Ms Anna Ornella Arenö\">\n      29 Orchard Drive\n      Milton Keynes\n      PA98 J83\n    </govuk-app-address>\n  </govuk-app-grouped-list-row>\n</govuk-app-grouped-list>"
     }
   ]
 }

@@ -21,6 +21,15 @@ Each component is one folder, `src/components/<name>/`:
 
 Every folder with a definition gets a page on this site, drawn from the definition. The build checks each definition against `src/schemas/component.schema.json`, and fails if one doesn’t match.
 
+### Native or GOV.UK app component
+
+A definition’s `origin.kind` says who decides how the component looks:
+
+- `native`, a native component: the platform draws it, and the app sets no more than its colours and text styles. A system control, such as the tab bar or a switch, a way of presenting a screen, such as a sheet, iOS’s text styles, and SwiftUI’s layout are all native.
+- `govuk`, a GOV.UK app component: the app draws it its own way, in GovKit or its own views, even when it’s built on a platform control, as the app’s button is.
+
+Being proposed doesn’t change it. The strong is native, since SwiftUI draws bold words itself, though the app doesn’t use them yet. The link is a GOV.UK app component, since its underline is the app’s, not the platform’s.
+
 ### What goes inside it, as data
 
 A definition’s `inputs` say what a page can give the component, in a form tools can use as well as people, such as a schema for prototypes written as data:
@@ -41,7 +50,7 @@ A definition’s `avoid` lists the times the component is the wrong choice, each
 
 ### Proposed components
 
-A component that isn’t in the app yet, such as one from future designs, has `proposed` in its definition, saying where its design comes from. Match the design as you would the app, and say where it differs under “Known differences from the app”. Its page is tagged and warned, and it’s listed apart from the app’s components. If it ships, remove `proposed` and point its sources at the app.
+A component that isn’t in the app yet, such as one from future designs, has `proposed` in its definition, saying where its design comes from. Match the design as you would the app, and say where it differs under “Known differences from the designs”, after a “Where it comes from” section. Its page is tagged and warned, and it’s listed apart from the app’s components. If it ships, remove `proposed` and point its sources at the app.
 
 ### Prose for a component’s page
 
@@ -56,7 +65,7 @@ If a component has a `<name>.md`, it appears on its page after the introduction 
 </govuk-app>
 ```
 
-## Templates
+## The component’s `<template>`
 
 There is no build step for components. `src/foundation/component.js` fetches the template when the page runs and fills it in from the element’s attributes and content, using a few attributes in the template:
 
@@ -76,10 +85,11 @@ A button the component acts on itself, such as a segmented control’s segment, 
 
 ## Building one
 
-1. Find the component in `inventory/COMPONENTS.md`, and read its iOS and Android source.
-2. Copy its reference screenshots into `reference/`.
+1. Find the component in `inventory/COMPONENTS.md`, and read its iOS and Android source. Note the commit you read, for each source’s `ref`.
+2. Copy its reference screenshots into `reference/`, and list each in the definition’s `references`, with its platform and what it shows.
 3. Write the four files. Use only `--app-*` tokens for colour, type and spacing; add any missing ones to `src/foundation/tokens.css`, naming where they come from. Spacing is on the 8pt grid (`--app-space-extra-small` to `--app-space-extra-large`: 4, 8, 16, 24 and 32). Keep a value off the grid only where the app itself has it, and say so in a comment.
-4. Run `npm start` and open its page. Check every example against the references, in each state.
+4. Write its `avoid`: the components a designer might pick it over by mistake, or pick over it. Add an entry to theirs too, so each says when to use the other.
+5. Run `npm start` and open its page. Check every example against the references, in each state.
 
 To check without a browser, `npm run screenshots -- <name>` draws each of its examples in light and dark into `screenshots-out/<name>/`, and `screenshots-out/index.html` shows them beside its references. Install the browser it uses first, once, with `npx playwright install chromium`. See [check your changes](/get-started/work-on-the-library/#check-your-changes) for its other options.
 
