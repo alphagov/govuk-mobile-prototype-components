@@ -49,6 +49,8 @@ Around it are `examples/`, `docs/` (this site), `scripts/`, and `inventory/`, th
 - a component isn’t in one of the catalogue index’s groups, or a name there isn’t a component
 - a component, pattern or template is missing from the sidebar
 
+`npm run check` looks through every component for the rules a script can spot, such as raw colours, spacing off the 8pt grid, or styles on another component’s classes. It fails if it finds anything that must be fixed, and lists other things worth a look. Every pull request runs it, before the build.
+
 `npm run screenshots` draws every component’s examples, and every page in `examples/`, in light and dark, in a headless browser, so you can see them without opening one. The first time, install the browser it uses:
 
 ```sh
