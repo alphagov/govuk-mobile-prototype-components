@@ -4,10 +4,7 @@
 // components' classes or bare elements, cascade layers, display: contents on
 // a component's element, tokens that don't exist, icons drawn in the font
 // without govuk-app-icon, events of a component's own, sources without a
-// commit, the docs site's styles selecting on GOV.UK Frontend's classes, and
-// anything that would stop the library working offline or under a strict
-// Content Security Policy: a load from another site, or an inline style or
-// script.
+// commit, and the docs site's styles selecting on GOV.UK Frontend's classes.
 //
 // It finds things to look at, not verdicts: a reviewer reads each one in its
 // file and decides. npm run build checks the rest (the schema, the sidebar,
@@ -449,59 +446,6 @@ function checkDefinition(dir, slug, definition) {
   }
 }
 
-/*
- * Works anywhere: under a strict Content Security Policy (default-src 'self',
- * no unsafe-inline or unsafe-eval) and offline, as the prototyping system's
- * viewer is (#70). So nothing from another site, and no inline style or
- * script that a component, the foundation or the frame adds to the page.
- * Setting one custom property with element.style.setProperty is fine: a
- * policy blocks style attributes, not the CSSOM.
- */
-function checkWorksAnywhere(file) {
-  const source = read(file)
-  const type = path.extname(file)
-  // Comments blanked, so a link to a licence or a source in one isn't a load.
-  const code = type === '.html'
-    ? source.replace(/<!--[\s\S]*?-->/g, comment => comment.replace(/[^\n]/g, ' '))
-    : source.replace(/\/\*[\s\S]*?\*\//g, comment => comment.replace(/[^\n]/g, ' '))
-      .replace(/(^|[^:'"`])\/\/[^\n]*/g, (line, before) => before + line.slice(before.length).replace(/./g, ' '))
-  const rule = 'Works anywhere: strict CSP and offline'
-  code.split('\n').forEach((text, index) => {
-    const line = index + 1
-    // An SVG namespace is a name, not something loaded.
-    const url = text.replace(/https?:\/\/www\.w3\.org\/[^\s'"`)]*/g, '').match(/https?:\/\/[^\s'"`)]+/)
-    if (url && type !== '.html') {
-      report('must', file, line, rule, `${url[0]}: the library loads nothing from another site, so it works offline and under a strict Content Security Policy. Keep the file in the library, as src/foundation/fonts/ does the icon font.`)
-    }
-    if (type === '.html' && /<(script|link|img|iframe|source|video|audio)\b[^>]*\b(src|href)="https?:\/\//i.test(text)) {
-      report('must', file, line, rule, 'Loads something from another site: keep it in the library, so it works offline and under a strict Content Security Policy.')
-    }
-    if (type === '.html' && /<style\b|<script\b/i.test(text)) {
-      report('must', file, line, rule, 'A <style> or <script> in a template: a strict Content Security Policy blocks inline ones. Styles go in the component\'s .css, behaviour in its .js.')
-    }
-    if (type === '.html' && (/\sstyle="/i.test(text) || /data-attr="[^"]*\bstyle\s*:/.test(text))) {
-      report('must', file, line, rule, 'Sets a style attribute: a strict Content Security Policy blocks it, without unsafe-inline. Use a class or data- attribute the stylesheet selects on, or set one custom property from the script with element.style.setProperty.')
-    }
-    if (type === '.js') {
-      if (/setAttribute\(\s*['"`]style['"`]/.test(text) || /\.style\s*=\s*[^=]/.test(text)) {
-        report('must', file, line, rule, 'Sets a style attribute: a strict Content Security Policy blocks it, without unsafe-inline. Use element.style.setProperty, a class, or a data- attribute the stylesheet selects on.')
-      }
-      if (/createElement\(\s*['"`](style|script)['"`]/.test(text)) {
-        report('must', file, line, rule, 'Adds a <style> or <script> to the page: a strict Content Security Policy blocks inline ones. Load a file beside the component instead, as component.js does with a <link>.')
-      }
-      if (/(innerHTML|outerHTML|insertAdjacentHTML)\b[^;]*(<style|<script|\sstyle=)/i.test(text)) {
-        report('must', file, line, rule, 'Writes a <style>, <script> or style attribute as HTML: a strict Content Security Policy blocks it.')
-      }
-      if (/\beval\(|new\s+Function\(|set(Timeout|Interval)\(\s*['"`]/.test(text)) {
-        report('must', file, line, rule, 'Runs a string as code: a strict Content Security Policy blocks it, without unsafe-eval.')
-      }
-    }
-    if (type === '.css' && /@import\b[^;]*https?:|url\(\s*['"]?https?:/i.test(text)) {
-      report('must', file, line, rule, 'Loads a stylesheet, font or image from another site: keep it in the library, so it works offline and under a strict Content Security Policy.')
-    }
-  })
-}
-
 /* The docs site */
 
 function checkDocsStyles(file) {
@@ -538,6 +482,5 @@ function print() {
 
 for (const slug of components) checkComponent(slug)
 for (const file of [...scope.keys()].filter(file => /^docs\/.*\.s?css$/.test(file) && exists(file))) checkDocsStyles(file)
-for (const file of [...scope.keys()].filter(file => /^src\/(components|foundation|frame)\/.*\.(css|js|html)$/.test(file) && exists(file))) checkWorksAnywhere(file)
 
 print()

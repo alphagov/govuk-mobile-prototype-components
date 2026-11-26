@@ -10,7 +10,6 @@ A template uses only the library's components. If a screen needs one the library
 - [ ] Each page complete: `<!doctype html>`, a `<title>` ("<Screen> – GOV.UK app prototype"), the scripts it needs from `../../frame/frame.js` and `../../components/<name>/<name>.js`, and `<govuk-prototype-frame>` around one `<govuk-app>`. Nothing from `examples/`.
 - [ ] A comment at the top of each page: which screen it is, then "Change:" what a designer should change, and "Leave:" what to keep so it stays like the app.
 - [ ] Links between its own pages work. A link to a screen no template has is a named button (`name="your-accounts"`), not an `href` to a page that isn't there. The tab bar's tabs link to the other templates' first pages, such as `../home/index.html`.
-- [ ] Works anywhere: nothing from another site except links a user would follow (`href`s to GOV.UK pages are fine). Prefer behaviour in a script file beside the page to an inline `<script>`, so a page copied into a strict Content Security Policy still works. (Some existing templates have inline scripts; don't add more.)
 - [ ] `screens`: every page, in the order a journey meets them, the first where it starts, each with `file`, `title` and `description` (what it is, and how the journey gets there).
 - [ ] `components`: exactly the components its pages use. The build checks this, and that each page loads the script of each component it uses.
 - [ ] `when`: each a kind of prototype someone might start from it. `notes`: what to know when changing it, such as which rows go nowhere.

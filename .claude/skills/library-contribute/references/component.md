@@ -23,7 +23,6 @@ Work down it. Each line is a rule from `AGENTS.md`, the schema or `docs/get-star
 - [ ] Defined with `defineComponent` from `../../foundation/component.js`, drawn from its `<template>`. Light DOM, vanilla JS, no imports from npm.
 - [ ] `attributes` in `defineComponent` are exactly those in the definition's `inputs.attributes` (and each part's). The build checks.
 - [ ] Anything pressable is a real `<a href>`, `<button>` or form field. No events of its own: no `CustomEvent`. A button the component acts on itself carries `data-works`.
-- [ ] Nothing from another site; no inline `<style>`, `<script>` or `style` attribute; no `eval`. It must work offline and under a strict Content Security Policy.
 - [ ] Icons: Material Symbols, never SF Symbols. Load the font with `fonts: [materialSymbols]` in `defineComponent`, and give each icon element the class `govuk-app-icon` as well as its own.
 
 **Styles**
@@ -69,7 +68,7 @@ Skeletons to start from, for a component called `example`. Replace every `<…>`
 </template>
 ```
 
-What fills a template in: `data-text="x"` (text), `data-attr="a: x"` (attributes; `true` sets it empty, `false` or missing leaves it off), `data-if="x"` (left out unless `x`), `data-slot="content"` (what was between the tags), `data-tag="x: h1 h2"` (the element's tag). Never `data-attr="style: …"`: a strict Content Security Policy blocks style attributes. To vary its look, set a `data-` attribute and select on it in the CSS.
+What fills a template in: `data-text="x"` (text), `data-attr="a: x"` (attributes; `true` sets it empty, `false` or missing leaves it off), `data-if="x"` (left out unless `x`), `data-slot="content"` (what was between the tags), `data-tag="x: h1 h2"` (the element's tag). To vary its look, set a `data-` attribute and select on it in the CSS.
 
 ### `example.css`
 

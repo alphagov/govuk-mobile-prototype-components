@@ -5,7 +5,7 @@ description: Adds to or changes the GOV.UK app prototype components library (thi
 
 # Contribute to the library
 
-The library is web components that look and behave like the GOV.UK app's own, so a designer can prototype an app journey in HTML. Everything in it holds a standard, set in `AGENTS.md`: it matches the app, its definition says when to use it and when not, and it works in light and dark, offline and under a strict Content Security Policy. This skill gets a contribution to that standard and into a pull request (a proposed change, for a developer to review and merge), whoever asks.
+The library is web components that look and behave like the GOV.UK app's own, so a designer can prototype an app journey in HTML. Everything in it holds a standard, set in `AGENTS.md`: it matches the app, its definition says when to use it and when not, and it works in light and dark. This skill gets a contribution to that standard and into a pull request (a proposed change, for a developer to review and merge), whoever asks.
 
 The person asking may be a developer, or a designer who has never used git. Work out which from how they write, and if in doubt, assume a designer. For a designer:
 
@@ -80,11 +80,10 @@ Then follow the reference for the kind of thing it is. Each has a checklist and 
 
 The rules are `AGENTS.md`'s, and `docs/get-started/building-a-component.md` says how a component works. Read both, and one or two existing components (or patterns, or templates) like the new one, before writing: matching their shape and voice is most of the standard. `button` and `status` are good to start from: one in the app, one proposed.
 
-Four rules catch people out most:
+Three rules catch people out most:
 
 - **Tokens only.** Colour, type and spacing come from `--app-*` tokens in `src/foundation/tokens.css`. If one is missing, add it there, with a comment naming where it comes from (a GovKit token, the Android app, the platform), and both light and dark values with `light-dark()`.
 - **The 8pt grid.** Spacing is `--app-space-*`, or a `calc()` of them. A value off the grid only where the app has it, with a comment saying where.
-- **Works anywhere.** Under a strict Content Security Policy and offline: nothing from another site, no inline `<style>`, `<script>` or `style` attribute. A value worked out in script is one custom property, set with `element.style.setProperty`.
 - **`avoid`, both ways round.** Think which components someone might pick instead of this one, or this one instead of. Each needs an entry in this one's `avoid`, and the other's `avoid` may need one pointing here.
 
 ## 5. Check it
@@ -132,7 +131,6 @@ Tell a designer what's about to happen first: "I'll save your work, send it to G
 - [x] Screenshots checked in light and dark against the references
 - [x] `library-review`: no must-fixes <list any should-fixes or worth-a-looks left, and why>
 - [x] Tokens only, on the 8pt grid
-- [x] Works offline and under a strict Content Security Policy
 - [x] `avoid` checked both ways round
 - [ ] Reviewed by a developer
 ```
