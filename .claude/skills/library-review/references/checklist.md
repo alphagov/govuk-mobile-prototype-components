@@ -102,7 +102,7 @@ Comments, `.md` prose, the definition's words, and commit messages.
 | --- | --- | --- |
 | `<name>.html` is one `<govuk-app-screen>` with generic but real content; `<name>.json` follows `src/schemas/pattern.schema.json`. | AGENTS.md, Patterns | Build |
 | Taken from a real screen of the app, named in `screen` and `sources`. | AGENTS.md, Patterns | Eye |
-| `when` and `avoid` let someone choose between patterns from them alone. `avoid.instead` names another pattern exactly. | AGENTS.md, Patterns | Eye |
+| `when` and `avoid` let someone choose between patterns from them alone. `avoid.instead` names another pattern exactly. | AGENTS.md, Patterns | Eye. Build fails if `instead` starts with a pattern's name but isn't exactly it |
 | `components` lists exactly the components the HTML uses. | AGENTS.md, Patterns | Build |
 
 ## Looks like the app
