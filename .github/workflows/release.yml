@@ -1,8 +1,15 @@
 name: Release
 
-# Makes a release that prototypes install from GitHub at its tag:
+# Makes a release that prototypes install from: a plain download of the
+# package, attached to the release under a name that's the same for every
+# release, so the latest is always at one address:
 #
-#   npm install github:alphagov/govuk-mobile-prototype-components#v1.2.3
+#   https://github.com/alphagov/govuk-mobile-prototype-components/releases/latest/download/govuk-mobile-prototype-components.tgz
+#   https://github.com/alphagov/govuk-mobile-prototype-components/releases/download/v1.2.3/govuk-mobile-prototype-components.tgz
+#
+# A download needs neither git nor a GitHub account, and holds only what the
+# package ships, not the app's screenshots, which are for this repository's
+# docs. The tag is there too, for anyone installing from git.
 #
 # The catalogue is generated, so it isn't on main. A release is a commit on top
 # of main that adds it, with the version, and only the tag points to that
@@ -105,6 +112,13 @@ jobs:
           git commit --quiet --message "Release $TAG" --message "Adds the generated catalogue, which isn't on main."
           git tag --annotate "$TAG" --message "$TAG"
 
+      # What npm pack makes: the package's files only. The same name for every
+      # release, for the latest's address.
+      - name: Pack the package
+        run: |
+          npm pack --silent
+          mv "govuk-mobile-prototype-components-$VERSION.tgz" govuk-mobile-prototype-components.tgz
+
       # Only the tag. Main stays as it was.
       - name: Push the tag
         run: git push origin "refs/tags/$TAG"
@@ -118,4 +132,5 @@ jobs:
             --verify-tag \
             --title "$TAG" \
             --generate-notes \
-            ${LATEST:+--notes-start-tag "$LATEST"}
+            ${LATEST:+--notes-start-tag "$LATEST"} \
+            govuk-mobile-prototype-components.tgz
