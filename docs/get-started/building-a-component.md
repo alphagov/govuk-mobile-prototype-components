@@ -21,6 +21,15 @@ Each component is one folder, `src/components/<name>/`:
 
 Every folder with a definition gets a page on this site, drawn from the definition. The build checks each definition against `src/schemas/component.schema.json`, and fails if one doesn’t match.
 
+### Native or GOV.UK app component
+
+A definition’s `origin.kind` says who decides how the component looks:
+
+- `native`, a native component: the platform draws it, and the app sets no more than its colours and text styles. A system control, such as the tab bar or a switch, a way of presenting a screen, such as a sheet, iOS’s text styles, and SwiftUI’s layout are all native.
+- `govuk`, a GOV.UK app component: the app draws it its own way, in GovKit or its own views, even when it’s built on a platform control, as the app’s button is.
+
+Being proposed doesn’t change it. The strong is native, since SwiftUI draws bold words itself, though the app doesn’t use them yet. The link is a GOV.UK app component, since its underline is the app’s, not the platform’s.
+
 ### What goes inside it, as data
 
 A definition’s `inputs` say what a page can give the component, in a form tools can use as well as people, such as a schema for prototypes written as data:
