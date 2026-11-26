@@ -39,7 +39,7 @@ Every rule here is one the repository already has. Each says where it comes from
 | `sources` say where it comes from: the iOS and Android source, each with the `ref`, the commit read. | AGENTS.md, Components | Script (a source with no `ref`) |
 | `references` are the app's own screenshots, in `reference/`, each with its platform and what it shows. Every listed file exists, and every file is listed. A proposed component may have none, if its design is noted in `proposed`. | AGENTS.md, Components; Schema `references` | Script |
 | `examples` show each of its states, as the HTML that draws them, in the right `frame`. | Schema `examples` | Eye |
-| Where it can't match the app, or its design if proposed, `<name>.md` says so under "Known differences from the app" (status.md's "from the designs" is the same). | AGENTS.md, Components; Build a component, "Proposed components" | Eye; script notes a changed component without one |
+| Where it can't match the app, `<name>.md` says so under "Known differences from the app". Where a proposed one can't match its design, it says so under "Known differences from the designs". | AGENTS.md, Components; Build a component, "Proposed components" | Eye; script notes a changed component without one |
 | `<name>.md` starts its headings at `##`. | Build a component, "Prose for a component's page" | Eye |
 
 ## Markup and JS

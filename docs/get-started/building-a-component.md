@@ -41,7 +41,7 @@ A definition’s `avoid` lists the times the component is the wrong choice, each
 
 ### Proposed components
 
-A component that isn’t in the app yet, such as one from future designs, has `proposed` in its definition, saying where its design comes from. Match the design as you would the app, and say where it differs under “Known differences from the app”. Its page is tagged and warned, and it’s listed apart from the app’s components. If it ships, remove `proposed` and point its sources at the app.
+A component that isn’t in the app yet, such as one from future designs, has `proposed` in its definition, saying where its design comes from. Match the design as you would the app, and say where it differs under “Known differences from the designs”, after a “Where it comes from” section. Its page is tagged and warned, and it’s listed apart from the app’s components. If it ships, remove `proposed` and point its sources at the app.
 
 ### Prose for a component’s page
 
