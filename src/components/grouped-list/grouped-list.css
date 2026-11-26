@@ -248,7 +248,7 @@ govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-lis
   grid-row: 1;
 }
 
-.govuk-app-grouped-list-row__image ~ * {
+.govuk-app-grouped-list-row__image ~ :is(.govuk-app-grouped-list-row__line, .govuk-app-grouped-list-row__description) {
   grid-column: 2;
 }
 
