@@ -5,7 +5,7 @@ Every rule here is one the repository already has. Each says where it comes from
 - **AGENTS.md** is the rules we've agreed. Most of what's here.
 - **Schema**: `src/schemas/component.schema.json` (or `src/schemas/pattern.schema.json`), its descriptions as well as its shape.
 - **Build a component**: `docs/get-started/building-a-component.md`.
-- **PLAN.md**: what the library is for.
+- **README.md**: what the library is for, in its introduction.
 
 "Build" after a rule means `npm run build` fails if it's broken, so a reviewer needs only to run it. "Script" means `scripts/check.js` points at likely breaks, for a reviewer to read. Everything else is read by eye.
 
@@ -28,12 +28,12 @@ Every rule here is one the repository already has. Each says where it comes from
 | --- | --- | --- |
 | One folder, `src/components/<name>/`, with `<name>.html`, `.css`, `.js`, `.json`, an optional `.md`, and `reference/`. Nothing else to update: the folder gets its page, index entry and sidebar entry. | AGENTS.md, Components | Build (sidebar) |
 | It matches `src/schemas/component.schema.json`. | AGENTS.md, Components; Schema | Build |
-| `purpose` says what it's for, in a sentence or two, plainly enough for a designer to choose it. | Schema `purpose`; PLAN.md | Eye |
+| `purpose` says what it's for, in a sentence or two, plainly enough for a designer to choose it. | Schema `purpose`; README | Eye |
 | `origin.kind` is `govuk` for a GOV.UK app component, the app's own, and `native` for a native component, mirroring a platform control. `origin.notes` says what it's built on, and how it differs from the platform. Use those names, "GOV.UK app component" and "native component", in prose too. | AGENTS.md, Components; Schema `origin` | Eye |
 | A component that isn't in the app yet is **proposed**: `proposed.design` says where its design comes from, and `sources.figma` links it once there's a link. One that's in the app has no `proposed`. If it ships, `proposed` goes and its sources point at the app. | AGENTS.md, Components; Schema `proposed` | Eye; script notes a proposed one with no Figma link |
 | `avoid` lists when it's the wrong choice and what to use instead. Think of the components someone might pick it over by mistake, look-alikes especially (a button or a row, a heading or a section heading, a sheet or a full-screen cover), and check each has an entry, both ways round. | AGENTS.md, Components; Build a component, "When not to use it" | Eye. Build checks there's at least one |
 | `avoid.instead` is written as an element, with any attributes, as in HTML (`govuk-app-button variant="destructive"`), where the library has one, and in words only where it hasn't. | AGENTS.md, Components; Schema `avoid` | Build checks elements written alone; script notes ones buried in words, which the build can't check |
-| `rules` say how and when to use it. Useful ones: something a designer could get wrong, not a restatement of `purpose`. | Schema `rules`; PLAN.md | Eye |
+| `rules` say how and when to use it. Useful ones: something a designer could get wrong, not a restatement of `purpose`. | Schema `rules`; README | Eye |
 | `inputs` say exactly what its script reads: its attributes, and its parts' attributes. `contains` names only the library's elements. | Build a component, "What goes inside it, as data" | Build |
 | `outputs.events` lists only the browser's events, from the links, buttons and fields it draws. | Schema `outputs`; AGENTS.md, Components | Eye |
 | `sources` say where it comes from: the iOS and Android source, each with the `ref`, the commit read. | AGENTS.md, Components | Script (a source with no `ref`) |
@@ -48,7 +48,7 @@ Every rule here is one the repository already has. Each says where it comes from
 
 | Rule | From | Checked by |
 | --- | --- | --- |
-| A web component in the light DOM, vanilla JS, no build step, no framework. No `attachShadow`, no imports from npm. | AGENTS.md, Components; PLAN.md | Script (shadow DOM); eye |
+| A web component in the light DOM, vanilla JS, no build step, no framework. No `attachShadow`, no imports from npm. | AGENTS.md, Components; README | Script (shadow DOM); eye |
 | Defined with `defineComponent` from `src/foundation/component.js`, which draws it from its `<template>`, filled with `data-text`, `data-attr`, `data-if`, `data-slot` and `data-tag`. The script works out only what the template can't, such as defaults, in `prepare`. | AGENTS.md, Components; Build a component, "Templates" | Script notes `customElements.define` and HTML written from script |
 | No events of its own: no `CustomEvent`. It draws real links (`<a href>`), buttons (`<button>`) and fields (`<input>`, `<select>`, `<textarea>`), whose events bubble. Re-sending a real field's own event, as search-field does with `input` when it clears, is fine. | AGENTS.md, Components; Schema `outputs` | Script; eye for a `<div>` or `<span>` made to act like a button or link |
 | A button the component acts on itself carries `data-works`. | Build a component, "Templates" | Eye |
@@ -109,5 +109,5 @@ Comments, `.md` prose, the definition's words, and commit messages.
 
 | Rule | From | Checked by |
 | --- | --- | --- |
-| It matches the app, or for a proposed component, its design: size, spacing, colour, type, corners, in every state, light and dark. | AGENTS.md, Components; PLAN.md | Screenshots beside `reference/` |
+| It matches the app, or for a proposed component, its design: size, spacing, colour, type, corners, in every state, light and dark. | AGENTS.md, Components; README | Screenshots beside `reference/` |
 | Each example is checked in light and dark against the references before the component is done. | AGENTS.md, Docs site | Screenshots |

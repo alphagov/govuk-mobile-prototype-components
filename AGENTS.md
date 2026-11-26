@@ -1,6 +1,6 @@
 # Working on this repository
 
-Web components that look and behave like the GOV.UK app's own, for prototyping app journeys in HTML. Read [PLAN.md](PLAN.md) for what the library is for, and [Build a component](docs/get-started/building-a-component.md) for how a component is put together. These are the rules we've agreed while building it.
+Web components that look and behave like the GOV.UK app's own, for prototyping app journeys in HTML. Read the [README](README.md) for what the library is for, and [Build a component](docs/get-started/building-a-component.md) for how a component is put together. These are the rules we've agreed while building it.
 
 ## Where things go
 

@@ -2,6 +2,8 @@
 
 Web components that look and behave like the GOV.UK app's own, so a prototype of an app journey can be built from HTML, or by asking Claude Code for it in plain words.
 
+Each component matches one the app has, or one proposed for it. It's a web component in plain JavaScript, with no framework or build step, and carries its own HTML, CSS and JavaScript, so it works on its own. Beside it, a definition in JSON says what it's for, what it takes, when to use something else and where it comes from, for people and for tools that build prototypes.
+
 **Documentation:** <https://alphagov.github.io/govuk-mobile-prototype-components/>, with every component drawn live in light and dark beside the app's own screenshots.
 
 ## Make a prototype
@@ -50,7 +52,6 @@ Then open <http://localhost:8080>. Read [AGENTS.md](AGENTS.md) for the rules we'
 | [docs/](docs/) | The documentation site |
 | [scripts/](scripts/) | The catalogue and the screenshots |
 | [inventory/](inventory/COMPONENTS.md) | Every component in the iOS and Android apps today, with screenshots. The backlog |
-| [PLAN.md](PLAN.md) | What the library is for |
 
 ## If you're Claude
 
