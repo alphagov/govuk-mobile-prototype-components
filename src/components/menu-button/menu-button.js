@@ -1,14 +1,12 @@
-import { defineComponent, linkOrButton, materialSymbols } from '../../foundation/component.js'
-
-let count = 0
+import { defineComponent, idFor, linkOrButton, materialSymbols } from '../../foundation/component.js'
 
 const variants = ['card', 'chat']
 
 /** Its menu's id, so its button can open it, and its name for screen readers. */
-export function prepareButton(data) {
+export function prepareButton(data, element) {
   return {
     ...data,
-    id: `govuk-app-menu-${++count}`,
+    id: idFor(element, 'govuk-app-menu'),
     label: data.label || 'More options',
     variant: variants.includes(data.variant) ? data.variant : 'card',
   }
@@ -22,9 +20,9 @@ export function prepareItem(data) {
 /* Below its button, its right edge under the button's, as iOS's menu, or
    where it fits, 8pt in from the app's screen, or the window's if it's too
    small to hold it: the menu is in the browser's top layer, so nothing in
-   the screen clips it. It's placed in screen
-   pixels, then turned into its own, which differ when what it's in is
-   zoomed or scaled, as the examples' phone is. */
+   the screen clips it. It's placed in screen pixels, then turned into its
+   own, which differ when what it's in is zoomed or scaled, as the examples'
+   phone is. */
 document.addEventListener('toggle', event => {
   const menu = event.target
   if (!menu.classList?.contains('govuk-app-menu-button__menu') || event.newState !== 'open') return

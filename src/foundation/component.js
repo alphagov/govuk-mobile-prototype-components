@@ -140,7 +140,8 @@ function load(url) {
  *               named in camelCase: an attribute given with no value is true,
  *               one left off is undefined
  *   prepare     turns that data into what the template is filled in from:
- *               defaults, and anything worked out from more than one value
+ *               defaults, and anything worked out from more than one value.
+ *               It's given the element too, for idFor
  *   fonts       fonts it uses, such as materialSymbols, added to the page
  *               but not waited for: a font this size can take a moment, and
  *               the component would be drawn as bare text until then. Give
@@ -186,7 +187,7 @@ export async function defineComponent({ name, template, styles, attributes = [],
         const value = this.getAttribute(attribute)
         data[camelCase(attribute)] = value === null ? undefined : value === '' ? true : value
       }
-      this.replaceChildren(fill(source.content.cloneNode(true), prepare(data)))
+      this.replaceChildren(fill(source.content.cloneNode(true), prepare(data, this)))
     }
   })
 }
@@ -233,6 +234,23 @@ export function headingLevel(value, allowed, fallback = 2) {
  */
 export function linkOrButton(href, shown = true) {
   return { link: shown && href !== undefined, button: shown && href === undefined }
+}
+
+const ids = new WeakMap()
+const idCounts = new Map()
+
+/**
+ * An id for something an element draws, unique on the page, such as a menu
+ * its button opens. It's the same each time the element is drawn, so what
+ * points at it, such as aria-describedby, isn't changed by a redraw.
+ */
+export function idFor(element, prefix) {
+  if (!ids.has(element)) {
+    const count = (idCounts.get(prefix) ?? 0) + 1
+    idCounts.set(prefix, count)
+    ids.set(element, `${prefix}-${count}`)
+  }
+  return ids.get(element)
 }
 
 /**
