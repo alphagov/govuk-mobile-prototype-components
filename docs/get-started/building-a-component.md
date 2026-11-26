@@ -65,7 +65,7 @@ If a component has a `<name>.md`, it appears on its page after the introduction 
 </govuk-app>
 ```
 
-## Templates
+## The component’s `<template>`
 
 There is no build step for components. `src/foundation/component.js` fetches the template when the page runs and fills it in from the element’s attributes and content, using a few attributes in the template:
 
@@ -85,10 +85,11 @@ A button the component acts on itself, such as a segmented control’s segment, 
 
 ## Building one
 
-1. Find the component in `inventory/COMPONENTS.md`, and read its iOS and Android source.
-2. Copy its reference screenshots into `reference/`.
+1. Find the component in `inventory/COMPONENTS.md`, and read its iOS and Android source. Note the commit you read, for each source’s `ref`.
+2. Copy its reference screenshots into `reference/`, and list each in the definition’s `references`, with its platform and what it shows.
 3. Write the four files. Use only `--app-*` tokens for colour, type and spacing; add any missing ones to `src/foundation/tokens.css`, naming where they come from. Spacing is on the 8pt grid (`--app-space-extra-small` to `--app-space-extra-large`: 4, 8, 16, 24 and 32). Keep a value off the grid only where the app itself has it, and say so in a comment.
-4. Run `npm start` and open its page. Check every example against the references, in each state.
+4. Write its `avoid`: the components a designer might pick it over by mistake, or pick over it. Add an entry to theirs too, so each says when to use the other.
+5. Run `npm start` and open its page. Check every example against the references, in each state.
 
 To check without a browser, `npm run screenshots -- <name>` draws each of its examples in light and dark into `screenshots-out/<name>/`, and `screenshots-out/index.html` shows them beside its references. Install the browser it uses first, once, with `npx playwright install chromium`. See [check your changes](/get-started/work-on-the-library/#check-your-changes) for its other options.
 
