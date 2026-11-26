@@ -71,7 +71,7 @@
     { "when": "For something the user must do before they can carry on", "instead": "Say it in the screen itself, in its heading and text, with a button to do it." },
     { "when": "For how something with a deadline stands, such as a vehicle's tax", "instead": "govuk-app-status" },
     { "when": "For one card that needs attention, such as an expired licence", "instead": "govuk-app-card-header" },
-    { "when": "To confirm something worked, such as signing out", "instead": "A screen of its own, with a centred govuk-app-heading size=\"large-title\"." },
+    { "when": "To confirm something worked, such as signing out, on a screen of its own", "instead": "govuk-app-heading level=\"1\" size=\"large-title\" align=\"center\"" },
     { "when": "For a few points that are read together", "instead": "govuk-app-bulleted-list" }
   ],
   "sources": {
