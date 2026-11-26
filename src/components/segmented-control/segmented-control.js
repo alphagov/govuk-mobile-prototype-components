@@ -1,7 +1,7 @@
 import { defineComponent, linkOrButton, selectOnPress } from '../../foundation/component.js'
 
 /** A link if it has an href, otherwise a button; selected says so. */
-export function prepareItem(data) {
+function prepareItem(data) {
   const { link, button } = linkOrButton(data.href)
   return {
     ...data,

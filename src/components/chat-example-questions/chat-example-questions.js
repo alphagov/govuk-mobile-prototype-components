@@ -1,7 +1,7 @@
 import { defineComponent, linkOrButton } from '../../foundation/component.js'
 
 /** A link if it has an href, otherwise a button. */
-export function prepareQuestion(data) {
+function prepareQuestion(data) {
   return { ...data, ...linkOrButton(data.href) }
 }
 

@@ -3,7 +3,7 @@ import { defineComponent, materialSymbols } from '../../foundation/component.js'
 import '../menu-button/menu-button.js'
 
 /** The app's limit, and how near to it the count is shown (ChatViewModel). */
-export const maxCharacters = 300
+const maxCharacters = 300
 const warnFrom = maxCharacters - 50
 
 /**
@@ -11,7 +11,7 @@ const warnFrom = maxCharacters - 50
  * label is its placeholder, as the app's VoiceOver reads it. A field drawn
  * with a value starts with its count, as it would be once typed.
  */
-export function prepare(data) {
+function prepare(data) {
   const menu = data.content.filter(node => node.localName === 'govuk-app-menu-button-item')
   const placeholder = data.placeholder || 'Ask a question...'
   const value = typeof data.value === 'string' ? data.value : ''
@@ -35,7 +35,7 @@ export function prepare(data) {
  * warning or an error (Chat.xcstrings: remainingCharactersTitle and
  * tooManyCharactersTitle).
  */
-export function count(length) {
+function count(length) {
   const characters = n => `${n} character${n === 1 ? '' : 's'}`
   if (length > maxCharacters) return { type: 'error', text: `${characters(length - maxCharacters)} too many` }
   if (length >= warnFrom) return { type: 'warning', text: `${characters(maxCharacters - length)} remaining` }

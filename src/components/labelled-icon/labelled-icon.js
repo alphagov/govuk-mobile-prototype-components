@@ -5,7 +5,7 @@ import { defineComponent, materialSymbols } from '../../foundation/component.js'
  * "Year: 2021", it's read as that, as the app's accessibilityLabel, in place
  * of its label alone.
  */
-export function prepare(data) {
+function prepare(data) {
   return {
     ...data,
     layout: data.layout === 'inline' ? 'inline' : 'stacked',

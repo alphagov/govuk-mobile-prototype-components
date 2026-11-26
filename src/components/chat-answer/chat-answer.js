@@ -4,7 +4,7 @@ import { defineComponent, materialSymbols } from '../../foundation/component.js'
  * Sorts the answer's sources from the rest of what was written between its
  * tags, so a prototype can write them in any order.
  */
-export function prepareAnswer(data) {
+function prepareAnswer(data) {
   const body = []
   const sources = []
   for (const node of data.content) {

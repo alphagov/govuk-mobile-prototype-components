@@ -1,7 +1,7 @@
 import { defineComponent, filled, headingLevel, linkOrButton } from '../../foundation/component.js'
 
 /** h2 unless it names another level; its action a link if it has an href. */
-export function prepare(data) {
+function prepare(data) {
   const level = headingLevel(data.level, [1, 2, 3, 4, 5, 6])
   const action = linkOrButton(data.href, filled(data.action))
   return {

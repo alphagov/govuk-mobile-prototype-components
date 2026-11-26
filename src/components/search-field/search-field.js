@@ -1,7 +1,7 @@
 import { defineComponent, filled, materialSymbols } from '../../foundation/component.js'
 
 /** The placeholder is its name for screen readers, unless it has a label. */
-export function prepare(data) {
+function prepare(data) {
   const placeholder = typeof data.placeholder === 'string' ? data.placeholder : 'Search'
   return {
     ...data,

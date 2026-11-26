@@ -3,7 +3,7 @@ import { defineComponent } from '../../foundation/component.js'
 const tones = ['caution', 'warning', 'danger']
 
 /** Caution unless it names another tone. */
-export function prepare(data) {
+function prepare(data) {
   return { ...data, tone: tones.includes(data.tone) ? data.tone : 'caution' }
 }
 

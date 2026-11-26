@@ -3,7 +3,7 @@ import { defineComponent, idFor, linkOrButton, materialSymbols } from '../../fou
 const variants = ['card', 'chat']
 
 /** Its menu's id, so its button can open it, and its name for screen readers. */
-export function prepareButton(data, element) {
+function prepareButton(data, element) {
   return {
     ...data,
     id: idFor(element, 'govuk-app-menu'),
@@ -13,7 +13,7 @@ export function prepareButton(data, element) {
 }
 
 /** A link if it has an href, otherwise a button. */
-export function prepareItem(data) {
+function prepareItem(data) {
   return { ...data, ...linkOrButton(data.href) }
 }
 

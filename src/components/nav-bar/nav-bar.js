@@ -7,7 +7,7 @@ import { bySlot, defineComponent, filled, linkOrButton, materialSymbols } from '
  * slot="leading" go where the back button would, such as a close action on a
  * full-screen cover, and the rest at the end.
  */
-export function prepareBar(data) {
+function prepareBar(data) {
   const title = filled(data.title)
   const { leading, rest: actions } = bySlot(data.content, 'leading')
   return {
@@ -21,7 +21,7 @@ export function prepareBar(data) {
 }
 
 /** A link if it has an href, otherwise a button. */
-export function prepareItem(data) {
+function prepareItem(data) {
   return {
     ...data,
     ...linkOrButton(data.href),

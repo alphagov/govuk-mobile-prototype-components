@@ -9,7 +9,7 @@ const backgrounds = ['subtle', 'accent']
  * h2 unless it names another level; its action a link if it has an href.
  * Anything given slot="control" goes above its rows.
  */
-export function prepareList(data) {
+function prepareList(data) {
   const { control, rest: rows } = bySlot(data.content, 'control')
   const level = headingLevel(data.level, [1, 2, 3, 4, 5, 6])
   const action = linkOrButton(data.href, filled(data.action))
@@ -36,7 +36,7 @@ export function prepareList(data) {
  * as GovKit's InformationRowView and LinkRowView do. A content row,
  * proposed, holds whatever was written between its tags.
  */
-export function prepareRow(data) {
+function prepareRow(data) {
   const type = types.includes(data.type) ? data.type : 'navigation'
   const pressable = !['toggle', 'information', 'content'].includes(type)
   const icon = ['navigation', 'topic'].includes(type) ? 'chevron_right'

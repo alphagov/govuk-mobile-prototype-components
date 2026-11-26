@@ -4,7 +4,7 @@ import { bySlot, defineComponent, filled, materialSymbols } from '../../foundati
  * Sorts out what goes inside it. The box's name for screen readers is its
  * label, or its placeholder, and its value is sent as q unless it has a name.
  */
-export function prepare(data) {
+function prepare(data) {
   const { accessory } = bySlot(data.content, 'accessory')
   return {
     ...data,

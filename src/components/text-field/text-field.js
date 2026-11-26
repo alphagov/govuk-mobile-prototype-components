@@ -9,7 +9,7 @@ const types = ['text', 'email', 'tel', 'url', 'password', 'postcode']
  * A postcode is text in capitals, as the app's postcode field has it, with
  * the browser offering the user's own.
  */
-export function prepare(data, element) {
+function prepare(data, element) {
   const id = idFor(element, 'govuk-app-text-field')
   const type = types.includes(data.type) ? data.type : 'text'
   const hint = filled(data.hint) ? data.hint : null

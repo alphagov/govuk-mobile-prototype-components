@@ -1,7 +1,7 @@
 import { defineComponent, linkOrButton, materialSymbols, selectOnPress } from '../../foundation/component.js'
 
 /** A link if it has an href, otherwise a button. Selected is the current tab. */
-export function prepareItem(data) {
+function prepareItem(data) {
   return {
     ...data,
     ...linkOrButton(data.href),

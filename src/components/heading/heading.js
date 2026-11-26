@@ -10,7 +10,7 @@ const sizes = ['large-title', 'title-1', 'title-2', 'title-3', 'body']
 const sizeForLevel = level => (level === 1 ? 'large-title' : level === 2 ? 'title-3' : 'body')
 
 /** Its tag from its level, h2 if it has none or one out of range. */
-export function prepare(data) {
+function prepare(data) {
   const level = headingLevel(data.level, [1, 2, 3, 4, 5, 6])
   return {
     ...data,

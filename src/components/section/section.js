@@ -1,7 +1,7 @@
 import { bySlot, defineComponent, headingLevel } from '../../foundation/component.js'
 
 /** Sorts out what goes beside its title, and makes the title h2 unless level says. */
-export function prepare(data) {
+function prepare(data) {
   const { accessory, rest: body } = bySlot(data.content, 'accessory')
   const level = headingLevel(data.level, [2, 3, 4])
   return { ...data, accessory, body, tag: `h${level}` }

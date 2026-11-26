@@ -3,7 +3,7 @@ import { defineComponent } from '../../foundation/component.js'
 const pick = (value, values, otherwise) => (values.includes(value) ? value : otherwise)
 
 /** SwiftUI's defaults: a column, its items centred across it, 8pt apart. */
-export function prepare(data) {
+function prepare(data) {
   return {
     ...data,
     direction: pick(data.direction, ['horizontal', 'vertical'], 'vertical'),
