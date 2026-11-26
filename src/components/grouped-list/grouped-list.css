@@ -188,13 +188,6 @@ govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-lis
   color: var(--app-icon-tertiary);
   font-family: "Material Symbols Rounded";
   font-size: 24px;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  white-space: nowrap;
-  font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased;
   /* Its glyph's right edge, not its box's, 16pt from the card's. And taller
      than the line, which it overhangs, so the title sets the row's height,
      as in the app. */
@@ -221,15 +214,10 @@ govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-lis
   border-radius: var(--app-radius-capsule);
   background: var(--app-icon-surround-primary);
   color: var(--app-icon-primary);
+  /* At 400, the weight of the one instance of it in foundation/fonts. */
   font-family: "Material Symbols Outlined";
+  font-weight: 400;
   font-size: 24px;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  white-space: nowrap;
-  font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased;
 }
 
 /* An image on the left of an information or link row, as GovKit's

@@ -39,14 +39,7 @@
   width: 28px;
   font-family: "Material Symbols Rounded";
   font-size: 22px;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: normal;
   text-align: center;
-  white-space: nowrap;
-  font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased;
 }
 
 .govuk-app-search-field__input {

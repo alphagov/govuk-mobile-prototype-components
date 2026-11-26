@@ -100,13 +100,6 @@
   align-self: center;
   font-family: "Material Symbols Rounded";
   font-size: 28px;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  white-space: nowrap;
-  font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased;
 }
 
 /* The xmark, drawn as two bars, 12pt across, in a 24pt box at the top right. */
