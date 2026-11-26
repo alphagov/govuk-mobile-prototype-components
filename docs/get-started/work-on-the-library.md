@@ -37,7 +37,17 @@ Around it are `examples/`, `docs/` (this site), `scripts/`, and `inventory/`, th
 
 ## Check your changes
 
-`npm run build` builds this site into `_site/`. It fails if a component’s, pattern’s or template’s definition doesn’t match its schema, if a component isn’t in one of the catalogue index’s groups, or if a page is missing from the sidebar. It writes the catalogue, into `catalogue/`, first.
+`npm run build` builds this site into `_site/`. It writes the catalogue, into `catalogue/`, first. It fails if:
+
+- a component’s, pattern’s or template’s definition doesn’t match its schema
+- a component’s definition and its script disagree about its elements, or the attributes each reads
+- a component’s `contains` names an element that isn’t a component or part
+- an `avoid` written as an element names one the library hasn’t got, or an attribute or value it doesn’t take
+- a pattern’s `avoid` starts with another pattern’s name, but doesn’t name it exactly
+- a pattern’s HTML isn’t one `<govuk-app-screen>`, or its `components` aren’t exactly the ones it uses
+- a template’s page is missing, doesn’t load the script of a component it uses, or its `components` aren’t exactly the ones its pages use
+- a component isn’t in one of the catalogue index’s groups, or a name there isn’t a component
+- a component, pattern or template is missing from the sidebar
 
 `npm run screenshots` draws every component’s examples, and every page in `examples/`, in light and dark, in a headless browser, so you can see them without opening one. The first time, install the browser it uses:
 
@@ -69,7 +79,7 @@ It’s built with the [GOV.UK Eleventy Plugin](https://github.com/x-govuk/govuk-
 | Path | What it holds |
 | --- | --- |
 | `docs/*.md`, `docs/get-started/` | Pages of prose. Add a Markdown file to add a page |
-| `docs/_data/` | Reads and checks every component’s, pattern’s and template’s definition |
+| `docs/_data/` | Every component’s, pattern’s and template’s definition, read and checked by `scripts/definitions.js`, which the catalogue and screenshots share |
 | `docs/components/`, `docs/patterns/`, `docs/templates/` | Draw a page for each from its definition |
 | `docs/eleventy.config.js` | The site’s configuration |
 
