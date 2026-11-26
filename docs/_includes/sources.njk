@@ -1,0 +1,21 @@
+{#- What a component, pattern or template was built from: the app's source on
+    each platform, and its designs. Figma is listed even with nothing linked,
+    so it's clear there's nothing yet rather than left out. -#}
+{% macro sources(item) %}
+{% set platforms = { ios: "iOS", android: "Android" } %}
+<ul class="govuk-list govuk-list--bullet">
+  {% for platform in ["ios", "android"] %}
+  {% for source in item.sources[platform] %}
+  <li>{{ platforms[platform] }}: <code>{{ source.symbol | escape }}</code> in {{ source.repo | escape }}/{{ source.path | escape }}{% if source.ref %} at {{ source.ref | escape }}{% endif %}</li>
+  {% endfor %}
+  {% endfor %}
+  {% for link in item.sources.figma %}
+  <li>Figma: <a class="govuk-link" href="{{ link.url | escape }}">{{ link.title | escape }}</a></li>
+  {% else %}
+  <li>Figma: none linked yet</li>
+  {% endfor %}
+  {% for link in item.sources.other %}
+  <li><a class="govuk-link" href="{{ link.url | escape }}">{{ link.title | escape }}</a></li>
+  {% endfor %}
+</ul>
+{% endmacro %}

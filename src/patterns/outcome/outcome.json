@@ -17,8 +17,12 @@
       "instead": "Information page"
     },
     {
-      "when": "The user has more than one thing they could do next.",
-      "instead": "Settings list, or a screen with a primary and a grouped secondary button in the button stack"
+      "when": "The user has several things they could do next.",
+      "instead": "Settings list"
+    },
+    {
+      "when": "The user has two things they could do next.",
+      "instead": "A screen with a primary and a grouped secondary button in the button stack"
     }
   ],
   "components": [

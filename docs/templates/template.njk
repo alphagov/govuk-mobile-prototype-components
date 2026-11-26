@@ -23,9 +23,9 @@ eleventyComputed:
   title: "{{ template.name }}"
   description: "{{ template.purpose | escape }}"
 ---
+{% from "sources.njk" import sources %}
 {% from "govuk/components/accordion/macro.njk" import govukAccordion %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-{% set platforms = { ios: "iOS", android: "Android" } %}
 
 <div class="app-prose-scope">
   <p class="govuk-body">From the app: {{ template.screen | escape }}. To start a prototype from it, copy the folder <code>src/templates/{{ template.slug }}/</code> from the repository.</p>
@@ -66,21 +66,7 @@ eleventyComputed:
   </ul>
 </div>
 
-{% set sourcesHtml %}
-<ul class="govuk-list govuk-list--bullet">
-  {% for platform in ["ios", "android"] %}
-  {% for source in template.sources[platform] %}
-  <li>{{ platforms[platform] }}: <code>{{ source.symbol | escape }}</code> in {{ source.repo | escape }}/{{ source.path | escape }}{% if source.ref %} at {{ source.ref | escape }}{% endif %}</li>
-  {% endfor %}
-  {% endfor %}
-  {% for link in template.sources.figma %}
-  <li>Figma: <a class="govuk-link" href="{{ link.url | escape }}">{{ link.title | escape }}</a></li>
-  {% endfor %}
-  {% for link in template.sources.other %}
-  <li><a class="govuk-link" href="{{ link.url | escape }}">{{ link.title | escape }}</a></li>
-  {% endfor %}
-</ul>
-{% endset %}
+{% set sourcesHtml = sources(template) %}
 
 {{ govukAccordion({
   id: "template-details",

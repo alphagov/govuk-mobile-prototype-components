@@ -2,6 +2,8 @@ import { RenderPlugin } from '@11ty/eleventy'
 import { govukEleventyPlugin } from '@x-govuk/govuk-eleventy-plugin'
 import highlight from 'markdown-it-govuk/highlight'
 
+import { forgetDefinitions } from '../scripts/definitions.js'
+
 // Builds the documentation site from docs/. The components themselves have
 // no build step: the library, in src/, is copied into the site as it
 // is, so each page draws the real thing.
@@ -37,6 +39,10 @@ export default async function (eleventyConfig) {
       }
     }
   })
+
+  // The definitions are read once for each build, by every page's data, so
+  // `npm start` reads them afresh after a change.
+  eleventyConfig.on('eleventy.before', forgetDefinitions)
 
   // Renders a component's optional <name>.md on its page.
   eleventyConfig.addPlugin(RenderPlugin)

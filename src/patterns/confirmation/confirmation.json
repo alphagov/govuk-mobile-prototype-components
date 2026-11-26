@@ -21,8 +21,8 @@
       "instead": "Information page"
     },
     {
-      "when": "The user has more than two choices.",
-      "instead": "Settings list, with a row for each choice"
+      "when": "The user has more than two choices, each of which could be a row.",
+      "instead": "Settings list"
     }
   ],
   "components": [

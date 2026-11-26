@@ -114,15 +114,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Checks every definition, as the docs do, so a broken library isn't released.
+      # Checks every definition, as the docs do, so a broken library isn't
+      # released, and writes the catalogue for the release's commit. The
+      # catalogue doesn't hold the version, so it needn't wait for it.
       - name: Build
         run: npm run build
 
       - name: Set the version
         run: npm version "$VERSION" --no-git-tag-version
-
-      - name: Generate the catalogue
-        run: npm run catalogue
 
       # Installing from GitHub runs these, and would need the dev dependencies.
       # The promise is that installing the library runs nothing.

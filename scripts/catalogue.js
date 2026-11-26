@@ -23,6 +23,7 @@ import path from 'node:path'
 import loadComponents from '../docs/_data/components.js'
 import loadPatterns from '../docs/_data/patterns.js'
 import loadTemplates from '../docs/_data/templates.js'
+import { attributesOf, elementMap, parseAvoidElement } from './definitions.js'
 
 const root = path.resolve(import.meta.dirname, '..')
 const site = 'https://alphagov.github.io/govuk-mobile-prototype-components'
@@ -58,14 +59,11 @@ export function buildCatalogue() {
   const components = loadComponents()
   const patterns = loadPatterns()
   const templates = loadTemplates()
+  checkGroups(components)
 
   // Each of the library's elements, and the component whose card it's on: a
   // part, such as a grouped list's row, is on its list's.
-  const owners = new Map(components.flatMap(component => [
-    [component.element, component],
-    ...Object.entries(component.inputs.parts ?? {}).map(([element]) => [element, component])
-  ]))
-  const resolve = referee(owners, [...patterns, ...templates])
+  const owners = elementMap(components)
 
   const catalogue = {
     about: {
@@ -80,7 +78,7 @@ export function buildCatalogue() {
       slug: pattern.slug,
       purpose: pattern.purpose,
       when: pattern.when,
-      avoid: pattern.avoid.map(resolve),
+      avoid: pattern.avoid.map(insteadOfPattern),
       components: pattern.components,
       screen: pattern.screen,
       notes: pattern.notes ?? [],
@@ -93,7 +91,6 @@ export function buildCatalogue() {
       slug: template.slug,
       purpose: template.purpose,
       when: template.when,
-      avoid: (template.avoid ?? []).map(resolve),
       components: template.components,
       screen: template.screen,
       notes: template.notes ?? [],
@@ -117,7 +114,7 @@ export function buildCatalogue() {
       contains: component.inputs.contains,
       ...(component.inputs.parts && { parts: component.inputs.parts }),
       rules: component.rules,
-      avoid: component.avoid.map(resolve),
+      avoid: component.avoid.map(avoid => insteadOfComponent(avoid, owners)),
       examples: pickExamples(component),
       script: `src/components/${component.slug}/${component.slug}.js`,
       card: `components/${component.slug}.md`,
@@ -137,46 +134,61 @@ export function buildCatalogue() {
     ['index.md', renderIndex(catalogue)],
     ...catalogue.patterns.map(pattern => [pattern.card, renderPattern(pattern, link)]),
     ...catalogue.templates.map(template => [template.card, renderTemplate(template, link)]),
-    ...catalogue.components.map(component => [component.card, renderComponent(component, link)])
+    // Each component's kind, as the docs site names it.
+    ...catalogue.components.map((component, index) => [component.card, renderComponent(component, components[index].kind.one, link)])
   ])
 }
 
 /**
- * What to use instead, as data where it names something in the library: an
- * element, with any attributes it's written with, or a pattern or template by
- * name, so a tool can follow it without reading the words.
+ * Every component in the index's groups is in the library, and every one in
+ * the library is in a group, so none is left where a reader won't look.
  */
-function referee(owners, screens) {
-  const attributesOf = element => {
-    const owner = owners.get(element)
-    return owner.element === element ? owner.inputs.attributes : owner.inputs.parts[element].attributes
-  }
-  // Longest first, so a name that starts with another's isn't taken for it.
-  const named = [...screens].sort((a, b) => b.name.length - a.name.length)
-
-  return ({ when, instead }) => {
-    const ref = { when, instead: { text: instead } }
-
-    const screen = named.find(({ name }) => new RegExp(`^${escapeRegExp(name)}(?:$|[,.:;])`, 'i').test(instead))
-    if (screen) {
-      ref.instead[screen.screens ? 'template' : 'pattern'] = screen.slug
-      return ref
+function checkGroups(components) {
+  const slugs = new Set(components.map(component => component.slug))
+  for (const [group, members] of Object.entries(groups)) {
+    for (const slug of members.filter(slug => !slugs.has(slug))) {
+      throw new Error(`'${slug}' is in the catalogue index's ${group} group, in scripts/catalogue.js, but there's no src/components/${slug}/${slug}.json. Remove it, or correct its name.`)
     }
-
-    // The first element it names, and the attributes written straight after it.
-    const written = instead.match(/(govuk-app-[a-z-]+)((?:\s+[a-z][a-z-]*(?:="[^"]*")?)*)/)
-    if (!written || !owners.has(written[1])) return ref
-    const [, element, list] = written
-    ref.instead.element = element
-    const attributes = {}
-    for (const [, name, value] of list.matchAll(/([a-z][a-z-]*)(?:="([^"]*)")?/g)) {
-      // Only what the element reads: the words after it are not attributes.
-      if (!attributesOf(element)[name]) break
-      attributes[name] = value ?? true
-    }
-    if (Object.keys(attributes).length) ref.instead.attributes = attributes
-    return ref
   }
+  for (const slug of everyScreen.filter(slug => !slugs.has(slug))) {
+    throw new Error(`'${slug}' is in everyScreen, in scripts/catalogue.js, but there's no src/components/${slug}/${slug}.json. Remove it, or correct its name.`)
+  }
+  const grouped = new Set(Object.values(groups).flat())
+  for (const slug of slugs) {
+    if (!grouped.has(slug)) {
+      throw new Error(`src/components/${slug} isn't in any of the catalogue index's groups. Add '${slug}' to the group it belongs in, in groups in scripts/catalogue.js.`)
+    }
+  }
+}
+
+/**
+ * What to use instead of a pattern, with the pattern it names, if any, so a
+ * tool can follow it without reading the words. The site's data has already
+ * matched it, so its page and its card link to the same one.
+ */
+function insteadOfPattern({ when, instead, slug }) {
+  return { when, instead: { text: instead, ...(slug && { pattern: slug }) } }
+}
+
+/**
+ * What to use instead of a component, with the element it names, if any, and
+ * the attributes it's written with, so a tool can follow it without reading
+ * the words.
+ */
+function insteadOfComponent({ when, instead }, owners) {
+  const ref = { when, instead: { text: instead } }
+  const written = parseAvoidElement(instead)
+  if (!written || !owners.has(written.element)) return ref
+  const { element } = written
+  ref.instead.element = element
+  const attributes = {}
+  for (const [name, value] of written.attributes) {
+    // Only what the element reads: the words after it are not attributes.
+    if (!attributesOf(owners.get(element), element)[name]) break
+    attributes[name] = value ?? true
+  }
+  if (Object.keys(attributes).length) ref.instead.attributes = attributes
+  return ref
 }
 
 /**
@@ -187,14 +199,14 @@ function referee(owners, screens) {
  */
 function pickExamples(component) {
   const short = component.examples.filter(example => example.html.length <= longExample)
-  const pool = short.length ? short : [component.examples.reduce((a, b) => (a.html.length <= b.html.length ? a : b))]
-  const [first, ...rest] = pool
-  const second = rest
-    // A proposed state is less likely to be what's wanted than one in the app.
-    .filter(example => component.proposed || !/^Proposed/.test(example.name))
-    .sort((a, b) => a.html.length - b.html.length)[0]
-  return [first, second].filter(Boolean).map(({ name, html }) => ({ name, html }))
+  const [first, ...rest] = short.length ? short : [shortest(component.examples)]
+  // A proposed state is less likely to be what's wanted than one in the app.
+  const others = rest.filter(example => component.proposed || !/^Proposed/.test(example.name))
+  return [first, shortest(others)].filter(Boolean).map(({ name, html }) => ({ name, html }))
 }
+
+// The first of the shortest, or nothing from nothing.
+const shortest = examples => examples.reduce((a, b) => (b.html.length < a.html.length ? b : a), examples[0])
 
 function renderIndex({ about, patterns, templates, components }) {
   const lines = [
@@ -221,10 +233,7 @@ function renderIndex({ about, patterns, templates, components }) {
     '- Components send no events of their own: their buttons, links and fields do, with the `name` and `value` given them. A page listens for clicks by name, and goes where the app would. Add `works` to a button the page acts on.',
     '- Use Material Symbols names for icons, such as `check` or `directions_car`.',
     '',
-    `Every screen uses: ${everyScreen.map(slug => {
-      const component = components.find(component => component.slug === slug)
-      return `[${component.name}](components/${slug}.md)`
-    }).join(', ')}.`,
+    `Every screen uses: ${everyScreen.map(slug => `[${components.find(component => component.slug === slug).name}](components/${slug}.md)`).join(', ')}.`,
     '',
     '## Patterns',
     '',
@@ -238,20 +247,10 @@ function renderIndex({ about, patterns, templates, components }) {
     ''
   ]
 
-  const grouped = new Map(Object.keys(groups).map(group => [group, []]))
-  for (const component of components) {
-    const group = Object.keys(groups).find(group => groups[group].includes(component.slug))
-    if (!group) {
-      throw new Error(`src/components/${component.slug} isn't in any of the catalogue index's groups. Add '${component.slug}' to the group it belongs in, in groups in scripts/catalogue.js.`)
-    }
-    grouped.get(group).push(component)
-  }
+  // In each group's order. checkGroups has made sure each is in one.
   lines.push('## Components', '')
-  for (const [group, members] of grouped) {
-    if (!members.length) continue
-    const order = groups[group] ?? []
-    members.sort((a, b) => order.indexOf(a.slug) - order.indexOf(b.slug))
-    lines.push(`### ${group}`, '', ...members.map(component =>
+  for (const [group, slugs] of Object.entries(groups)) {
+    lines.push(`### ${group}`, '', ...slugs.map(slug => components.find(component => component.slug === slug)).map(component =>
       `- [${component.name}](components/${component.slug}.md) \`${component.element}\`: ${component.inApp ? '' : '**Not in the app yet.** '}${firstSentence(component.purpose)}`), '')
   }
 
@@ -278,7 +277,6 @@ function renderPattern(pattern, link) {
 function renderTemplate(template, link) {
   const lines = [`# ${template.name} (template)`, '', template.purpose, '']
   if (template.when.length) lines.push('Use when:', ...template.when.map(when => `- ${when}`), '')
-  if (template.avoid.length) lines.push('Avoid:', ...template.avoid.map(avoid => describeAvoid(avoid, link)), '')
   if (template.screens.length) {
     lines.push('Screens, in the repository and the package:', ...template.screens.map(screen =>
       `- ${screen.title}: ${screen.path}${screen.description ? `. ${screen.description}` : ''}`), '')
@@ -291,8 +289,7 @@ function renderTemplate(template, link) {
   return finish(lines)
 }
 
-function renderComponent(component, link) {
-  const kind = component.kind === 'govuk' ? 'GOV.UK app component' : 'Native component'
+function renderComponent(component, kind, link) {
   const lines = [
     `# ${component.name} \`<${component.element}>\``,
     '',
@@ -337,8 +334,6 @@ function describeAvoid({ when, instead }, link) {
 // The first sentence, for the index's one line: up to a full stop that ends
 // one, not one inside a word, such as GOV.UK.
 const firstSentence = text => text.match(/^.*?[^.]\.(?=\s|$)/)?.[0] ?? text
-
-const escapeRegExp = text => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 const finish = lines => `${lines.join('\n').trimEnd()}\n`
 
