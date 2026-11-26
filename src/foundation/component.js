@@ -193,8 +193,7 @@ export async function defineComponent({ name, template, styles, attributes = [],
 }
 
 /*
- * What several components' prepare work out the same way, so each works it
- * out alike.
+ * What several components do the same way, in one place so they stay alike.
  */
 
 /** Whether an attribute was given some text: not left off, and not empty. */
