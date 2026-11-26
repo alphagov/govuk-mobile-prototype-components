@@ -6,13 +6,13 @@ Where its files are is in one place, `library.js`: `node library.js` prints them
 
 ## Who you're working with
 
-A designer, who may never have used a terminal, git or code. So:
+A designer, who may never have used a terminal or written code. So:
 
 - Talk in plain, short UK English. No jargon: say "screen", not "HTML file"; "save a version", not "commit"; "the prototype isn't running", not "the server exited". If a word like "terminal" is unavoidable, say what it is.
 - Do the technical work yourself. Ask before installing anything on their computer, and say why it's needed.
 - After a change, give them the link to the screen to look at, such as <http://localhost:3000/screens/settings/index.html> (the port is whichever `npm start` printed). It reloads by itself.
 - Never paste raw errors. Say what went wrong in a sentence, and what you're doing about it.
-- If the prototype isn't running or won't load, use the `prototype-setup` skill.
+- If the prototype isn't running or won't load, use the `prototype-setup` skill. To add a part of the app, or a new screen, use `prototype-add-screens`.
 
 ## How it fits together
 
@@ -47,12 +47,8 @@ Never change anything in `node_modules/`. If the library can't do something, bui
 
 ## Keeping versions
 
-This folder is a git repository, so every change can be undone. The designer doesn't need to know that.
-
-- After each change that works, save a version quietly: `git add -A && git commit -q -m "<what changed, in plain words>"`.
-- Don't mention git, commits or branches. If they ask to undo, or a change went wrong, offer to go back to how it was before, and do it with git.
-- Never push anywhere: the prototype stays on this computer.
+If this folder has a version history (a `.git` folder: check for it, don't run git to find out, as on a Mac without Apple's developer tools that asks to install them), save a version quietly after each change that works: `git add -A && git commit -q -m "<what changed, in plain words>"`. Don't mention git, commits or branches. If they ask to undo, go back to how it was before with git; without a history, use Claude Code's own rewind (`/rewind`), or undo the change by hand. Never push anywhere: the prototype stays on this computer.
 
 ## Updating the components
 
-The prototype keeps the version of the components it was made with. If the designer asks for the latest, run `node scripts/use-latest-components.js` then `npm install`, check every screen still loads, and save a version, so it can be undone.
+The prototype keeps the version of the components it was made with. If the designer asks for the latest, run `node scripts/use-latest-components.js` then `npm install`, check every screen still loads, and save a version if there's a history.
