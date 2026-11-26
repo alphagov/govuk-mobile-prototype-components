@@ -32,6 +32,7 @@
     "start": "eleventy --config=docs/eleventy.config.js --serve",
     "build": "node scripts/catalogue.js && eleventy --config=docs/eleventy.config.js",
     "catalogue": "node scripts/catalogue.js",
+    "check": "node .claude/skills/library-review/scripts/check.js --strict",
     "screenshots": "node scripts/screenshots.js"
   },
   "engines": {
