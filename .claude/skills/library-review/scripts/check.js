@@ -15,6 +15,9 @@
 //       the lines that changed
 //   node .claude/skills/library-review/scripts/check.js status button
 //       every line of these components
+//   node .claude/skills/library-review/scripts/check.js --strict
+//       every component, failing if there's anything to fix. npm run check
+//       runs this, and so does CI
 //
 // No dependencies: Node's own modules only, so it runs before npm install.
 
@@ -29,7 +32,12 @@ const exists = file => fs.existsSync(path.join(root, file))
 
 const { values: options, positionals } = parseArgs({
   allowPositionals: true,
-  options: { base: { type: 'string' } }
+  options: {
+    base: { type: 'string' },
+    // Only must-fixes fail it: the rest are leads for a reviewer to read,
+    // and many are rightly left as they are.
+    strict: { type: 'boolean', default: false }
+  }
 })
 
 // Which lines of which files to report on: every line (true), or a set of
@@ -484,3 +492,5 @@ for (const slug of components) checkComponent(slug)
 for (const file of [...scope.keys()].filter(file => /^docs\/.*\.s?css$/.test(file) && exists(file))) checkDocsStyles(file)
 
 print()
+
+if (options.strict && findings.some(f => f.level === 'must')) process.exit(1)
