@@ -80,8 +80,8 @@ Only this site has a build step. The components don’t: the site copies them as
 A release is a tag, `vX.Y.Z`, made by the Release workflow. To make one:
 
 1. In GitHub, go to **Actions**, then **Release**, then **Run workflow**.
-2. Enter the version, such as `0.6.0`, without the `v`. It must be greater than the latest release.
-3. Run it.
+2. Choose what’s changed since the latest release: **minor** for new components, templates or skills, **patch** for fixes only, or **major** for changes that break prototypes made before. You don’t need to know the latest version: the workflow works out the next one, such as 0.8.0 after 0.7.0. To give an exact version instead, such as `1.0.0`, type it in the box below.
+3. Run it. Its summary says which version it released, and after which.
 
 It builds the site, so a definition the build refuses stops the release. Then it makes a commit on top of `main` holding the new version and the generated catalogue, tags it, and pushes only the tag, so `main` never holds generated files. Last, it makes a GitHub release with notes listing the pull requests merged since the last one, and attaches the package as `govuk-mobile-prototype-components.tgz`. The name is the same for every release, so making a prototype always downloads the latest from `releases/latest/download/`.
 
