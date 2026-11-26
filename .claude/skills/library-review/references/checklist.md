@@ -7,7 +7,7 @@ Every rule here is one the repository already has. Each says where it comes from
 - **Build a component**: `docs/get-started/building-a-component.md`.
 - **README.md**: what the library is for, in its introduction.
 
-"Build" after a rule means `npm run build` fails if it's broken, so a reviewer needs only to run it. "Script" means `scripts/check.js` points at likely breaks, for a reviewer to read. Everything else is read by eye.
+"Build" after a rule means `npm run build` fails if it's broken, so a reviewer needs only to run it. "Script" means this skill's own script, `.claude/skills/library-review/scripts/check.js` (not the repository's `scripts/` folder), points at likely breaks, for a reviewer to read. Everything else is read by eye.
 
 ## Contents
 
