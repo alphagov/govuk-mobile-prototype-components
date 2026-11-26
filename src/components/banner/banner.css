@@ -108,7 +108,9 @@
   flex-shrink: 0;
   width: 24px;
   height: 24px;
-  margin: -2px -4px 0 0;
+  /* Up 2pt, off the grid, and out 4pt, so the xmark sits where it does in
+     the app's snapshots, in reference/. */
+  margin: -2px calc(-1 * var(--app-space-extra-small)) 0 0;
   border: 0;
   color: var(--app-text-secondary);
   cursor: pointer;
@@ -155,7 +157,7 @@
   content: "";
   width: 8px;
   height: 8px;
-  margin-inline-end: 4px;
+  margin-inline-end: var(--app-space-extra-small);
   border-top: 2px solid currentColor;
   border-right: 2px solid currentColor;
   transform: rotate(45deg);
