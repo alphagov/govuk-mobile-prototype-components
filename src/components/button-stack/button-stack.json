@@ -27,7 +27,8 @@
     { "when": "For a lighter action within the content, such as on a card", "instead": "govuk-app-button variant=\"compact\"" },
     { "when": "For an action on the whole screen that doesn't move the journey on, such as Edit", "instead": "govuk-app-nav-bar-item" },
     { "when": "On a top-level screen, with a tab bar", "instead": "Put the action on a screen of its own, pushed on top, without the tab bar, and put the button stack there." },
-    { "when": "For more than two choices", "instead": "govuk-app-grouped-list-row type=\"navigation\"" }
+    { "when": "For more than two choices", "instead": "govuk-app-grouped-list-row type=\"navigation\"" },
+    { "when": "For buttons side by side in the content, such as No and Yes", "instead": "govuk-app-stack direction=\"horizontal\"" }
   ],
   "sources": {
     "figma": [],

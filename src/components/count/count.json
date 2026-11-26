@@ -34,7 +34,8 @@
   "avoid": [
     { "when": "For a number in a list, such as of unread messages", "instead": "govuk-app-grouped-list-row type=\"count\"" },
     { "when": "For how something with a deadline stands, such as days left on a vehicle's tax", "instead": "govuk-app-status" },
-    { "when": "For a number in a sentence", "instead": "govuk-app-text" }
+    { "when": "For a number in a sentence", "instead": "govuk-app-text" },
+    { "when": "To put two or three counts side by side", "instead": "govuk-app-summary-columns" }
   ],
   "sources": {
     "figma": [],

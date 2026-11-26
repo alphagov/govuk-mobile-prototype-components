@@ -50,7 +50,7 @@
   "avoid": [
     { "when": "To space a screen's parts apart", "instead": "govuk-app-section" },
     { "when": "For a few short facts side by side, with dividers between them", "instead": "govuk-app-summary-columns" },
-    { "when": "For buttons at the bottom of a screen", "instead": "govuk-app-button-stack" },
+    { "when": "For a screen's main action, and any way out of it, at the bottom of the screen", "instead": "govuk-app-button-stack" },
     { "when": "For rows on a card", "instead": "govuk-app-grouped-list" }
   ],
   "sources": {

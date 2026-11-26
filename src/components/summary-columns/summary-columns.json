@@ -35,7 +35,8 @@
   "avoid": [
     { "when": "For more than four facts, or longer ones", "instead": "govuk-app-grouped-list" },
     { "when": "For facts of different kinds", "instead": "govuk-app-grouped-list-row type=\"information\"" },
-    { "when": "To put a few components side by side that aren't facts, such as a number plate and a menu button", "instead": "govuk-app-stack direction=\"horizontal\"" }
+    { "when": "To put a few components side by side that aren't facts, such as a number plate and a menu button", "instead": "govuk-app-stack direction=\"horizontal\"" },
+    { "when": "For one number that matters on its own, such as penalty points", "instead": "govuk-app-count" }
   ],
   "sources": {
     "figma": [],

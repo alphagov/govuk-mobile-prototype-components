@@ -48,7 +48,8 @@
     { "when": "For a title over a list of rows", "instead": "govuk-app-grouped-list title=\"Privacy and legal\"" },
     { "when": "For a screen's title, when it has a navigation bar", "instead": "govuk-app-nav-bar title=\"Settings\"" },
     { "when": "For a line that should stand out, but doesn't head anything", "instead": "govuk-app-text emphasis" },
-    { "when": "For a few words that say what the rest of a line is", "instead": "govuk-app-strong" }
+    { "when": "For a few words that say what the rest of a line is", "instead": "govuk-app-strong" },
+    { "when": "For how something on a card stands, when it needs the user's attention, such as an expired licence", "instead": "govuk-app-card-header" }
   ],
   "sources": {
     "figma": [],

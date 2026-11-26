@@ -52,9 +52,11 @@
   ],
   "avoid": [
     { "when": "For a heading with no action", "instead": "govuk-app-heading" },
-    { "when": "For a screen's title", "instead": "govuk-app-heading level=\"1\"" },
+    { "when": "For a screen's title, when it has a navigation bar", "instead": "govuk-app-nav-bar title=\"Settings\"" },
+    { "when": "For a screen's title, when it has no navigation bar", "instead": "govuk-app-heading level=\"1\"" },
     { "when": "For a part of a long screen, with a line saying what it's for", "instead": "govuk-app-section" },
-    { "when": "For several actions on a section", "instead": "govuk-app-menu-button" }
+    { "when": "For several actions on a section", "instead": "govuk-app-menu-button" },
+    { "when": "For how something on a card stands, when it needs the user's attention, such as an expired licence", "instead": "govuk-app-card-header" }
   ],
   "sources": {
     "figma": [],

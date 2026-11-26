@@ -45,8 +45,10 @@
   "avoid": [
     { "when": "For a list of rows that needs only a title", "instead": "govuk-app-grouped-list title=\"Privacy and legal\"" },
     { "when": "For a section the user can act on as a whole, such as a widget with Edit", "instead": "govuk-app-section-heading" },
-    { "when": "For the screen's own title", "instead": "govuk-app-heading level=\"1\"" },
-    { "when": "To put a few components side by side", "instead": "govuk-app-stack direction=\"horizontal\"" }
+    { "when": "For the screen's own title, when it has a navigation bar", "instead": "govuk-app-nav-bar title=\"Settings\"" },
+    { "when": "For the screen's own title, when it has no navigation bar", "instead": "govuk-app-heading level=\"1\"" },
+    { "when": "To put a few components side by side", "instead": "govuk-app-stack direction=\"horizontal\"" },
+    { "when": "For how something on a card stands, when it needs the user's attention, such as an expired licence", "instead": "govuk-app-card-header" }
   ],
   "sources": {
     "figma": [],

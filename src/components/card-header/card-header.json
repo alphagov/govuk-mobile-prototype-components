@@ -41,7 +41,10 @@
   "avoid": [
     { "when": "For a card that's fine, with nothing to put right", "instead": "Leave the header off, and say how it stands in the card's rows." },
     { "when": "For how a vehicle's tax or MOT, or a licence, stands, when it needs no attention", "instead": "govuk-app-status" },
-    { "when": "For a warning about the whole screen, not one card", "instead": "govuk-app-banner type=\"warning\"" }
+    { "when": "For a warning about the whole screen, not one card", "instead": "govuk-app-banner type=\"warning\"" },
+    { "when": "For a card's title, when the card needs no attention", "instead": "govuk-app-heading level=\"2\"" },
+    { "when": "For a title over part of a screen", "instead": "govuk-app-section" },
+    { "when": "For a title with an action beside it, such as Edit", "instead": "govuk-app-section-heading" }
   ],
   "sources": {
     "figma": [],
