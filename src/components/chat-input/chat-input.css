@@ -42,7 +42,7 @@ govuk-app-chat-input:last-child .govuk-app-chat-input {
 .govuk-app-chat-input__row {
   display: flex;
   align-items: flex-end;
-  gap: 6px;
+  gap: 6px; /* the app's, off the grid, as above */
 }
 
 .govuk-app-chat-input__field {
@@ -130,7 +130,7 @@ govuk-app-chat-input:last-child .govuk-app-chat-input {
 
 .govuk-app-chat-input__menu {
   display: flex;
-  margin: 0 6px 6px 0;
+  margin: 0 6px 6px 0; /* the app's, off the grid, as above */
 }
 
 .govuk-app-chat-input__row:has(.govuk-app-chat-input__textarea:not(:placeholder-shown)) .govuk-app-chat-input__menu {

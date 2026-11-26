@@ -87,7 +87,7 @@
 
 .govuk-app-chat-answer__chevron {
   color: var(--app-text-link);
-  font-size: 24px;
+  font-size: 24px; /* an icon, in the icon font, so its size isn't type */
 }
 
 /* The app swaps the chevron for one pointing up, with no animation. */
