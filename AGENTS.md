@@ -56,6 +56,7 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 ## Docs site
 
 - `npm start` serves it at <http://localhost:8080>. `npm run build` must pass: it checks every definition against the schema, and that every component is in the sidebar.
+- `npm run check` must pass too: it fails on anything the rule checker must have fixed, such as a raw colour.
 - Check each example in light and dark against the references before calling a component done.
 - Review a change, yours or a PR, with the `library-review` skill (`.claude/skills/library-review/`) before calling it done: it runs the build, its own checks and the screenshots, and reads the change against these rules.
 
