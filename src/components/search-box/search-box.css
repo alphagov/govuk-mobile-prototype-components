@@ -81,7 +81,7 @@
   height: 36px;
   border-radius: var(--app-radius-capsule);
   background: var(--app-surface-search-box-button);
-  color: #ffffff;
+  color: var(--app-icon-search-box-button);
   font-family: "Material Symbols Rounded";
   font-size: 22px;
   font-variation-settings: "wght" 700;

@@ -198,6 +198,9 @@ govuk-app-grouped-list-row + govuk-app-grouped-list-row > .govuk-app-grouped-lis
 .govuk-app-grouped-list-row[data-type="link"] .govuk-app-grouped-list-row__icon {
   font-size: 20px;
   margin-block: 0;
+  /* As the chevron's, its glyph's right edge, not its box's, lines up with
+     the app's: off the grid, as it makes up for the space Material leaves
+     beside the glyph, which is less for the arrow than for the chevron. */
   margin-inline-end: -3px;
 }
 
