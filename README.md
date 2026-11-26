@@ -14,6 +14,7 @@ Components for the GOV.UK app prototyping system: web components that look and b
 | [src/foundation/](src/foundation/) | What every component relies on: the app's tokens, the `<govuk-app>` root and `component.js` |
 | [src/frame/](src/frame/) | `<govuk-prototype-frame>`, the iPhone around a prototype: its status bar and home indicator, fitted to the window. Not part of the app, so not a component |
 | [src/schemas/](src/schemas/) | What a component's, pattern's and template's definition must say |
+| [src/starter/](src/starter/) | What a new prototype starts from: its server, start page, `prototype.js`, `CLAUDE.md` and the skills Claude uses to work on it. [src/bin/](src/bin/) holds the command that makes one |
 
 Around it:
 
@@ -31,22 +32,47 @@ Documentation: <https://alphagov.github.io/govuk-mobile-prototype-components/>, 
 
 ## Make a prototype
 
-Designers can make a prototype of the GOV.UK app by asking [Claude Code](https://code.claude.com/docs/en/overview), with the plugin in [`plugin/`](plugin/).
+Designers can make a prototype of the GOV.UK app with [Claude Code](https://code.claude.com/docs/en/overview). Open Claude Code in the folder where you keep your work, and paste:
 
-While this repository is private, they first need a GitHub account with access to it, and their computer signed in to GitHub: for example with GitHub's `gh` tool, `gh auth login` then `gh auth setup-git`, which Claude can do for them. Adding the plugin and installing the components both read from here.
+> Make me a prototype of the GOV.UK app using alphagov/govuk-mobile-prototype-components
 
-Then add it once, in Claude Code:
+Claude asks for a name and where to start (Home, Settings, Chat or a blank screen), gets your computer ready, asking before it installs anything, makes the prototype and opens it in your browser. Next time, open Claude Code in the prototype's folder and say "open my prototype". It's on your computer only, and iOS only, for now.
 
-```text
-/plugin marketplace add alphagov/govuk-mobile-prototype-components
-/plugin install govuk-app-prototyping@govuk-app
+If you'd rather type it yourself, and have [Node.js](https://nodejs.org/) 22.16 or newer:
+
+```sh
+npx --yes https://github.com/alphagov/govuk-mobile-prototype-components/releases/latest/download/govuk-mobile-prototype-components.tgz new "My prototype"
 ```
 
-Then, in an empty folder, say "Make a new prototype of the GOV.UK app". Claude asks for a name and where to start (Home, Settings, Chat or a blank screen), gets the computer ready, asking before it installs anything, and opens the prototype in the browser. Next time, "Open my prototype". It's on the computer only, and iOS only, for now.
+See [Make a prototype](docs/get-started/make-a-prototype.md) for more, and [`src/starter/`](src/starter/) for what a new prototype is made of.
 
-Your organisation's managed Claude Code settings may not allow adding plugin marketplaces. If adding it fails, ask whoever runs your setup to allow this repository.
+### If you're Claude
 
-See [Make a prototype](docs/get-started/make-a-prototype.md) for more, and [`plugin/starter/`](plugin/starter/) for what a new prototype is made of.
+Someone has asked you to make a prototype of the GOV.UK app with this library. They're probably a designer who's never used a terminal: talk in plain, short UK English, one question at a time, and do the technical work yourself.
+
+1. **Ask** what to call the prototype, then where in the app to start: Home, Settings or Chat (which come together, as their tab bars link to each other), or a blank screen.
+2. **Check for Node.js** 22.16 or newer: `node --version`, or, if an earlier prototype installed it, `~/.local/node/bin/node --version`. If neither will do, say in one sentence that the prototype runs on a free program called Node.js, and ask to download it from nodejs.org into their own folder. It needs no password and no developer tools. With their yes, on a Mac:
+
+   ```sh
+   case "$(uname -m)" in arm64) platform=darwin-arm64 ;; *) platform=darwin-x64 ;; esac
+   index=$(curl -fsSL https://nodejs.org/dist/index.tab)
+   version=$(printf '%s\n' "$index" | awk -F'\t' 'NR > 1 && $10 != "-" { print $1; exit }')
+   name="node-$version-$platform"
+   mkdir -p "$HOME/.local" && cd "$HOME/.local"
+   curl -fsSLO "https://nodejs.org/dist/$version/$name.tar.gz"
+   curl -fsSL "https://nodejs.org/dist/$version/SHASUMS256.txt" | grep " $name.tar.gz\$" | shasum -a 256 -c -
+   tar -xzf "$name.tar.gz" && rm "$name.tar.gz" && ln -sfn "$HOME/.local/$name" "$HOME/.local/node"
+   ```
+
+   That's the latest long-term support version, checked against nodejs.org's checksums. Use it by starting each command with `export PATH="$HOME/.local/node/bin:$PATH";`.
+3. **Make it**, in the folder Claude Code is open in (if that's their home folder, suggest their Documents folder instead), with the name and starting point they gave: `--from settings`, `home`, `chat` or `blank`.
+
+   ```sh
+   npx --yes https://github.com/alphagov/govuk-mobile-prototype-components/releases/latest/download/govuk-mobile-prototype-components.tgz new "My prototype" --from settings
+   ```
+
+   It makes a folder named after the prototype, downloads the latest release of the components into it, and adds the starter, the screens and the skills Claude uses to work on it, in `.claude/skills/`. If it fails, say what it said in plain words: it's usually the network.
+4. **Open it.** Read the new folder's `CLAUDE.md`, and follow its `.claude/skills/prototype-setup/SKILL.md`, in that folder, to start the prototype and open it in their browser. Then tell them what they can ask for, and that next time they should open Claude Code in the prototype's folder and say "open my prototype", so its skills are there.
 
 ## Running the docs locally
 
@@ -112,13 +138,13 @@ See [Get started](docs/get-started/index.md) for more.
 
 ## Using it in another project
 
-Install it from GitHub, at a release's tag, so it changes only when you choose:
+Install a release, so it changes only when you choose. Each release from v0.5.0 has the package attached, a plain download:
 
 ```sh
-npm install github:alphagov/govuk-mobile-prototype-components#v0.4.0
+npm install https://github.com/alphagov/govuk-mobile-prototype-components/releases/download/v0.5.0/govuk-mobile-prototype-components.tgz
 ```
 
-Use a tag from the [releases](https://github.com/alphagov/govuk-mobile-prototype-components/releases), not `main` or a commit on it. Only a release has the catalogue, and installing one adds this package alone: no dev dependencies, and no scripts run.
+Or a release's tag, from git: `npm install github:alphagov/govuk-mobile-prototype-components#v0.4.0`. Use a [release](https://github.com/alphagov/govuk-mobile-prototype-components/releases), not `main` or a commit on it. Only a release has the catalogue, and installing one adds this package alone: no dev dependencies, and no scripts run.
 
 Then serve `node_modules/govuk-mobile-prototype-components/` with your pages, and load each component's script from there. The components load their templates, styles and fonts from beside their scripts, and nothing from anywhere else, so they work under a strict Content Security Policy and offline.
 
@@ -132,7 +158,7 @@ A release is a tag, `vX.Y.Z`, made by the [Release workflow](.github/workflows/r
 2. Enter the version, such as `0.4.0`, without the `v`. It must be greater than the latest release.
 3. Run it.
 
-It checks out `main`, installs, and runs `npm run build`, so a definition the build refuses stops the release. Then it makes a commit on top of `main` holding the new version in `package.json` and the generated `catalogue/`, tags it `vX.Y.Z`, and pushes only the tag. `main` doesn't change, so it never holds generated files. Last, it makes a GitHub release, with notes listing the pull requests merged since the last one.
+It checks out `main`, installs, and runs `npm run build`, so a definition the build refuses stops the release. Then it makes a commit on top of `main` holding the new version in `package.json` and the generated `catalogue/`, tags it `vX.Y.Z`, and pushes only the tag. `main` doesn't change, so it never holds generated files. Last, it makes a GitHub release, with notes listing the pull requests merged since the last one, and the package attached as `govuk-mobile-prototype-components.tgz`: what `npm pack` makes, so only the package's files. The name is the same for every release, so the latest is always at `releases/latest/download/govuk-mobile-prototype-components.tgz`, which is what making a prototype downloads.
 
 So a release's tag points to a commit that isn't on any branch. That's on purpose: it's what prototypes install, `#vX.Y.Z`, with the catalogue ready made.
 

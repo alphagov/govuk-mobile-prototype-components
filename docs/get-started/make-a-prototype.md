@@ -10,33 +10,15 @@ You can make a prototype of the GOV.UK app by asking [Claude Code](https://code.
 
 It’s on your computer only, for now: there’s no way to share it yet. It looks like the app on iOS.
 
-## Sign in to GitHub
+## Make one
 
-The components are on GitHub, in a repository that’s private for now. Until it’s public, you need:
+Open Claude Code in the folder where you keep your work, such as your Documents folder, and paste:
 
-- a GitHub account that can see [alphagov/govuk-mobile-prototype-components](https://github.com/alphagov/govuk-mobile-prototype-components). If that link says “Page not found” when you’re signed in, ask the library’s maintainers for access
-- your computer signed in to GitHub. If you haven’t done this before, open Claude Code and say “Sign this computer in to GitHub with the GitHub CLI”. Claude asks before installing GitHub’s own tool, `gh`, then opens GitHub in your browser for you to confirm (`gh auth login`, then `gh auth setup-git`)
+> Make me a prototype of the GOV.UK app using alphagov/govuk-mobile-prototype-components
 
-## Add the plugin to Claude Code
+Claude asks what to call it and where in the app to start. If your computer needs Node.js, the free program a prototype runs on, Claude asks before downloading it into your own folder: it doesn’t need your password. Then it makes the prototype in a folder of its own, and opens it in your browser.
 
-You only need to do this once. Open Claude Code in your terminal, and type these two lines, one at a time:
-
-```text
-/plugin marketplace add alphagov/govuk-mobile-prototype-components
-/plugin install govuk-app-prototyping@govuk-app
-```
-
-The second asks where to install it: choose to install it for you. Then type `/reload-plugins`, or close Claude Code and open it again.
-
-If adding it doesn’t work, your organisation’s Claude Code settings may not allow plugins from places it hasn’t approved. Ask whoever looks after your Claude Code setup to allow `alphagov/govuk-mobile-prototype-components`.
-
-## Make a prototype
-
-Make a folder for your prototypes, such as one called Prototypes in your Documents, and open Claude Code in it. Then say:
-
-> Make a new prototype of the GOV.UK app
-
-Claude asks what to call it and where in the app to start, gets your computer ready (it may need to install Node.js, or Apple’s Command Line Tools, and asks first), and opens it in your browser. Then ask for what you want to change, such as:
+Then ask for what you want to change, such as:
 
 > Add a setting called Passport reminders, that opens a screen explaining it
 
@@ -46,6 +28,16 @@ Open Claude Code in your prototype’s folder, and say:
 
 > Open my prototype
 
+## If you’d rather type it
+
+If you have [Node.js](https://nodejs.org/) 22.16 or newer, this makes a prototype called My prototype, starting at Settings, in the folder you run it in:
+
+```sh
+npx --yes https://github.com/alphagov/govuk-mobile-prototype-components/releases/latest/download/govuk-mobile-prototype-components.tgz new "My prototype"
+```
+
+Add `--from home`, `--from chat` or `--from blank` to start somewhere else. Then open Claude Code in the folder it makes, and say “open my prototype”.
+
 ## How it’s made
 
-The plugin is in this repository’s `plugin/` folder. A prototype is a folder of HTML pages that use this library’s components, templates and patterns, installed from GitHub at the latest release when the prototype is made, with a small server that reloads the browser when a page changes. Claude keeps a history of every change in the folder, so you can ask it to undo one.
+A prototype is a folder of HTML pages that use this library’s components, templates and patterns, from the latest release when the prototype was made, with a small server that reloads the browser when a page changes. It has a `CLAUDE.md` and skills of its own, which tell Claude how to work on it. They come from the library’s `src/starter/` folder.
