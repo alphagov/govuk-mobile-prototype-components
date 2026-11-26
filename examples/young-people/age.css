@@ -1,0 +1,66 @@
+/* What the Young people example has above the phone besides the link back:
+   which age the app is shown at, to move between them. It's for whoever is
+   showing the idea, not part of the app, so it's in the style of the docs
+   site's links, like the link back.
+
+   In a cascade layer, so none of this reaches inside <govuk-app>. */
+
+@layer example {
+  .example-above {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 24px;
+  }
+
+  .example-age {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #0b0c0c;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .example-age__link {
+    padding: 0 8px;
+    border-radius: 4px;
+    color: #1d70b8;
+    text-decoration: underline;
+    text-underline-offset: 0.1578em;
+  }
+
+  .example-age__link:hover {
+    text-decoration-thickness: 3px;
+  }
+
+  .example-age__link[aria-current="page"] {
+    background: #0b0c0c;
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .example-age__link:focus-visible {
+    outline: 3px solid transparent;
+    background: #ffdd00;
+    box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+    color: #0b0c0c;
+    text-decoration: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .example-age {
+      color: #ffffff;
+    }
+
+    .example-age__link {
+      color: #ffffff;
+    }
+
+    .example-age__link[aria-current="page"] {
+      background: #ffffff;
+      color: #0b0c0c;
+    }
+  }
+}

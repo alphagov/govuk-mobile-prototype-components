@@ -1,0 +1,12 @@
+<!-- Proposed: one thing the user can now do, as a card with a topic's icon
+     above its name. A link if it has an href, otherwise a button. -->
+<template>
+  <a class="govuk-app-tile" data-if="link" data-attr="href: href">
+    <span class="govuk-app-tile__icon govuk-app-icon" aria-hidden="true" data-text="icon"></span>
+    <span class="govuk-app-tile__label govuk-app-text" data-slot="content"></span>
+  </a>
+  <button class="govuk-app-tile" type="button" data-if="button" data-attr="name: name, value: value">
+    <span class="govuk-app-tile__icon govuk-app-icon" aria-hidden="true" data-text="icon"></span>
+    <span class="govuk-app-tile__label govuk-app-text" data-slot="content"></span>
+  </button>
+</template>

@@ -84,3 +84,23 @@ The sign-out confirmation slides up as a sheet, with Settings set back behind it
 ### What’s missing
 
 - **Rows that go nowhere.** Your accounts, Messages, Notifications and Open source licences have no screens of their own here.
+
+## Young people
+
+[Open the Young people example](/examples/young-people/)
+
+An idea from the young people workstream: an app that grows up with its user. It's Home, with a section of its own at the top for a young person, saying what they can do at their age. Above the phone, choose which age to show it at:
+
+- [16](/examples/young-people/): four things to do first, as tiles, such as getting a National Insurance number and registering to vote. See more shows four more.
+- [18](/examples/young-people/18.html): more to do, grouped by Jobs, Housing, Education and Civic duties.
+
+Getting a National Insurance number opens a screen of its own, with a back button. The other tiles and rows open their pages on GOV.UK.
+
+None of it is in the app. The age card, the tiles and their grid are the example’s own, not the library’s: they’re in `examples/young-people/proposals/`, drawn like the app’s Home, with a link card’s corners and shadow and a topic’s icons, so they could join the library later. The groups at 18 are the library’s grouped list. It also uses the screen, home header, search field, segmented control, section heading, link card, navigation bar, text, bulleted list, button, button stack, crown and tab bar. Its source is in `examples/young-people/` in the repository.
+
+### What’s missing
+
+- **How the app knows your age.** It might come from GOV.UK One Login, or the user might tell it. Here, you choose.
+- **Screens for the other tiles.** Only the National Insurance number has one.
+- **Choosing an age on a phone.** The ages are above the phone, which isn't shown when the example fills a phone's screen. Open the 18 page from its link here instead.
+- **Rows that go nowhere.** As in the Home example, most topics and the Edit and See all actions have no screens here.

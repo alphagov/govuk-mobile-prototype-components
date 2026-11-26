@@ -1,0 +1,174 @@
+/* An idea from the young people workstream's sketch, "Evolving app": Home
+   with a section of its own for a young person, showing what they can do now
+   they're 16, and more once they're 18. None of it is in the app, so it's the
+   Young people example's own, not the library's.
+
+   It's drawn in the app's Home's own language so it sits among its widgets:
+   cards like a link card's (fills.surfaceList, 10pt corners, a solid 3pt
+   shadow in strokes.cardDefault), and icons like a topic's (white on a blue
+   circle, Material Symbols Outlined, filled).
+
+   Icons are Material Symbols in place of SF Symbols, which may only be used
+   on Apple's platforms. */
+
+/* The user's age, a heading and a line about what they can do, on a card.
+   The age is in a badge like a topic's icon, but larger, as the sketch has
+   it. */
+.govuk-app-milestone {
+  display: flex;
+  align-items: center;
+  gap: var(--app-space-medium);
+  padding: var(--app-space-medium);
+  border-radius: 10px; /* GovKit's roundedBorder, as a link card's */
+  background: var(--app-surface-list);
+  box-shadow: 0 3px 0 var(--app-shadow-card); /* off the grid, as a link card's */
+}
+
+.govuk-app-milestone__age {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-icon-surround-primary);
+  color: var(--app-icon-primary);
+  font-size: var(--app-font-title-2-size);
+  font-weight: var(--app-font-title-2-weight);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.govuk-app-milestone__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-extra-small);
+  min-width: 0;
+}
+
+.govuk-app-milestone__title {
+  font-size: var(--app-font-title-2-size);
+  font-weight: var(--app-font-title-2-weight);
+  --leading: var(--app-font-title-2-leading);
+}
+
+.govuk-app-milestone__description {
+  color: var(--app-text-secondary);
+}
+
+/* Tiles two across, 16pt apart, with See more below them. */
+.govuk-app-tile-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-medium);
+}
+
+.govuk-app-tile-grid__tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--app-space-medium);
+}
+
+.govuk-app-tile-grid__more[hidden] {
+  display: none;
+}
+
+/* See more, in a section heading's action's style: Subheadline Semibold, in
+   the link colour, with a chevron that turns over once it's open. */
+.govuk-app-tile-grid__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  gap: var(--app-space-extra-small);
+  min-height: var(--app-size-touch-target);
+  padding: 0 var(--app-space-medium);
+  border: 0;
+  border-radius: var(--app-radius-capsule);
+  color: var(--app-text-link);
+  font-size: var(--app-font-subheadline-emphasis-size);
+  font-weight: var(--app-font-subheadline-emphasis-weight);
+  --leading: var(--app-font-subheadline-emphasis-leading);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.govuk-app-tile-grid__toggle:active {
+  background: var(--app-glass-pressed);
+}
+
+.govuk-app-tile-grid__toggle[aria-expanded="true"] .govuk-app-tile-grid__see-more,
+.govuk-app-tile-grid__toggle[aria-expanded="false"] .govuk-app-tile-grid__see-less {
+  display: none;
+}
+
+.govuk-app-tile-grid__chevron {
+  font-family: "Material Symbols Rounded";
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  transition: transform 0.2s ease;
+}
+
+.govuk-app-tile-grid__toggle[aria-expanded="true"] .govuk-app-tile-grid__chevron {
+  transform: rotate(180deg);
+}
+
+/* One thing the user can do, on a card: a topic's icon, with its name below
+   it in Body Semibold, as a topic's title is. Every tile in a row is as tall
+   as the tallest. */
+.govuk-app-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--app-space-medium);
+  min-height: 136px; /* room for an icon and three lines, so a row of short names still reads as tiles */
+  padding: var(--app-space-medium);
+  border: 0;
+  border-radius: 10px; /* GovKit's roundedBorder, as a link card's */
+  background: var(--app-surface-list);
+  box-shadow: 0 3px 0 var(--app-shadow-card); /* off the grid, as a link card's */
+  text-align: start;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.govuk-app-tile:active {
+  background: linear-gradient(var(--app-glass-pressed), var(--app-glass-pressed)), var(--app-surface-list);
+}
+
+/* Inside the card's corners. */
+.govuk-app-tile:focus-visible {
+  outline-offset: 0;
+}
+
+/* As a topic's icon: white on a 40pt circle, at 24pt. */
+.govuk-app-tile__icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--app-radius-capsule);
+  background: var(--app-icon-surround-primary);
+  color: var(--app-icon-primary);
+  font-family: "Material Symbols Outlined";
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+.govuk-app-tile__label {
+  font-weight: var(--app-font-body-emphasis-weight);
+}
