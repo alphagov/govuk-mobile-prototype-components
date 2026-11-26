@@ -17,6 +17,7 @@ import { spawnSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 
+import { prototypePath } from '../starter/scripts/refresh-starter.js'
 import { compareVersions, downloadUrl, latestRelease, parseVersion } from '../starter/scripts/release.js'
 
 const packageRoot = path.resolve(import.meta.dirname, '..', '..')
@@ -104,13 +105,8 @@ const starter = fs.existsSync(installed) ? installed : ownStarter
 
 step('Copying in the starter files and Claude’s skills')
 for (const entry of fs.readdirSync(starter)) {
-  const from = path.join(starter, entry)
-  if (entry === 'skills') {
-    fs.cpSync(from, path.join(folder, '.claude', 'skills'), { recursive: true })
-  } else {
-    // npm leaves .gitignore out of packages, so the starter's has no dot.
-    fs.cpSync(from, path.join(folder, entry === 'gitignore' ? '.gitignore' : entry), { recursive: true })
-  }
+  // Where each goes is refresh-starter's, which updates them later.
+  fs.cpSync(path.join(starter, entry), path.join(folder, prototypePath(entry)), { recursive: true })
 }
 const manifestFile = path.join(folder, 'prototype.json')
 const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'))
