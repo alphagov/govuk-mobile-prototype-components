@@ -8,8 +8,9 @@
    (GOVUKColors+Fills, +Text, +Strokes), read at ad8590b on 2026-11-17.
    Each role names the GovKit token it comes from. The roles down to
    --app-focus, and the type, are carried over from the app prototyping
-   system's kit (exploration-2/kit/tokens.css); the button roles were added for components/button. The glass and tab bar roles are the
-   system's, not GovKit's, and were added for components/tab-bar.
+   system's kit (exploration-2/kit/tokens.css); the button roles were added
+   for components/button. The glass and tab bar roles are the system's, not
+   GovKit's, and were added for components/tab-bar.
 
    light-dark() picks a value by the root's color-scheme, which base.css
    sets from the colour-scheme attribute, or the device's setting. */
