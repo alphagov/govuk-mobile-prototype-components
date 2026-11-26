@@ -1,0 +1,30 @@
+<!doctype html>
+<!--
+  The prototype's start page: every screen in it, from prototype.json.
+
+  Not part of the app, so it's plain HTML, outside <govuk-app>, styled by
+  start.css and filled in by start.js.
+
+  To add a screen to it, add it to prototype.json, with its title, its path
+  and, if it's in a group, such as Settings, the group's name.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prototype</title>
+  <script type="module" src="/prototype.js"></script>
+  <script type="module" src="/start.js"></script>
+  <link rel="stylesheet" href="/start.css">
+</head>
+<body>
+  <main class="start">
+    <h1 class="start__title" id="name">Prototype</h1>
+    <p class="start__description" id="description" hidden></p>
+    <div id="screens">
+      <p class="start__hint">No screens yet. Ask Claude to make one.</p>
+    </div>
+    <a class="start__clear" href="/" data-clear-answers>Start again, forgetting every answer</a>
+  </main>
+</body>
+</html>

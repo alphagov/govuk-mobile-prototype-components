@@ -3,7 +3,7 @@ layout: sub-navigation
 title: Build a component
 description: How a component is put together, and how to add one to the library.
 sectionKey: Get started
-order: 2
+order: 3
 ---
 
 ## A component

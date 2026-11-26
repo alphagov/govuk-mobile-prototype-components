@@ -9,6 +9,9 @@
     "type": "git",
     "url": "git+https://github.com/alphagov/govuk-mobile-prototype-components.git"
   },
+  "bin": {
+    "govuk-app-prototype": "src/bin/govuk-app-prototype.js"
+  },
   "files": [
     "src/components/*/*.html",
     "src/components/*/*.css",
@@ -21,6 +24,8 @@
     "src/patterns",
     "src/templates",
     "src/schemas",
+    "src/starter",
+    "src/bin",
     "catalogue"
   ],
   "scripts": {

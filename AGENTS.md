@@ -4,7 +4,7 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 
 ## Where things go
 
-- `src/` is the library, and only the library: components, patterns, templates, foundation, frame and schemas. It's what the package ships, and the docs site publishes it at the same paths.
+- `src/` is the library, and only the library: components, patterns, templates, foundation, frame and schemas, with the prototype starter (`src/starter/`) and the command that makes a prototype from it (`src/bin/`). It's what the package ships, and the docs site publishes the library at the same paths.
 - Everything else sits around it: `examples/`, `docs/`, `scripts/`, and `inventory/` for the survey of the apps. Generated output (`_site/`, `catalogue/`, `screenshots-out/`) is never committed to a branch. Only a release's commit holds `catalogue/`.
 - Keep the root to these and the project's own files. Ask before adding a folder there.
 
@@ -34,6 +34,13 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 - Links between its own pages work. A link to a screen no template has is a named button, not an href to a page that isn't there. The tab bar's tabs link to the other templates' first pages, such as `../home/index.html`.
 - List its pages in `screens`, the first where the journey starts, and in `components` exactly the components they use: the build checks. Its docs page is at `/templates/<name>/about/`, since its own `index.html` is at `/templates/<name>/`.
 - Templates are their own thing: leave `examples/` as it is.
+
+## Making prototypes
+
+- `src/bin/govuk-app-prototype.js new "<name>"` makes a prototype, for designers who've never used a terminal, run with `npx` from a release's download. It copies `src/starter/` into a new folder, its `skills/` into the prototype's `.claude/skills/`, and installs the components from the latest release's download. It has no dependencies, and the package runs nothing on install.
+- Write the starter's `CLAUDE.md` and skills, and anything they tell the designer, in plain words, with no jargon.
+- A prototype serves the library's whole package at `/library/`, so a catalogue path is `/library/` and that path. Where the shipped files are inside the package is `source` in `src/starter/library.js` alone: keep it that way, so moving them is a one-line change.
+- Check a change to it end to end: `npm pack`, serve the file, and in an empty folder run `npx --yes <its address> new "Test" --components <its address>`. Then open the prototype in Claude Code and say "open my prototype".
 
 ## Styles
 
