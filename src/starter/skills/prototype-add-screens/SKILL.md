@@ -1,6 +1,6 @@
 ---
 name: prototype-add-screens
-description: Adds screens to this GOV.UK app prototype, either a whole part of the app from the library's templates (such as Settings, Home or Chat, with every screen it opens) or a new blank screen, and lists them on the start page. Use it whenever someone wants to add, start from or bring in a part of the app or a new screen ("add the Settings screens", "I need the Chat tab too", "start a new screen for passport reminders", "add a blank screen", "copy the app's Home screen in"), even if they don't say "template".
+description: Adds screens to this GOV.UK app prototype, either a whole part of the app from the library's templates (such as Settings, Home or Chat, with every screen it opens) or a new blank screen, and lists them on the start page. Use it whenever someone wants to add, start from or bring in a part of the app the library has, or a blank screen ("add the Settings screens", "I need the Chat tab too", "add a blank screen", "copy the app's Home screen in"), even if they don't say "template". To design a new screen or journey of their own, use prototype-build.
 ---
 
 # Add screens to the prototype
@@ -9,7 +9,7 @@ The person is a designer. Talk in plain words: "screens" and "parts of the app",
 
 ## Which screens
 
-Read `<catalogue>/index.md` (`node library.js` prints where `<catalogue>` is) for the templates there are, and their cards for what each holds. If they've asked for a part of the app the library has, add its template. If not, or they want something new, add a blank screen and build on it, following `CLAUDE.md`.
+Read `<catalogue>/index.md` (`node library.js` prints where `<catalogue>` is) for the templates there are, and their cards for what each holds. If they've asked for a part of the app the library has, add its template. If not, or they want something new, use the `prototype-build` skill instead, which makes new screens and journeys.
 
 Home, Settings and Chat come together, because the tab bar on each opens the others. If any of them is missing from `screens/`, add all three.
 

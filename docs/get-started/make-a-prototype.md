@@ -22,6 +22,8 @@ Then ask for what you want to change, such as:
 
 > Add a setting called Passport reminders, that opens a screen explaining it
 
+Or describe a whole journey, such as “a journey to add a vehicle and get MOT reminders”, or paste in a Figma link, a screenshot or a photo of a sketch. Claude plans the screens with you first, builds them from the app’s own parts, and checks each one in light and dark before showing you. To check them, it takes pictures of the screens with a browser that runs out of sight: Chrome, if you have it, or, with your say-so, one it downloads.
+
 ## Come back to it
 
 Open Claude Code in your prototype’s folder, and say:
