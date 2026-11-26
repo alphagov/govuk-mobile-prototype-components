@@ -8,7 +8,7 @@ Web components that look and behave like the GOV.UK app's own, so a prototype of
 
 Open [Claude Code](https://code.claude.com/docs/en/overview) in the folder where you keep your work, and paste:
 
-> Make me a prototype of the GOV.UK app using alphagov/govuk-mobile-prototype-components
+> Make me a prototype of the GOV.UK app using https://github.com/alphagov/govuk-mobile-prototype-components
 
 Claude asks what to call it and where in the app to start, gets your computer ready, asking before it installs anything, and opens the prototype in your browser. See [Make a prototype](https://alphagov.github.io/govuk-mobile-prototype-components/get-started/make-a-prototype/) for more.
 

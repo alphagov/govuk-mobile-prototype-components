@@ -127,9 +127,11 @@ const server = http.createServer((request, response) => {
 
 // Reloads every open tab when anything in the prototype changes. Many
 // changes come at once when a file is saved, so it waits for them to stop.
+// Not for node_modules, or anything whose name starts with a dot, such as
+// .git, .claude or the screenshots in .screenshots.
 let timer
 fs.watch(root, { recursive: true }, (event, name) => {
-  if (!name || /(^|[\\/])(node_modules|\.git)([\\/]|$)/.test(name) || /(^|[\\/])\.[^\\/]*$/.test(name)) return
+  if (!name || /(^|[\\/])(node_modules|\.[^\\/]*)([\\/]|$)/.test(name)) return
   clearTimeout(timer)
   timer = setTimeout(() => {
     for (const tab of tabs) tab.write('event: change\ndata: reload\n\n')

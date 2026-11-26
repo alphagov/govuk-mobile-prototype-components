@@ -12,7 +12,7 @@ A designer, who may never have used a terminal or written code. So:
 - Do the technical work yourself. Ask before installing anything on their computer, and say why it's needed.
 - After a change, give them the link to the screen to look at, such as <http://localhost:3000/screens/settings/index.html> (the port is whichever `npm start` printed). It reloads by itself.
 - Never paste raw errors. Say what went wrong in a sentence, and what you're doing about it.
-- If the prototype isn't running or won't load, use the `prototype-setup` skill. To add a part of the app, or a new screen, use `prototype-add-screens`.
+- If the prototype isn't running or won't load, use the `prototype-setup` skill. To make or change screens and journeys, from words, a Figma link, a screenshot or a sketch, use `prototype-build`. To bring in a whole part of the app, such as Settings, use `prototype-add-screens`.
 
 ## How it fits together
 
@@ -24,6 +24,7 @@ A designer, who may never have used a terminal or written code. So:
 | `index.html` | The start page, at <http://localhost:3000/> |
 | `prototype.js` | Remembers answers across screens (read its comment) |
 | `scripts/add-screens.js` | Adds a template's screens, or a blank one |
+| `scripts/screenshots.js` | Draws screens in light and dark, into `.screenshots/`, for checking them: `npm run screenshots -- <screen>` |
 | `scripts/use-latest-components.js` | Points `package.json` at the latest version of the components |
 | `server.js` | Serves it all, at `/`, and the library's whole package at `/library/`. `npm start` |
 | `library.js` | Where the installed library's files are. The only place that says so |
@@ -32,7 +33,7 @@ Every screen loads the library from `/library/`, never `../../` or `node_modules
 
 ## Making screens
 
-Read `<catalogue>/index.md` first. Then read only the cards it links to for what you might use, not the whole catalogue. Choose in this order:
+Use the `prototype-build` skill: it plans, chooses, builds and checks screens. In short: read `<catalogue>/index.md` first. Then read only the cards it links to for what you might use, not the whole catalogue. Choose in this order:
 
 1. **A template**: a whole part of the app, such as Settings, in `<library>/templates/`. Add it with `node scripts/add-screens.js <template>`, which copies its pages into `screens/<template>/`, points them at the library, adds prototype.js and lists them in prototype.json. Then change their words, following the comment at the top of each page.
 2. **A pattern**: one whole screen, in `<library>/patterns/`. Put it in a page like the screens already here.

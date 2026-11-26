@@ -17,7 +17,8 @@
  *                back to a screen keeps what was typed.
  *   If           data-show-if="notifications=on" shows something only if that
  *                is the answer, data-show-if="notifications!=on" only if it
- *                isn't, and data-show-if="postcode" only if there's any answer.
+ *                isn't, data-show-if="postcode" only if there's any answer,
+ *                and data-show-if="!postcode" only if there isn't.
  *                Put it on a component, such as <govuk-app-text>.
  *   Clearing     A link or button with data-clear-answers clears every answer
  *                when it's pressed. Or, in the browser's console,
@@ -88,6 +89,8 @@ function fillIn(field, all) {
 }
 
 function shows(condition, all) {
+  const negated = condition.match(/^\s*!\s*([^!=]+?)\s*$/)
+  if (negated) return !shows(negated[1], all)
   const [, name, not, value] = condition.match(/^\s*([^!=]+?)\s*(?:(!?)=\s*(.*?))?\s*$/) ?? []
   if (!name) return true
   const answer = all[name]

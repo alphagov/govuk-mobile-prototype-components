@@ -14,13 +14,15 @@ It’s on your computer only, for now: there’s no way to share it yet. It look
 
 Open Claude Code in the folder where you keep your work, such as your Documents folder, and paste:
 
-> Make me a prototype of the GOV.UK app using alphagov/govuk-mobile-prototype-components
+> Make me a prototype of the GOV.UK app using https://github.com/alphagov/govuk-mobile-prototype-components
 
 Claude asks what to call it and where in the app to start. If your computer needs Node.js, the free program a prototype runs on, Claude asks before downloading it into your own folder: it doesn’t need your password. Then it makes the prototype in a folder of its own, and opens it in your browser.
 
 Then ask for what you want to change, such as:
 
 > Add a setting called Passport reminders, that opens a screen explaining it
+
+Or describe a whole journey, such as “a journey to add a vehicle and get MOT reminders”, or paste in a Figma link, a screenshot or a photo of a sketch. Claude plans the screens with you first, builds them from the app’s own parts, and checks each one in light and dark before showing you. To check them, it takes pictures of the screens with a browser that runs out of sight: Chrome, if you have it, or, with your say-so, one it downloads.
 
 ## Come back to it
 

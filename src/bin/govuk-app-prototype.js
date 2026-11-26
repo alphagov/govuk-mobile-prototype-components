@@ -86,7 +86,7 @@ fs.writeFileSync(path.join(folder, 'package.json'), `${JSON.stringify({
   private: true,
   type: 'module',
   description: `A prototype of the GOV.UK app: ${name.trim()}.`,
-  scripts: { start: 'node server.js' },
+  scripts: { start: 'node server.js', screenshots: 'node scripts/screenshots.js' },
   engines: { node: '>=22.16' },
   dependencies: { 'govuk-mobile-prototype-components': components }
 }, null, 2)}\n`)
