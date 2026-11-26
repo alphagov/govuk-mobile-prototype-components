@@ -35,7 +35,7 @@
   width: 100%;
   margin: 0;
   /* 10pt and 8pt, the app's, off the grid. */
-  padding: 10px 8px;
+  padding: 10px var(--app-space-small);
   border: 0.5px solid var(--app-border-input);
   border-radius: 4px;
   appearance: none;

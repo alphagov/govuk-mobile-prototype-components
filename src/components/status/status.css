@@ -47,6 +47,8 @@
 
 .govuk-app-status[data-state="expired"] .govuk-app-status__icon::before {
   content: "!";
+  /* Part of the drawn icon, not type, so sized to the 36pt circle rather
+     than taken from the type scale: approximate, as the icon is. */
   font-size: 20px;
   font-weight: 800;
   line-height: 1;

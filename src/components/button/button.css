@@ -19,7 +19,7 @@
   display: block;
   width: 100%;
   min-height: var(--app-size-touch-target);
-  padding: 13px var(--app-space-medium);
+  padding: 13px var(--app-space-medium); /* GovKit's 13pt, off the grid */
   border: 0;
   border-radius: 15px;
   background: var(--surface);

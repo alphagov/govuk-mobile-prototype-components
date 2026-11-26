@@ -55,7 +55,16 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 
 ## Docs site
 
-- `npm start` serves it at <http://localhost:8080>. `npm run build` must pass: it checks every definition against the schema, and that every component is in the sidebar.
+- `npm start` serves it at <http://localhost:8080>. `npm run build` must pass. It checks, in `scripts/definitions.js`, `docs/_data/` and `scripts/catalogue.js`:
+  - every component's, pattern's and template's definition against its schema;
+  - that a component's definition and its script agree on its elements and the attributes each reads;
+  - that every element a component's `contains` names is a component or part;
+  - that an `avoid` written as an element names one the library has, with attributes it reads and values they take;
+  - that a pattern's `avoid` naming another pattern names it exactly;
+  - that a pattern's HTML is one `<govuk-app-screen>`, and its `components` are exactly the ones it uses;
+  - that a template's pages are there, each loads the script of every component it uses, and its `components` are exactly the ones they use;
+  - that every component is in one of the catalogue index's groups, and every name there is a component;
+  - and that every component, pattern and template is in the sidebar.
 - `npm run check` must pass too: it fails on anything the rule checker must have fixed, such as a raw colour.
 - Check each example in light and dark against the references before calling a component done.
 - Review a change, yours or a PR, with the `library-review` skill (`.claude/skills/library-review/`) before calling it done: it runs the build, its own checks and the screenshots, and reads the change against these rules.

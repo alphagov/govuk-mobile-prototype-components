@@ -86,13 +86,6 @@
 .govuk-app-tab-bar-item__icon {
   font-family: "Material Symbols Rounded";
   font-size: 28px;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  white-space: nowrap;
-  font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased;
 }
 
 /* The system's label: it doesn't grow with Dynamic Type. iOS shows a larger

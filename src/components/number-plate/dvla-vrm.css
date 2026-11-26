@@ -1,0 +1,11 @@
+/* DVLA-VRM, the DVLA's typeface for registrations, which the app draws its
+   number plates in. The app's own file, unchanged, under the SIL Open Font
+   License, whose text is beside it. number-plate.js loads this through its
+   fonts, as every component loads a font, rather than its stylesheet. */
+@font-face {
+  font-family: "DVLA-VRM";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("DVLA-VRM.ttf") format("truetype");
+}

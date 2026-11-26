@@ -18,9 +18,9 @@ eleventyComputed:
   description: "{{ pattern.purpose | escape }}"
 ---
 {% from "component-example.njk" import componentExample %}
+{% from "sources.njk" import sources %}
 {% from "govuk/components/accordion/macro.njk" import govukAccordion %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
-{% set platforms = { ios: "iOS", android: "Android" } %}
 
 <div class="app-prose-scope">
   <p class="govuk-body">From the app: {{ pattern.screen | escape }}.</p>
@@ -36,15 +36,14 @@ eleventyComputed:
   <h2 class="govuk-heading-l" id="avoid">When not to use it</h2>
   {% set rows = [] %}
   {% for avoid in pattern.avoid %}
-    {#- Another pattern, named as what to use instead, links to its page. A
-        loop's sets stay in the loop, so the link is pushed out of it. -#}
-    {% set links = [] %}
-    {% for other in patterns %}
-      {% if other.name == avoid.instead %}
-        {% set links = (links.push('<a class="govuk-link" href="/patterns/' + other.slug + '/">' + (other.name | escape) + '</a>'), links) %}
-      {% endif %}
-    {% endfor %}
-    {% set rows = (rows.push([{ text: avoid.when }, { html: links[0] or (avoid.instead | escape) }]), rows) %}
+    {#- Another pattern, named as what to use instead, links to its page: the
+        site's data has matched it, as it has for the catalogue. -#}
+    {% if avoid.slug %}
+      {% set instead = '<a class="govuk-link" href="/patterns/' + avoid.slug + '/">' + (avoid.instead | escape) + '</a>' %}
+    {% else %}
+      {% set instead = avoid.instead | escape %}
+    {% endif %}
+    {% set rows = (rows.push([{ text: avoid.when }, { html: instead }]), rows) %}
   {% endfor %}
   {{ govukTable({
     head: [{ text: "If" }, { text: "Use instead" }],
@@ -74,23 +73,7 @@ eleventyComputed:
   </ul>
 </div>
 
-{% set sourcesHtml %}
-<ul class="govuk-list govuk-list--bullet">
-  {% for platform in ["ios", "android"] %}
-  {% for source in pattern.sources[platform] %}
-  <li>{{ platforms[platform] }}: <code>{{ source.symbol | escape }}</code> in {{ source.repo | escape }}/{{ source.path | escape }}{% if source.ref %} at {{ source.ref | escape }}{% endif %}</li>
-  {% endfor %}
-  {% endfor %}
-  {% for link in pattern.sources.figma %}
-  <li>Figma: <a class="govuk-link" href="{{ link.url | escape }}">{{ link.title | escape }}</a></li>
-  {% else %}
-  <li>Figma: none linked yet</li>
-  {% endfor %}
-  {% for link in pattern.sources.other %}
-  <li><a class="govuk-link" href="{{ link.url | escape }}">{{ link.title | escape }}</a></li>
-  {% endfor %}
-</ul>
-{% endset %}
+{% set sourcesHtml = sources(pattern) %}
 
 {{ govukAccordion({
   id: "pattern-details",

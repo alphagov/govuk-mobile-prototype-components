@@ -28,13 +28,7 @@
 .govuk-app-labelled-icon__icon {
   font-family: "Material Symbols Rounded";
   font-size: calc(var(--app-font-title-1-size) * 8 / 7);
-  font-weight: normal;
-  font-style: normal;
   line-height: var(--app-font-title-1-leading);
-  letter-spacing: normal;
-  white-space: nowrap;
-  font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased;
 }
 
 .govuk-app-labelled-icon[data-layout="inline"] .govuk-app-labelled-icon__icon {

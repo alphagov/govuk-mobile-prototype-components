@@ -1,4 +1,4 @@
-import { defineComponent, materialSymbols, materialSymbolsOutlined } from '../../foundation/component.js'
+import { bySlot, defineComponent, filled, headingLevel, linkOrButton, materialSymbols, materialSymbolsOutlined } from '../../foundation/component.js'
 // A toggle row draws one.
 import '../toggle/toggle.js'
 
@@ -9,23 +9,17 @@ const backgrounds = ['subtle', 'accent']
  * h2 unless it names another level; its action a link if it has an href.
  * Anything given slot="control" goes above its rows.
  */
-export function prepareList(data) {
-  const control = []
-  const rows = []
-  for (const node of data.content) {
-    if (node.nodeType === Node.ELEMENT_NODE && node.getAttribute('slot') === 'control') control.push(node)
-    else rows.push(node)
-  }
-  const number = Number(data.level)
-  const level = Number.isInteger(number) && number >= 1 && number <= 6 ? number : 2
-  const action = typeof data.action === 'string' && data.action !== ''
+function prepareList(data) {
+  const { control, rest: rows } = bySlot(data.content, 'control')
+  const level = headingLevel(data.level, [1, 2, 3, 4, 5, 6])
+  const action = linkOrButton(data.href, filled(data.action))
   return {
     ...data,
     control,
     rows,
     tag: `h${level}`,
-    actionLink: action && data.href !== undefined,
-    actionButton: action && data.href === undefined,
+    actionLink: action.link,
+    actionButton: action.button,
     background: backgrounds.includes(data.background) ? data.background : undefined,
     dividers: data.dividers === 'full' ? 'full' : undefined,
   }
@@ -39,10 +33,10 @@ export function prepareList(data) {
  * TopicListItemView, or a star, the app's for a topic without one. An action
  * row, as the app's Add vehicle, has an outlined plus on the right, or the
  * icon it names. An information or link row may have an image on its left,
- * as GovKit's InformationRowView and LinkRowView do. A content row, proposed, holds whatever was written between
- * its tags.
+ * as GovKit's InformationRowView and LinkRowView do. A content row,
+ * proposed, holds whatever was written between its tags.
  */
-export function prepareRow(data) {
+function prepareRow(data) {
   const type = types.includes(data.type) ? data.type : 'navigation'
   const pressable = !['toggle', 'information', 'content'].includes(type)
   const icon = ['navigation', 'topic'].includes(type) ? 'chevron_right'
@@ -53,8 +47,7 @@ export function prepareRow(data) {
   return {
     ...data,
     type,
-    link: pressable && data.href !== undefined,
-    button: pressable && data.href === undefined,
+    ...linkOrButton(data.href, pressable),
     toggle: type === 'toggle',
     information: type === 'information',
     contentRow: type === 'content',

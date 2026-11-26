@@ -37,7 +37,17 @@ Around it are `examples/`, `docs/` (this site), `scripts/`, and `inventory/`, th
 
 ## Check your changes
 
-`npm run build` builds this site into `_site/`. It fails if a component’s, pattern’s or template’s definition doesn’t match its schema, if a component isn’t in one of the catalogue index’s groups, or if a page is missing from the sidebar. It writes the catalogue, into `catalogue/`, first.
+`npm run build` builds this site into `_site/`. It writes the catalogue, into `catalogue/`, first. It fails if:
+
+- a component’s, pattern’s or template’s definition doesn’t match its schema
+- a component’s definition and its script disagree about its elements, or the attributes each reads
+- a component’s `contains` names an element that isn’t a component or part
+- an `avoid` written as an element names one the library hasn’t got, or an attribute or value it doesn’t take
+- a pattern’s `avoid` starts with another pattern’s name, but doesn’t name it exactly
+- a pattern’s HTML isn’t one `<govuk-app-screen>`, or its `components` aren’t exactly the ones it uses
+- a template’s page is missing, doesn’t load the script of a component it uses, or its `components` aren’t exactly the ones its pages use
+- a component isn’t in one of the catalogue index’s groups, or a name there isn’t a component
+- a component, pattern or template is missing from the sidebar
 
 `npm run check` looks through every component for the rules a script can spot, such as raw colours, spacing off the 8pt grid, or styles on another component’s classes. It fails if it finds anything that must be fixed, and lists other things worth a look. Every pull request runs it, before the build.
 
@@ -71,7 +81,7 @@ It’s built with the [GOV.UK Eleventy Plugin](https://github.com/x-govuk/govuk-
 | Path | What it holds |
 | --- | --- |
 | `docs/*.md`, `docs/get-started/` | Pages of prose. Add a Markdown file to add a page |
-| `docs/_data/` | Reads and checks every component’s, pattern’s and template’s definition |
+| `docs/_data/` | Every component’s, pattern’s and template’s definition, read and checked by `scripts/definitions.js`, which the catalogue and screenshots share |
 | `docs/components/`, `docs/patterns/`, `docs/templates/` | Draw a page for each from its definition |
 | `docs/eleventy.config.js` | The site’s configuration |
 
@@ -82,8 +92,8 @@ Only this site has a build step. The components don’t: the site copies them as
 A release is a tag, `vX.Y.Z`, made by the Release workflow. To make one:
 
 1. In GitHub, go to **Actions**, then **Release**, then **Run workflow**.
-2. Enter the version, such as `0.6.0`, without the `v`. It must be greater than the latest release.
-3. Run it.
+2. Choose what’s changed since the latest release: **minor** for new components, templates or skills, **patch** for fixes only, or **major** for changes that break prototypes made before. You don’t need to know the latest version: the workflow works out the next one, such as 0.8.0 after 0.7.0. To give an exact version instead, such as `1.0.0`, type it in the box below.
+3. Run it. Its summary says which version it released, and after which.
 
 It builds the site, so a definition the build refuses stops the release. Then it makes a commit on top of `main` holding the new version and the generated catalogue, tags it, and pushes only the tag, so `main` never holds generated files. Last, it makes a GitHub release with notes listing the pull requests merged since the last one, and attaches the package as `govuk-mobile-prototype-components.tgz`. The name is the same for every release, so making a prototype always downloads the latest from `releases/latest/download/`.
 

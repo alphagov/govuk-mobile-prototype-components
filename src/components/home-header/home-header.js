@@ -1,7 +1,7 @@
 import { defineComponent } from '../../foundation/component.js'
 
 /** It leaves room for a search field only if one was written between its tags. */
-export function prepare(data) {
+function prepare(data) {
   return {
     ...data,
     search: data.content.some(node => node.nodeType === Node.ELEMENT_NODE),

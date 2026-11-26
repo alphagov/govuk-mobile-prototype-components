@@ -7,7 +7,7 @@ const texts = {
   generating: 'Generating your answer…',
 }
 
-export function prepare(data) {
+function prepare(data) {
   const stage = data.stage in texts ? data.stage : 'generating'
   return { ...data, stage, text: texts[stage], generating: stage === 'generating' }
 }

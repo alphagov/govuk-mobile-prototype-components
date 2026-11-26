@@ -1,13 +1,8 @@
-import { defineComponent } from '../../foundation/component.js'
+import { bySlot, defineComponent } from '../../foundation/component.js'
 
 /** Sorts what was written between its tags: slot="behind" goes behind, the rest is the sheet's. */
-export function prepare(data) {
-  const behind = []
-  const body = []
-  for (const node of data.content) {
-    if (node.nodeType === Node.ELEMENT_NODE && node.getAttribute('slot') === 'behind') behind.push(node)
-    else body.push(node)
-  }
+function prepare(data) {
+  const { behind, rest: body } = bySlot(data.content, 'behind')
   return { ...data, behind, body }
 }
 
