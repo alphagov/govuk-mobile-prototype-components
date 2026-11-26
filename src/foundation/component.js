@@ -8,8 +8,8 @@
  * Light DOM, no shadow DOM: the component's stylesheet styles what it draws,
  * and the element itself is `display: contents`, set here for every element,
  * so it takes no part in layout. Components send no events of their own: they
- * draw the browser's own
- * controls, whose events (click, input, change) bubble as usual.
+ * draw the browser's own controls, whose events (click, input, change) bubble
+ * as usual.
  *
  * A template is plain HTML inside <template>, with attributes that say how
  * it is filled in. Each names one value of the data the component prepares:
@@ -70,7 +70,7 @@ document.adoptedStyleSheets = [...document.adoptedStyleSheets, elements]
  * Adds the stylesheet at `url` to the page once, at the end of <head> so it
  * comes after the page's own styles, and resolves when it has loaded.
  */
-function stylesheet(url) {
+export function stylesheet(url) {
   const key = String(url)
   if (!stylesheets.has(key)) {
     const link = Object.assign(document.createElement('link'), { rel: 'stylesheet', href: key })
@@ -83,7 +83,6 @@ function stylesheet(url) {
   return stylesheets.get(key)
 }
 
-const fontStylesheets = new Set()
 let fontsLoading = 0
 
 /**
@@ -101,9 +100,9 @@ function fontLoading(change) {
  * drawn straight away, its icons hidden until then.
  */
 function loadFont({ family, stylesheet: url }) {
-  const key = String(url)
-  if (fontStylesheets.has(key)) return
-  fontStylesheets.add(key)
+  // Its stylesheet is only added here, so one already on the page is a font
+  // already loading, or loaded.
+  if (stylesheets.has(String(url))) return
   fontLoading(+1)
   stylesheet(url)
     // A stylesheet doesn't load its font until something uses it, so ask.
@@ -144,15 +143,20 @@ function load(url) {
  *               defaults, and anything worked out from more than one value
  *   fonts       fonts it uses, such as materialSymbols, added to the page
  *               but not waited for: a font this size can take a moment, and
- *               the component would be drawn as bare text until then. Give anything drawn in an icon font
- *               the class govuk-app-icon, which base.css hides until every
- *               font has loaded, so it never shows as the icon's name
+ *               the component would be drawn as bare text until then. Give
+ *               anything drawn in an icon font the class govuk-app-icon,
+ *               which base.css hides until every font has loaded, so it
+ *               never shows as the icon's name
  *
  * The element is defined once its template and styles have loaded, so it is
  * never drawn unstyled.
  */
 export async function defineComponent({ name, template, styles, attributes = [], prepare = data => data, fonts = [] }) {
   const tag = `govuk-app-${name}`
+  // A page can load the same script twice, by two URLs that name it
+  // differently, and each defines its element. Checking first saves loading
+  // anything; checking again after catches the other having defined it while
+  // this one waited, as defining a name twice throws.
   if (customElements.get(tag)) return
   const [source] = await Promise.all([
     load(template),
