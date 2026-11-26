@@ -1,5 +1,11 @@
 import { defineComponent } from '../../foundation/component.js'
 
+/** The DVLA's typeface for registrations, which the app's plates are in. */
+const dvlaVrm = {
+  family: 'DVLA-VRM',
+  stylesheet: new URL('./dvla-vrm.css', import.meta.url),
+}
+
 /**
  * Small unless it says large, and the rear plate unless it says front. What screen readers hear: "Number plate:", then
  * the registration spelled out, a character at a time, as the app's
@@ -22,4 +28,5 @@ await defineComponent({
   styles: new URL('./number-plate.css', import.meta.url),
   attributes: ['size', 'variant'],
   prepare,
+  fonts: [dvlaVrm],
 })

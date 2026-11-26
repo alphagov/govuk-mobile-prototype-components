@@ -11,13 +11,8 @@
 
    The typeface is the app's own file, unchanged, under the SIL Open Font
    License, whose text is beside it: it may be shared with software, but not
-   changed and keep its name, so it isn't converted or subsetted. */
-
-@font-face {
-  font-family: "DVLA-VRM";
-  src: url("./DVLA-VRM.ttf") format("truetype");
-  font-display: block;
-}
+   changed and keep its name, so it isn't converted or subsetted. Its
+   @font-face is in dvla-vrm.css, which number-plate.js loads as a font. */
 
 .govuk-app-number-plate {
   display: block;
