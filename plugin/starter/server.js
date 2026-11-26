@@ -41,9 +41,7 @@ const types = {
   '.woff2': 'font/woff2'
 }
 
-// Added to every page, so it reloads when a file changes. A script from this
-// server, not one written into the page, so a page with a strict Content
-// Security Policy (script-src 'self') still reloads.
+// Added to every page, so it reloads when a file changes.
 const reloader = '<script src="/__reload.js"></script>\n'
 const reloaderScript = "new EventSource('/__reload').addEventListener('change', () => location.reload())\n"
 

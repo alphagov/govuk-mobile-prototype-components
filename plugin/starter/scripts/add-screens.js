@@ -60,9 +60,8 @@ function addTemplate(name) {
 
   const definition = JSON.parse(fs.readFileSync(definitionFile, 'utf8'))
   fs.mkdirSync(target, { recursive: true })
-  // Its pages, and the scripts beside them that wire up their buttons, kept
-  // out of the pages so they work under a strict Content Security Policy.
-  // Not its definition, which is the library's.
+  // Its pages, and any other files beside them, such as scripts or
+  // pictures. Not its definition, which is the library's.
   for (const file of fs.readdirSync(source)) {
     const from = path.join(source, file)
     if (file === `${name}.json` || !fs.statSync(from).isFile()) continue
