@@ -10,7 +10,7 @@ Each example is a few pages of plain HTML that link to each other, written with 
 
 On a phone, an example fills the screen. Shake the phone to get back to this page. On an iPhone, Safari first asks whether the page can use motion, the first time you tap it. Shaking only works over HTTPS, so not when the site is served from your computer on the local network.
 
-Not everything in an example goes somewhere. Tap something that doesn’t, and everything that does is ringed for a moment, in yellow: each example’s root has [`highlight-actions`](/get-started/#show-what-works).
+Not everything in an example goes somewhere. Tap something that doesn’t, and everything that does is ringed for a moment, in yellow: each example’s root has [`highlight-actions`](/get-started/use-the-components/#show-what-works).
 
 ## Home
 

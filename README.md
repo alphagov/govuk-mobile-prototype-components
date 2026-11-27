@@ -30,7 +30,7 @@ npm install https://github.com/alphagov/govuk-mobile-prototype-components/releas
 </govuk-app>
 ```
 
-See [Get started](https://alphagov.github.io/govuk-mobile-prototype-components/get-started/) for the rest.
+See [Use the components](https://alphagov.github.io/govuk-mobile-prototype-components/get-started/use-the-components/) for the rest.
 
 ## Work on the library
 

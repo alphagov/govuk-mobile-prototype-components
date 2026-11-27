@@ -3,6 +3,8 @@ layout: get-started
 title: Make a prototype
 description: Make a prototype of the GOV.UK app on your computer by asking Claude Code, with no code to write.
 sectionKey: Get started
+eleventyNavigation:
+  parent: Get started
 order: 2
 ---
 

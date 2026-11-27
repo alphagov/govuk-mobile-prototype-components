@@ -3,7 +3,9 @@ layout: sub-navigation
 title: Work on the library
 description: Run this site, check your changes, and release the library.
 sectionKey: Get started
-order: 3
+eleventyNavigation:
+  parent: Get started
+order: 4
 ---
 
 The rules we’ve agreed are in [AGENTS.md](https://github.com/alphagov/govuk-mobile-prototype-components/blob/main/AGENTS.md), for people and for Claude Code alike. [Build a component](/get-started/building-a-component/) says how one is put together.
