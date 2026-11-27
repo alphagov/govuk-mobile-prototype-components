@@ -3,7 +3,9 @@ layout: sub-navigation
 title: Build a component
 description: How a component is put together, and how to add one to the library.
 sectionKey: Get started
-order: 4
+eleventyNavigation:
+  parent: Get started
+order: 5
 ---
 
 ## A component
@@ -79,7 +81,7 @@ There is no build step for components. `src/foundation/component.js` fetches the
 
 These are the same as in the app prototyping system’s kit (`exploration-2/kit`), which this structure is based on.
 
-A button the component acts on itself, such as a segmented control’s segment, carries `data-works`, so a root with [`highlight-actions`](/get-started/#show-what-works) rings it among what works. Any other button is rung only if the page says it works.
+A button the component acts on itself, such as a segmented control’s segment, carries `data-works`, so a root with [`highlight-actions`](/get-started/build-in-html/#show-what-works) rings it among what works. Any other button is rung only if the page says it works.
 
 `src/foundation/` holds what every component relies on: `tokens.css` (the app’s colours, type, spacing and sizes, each naming where it comes from), `base.css` (the `<govuk-app>` root) and `component.js`.
 

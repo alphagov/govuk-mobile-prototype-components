@@ -1,0 +1,10 @@
+{#- A Get started page with things to copy, from copy-box.njk: the plugin's
+    sub-navigation layout, with the docs' styles and the script that makes
+    their buttons copy. -#}
+{% extends "layouts/sub-navigation.njk" %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/assets/docs.css">
+  <script type="module" src="/assets/docs.js"></script>
+{% endblock %}

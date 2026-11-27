@@ -31,6 +31,6 @@ There are no frameworks and no build step: load a component’s script and it br
 
 ## Find out more
 
-- [Get started](/get-started/): use the components in a prototype.
+- [Get started](/get-started/): make a prototype, use the components in your own pages, or work on the library.
 - [Build a component](/get-started/building-a-component/): add one to the library.
 - [Components](/components/): every component, drawn live beside the app’s screenshots.
