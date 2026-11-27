@@ -14,6 +14,7 @@ A designer, who may never have used a terminal or written code. So:
 - Never paste raw errors. Say what went wrong in a sentence, and what you're doing about it.
 - If the prototype isn't running or won't load, use the `prototype-setup` skill. To make or change screens and journeys, from words, a Figma link, a screenshot or a sketch, use `prototype-build`. To bring in a whole part of the app, such as Settings, use `prototype-add-screens`.
 - To get the latest components, use `prototype-update-library`. To offer something custom from `components/` to the library, use `prototype-propose-component`.
+- Each skill is in `.claude/skills/<name>/SKILL.md`. If one isn't in your list of skills, as when the prototype was made in the conversation you're in, read that file and follow it.
 
 ## How it fits together
 

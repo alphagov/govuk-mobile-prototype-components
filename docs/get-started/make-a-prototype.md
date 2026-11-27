@@ -12,11 +12,19 @@ It’s on your computer only, for now: there’s no way to share it yet. It look
 
 ## Make one
 
-Open Claude Code in the folder where you keep your work, such as your Documents folder, and paste:
+Make an empty folder for your prototype, and open Claude Code in it. In the Terminal app, this makes one called my-prototype in your Documents folder, and opens Claude Code there:
+
+```sh
+mkdir -p ~/Documents/my-prototype && cd ~/Documents/my-prototype && claude
+```
+
+Then paste:
 
 > Make me a prototype of the GOV.UK app using https://github.com/alphagov/govuk-mobile-prototype-components
 
-Claude asks what to call it and where in the app to start. If your computer needs Node.js, the free program a prototype runs on, Claude asks before downloading it into your own folder: it doesn’t need your password. Then it makes the prototype in a folder of its own, and opens it in your browser.
+Claude asks what to call it and where in the app to start. If your computer needs Node.js, the free program a prototype runs on, Claude asks before downloading it into your own folder: it doesn’t need your password. Then it makes the prototype in the folder, and opens it in your browser.
+
+If you open Claude Code in a folder that has things in it, such as Documents, Claude makes a new folder for the prototype inside it instead.
 
 Then ask for what you want to change, such as:
 
@@ -40,7 +48,7 @@ If you have [Node.js](https://nodejs.org/) 22.16 or newer, this makes a prototyp
 npx --yes https://github.com/alphagov/govuk-mobile-prototype-components/releases/latest/download/govuk-mobile-prototype-components.tgz new "My prototype"
 ```
 
-Add `--from home`, `--from chat` or `--from blank` to start somewhere else. Then open Claude Code in the folder it makes, and say “open my prototype”.
+Add `--from home`, `--from chat` or `--from blank` to start somewhere else, and `--here` to make it in the folder you’re in, if that’s empty. Then open Claude Code in the prototype’s folder, and say “open my prototype”.
 
 ## How it’s made
 
