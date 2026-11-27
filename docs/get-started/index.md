@@ -17,7 +17,7 @@ There are three ways in:
 Install a [release](https://github.com/alphagov/govuk-mobile-prototype-components/releases), so the components change only when you choose. Each has the package attached, as a plain download:
 
 ```sh
-npm install https://github.com/alphagov/govuk-mobile-prototype-components/releases/download/v0.7.0/govuk-mobile-prototype-components.tgz
+npm install https://github.com/alphagov/govuk-mobile-prototype-components/releases/download/v1.0.0/govuk-mobile-prototype-components.tgz
 ```
 
 Use a release, not `main` or a commit on it: only a release has the [catalogue](#for-tools-that-build-prototypes). Installing one adds this package alone, with no dependencies, and runs nothing.

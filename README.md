@@ -19,7 +19,7 @@ Claude asks what to call it and where in the app to start, gets your computer re
 Install a [release](https://github.com/alphagov/govuk-mobile-prototype-components/releases), then load a component's script and write its element inside a `<govuk-app>`:
 
 ```sh
-npm install https://github.com/alphagov/govuk-mobile-prototype-components/releases/download/v0.7.0/govuk-mobile-prototype-components.tgz
+npm install https://github.com/alphagov/govuk-mobile-prototype-components/releases/download/v1.0.0/govuk-mobile-prototype-components.tgz
 ```
 
 ```html

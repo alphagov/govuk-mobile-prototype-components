@@ -105,4 +105,4 @@ A release is a tag, `vX.Y.Z`, made by the Release workflow. To make one:
 
 It builds the site, so a definition the build refuses stops the release. Then it makes a commit on top of `main` holding the new version and the generated catalogue, tags it, and pushes only the tag, so `main` never holds generated files. Last, it makes a GitHub release with notes listing the pull requests merged since the last one, and attaches the package as `govuk-mobile-prototype-components.tgz`. The name is the same for every release, so making a prototype always downloads the latest from `releases/latest/download/`.
 
-`main`’s `package.json` says `0.0.0`, because `main` isn’t a release: the tags are the list of versions. Tags before v0.4.0 were made by hand, and have no catalogue.
+`main`’s `package.json` says `0.0.0`, because `main` isn’t a release: the tags are the list of versions.
