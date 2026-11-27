@@ -1,0 +1,317 @@
+---
+layout: evals
+title: Latest results
+description: The latest published run of each layer of the evals, and how they’ve changed.
+sectionKey: Evals
+eleventyNavigation:
+  parent: Evals
+order: 2
+---
+{%- from "govuk/components/details/macro.njk" import govukDetails -%}
+{%- set repository = "https://github.com/alphagov/govuk-mobile-prototype-components" %}
+{%- set latest = evals.latest %}
+{%- set layers = latest.layers if latest else {} %}
+{%- set t = layers.triggering %}
+{%- set c = layers.choosing %}
+{%- set r = layers.reviewing %}
+{%- set k = layers.tasks %}
+
+{#- A cell for a layer a run didn't cover. -#}
+{%- macro notRun() -%}
+<span aria-hidden="true">—</span><span class="govuk-visually-hidden">not run</span>
+{%- endmacro -%}
+
+{#- A screen's light and dark pictures. -#}
+{%- macro screenPair(screen) -%}
+{%- for scheme in ["light", "dark"] %}{% if screen[scheme] %}
+<figure class="docs-evals-shot">
+  <img class="docs-evals-shot__image" src="{{ screen[scheme] }}" alt="{{ screen.name }}, in {{ scheme }} mode" loading="lazy" width="300">
+  <figcaption class="govuk-body-s">{{ screen.name }}, {{ scheme }}</figcaption>
+</figure>
+{%- endif %}{% endfor %}
+{%- endmacro -%}
+
+{% if not latest %}
+<p class="govuk-body">No results have been published yet. Run <code>npm run evals -- --publish</code>.</p>
+{% else %}
+<p class="govuk-body">Published from runs on a computer of ours, with Claude Code. Each layer shows its latest run. <a class="govuk-link" href="/evals/">What the evals are, and how they work</a>.</p>
+
+<h2 class="govuk-heading-l">At a glance</h2>
+<dl class="docs-evals-scores">
+  {% if t %}
+  <div class="docs-evals-score">
+    <dt class="govuk-body-s">Triggering</dt>
+    <dd class="docs-evals-score__value"><span class="govuk-heading-xl govuk-!-margin-bottom-1">{{ t.scores.passRate | evalPercent }}</span><span class="govuk-body-s">of {{ t.scores.total }} messages started the right skill, or none</span></dd>
+  </div>
+  {% endif %}
+  {% if c %}
+  <div class="docs-evals-score">
+    <dt class="govuk-body-s">Choosing</dt>
+    <dd class="docs-evals-score__value"><span class="govuk-heading-xl govuk-!-margin-bottom-1">{{ c.scores.passRate | evalPercent }}</span><span class="govuk-body-s">of {{ c.scores.total }} briefs met their agreed answer</span></dd>
+  </div>
+  {% endif %}
+  {% if r %}
+  <div class="docs-evals-score">
+    <dt class="govuk-body-s">Reviewing</dt>
+    <dd class="docs-evals-score__value"><span class="govuk-heading-xl govuk-!-margin-bottom-1">{{ r.scores.recall | evalPercent }}</span><span class="govuk-body-s">of {{ r.scores.planted }} planted faults found, {{ r.scores.falseAlarms }} false alarm{{ "" if r.scores.falseAlarms == 1 else "s" }} on {{ r.scores.cleanRuns }} clean change{{ "" if r.scores.cleanRuns == 1 else "s" }}</span></dd>
+  </div>
+  {% endif %}
+  {% if k %}
+  <div class="docs-evals-score">
+    <dt class="govuk-body-s">Whole tasks</dt>
+    <dd class="docs-evals-score__value"><span class="govuk-heading-xl govuk-!-margin-bottom-1">{{ k.scores.passed }} of {{ k.scores.total }}</span><span class="govuk-body-s">passed every code check</span></dd>
+  </div>
+  {% endif %}
+</dl>
+
+<h2 class="govuk-heading-l">Over time</h2>
+<p class="govuk-body">Each published run, newest first, and what it covered, with the commit it ran at. A dash is a layer it didn’t run. Tokens are in millions, most of them cached.</p>
+<div class="docs-evals-scroll">
+<table class="govuk-table docs-evals-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header docs-evals-table__cell">Run</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--wide">What it covered</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--numeric">Triggering</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--numeric">Choosing</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--numeric">Reviewing</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--numeric">Whole tasks</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--numeric">Tokens</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for run in evals.history | reverse %}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--nowrap">{{ run.stamp | truncate(10, true, "") }}{% if run.commit %}<br><a class="govuk-link docs-evals-table__note" href="{{ repository }}/commit/{{ run.commit }}"><span class="govuk-visually-hidden">The commit it ran at, </span>{{ run.commit }}</a>{% endif %}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--wide">{{ run.covered }}{% if run.note %}<br><span class="govuk-hint docs-evals-table__note">{{ run.note }}</span>{% endif %}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--numeric">{{ run.layers.triggering.passRate | evalPercent if run.layers.triggering else notRun() }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--numeric">{{ run.layers.choosing.passRate | evalPercent if run.layers.choosing else notRun() }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--numeric">{{ run.layers.reviewing.recall | evalPercent if run.layers.reviewing else notRun() }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--numeric">{{ run.layers.tasks.passRate | evalPercent if run.layers.tasks else notRun() }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--numeric">{{ run.tokens | evalMillionsShort }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% if t %}
+<h2 class="govuk-heading-l">1. Triggering</h2>
+<p class="govuk-body">From {{ t.date }}. For each skill: of the messages meant for it, how many started it (recall), and of the messages that started it, how many were meant for it (precision).</p>
+<div class="docs-evals-scroll">
+<table class="govuk-table docs-evals-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--wide">Skill</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--numeric">Recall</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--numeric">Precision</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for skill, s in t.scores.perSkill %}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--wide"><code>{{ skill }}</code></td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--numeric">{{ s.recall | evalPercent }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--numeric">{{ s.precision | evalPercent }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% set misses = t.cases | rejectattr("pass") %}
+{% if misses.length %}
+<p class="govuk-body">The messages it got wrong:</p>
+<ul class="govuk-list govuk-list--bullet">
+  {% for item in misses %}
+  <li>“{{ item.prompt }}” should have started {{ item.expect or "no skill" }}, but started {{ item.used | join(", then ") if item.used.length else "none" }}.</li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% if t.pending.length %}
+<p class="govuk-body">Waiting for skills that aren’t here yet: {% for p in t.pending %}“{{ p.prompt }}” ({{ p.expect }}){{ ", " if not loop.last }}{% endfor %}.</p>
+{% endif %}
+{% endif %}
+
+{% if c %}
+<h2 class="govuk-heading-l">2. Choosing</h2>
+<p class="govuk-body">From {{ c.date }}. Claude read {{ c.scores.meanFilesRead | round(1) }} pages of the catalogue for each brief, on average.</p>
+<div class="docs-evals-scroll">
+<table class="govuk-table docs-evals-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header docs-evals-table__cell">Brief</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell">Agreed answer</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell">Result</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for item in c.cases %}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell docs-evals-table__cell">{{ item.brief }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell">Must use: {% for need in item.require %}<code>{{ need if need is string else need | join(" or ") }}</code>{{ ", " if not loop.last }}{% endfor %}{% if item.forbid.length %}<br>Mustn’t: {% for avoid in item.forbid %}<code>{{ avoid }}</code>{{ ", " if not loop.last }}{% endfor %}{% endif %}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--nowrap">{% if item.pass %}<strong class="govuk-tag govuk-tag--green">Met</strong>{% else %}<strong class="govuk-tag govuk-tag--red">Missed</strong><br><span class="docs-evals-table__note">{{ item.failures | join("; ") }}</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+
+{% if r %}
+<h2 class="govuk-heading-l">3. Reviewing</h2>
+<p class="govuk-body">From {{ r.date }}. The review found {{ r.scores.found }} of {{ r.scores.planted }} planted faults. Its rule checker alone, <code>check.js</code>, found {{ r.checker.found }}: the rest need someone, or Claude, to read the change.</p>
+<div class="docs-evals-scroll">
+<table class="govuk-table docs-evals-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--wide">Planted fault</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell">Review</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell">check.js</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for item in r.cases %}
+    {% for fault in item.faults %}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--wide"><code>{{ fault.file }}</code>: {{ fault.rule }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--nowrap">{{ "Found" if fault.found else "Missed" }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--nowrap">{{ "Found" if fault.checker else "Missed" }}</td>
+    </tr>
+    {% endfor %}
+    {% if item.clean %}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--wide">A clean change: {{ item.id | replace("clean-", "") | replace("-", " ") }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell" colspan="2">{{ "No false alarms" if not item.falseAlarms.length else item.falseAlarms.length + " false alarm(s)" }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+
+{% if k %}
+<h2 class="govuk-heading-l">4. Whole tasks</h2>
+<p class="govuk-body">From {{ k.date }}. Each task ran once, in a fresh prototype, or a fresh copy of the library, with a simulated designer. A full run does each once; before a big release, three times.</p>
+<div class="docs-evals-scroll">
+<table class="govuk-table docs-evals-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--wide">Task</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell">Code checks</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--numeric">Looks like the app</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--numeric">Turns</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--numeric">Minutes</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--numeric">Tokens</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for task in k.showcases %}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--wide"><a class="govuk-link" href="#task-{{ task.id }}">{{ task.title }}</a></td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--nowrap">{% if task.pass %}<strong class="govuk-tag govuk-tag--green">Passed</strong>{% else %}<strong class="govuk-tag govuk-tag--red">Failed</strong>{% endif %}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--numeric">{{ (task.judge.looksLikeApp.score + " of 5") if task.judge and task.judge.looksLikeApp.score else notRun() }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--numeric">{{ task.turns }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--numeric">{{ task.minutes }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--numeric">{{ task.tokens | evalMillionsShort }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% for task in k.showcases %}
+<h3 class="govuk-heading-m" id="task-{{ task.id }}">{{ task.title }}</h3>
+<p class="govuk-body"><strong>The designer’s brief:</strong> {{ task.brief }}</p>
+<p class="govuk-body-s">{% if task.pass %}Passed every code check.{% else %}Failed a code check.{% endif %} {{ task.turns }} turns, ended: {{ task.endedBy }}. About {{ task.minutes }} minutes and {{ task.tokens | evalMillions }} tokens, most of them cached.</p>
+
+{% if task.showcase %}
+<h4 class="govuk-heading-s">The start of the conversation</h4>
+<div class="docs-evals-conversation">
+  {% for entry in task.excerpt %}
+  <div class="docs-evals-message docs-evals-message--{{ entry.role }}">
+    <p class="govuk-body-s govuk-!-font-weight-bold govuk-!-margin-bottom-1">{{ "Claude" if entry.role == "claude" else "Simulated designer" }}</p>
+    <div class="govuk-body-s docs-evals-message__text">{{ entry.text or "(working)" }}</div>
+  </div>
+  {% endfor %}
+</div>
+
+{% if task.screens.length %}
+<h4 class="govuk-heading-s">What it made</h4>
+<div class="docs-evals-shots">
+  {% for screen in task.screens | batch(4) | first %}{{ screenPair(screen) }}{% endfor %}
+</div>
+{% endif %}
+{% endif %}
+
+{% if task.judge %}
+<h4 class="govuk-heading-s">The screenshot judge’s scores</h4>
+<div class="docs-evals-scroll">
+<table class="govuk-table docs-evals-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header docs-evals-table__cell">Question</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--numeric">Out of 5</th>
+      <th scope="col" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--wide">Why</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for key, label in { looksLikeApp: "Looks like the GOV.UK app", hierarchy: "Clear hierarchy", darkMode: "Dark mode holds up", matchesDesign: "Matches the design given" } %}
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--label">{{ label }}</th>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--numeric">{{ task.judge[key].score or notRun() }}</td>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--wide">{{ task.judge[key].reason }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+
+<h4 class="govuk-heading-s">The checks</h4>
+<div class="docs-evals-scroll">
+<table class="govuk-table docs-evals-table">
+  <tbody class="govuk-table__body">
+    {% for check in task.checks %}
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--label">{{ check.name }}</th>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--wide">{{ check.note or ("Pass" if check.pass else "Fail") }}{% if check.problems.length %}<br><span class="docs-evals-table__note">{{ check.problems | join("; ") }}</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+    {% for key, label in { oneQuestion: "One question at a time", plan: "A plan agreed before building", consent: "Asked before installing", jargon: "No jargon" } %}
+    {% set check = task.conversation[key] %}
+    {% if check %}
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header docs-evals-table__cell docs-evals-table__cell--label">{{ label }}</th>
+      <td class="govuk-table__cell docs-evals-table__cell docs-evals-table__cell--wide">{{ "Pass" if check.pass else "Fail" }}<br><span class="docs-evals-table__note">{{ check.note }}</span></td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% if task.screens.length %}
+{% set allScreens %}
+<div class="docs-evals-shots">{% for screen in task.screens %}{{ screenPair(screen) }}{% endfor %}</div>
+{% endset %}
+{{ govukDetails({ summaryText: "All screens, light and dark (" + task.screens.length + ")", html: allScreens }) }}
+{% endif %}
+{% if task.references.length or task.design %}
+{% set compared %}
+<p class="govuk-body-s">The judge saw what the task made beside these: screens of the app’s own templates, drawn by the same library{% if task.design %}, and the design the designer gave{% endif %}.</p>
+<div class="docs-evals-shots">
+  {% if task.design %}
+  <figure class="docs-evals-shot">
+    <img class="docs-evals-shot__image" src="{{ task.design }}" alt="The design the designer gave" loading="lazy" width="300">
+    <figcaption class="govuk-body-s">The design given</figcaption>
+  </figure>
+  {% endif %}
+  {% for screen in task.references %}{{ screenPair(screen) }}{% endfor %}
+</div>
+{% endset %}
+{{ govukDetails({ summaryText: "What the judge compared against", html: compared }) }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}

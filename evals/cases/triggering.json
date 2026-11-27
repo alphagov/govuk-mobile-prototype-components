@@ -1,0 +1,49 @@
+[
+  { "id": "setup-open", "fixture": "prototype", "expect": "prototype-setup", "prompt": "open my prototype" },
+  { "id": "setup-not-loading", "fixture": "prototype", "expect": "prototype-setup", "prompt": "the page says this site cant be reached, localhost refused to connect??" },
+  { "id": "setup-carry-on", "fixture": "prototype", "expect": "prototype-setup", "prompt": "hi, i want to carry on with my prototype from yesterday" },
+  { "id": "setup-show-me", "fixture": "prototype", "expect": "prototype-setup", "prompt": "can you show me my protoype in the browser please" },
+  { "id": "setup-blank-page", "fixture": "prototype", "expect": "prototype-setup", "prompt": "My prototype isn't loading anymore, it's just a blank white page" },
+
+  { "id": "build-journey-council", "fixture": "prototype", "expect": "prototype-build", "prompt": "I want to make a journey where someone sets their local council and then sees their bin days" },
+  { "id": "build-settings-row", "fixture": "prototype", "expect": "prototype-build", "prompt": "Add an Accessibility row to Settings that opens a screen explaining the app's accessibility features" },
+  { "id": "build-wording", "fixture": "prototype", "expect": "prototype-build", "prompt": "change the wording on the face id screen so it says Touch ID instead" },
+  { "id": "build-figma", "fixture": "prototype", "expect": "prototype-build", "prompt": "heres the figma for the new flow https://www.figma.com/design/AbC123/Driving?node-id=12-345 can you build it" },
+  { "id": "build-screenshot", "fixture": "prototype", "expect": "prototype-build", "prompt": "I've put a screenshot of a screen I sketched in this folder, called sketch.png. Can you make it?" },
+  { "id": "build-button-link", "fixture": "prototype", "expect": "prototype-build", "prompt": "make the continue button on the postcode screen go to the next screen" },
+  { "id": "build-remembered", "fixture": "prototype", "expect": "prototype-build", "prompt": "on the check screen I want it to show the postcode they typed in earlier" },
+  { "id": "build-confirm-delete", "fixture": "prototype", "expect": "prototype-build", "prompt": "Before someone deletes their chat history it should ask if theyre sure" },
+  { "id": "build-mock-up", "fixture": "prototype", "expect": "prototype-build", "prompt": "could you mock up a screen with their driving licence details on it" },
+  { "id": "build-error", "fixture": "prototype", "expect": "prototype-build", "prompt": "add an error message if they leave the postcode empty" },
+
+  { "id": "add-screens-chat", "fixture": "prototype", "expect": "prototype-add-screens", "prompt": "I need the Chat tab in my prototype too" },
+  { "id": "add-screens-blank", "fixture": "prototype", "expect": "prototype-add-screens", "prompt": "add a blank screen please" },
+  { "id": "add-screens-settings", "fixture": "prototype", "expect": "prototype-add-screens", "prompt": "can you copy the apps settings screens in" },
+
+  { "id": "update-latest", "fixture": "prototype", "expect": "prototype-update-library", "prompt": "can I get the latest components? someone said there's a new version" },
+  { "id": "update-prototype", "fixture": "prototype", "expect": "prototype-update-library", "prompt": "update my prototype to the newest version of the library" },
+  { "id": "propose-share", "fixture": "prototype", "expect": "prototype-propose-component", "prompt": "The bin day card I made is really useful, can we add it to the library so other people can use it?" },
+  { "id": "propose-offer", "fixture": "prototype", "expect": "prototype-propose-component", "prompt": "share my custom component with the team that makes the components" },
+
+  { "id": "none-what-is-prototype-js", "fixture": "prototype", "expect": null, "prompt": "What does prototype.js do? Just explain, don't change anything." },
+  { "id": "none-how-many-screens", "fixture": "prototype", "expect": null, "prompt": "how many screens are there in my prototype at the moment?" },
+  { "id": "none-thanks", "fixture": "prototype", "expect": null, "prompt": "thanks, that's all for today!" },
+  { "id": "none-sheet-or-cover", "fixture": "prototype", "expect": null, "prompt": "whats the difference between a sheet and a full screen cover in the app? just curious" },
+  { "id": "none-research-plan", "fixture": "prototype", "expect": null, "prompt": "Help me write 5 questions for a usability test of the vehicles journey" },
+
+  { "id": "review-pr", "fixture": "library", "expect": "library-review", "prompt": "review PR #80" },
+  { "id": "review-mine", "fixture": "library", "expect": "library-review", "prompt": "can you check my changes before I open a pull request" },
+  { "id": "review-ready", "fixture": "library", "expect": "library-review", "prompt": "is my new status component ready?" },
+  { "id": "review-look-over", "fixture": "library", "expect": "library-review", "prompt": "look over the button component and tell me if anything breaks the rules" },
+
+  { "id": "contribute-divider", "fixture": "library", "expect": "library-contribute", "prompt": "add a divider component" },
+  { "id": "contribute-figma", "fixture": "library", "expect": "library-contribute", "prompt": "I've got a Figma design for a new vehicle card, can we get it into the library?" },
+  { "id": "contribute-pattern", "fixture": "library", "expect": "library-contribute", "prompt": "can we have a pattern for an error screen" },
+  { "id": "contribute-fix", "fixture": "library", "expect": "library-contribute", "prompt": "the warning banner needs a dark mode fix, the text is hard to read" },
+  { "id": "contribute-template", "fixture": "library", "expect": "library-contribute", "prompt": "make a template for the Driving tab" },
+
+  { "id": "none-library-explain", "fixture": "library", "expect": null, "prompt": "how does component.js draw a component from its template? explain briefly" },
+  { "id": "none-library-start", "fixture": "library", "expect": null, "prompt": "how do I run the docs site on my machine?" },
+  { "id": "none-library-catalogue", "fixture": "library", "expect": null, "prompt": "which components are proposed, not in the app yet? just list them" },
+  { "id": "none-library-release", "fixture": "library", "expect": null, "prompt": "how do we make a release?" }
+]

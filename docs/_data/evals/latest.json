@@ -1,0 +1,1901 @@
+{
+  "layers": {
+    "triggering": {
+      "stamp": "2026-11-26T17-03-21Z",
+      "date": "2026-11-26",
+      "commit": null,
+      "case": null,
+      "scores": {
+        "passRate": 1,
+        "passed": 40,
+        "total": 40,
+        "perSkill": {
+          "library-contribute": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1
+          },
+          "library-review": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1
+          },
+          "prototype-add-screens": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1
+          },
+          "prototype-build": {
+            "tp": 10,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1
+          },
+          "prototype-propose-component": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1
+          },
+          "prototype-setup": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1
+          },
+          "prototype-update-library": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1
+          }
+        }
+      },
+      "cases": [
+        {
+          "id": "setup-open",
+          "prompt": "open my prototype",
+          "expect": "prototype-setup",
+          "used": [
+            "prototype-setup"
+          ],
+          "pass": true
+        },
+        {
+          "id": "setup-not-loading",
+          "prompt": "the page says this site cant be reached, localhost refused to connect??",
+          "expect": "prototype-setup",
+          "used": [
+            "prototype-setup"
+          ],
+          "pass": true
+        },
+        {
+          "id": "setup-carry-on",
+          "prompt": "hi, i want to carry on with my prototype from yesterday",
+          "expect": "prototype-setup",
+          "used": [
+            "prototype-setup"
+          ],
+          "pass": true
+        },
+        {
+          "id": "setup-show-me",
+          "prompt": "can you show me my protoype in the browser please",
+          "expect": "prototype-setup",
+          "used": [
+            "prototype-setup"
+          ],
+          "pass": true
+        },
+        {
+          "id": "setup-blank-page",
+          "prompt": "My prototype isn't loading anymore, it's just a blank white page",
+          "expect": "prototype-setup",
+          "used": [
+            "prototype-setup"
+          ],
+          "pass": true
+        },
+        {
+          "id": "build-journey-council",
+          "prompt": "I want to make a journey where someone sets their local council and then sees their bin days",
+          "expect": "prototype-build",
+          "used": [
+            "prototype-build"
+          ],
+          "pass": true
+        },
+        {
+          "id": "build-settings-row",
+          "prompt": "Add an Accessibility row to Settings that opens a screen explaining the app's accessibility features",
+          "expect": "prototype-build",
+          "used": [
+            "prototype-build"
+          ],
+          "pass": true
+        },
+        {
+          "id": "build-wording",
+          "prompt": "change the wording on the face id screen so it says Touch ID instead",
+          "expect": "prototype-build",
+          "used": [
+            "prototype-build"
+          ],
+          "pass": true
+        },
+        {
+          "id": "build-figma",
+          "prompt": "heres the figma for the new flow https://www.figma.com/design/AbC123/Driving?node-id=12-345 can you build it",
+          "expect": "prototype-build",
+          "used": [
+            "prototype-build"
+          ],
+          "pass": true
+        },
+        {
+          "id": "build-screenshot",
+          "prompt": "I've put a screenshot of a screen I sketched in this folder, called sketch.png. Can you make it?",
+          "expect": "prototype-build",
+          "used": [
+            "prototype-build"
+          ],
+          "pass": true
+        },
+        {
+          "id": "build-button-link",
+          "prompt": "make the continue button on the postcode screen go to the next screen",
+          "expect": "prototype-build",
+          "used": [
+            "prototype-build"
+          ],
+          "pass": true
+        },
+        {
+          "id": "build-remembered",
+          "prompt": "on the check screen I want it to show the postcode they typed in earlier",
+          "expect": "prototype-build",
+          "used": [
+            "prototype-build"
+          ],
+          "pass": true
+        },
+        {
+          "id": "build-confirm-delete",
+          "prompt": "Before someone deletes their chat history it should ask if theyre sure",
+          "expect": "prototype-build",
+          "used": [
+            "prototype-build"
+          ],
+          "pass": true
+        },
+        {
+          "id": "build-mock-up",
+          "prompt": "could you mock up a screen with their driving licence details on it",
+          "expect": "prototype-build",
+          "used": [
+            "prototype-build"
+          ],
+          "pass": true
+        },
+        {
+          "id": "build-error",
+          "prompt": "add an error message if they leave the postcode empty",
+          "expect": "prototype-build",
+          "used": [
+            "prototype-build"
+          ],
+          "pass": true
+        },
+        {
+          "id": "add-screens-chat",
+          "prompt": "I need the Chat tab in my prototype too",
+          "expect": "prototype-add-screens",
+          "used": [
+            "prototype-add-screens"
+          ],
+          "pass": true
+        },
+        {
+          "id": "add-screens-blank",
+          "prompt": "add a blank screen please",
+          "expect": "prototype-add-screens",
+          "used": [
+            "prototype-add-screens"
+          ],
+          "pass": true
+        },
+        {
+          "id": "add-screens-settings",
+          "prompt": "can you copy the apps settings screens in",
+          "expect": "prototype-add-screens",
+          "used": [
+            "prototype-add-screens"
+          ],
+          "pass": true
+        },
+        {
+          "id": "update-latest",
+          "prompt": "can I get the latest components? someone said there's a new version",
+          "expect": "prototype-update-library",
+          "used": [
+            "prototype-update-library"
+          ],
+          "pass": true
+        },
+        {
+          "id": "update-prototype",
+          "prompt": "update my prototype to the newest version of the library",
+          "expect": "prototype-update-library",
+          "used": [
+            "prototype-update-library"
+          ],
+          "pass": true
+        },
+        {
+          "id": "propose-share",
+          "prompt": "The bin day card I made is really useful, can we add it to the library so other people can use it?",
+          "expect": "prototype-propose-component",
+          "used": [
+            "prototype-propose-component"
+          ],
+          "pass": true
+        },
+        {
+          "id": "propose-offer",
+          "prompt": "share my custom component with the team that makes the components",
+          "expect": "prototype-propose-component",
+          "used": [
+            "prototype-propose-component"
+          ],
+          "pass": true
+        },
+        {
+          "id": "none-what-is-prototype-js",
+          "prompt": "What does prototype.js do? Just explain, don't change anything.",
+          "expect": null,
+          "used": [],
+          "pass": true
+        },
+        {
+          "id": "none-how-many-screens",
+          "prompt": "how many screens are there in my prototype at the moment?",
+          "expect": null,
+          "used": [],
+          "pass": true
+        },
+        {
+          "id": "none-thanks",
+          "prompt": "thanks, that's all for today!",
+          "expect": null,
+          "used": [],
+          "pass": true
+        },
+        {
+          "id": "none-sheet-or-cover",
+          "prompt": "whats the difference between a sheet and a full screen cover in the app? just curious",
+          "expect": null,
+          "used": [],
+          "pass": true
+        },
+        {
+          "id": "none-research-plan",
+          "prompt": "Help me write 5 questions for a usability test of the vehicles journey",
+          "expect": null,
+          "used": [],
+          "pass": true
+        },
+        {
+          "id": "review-pr",
+          "prompt": "review PR #80",
+          "expect": "library-review",
+          "used": [
+            "library-review"
+          ],
+          "pass": true
+        },
+        {
+          "id": "review-mine",
+          "prompt": "can you check my changes before I open a pull request",
+          "expect": "library-review",
+          "used": [
+            "library-review"
+          ],
+          "pass": true
+        },
+        {
+          "id": "review-ready",
+          "prompt": "is my new status component ready?",
+          "expect": "library-review",
+          "used": [
+            "library-review"
+          ],
+          "pass": true
+        },
+        {
+          "id": "review-look-over",
+          "prompt": "look over the button component and tell me if anything breaks the rules",
+          "expect": "library-review",
+          "used": [
+            "library-review"
+          ],
+          "pass": true
+        },
+        {
+          "id": "contribute-divider",
+          "prompt": "add a divider component",
+          "expect": "library-contribute",
+          "used": [
+            "library-contribute"
+          ],
+          "pass": true
+        },
+        {
+          "id": "contribute-figma",
+          "prompt": "I've got a Figma design for a new vehicle card, can we get it into the library?",
+          "expect": "library-contribute",
+          "used": [
+            "library-contribute"
+          ],
+          "pass": true
+        },
+        {
+          "id": "contribute-pattern",
+          "prompt": "can we have a pattern for an error screen",
+          "expect": "library-contribute",
+          "used": [
+            "library-contribute"
+          ],
+          "pass": true
+        },
+        {
+          "id": "contribute-fix",
+          "prompt": "the warning banner needs a dark mode fix, the text is hard to read",
+          "expect": "library-contribute",
+          "used": [
+            "library-contribute"
+          ],
+          "pass": true
+        },
+        {
+          "id": "contribute-template",
+          "prompt": "make a template for the Driving tab",
+          "expect": "library-contribute",
+          "used": [
+            "library-contribute"
+          ],
+          "pass": true
+        },
+        {
+          "id": "none-library-explain",
+          "prompt": "how does component.js draw a component from its template? explain briefly",
+          "expect": null,
+          "used": [],
+          "pass": true
+        },
+        {
+          "id": "none-library-start",
+          "prompt": "how do I run the docs site on my machine?",
+          "expect": null,
+          "used": [],
+          "pass": true
+        },
+        {
+          "id": "none-library-catalogue",
+          "prompt": "which components are proposed, not in the app yet? just list them",
+          "expect": null,
+          "used": [],
+          "pass": true
+        },
+        {
+          "id": "none-library-release",
+          "prompt": "how do we make a release?",
+          "expect": null,
+          "used": [],
+          "pass": true
+        }
+      ],
+      "pending": []
+    },
+    "choosing": {
+      "stamp": "2026-11-26T17-03-21Z",
+      "date": "2026-11-26",
+      "commit": null,
+      "case": null,
+      "scores": {
+        "passRate": 1,
+        "passed": 17,
+        "total": 17,
+        "meanFilesRead": 6.235294117647059,
+        "meanBytesRead": 29883.470588235294
+      },
+      "baseline": null,
+      "cases": [
+        {
+          "id": "confirm-delete",
+          "brief": "Before the user's chat history is deleted, ask them if they're sure.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "pattern:confirmation",
+            "govuk-app-button[variant=destructive]"
+          ],
+          "forbid": [
+            "govuk-app-button[variant=primary|]"
+          ],
+          "chose": {
+            "template": "chat",
+            "patterns": [
+              "confirmation"
+            ],
+            "elements": [
+              "govuk-app-sheet present=\"true\"",
+              "govuk-app-screen background=\"modal\"",
+              "govuk-app-nav-bar",
+              "govuk-app-nav-bar-item icon=\"close\" name=\"cancel\"",
+              "govuk-app-heading level=\"1\" size=\"title-1\"",
+              "govuk-app-text",
+              "govuk-app-button-stack slot=\"footer\"",
+              "govuk-app-button variant=\"destructive\" name=\"confirm\" works=\"true\"",
+              "govuk-app-button variant=\"grouped-secondary\" name=\"cancel\" works=\"true\"",
+              "govuk-app-chat-input slot=\"footer\"",
+              "govuk-app-menu-button-item name=\"clear-chat\" destructive=\"true\" icon=\"delete\""
+            ]
+          },
+          "filesRead": 6
+        },
+        {
+          "id": "saved-addresses-list",
+          "brief": "A screen listing the addresses the user has saved, each opening its own details, with a way to add another address.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "govuk-app-grouped-list-row[type=navigation|]",
+            "govuk-app-grouped-list-row[type=action]"
+          ],
+          "forbid": [
+            "govuk-app-button[variant=primary|]"
+          ],
+          "chose": {
+            "template": null,
+            "patterns": [
+              "settings-list"
+            ],
+            "elements": [
+              "govuk-app-screen",
+              "govuk-app-nav-bar title=\"Your addresses\" large-title=\"true\" back=\"true\"",
+              "govuk-app-grouped-list title=\"Saved addresses\"",
+              "govuk-app-grouped-list-row name=\"address\" value=\"<which address>\" note=\"type left off, so it is navigation: one row per saved address, with a chevron to its details\"",
+              "govuk-app-grouped-list note=\"a card of its own, holding only the add row\"",
+              "govuk-app-grouped-list-row type=\"action\" name=\"add-address\""
+            ]
+          },
+          "filesRead": 6
+        },
+        {
+          "id": "ask-postcode",
+          "brief": "Ask the user for their postcode, so the app can find their local council.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "govuk-app-text-field"
+          ],
+          "forbid": [
+            "govuk-app-search-field",
+            "govuk-app-search-box"
+          ],
+          "chose": {
+            "template": null,
+            "patterns": [],
+            "elements": [
+              "govuk-app-sheet present=\"true\"",
+              "govuk-app-screen background=\"modal\"",
+              "govuk-app-nav-bar",
+              "govuk-app-nav-bar-item icon=\"close\" name=\"close\"",
+              "govuk-app-heading level=\"1\" size=\"title-1\"",
+              "govuk-app-text-field type=\"postcode\" name=\"postcode\" label=\"Postcode\" hint=\"For example SW1A 2AA\" autocomplete=\"postal-code\"",
+              "govuk-app-button-stack slot=\"footer\"",
+              "govuk-app-button type=\"submit\" name=\"continue\""
+            ]
+          },
+          "filesRead": 11
+        },
+        {
+          "id": "council-saved",
+          "brief": "Tell the user their local council has been saved, with a way to go on.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "pattern:outcome"
+          ],
+          "forbid": [
+            "pattern:confirmation"
+          ],
+          "chose": {
+            "template": null,
+            "patterns": [
+              "outcome"
+            ],
+            "elements": [
+              "govuk-app-screen background=\"modal\"",
+              "govuk-app-heading level=\"1\" align=\"center\"",
+              "govuk-app-text align=\"center\"",
+              "govuk-app-button-stack slot=\"footer\"",
+              "govuk-app-button name=\"continue\""
+            ]
+          },
+          "filesRead": 6
+        },
+        {
+          "id": "notifications-setting",
+          "brief": "In Settings, a setting the user can turn on or off straight away: MOT reminders.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "govuk-app-grouped-list-row[type=toggle]"
+          ],
+          "forbid": [
+            "govuk-app-segmented-control",
+            "govuk-app-button",
+            "pattern:confirmation"
+          ],
+          "chose": {
+            "template": "settings",
+            "patterns": [
+              "settings-list"
+            ],
+            "elements": [
+              "govuk-app-screen",
+              "govuk-app-nav-bar title=\"Settings\" large-title=\"true\"",
+              "govuk-app-grouped-list footer=\"A line explaining MOT reminders, e.g. when they're sent (optional)\"",
+              "govuk-app-grouped-list-row type=\"toggle\" name=\"mot-reminders\"",
+              "govuk-app-tab-bar",
+              "govuk-app-tab-bar-item icon=\"settings\" name=\"settings\" selected=\"true\"",
+              "govuk-app-tab-bar-item icon=\"home\" name=\"home\"",
+              "govuk-app-tab-bar-item icon=\"chat_bubble\" name=\"chat\""
+            ]
+          },
+          "filesRead": 5
+        },
+        {
+          "id": "chat-answer",
+          "brief": "Show GOV.UK Chat answering a question the user asked about renewing their passport.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            [
+              "template:chat",
+              "govuk-app-chat-answer"
+            ],
+            "govuk-app-chat-question"
+          ],
+          "forbid": [
+            "govuk-app-sheet",
+            "custom"
+          ],
+          "chose": {
+            "template": "chat",
+            "patterns": [],
+            "elements": [
+              "govuk-app-screen background=\"chat\"",
+              "govuk-app-chat-answer note=\"Messages will be saved for 90 days\" role=\"welcome message, no sources\"",
+              "govuk-app-text role=\"welcome message text\"",
+              "govuk-app-chat-question content=\"How do I renew my passport?\"",
+              "govuk-app-chat-answer role=\"the passport answer, with sources\"",
+              "govuk-app-text role=\"answer paragraphs\"",
+              "govuk-app-heading level=\"3\" size=\"body\"",
+              "govuk-app-bulleted-list spacing=\"compact\"",
+              "govuk-app-link href=\"https://www.gov.uk/photos-for-passports\"",
+              "govuk-app-chat-source href=\"https://www.gov.uk/renew-adult-passport\"",
+              "govuk-app-chat-source href=\"https://www.gov.uk/passport-fees\"",
+              "govuk-app-chat-input slot=\"footer\"",
+              "govuk-app-menu-button-item name=\"clear-chat\" destructive=\"true\" icon=\"delete\"",
+              "govuk-app-menu-button-item name=\"privacy\"",
+              "govuk-app-menu-button-item name=\"about\"",
+              "govuk-app-menu-button-item name=\"feedback\"",
+              "govuk-app-tab-bar",
+              "govuk-app-tab-bar-item icon=\"home\"",
+              "govuk-app-tab-bar-item icon=\"chat_bubble\" selected=\"true\"",
+              "govuk-app-tab-bar-item icon=\"settings\""
+            ]
+          },
+          "filesRead": 8
+        },
+        {
+          "id": "explain-location-data",
+          "brief": "Explain, in a few paragraphs, what the app does with the user's location, reached from a row in Settings.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "pattern:information-page"
+          ],
+          "forbid": [
+            "pattern:confirmation",
+            "pattern:outcome"
+          ],
+          "chose": {
+            "template": "settings",
+            "patterns": [
+              "information-page"
+            ],
+            "elements": [
+              "govuk-app-grouped-list",
+              "govuk-app-grouped-list-row type=\"navigation\" href=\"location.html\"",
+              "govuk-app-screen",
+              "govuk-app-nav-bar title=\"Your location\" large-title=\"true\" back-href=\"index.html\"",
+              "govuk-app-text"
+            ]
+          },
+          "filesRead": 5
+        },
+        {
+          "id": "tax-mot-status",
+          "brief": "Show whether a vehicle's tax and MOT are valid, and how long until each runs out.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "govuk-app-status"
+          ],
+          "forbid": [
+            "govuk-app-count",
+            "custom"
+          ],
+          "chose": {
+            "template": null,
+            "patterns": [],
+            "elements": [
+              "govuk-app-screen",
+              "govuk-app-nav-bar title=\"Tax and MOT\" back=\"true\"",
+              "govuk-app-number-plate size=\"large\"",
+              "govuk-app-grouped-list",
+              "govuk-app-grouped-list-row type=\"content\" flush=\"true\"",
+              "govuk-app-summary-columns",
+              "govuk-app-summary-column count=\"2 (Tax, MOT)\"",
+              "govuk-app-status state=\"due\" progress=\"share of time left, e.g. 0.4\" label=\"Tax\" caption=\"Valid, 156 days left\"",
+              "govuk-app-status state=\"due\" progress=\"share of time left, e.g. 0.1\" label=\"MOT\" caption=\"Valid, 23 days left\""
+            ]
+          },
+          "filesRead": 10
+        },
+        {
+          "id": "registration-plate",
+          "brief": "Show the vehicle's registration number as it looks on the car itself.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "govuk-app-number-plate"
+          ],
+          "forbid": [
+            "custom"
+          ],
+          "chose": {
+            "template": null,
+            "patterns": [],
+            "elements": [
+              "govuk-app-screen",
+              "govuk-app-number-plate size=\"large\" content=\"AB71 CDE\""
+            ]
+          },
+          "filesRead": 2
+        },
+        {
+          "id": "vehicles-or-licence",
+          "brief": "On the driving account screen, let the user switch between their vehicles and their driving licence.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "govuk-app-segmented-control"
+          ],
+          "forbid": [
+            "govuk-app-tab-bar",
+            "govuk-app-toggle"
+          ],
+          "chose": {
+            "template": null,
+            "patterns": [],
+            "elements": [
+              "govuk-app-screen",
+              "govuk-app-nav-bar title=\"Driving\" back=\"true\"",
+              "govuk-app-segmented-control label=\"Driving\"",
+              "govuk-app-segmented-control-item name=\"view\" value=\"vehicles\" selected=\"true\" label=\"Vehicles\"",
+              "govuk-app-segmented-control-item name=\"view\" value=\"licence\" label=\"Licence\""
+            ]
+          },
+          "filesRead": 5
+        },
+        {
+          "id": "points-at-a-glance",
+          "brief": "Show a driver's offences and penalty points, side by side, big enough to take in at a glance.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "govuk-app-count",
+            "govuk-app-summary-columns"
+          ],
+          "forbid": [
+            "govuk-app-status",
+            "custom"
+          ],
+          "chose": {
+            "template": null,
+            "patterns": [],
+            "elements": [
+              "govuk-app-screen",
+              "govuk-app-nav-bar title=\"Penalty points\" back=\"true\"",
+              "govuk-app-grouped-list",
+              "govuk-app-grouped-list-row type=\"content\" flush=\"true\"",
+              "govuk-app-summary-columns",
+              "govuk-app-summary-column",
+              "govuk-app-count value=\"2\"",
+              "govuk-app-grouped-list-row type=\"navigation\""
+            ]
+          },
+          "filesRead": 6
+        },
+        {
+          "id": "no-tax-warning",
+          "brief": "On a vehicle's screen, warn that driving without tax can invalidate the user's insurance.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "govuk-app-banner"
+          ],
+          "forbid": [
+            "pattern:confirmation",
+            "custom"
+          ],
+          "chose": {
+            "template": null,
+            "patterns": [],
+            "elements": [
+              "govuk-app-screen",
+              "govuk-app-nav-bar",
+              "govuk-app-banner type=\"warning\" title=\"Stay insured\" icon=\"warning\" dismissible=\"true\" name=\"stay-insured\" link=\"More information\" href=\"https://www.gov.uk/vehicle-tax\""
+            ]
+          },
+          "filesRead": 4
+        },
+        {
+          "id": "edit-whole-screen",
+          "brief": "On a screen of the user's saved addresses, an Edit action for the whole screen.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "govuk-app-nav-bar-item"
+          ],
+          "forbid": [
+            "govuk-app-button"
+          ],
+          "chose": {
+            "template": null,
+            "patterns": [],
+            "elements": [
+              "govuk-app-screen",
+              "govuk-app-nav-bar title=\"Saved addresses\" back=\"true\"",
+              "govuk-app-nav-bar-item name=\"edit\" text=\"Edit\"",
+              "govuk-app-grouped-list title=\"e.g. Home (one card per saved address, titled for whose/what it is)\"",
+              "govuk-app-grouped-list-row type=\"content\"",
+              "govuk-app-address"
+            ]
+          },
+          "filesRead": 7
+        },
+        {
+          "id": "registered-to",
+          "brief": "Show who a vehicle is registered to: their name and postal address.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "govuk-app-address"
+          ],
+          "forbid": [
+            "govuk-app-text-field",
+            "custom"
+          ],
+          "chose": {
+            "template": null,
+            "patterns": [],
+            "elements": [
+              "govuk-app-screen",
+              "govuk-app-nav-bar title=\"Vehicle details\" back=\"true\"",
+              "govuk-app-section title=\"Registered to\"",
+              "govuk-app-address name=\"MRS JANE BLOGGS\""
+            ]
+          },
+          "filesRead": 5
+        },
+        {
+          "id": "add-account-takeover",
+          "brief": "A journey to add a driver and vehicles account that takes over the app until it's finished or closed.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "govuk-app-full-screen-cover"
+          ],
+          "forbid": [
+            "govuk-app-sheet"
+          ],
+          "chose": {
+            "template": null,
+            "patterns": [],
+            "elements": [
+              "govuk-app-full-screen-cover present=\"true (first screen of the journey only)\"",
+              "govuk-app-screen background=\"green\"",
+              "govuk-app-nav-bar",
+              "govuk-app-nav-bar-item icon=\"close\" name=\"close\" slot=\"leading\"",
+              "govuk-app-heading level=\"1\" size=\"large-title\"",
+              "govuk-app-text size=\"title-1\"",
+              "govuk-app-button-stack slot=\"footer\"",
+              "govuk-app-button variant=\"black\" name=\"continue\""
+            ]
+          },
+          "filesRead": 9
+        },
+        {
+          "id": "choose-country-sheet",
+          "brief": "Over the screen they're on, let the user choose a country from a long list they can filter, then go back.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "govuk-app-sheet",
+            "govuk-app-search-field"
+          ],
+          "forbid": [
+            "govuk-app-full-screen-cover",
+            "govuk-app-search-box"
+          ],
+          "chose": {
+            "template": null,
+            "patterns": [],
+            "elements": [
+              "govuk-app-sheet present=\"true\"",
+              "govuk-app-screen background=\"modal\"",
+              "govuk-app-nav-bar title=\"Select a country\"",
+              "govuk-app-nav-bar-item icon=\"close\" name=\"close\"",
+              "govuk-app-search-field label=\"Search for a country\"",
+              "govuk-app-grouped-list",
+              "govuk-app-grouped-list-row type=\"selectable\" name=\"country\" value=\"(the country, e.g. france)\"",
+              "govuk-app-grouped-list-row type=\"selectable\" icon=\"check\" name=\"country\" value=\"(the country already chosen, if any)\"",
+              "govuk-app-screen slot=\"behind\""
+            ]
+          },
+          "filesRead": 6
+        },
+        {
+          "id": "start-from-home",
+          "brief": "A prototype that starts from the app's Home screen as users see it today, with one new widget added.",
+          "pass": true,
+          "failures": [],
+          "require": [
+            "template:home"
+          ],
+          "forbid": [],
+          "chose": {
+            "template": "home",
+            "patterns": [],
+            "elements": [
+              "govuk-app-section-heading level=\"2\"",
+              "govuk-app-grouped-list",
+              "govuk-app-grouped-list-row type=\"link\" href=\"(GOV.UK page)\""
+            ]
+          },
+          "filesRead": 5
+        }
+      ]
+    },
+    "reviewing": {
+      "stamp": "2026-11-26T17-03-21Z",
+      "date": "2026-11-26",
+      "commit": null,
+      "case": null,
+      "scores": {
+        "recall": 1,
+        "found": 14,
+        "planted": 14,
+        "falseAlarms": 0,
+        "cleanRuns": 3,
+        "cleanPassRate": 1,
+        "passRate": 1
+      },
+      "checker": {
+        "recall": 0.8571428571428571,
+        "found": 12,
+        "planted": 14,
+        "falseAlarms": 0,
+        "cleanRuns": 3,
+        "cleanPassRate": 1,
+        "passRate": 1
+      },
+      "baseline": null,
+      "cases": [
+        {
+          "id": "address-colour-and-grid",
+          "clean": false,
+          "faults": [
+            {
+              "file": "address.css",
+              "rule": "--app-* tokens only, no raw colours",
+              "found": true,
+              "level": "must",
+              "checker": true
+            },
+            {
+              "file": "address.css",
+              "rule": "Spacing on the 8pt grid",
+              "found": true,
+              "level": "must",
+              "checker": true
+            }
+          ],
+          "falseAlarms": []
+        },
+        {
+          "id": "summary-columns-selectors",
+          "clean": false,
+          "faults": [
+            {
+              "file": "summary-columns.css",
+              "rule": "No display: contents on the component's element",
+              "found": true,
+              "level": "must",
+              "checker": true
+            },
+            {
+              "file": "summary-columns.css",
+              "rule": "Styles only its own classes",
+              "found": true,
+              "level": "must",
+              "checker": true
+            }
+          ],
+          "falseAlarms": []
+        },
+        {
+          "id": "section-heading-bare-and-avoid",
+          "clean": false,
+          "faults": [
+            {
+              "file": "section-heading.css",
+              "rule": "Never a bare element",
+              "found": true,
+              "level": "must",
+              "checker": true
+            },
+            {
+              "file": "section-heading.json",
+              "rule": "avoid lists look-alikes",
+              "found": true,
+              "level": "should",
+              "checker": false
+            }
+          ],
+          "falseAlarms": []
+        },
+        {
+          "id": "labelled-icon-icons-and-reference",
+          "clean": false,
+          "faults": [
+            {
+              "file": "labelled-icon.json",
+              "rule": "Material Symbols, never SF Symbols",
+              "found": true,
+              "level": "must",
+              "checker": false
+            },
+            {
+              "file": "labelled-icon.json",
+              "rule": "Every listed reference exists",
+              "found": true,
+              "level": "must",
+              "checker": true
+            },
+            {
+              "file": "labelled-icon.html",
+              "rule": "Icons have govuk-app-icon",
+              "found": true,
+              "level": "must",
+              "checker": true
+            }
+          ],
+          "falseAlarms": []
+        },
+        {
+          "id": "toggle-event-source-shadow",
+          "clean": false,
+          "faults": [
+            {
+              "file": "toggle.css",
+              "rule": "--app-* tokens only, no raw colours",
+              "found": true,
+              "level": "must",
+              "checker": true
+            },
+            {
+              "file": "toggle.json",
+              "rule": "Sources pinned to a commit",
+              "found": true,
+              "level": "must",
+              "checker": true
+            },
+            {
+              "file": "toggle.js",
+              "rule": "No events of its own",
+              "found": true,
+              "level": "must",
+              "checker": true
+            }
+          ],
+          "falseAlarms": []
+        },
+        {
+          "id": "stack-layer-and-font",
+          "clean": false,
+          "faults": [
+            {
+              "file": "stack.css",
+              "rule": "No cascade layers",
+              "found": true,
+              "level": "must",
+              "checker": true
+            },
+            {
+              "file": "stack.css",
+              "rule": "Type from --app-font-* tokens",
+              "found": true,
+              "level": "should",
+              "checker": true
+            }
+          ],
+          "falseAlarms": []
+        },
+        {
+          "id": "clean-stack-rule",
+          "clean": true,
+          "faults": [],
+          "falseAlarms": []
+        },
+        {
+          "id": "clean-heading-rule",
+          "clean": true,
+          "faults": [],
+          "falseAlarms": []
+        },
+        {
+          "id": "clean-address-comment",
+          "clean": true,
+          "faults": [],
+          "falseAlarms": []
+        }
+      ]
+    },
+    "tasks": {
+      "stamp": "2026-11-26T17-03-21Z",
+      "date": "2026-11-26",
+      "commit": null,
+      "case": null,
+      "scores": {
+        "passRate": 1,
+        "passed": 6,
+        "total": 6,
+        "judge": {
+          "looksLikeApp": 4.6,
+          "hierarchy": 4.2,
+          "darkMode": 4.8,
+          "matchesDesign": 4
+        },
+        "jargon": 0
+      },
+      "showcases": [
+        {
+          "id": "local-council",
+          "title": "Set your local council",
+          "showcase": true,
+          "kind": "prototype",
+          "brief": "You're designing how someone sets their local council in the GOV.UK app. It starts from the Your local services part of Home (the council card there, or a link to set it). They type their postcode, such as BS15 3LL; choose their address from a short list (1, 2 and 3 Malpass Court, BS15 3LL); see a screen confirming the address they chose and that their council is South Gloucestershire Council, with a button to confirm; then they're back on Home, which now shows a card with their next bin collections. The postcode and address they gave should show again on the confirm screen. You don't mind the exact wording.",
+          "opening": "I'd like a journey for setting your local council. You type your postcode, choose your address from a list, confirm it, and then Home shows a card with your bin collections.",
+          "pass": true,
+          "endedBy": "handed over",
+          "turns": 2,
+          "checks": [
+            {
+              "name": "Pages load",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Elements are the library's, or custom in components/",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Links go somewhere",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Custom styles use only tokens, on the grid",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Required parts are there",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "The journey works, clicked through",
+              "pass": true,
+              "note": null,
+              "problems": []
+            }
+          ],
+          "conversation": {
+            "oneQuestion": {
+              "pass": true,
+              "note": "2 turns, at most one question each"
+            },
+            "plan": {
+              "pass": false,
+              "note": "plan in turn 1, building from turn 1"
+            },
+            "consent": {
+              "pass": true,
+              "note": "nothing installed"
+            },
+            "jargon": {
+              "pass": true,
+              "total": 0,
+              "counts": {},
+              "note": "none"
+            }
+          },
+          "judge": {
+            "looksLikeApp": {
+              "score": 4,
+              "reason": "Modal sheets with round close/back buttons, a pinned green primary button and grouped list cards closely match the app's own sign-out and Home screens; only the plain address rows (no radio, tick or chevron) feel a little less app-like."
+            },
+            "hierarchy": {
+              "score": 4,
+              "reason": "Each step has one clear question heading and one main button, and the check screen orders address, then council, then Confirm/Change well; but the address list shows no selection state, so it's unclear whether tapping a row or Continue moves you on."
+            },
+            "darkMode": {
+              "score": 5,
+              "reason": "Every screen uses the app's dark navy surfaces, mint button with dark text and cyan links and back chevron, all readable and consistent with the dark references."
+            },
+            "matchesDesign": {
+              "score": null,
+              "reason": "No design given"
+            }
+          },
+          "excerpt": [
+            {
+              "role": "designer",
+              "text": "I'd like a journey for setting your local council. You type your postcode, choose your address from a list, confirm it, and then Home shows a card with your bin collections."
+            },
+            {
+              "role": "claude",
+              "text": "I've made the postcode, address list and check screens. Next I'm changing Home so it shows the council and bin collections.\n\nNow I'll add the new screens to the start page.\n\nWrong folder; I'll run it from the prototype.\n\nThese look right. Next I'll check Home after the council is set, and the address list with one address ticked.\n\nOn a white sheet, the address list needs the pale blue card to stand out. I'll fix that and save.\n\nI've made the local council journey. To try it, start at Home: http://localhost:3000/screens/home/index.html. Tap Find your local council under Your local services. If …"
+            },
+            {
+              "role": "designer",
+              "text": "Thanks, that flow sounds right! One thing though: the council should be South Gloucestershire Council, not Central Bedfordshire. Could the address list also be 1, 2 and 3 Malpass Court, BS15 3LL, so it fits a postcode like BS15 3LL?"
+            },
+            {
+              "role": "claude",
+              "text": "The council is now South Gloucestershire Council, and the address list is 1, 2 and 3 Malpass Court. I checked the changed screens in light and dark, and they look right.\n\n- What is your postcode? now gives BS15 3LL as its example.\n- Select your address lists 1, 2 and 3 Malpass Court, under \"Addresses at\" and the postcode they typed.\n- Check your address shows the chosen address with its postcode, and South Gloucestershire Council.\n- Home shows South Gloucestershire Council in Your local services, and the card opens the council's website. The bin collections card under it hasn't changed.\n\nThe …"
+            }
+          ],
+          "screens": [
+            {
+              "name": "home index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/local-council-home-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/local-council-home-index-dark.webp"
+            },
+            {
+              "name": "council postcode",
+              "light": "/evals/images/2026-11-26T17-03-21Z/local-council-council-postcode-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/local-council-council-postcode-dark.webp"
+            },
+            {
+              "name": "council address",
+              "light": "/evals/images/2026-11-26T17-03-21Z/local-council-council-address-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/local-council-council-address-dark.webp"
+            },
+            {
+              "name": "council check",
+              "light": "/evals/images/2026-11-26T17-03-21Z/local-council-council-check-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/local-council-council-check-dark.webp"
+            }
+          ],
+          "references": [
+            {
+              "name": "chat index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-chat-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-chat-index-dark.webp"
+            },
+            {
+              "name": "home index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-home-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-home-index-dark.webp"
+            },
+            {
+              "name": "settings index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-settings-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-settings-index-dark.webp"
+            },
+            {
+              "name": "settings sign out",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-settings-sign-out-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-settings-sign-out-dark.webp"
+            }
+          ],
+          "design": null,
+          "tokens": 1945422,
+          "minutes": 4
+        },
+        {
+          "id": "notifications",
+          "title": "Choose your notifications, in Settings",
+          "showcase": false,
+          "kind": "prototype",
+          "brief": "In the app's Settings, the Notifications row should open a screen where the user chooses which notifications they get, with a switch for each topic: Local council, Benefits and Travel. From that screen, a link such as How notifications work opens a short screen explaining what notifications are and that they can change them at any time. A switch they turn on should still be on when they come back. You don't mind the exact wording.",
+          "opening": "Can you make the Notifications row in Settings open a screen where you choose your notifications, with a switch for each topic? And a screen that explains notifications.",
+          "pass": true,
+          "endedBy": "handed over",
+          "turns": 2,
+          "checks": [
+            {
+              "name": "Pages load",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Elements are the library's, or custom in components/",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Links go somewhere",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Custom styles use only tokens, on the grid",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Required parts are there",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "The journey works, clicked through",
+              "pass": true,
+              "note": null,
+              "problems": []
+            }
+          ],
+          "conversation": {
+            "oneQuestion": {
+              "pass": true,
+              "note": "2 turns, at most one question each"
+            },
+            "plan": {
+              "pass": false,
+              "note": "plan in turn 1, building from turn 1"
+            },
+            "consent": {
+              "pass": true,
+              "note": "nothing installed"
+            },
+            "jargon": {
+              "pass": true,
+              "total": 0,
+              "counts": {},
+              "note": "none"
+            }
+          },
+          "judge": {
+            "looksLikeApp": {
+              "score": 5,
+              "reason": "The new screens reuse the app's own pieces: large bold title, round back button, rounded grouped list with dividers, native-style switches, footnote text under the list and a chevron row. Nothing looks like a web page."
+            },
+            "hierarchy": {
+              "score": 5,
+              "reason": "The flow is clear. Settings has a Notifications row (showing Off), which opens a titled screen with a short intro, a Topics heading, the three switches, a reassurance note and an About notifications row. The explainer is short, in a sensible order, and says notifications can be changed at any time."
+            },
+            "darkMode": {
+              "score": 4,
+              "reason": "Text, cards, the back button and chevrons all read well on navy. The off-switch track is dark grey on a dark card, so its outline is faint, though the white knob still shows it is a switch."
+            },
+            "matchesDesign": {
+              "score": null,
+              "reason": "No design given"
+            }
+          },
+          "excerpt": [
+            {
+              "role": "designer",
+              "text": "Can you make the Notifications row in Settings open a screen where you choose your notifications, with a switch for each topic? And a screen that explains notifications."
+            },
+            {
+              "role": "claude",
+              "text": "Reading done — now building the two new screens and linking the Settings row.\n\nNow the Settings row, and the start page list.\n\nNow checking the screens in light and dark.\n\nAll screens look right in light and dark. Saving a version, and checking the prototype's running.\n\nThe Notifications row in Settings now opens a new Notifications screen. It has an on/off switch for each topic, and a row that opens a second new screen explaining notifications.\n\nHave a look here: http://localhost:3000/screens/settings/index.html. Then tap Notifications. I couldn't check whether the prototype is running just …"
+            },
+            {
+              "role": "designer",
+              "text": "Thanks, this sounds great! Could you change the topics to just three: Local council, Benefits and Travel? You can drop the others and the new features one too."
+            },
+            {
+              "role": "claude",
+              "text": "The Notifications screen now has just three switches: Local council, Benefits and Travel. The other topics and the \"New features in the app\" switch are gone. I've checked it in light and dark.\n\nTake a look here: http://localhost:3000/screens/settings/notifications.html\n\nThe Notifications row on Settings still says On when any of the three is switched on.\n\nI also changed one line on the About notifications screen to match. Its list ended with \"new things you can do in the app\", which no longer fits now that switch has gone. It now says \"changes to services from your local council\". Tell me if …"
+            }
+          ],
+          "screens": [
+            {
+              "name": "settings index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/notifications-settings-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/notifications-settings-index-dark.webp"
+            },
+            {
+              "name": "settings notifications",
+              "light": "/evals/images/2026-11-26T17-03-21Z/notifications-settings-notifications-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/notifications-settings-notifications-dark.webp"
+            },
+            {
+              "name": "settings about notifications",
+              "light": "/evals/images/2026-11-26T17-03-21Z/notifications-settings-about-notifications-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/notifications-settings-about-notifications-dark.webp"
+            }
+          ],
+          "references": [
+            {
+              "name": "chat index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-chat-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-chat-index-dark.webp"
+            },
+            {
+              "name": "home index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-home-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-home-index-dark.webp"
+            },
+            {
+              "name": "settings index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-settings-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-settings-index-dark.webp"
+            },
+            {
+              "name": "settings sign out",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-settings-sign-out-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-settings-sign-out-dark.webp"
+            }
+          ],
+          "design": null,
+          "tokens": 954740,
+          "minutes": 2
+        },
+        {
+          "id": "delete-chat-history",
+          "title": "Delete your chat history, from Chat's menu",
+          "showcase": false,
+          "kind": "prototype",
+          "brief": "In GOV.UK Chat, the menu by the question box (the round … button) gets a new option, Delete chat history. Choosing it shows a screen asking if they're sure, saying their questions and answers will be deleted and can't be got back, with a way to delete and a way to cancel. Deleting goes back to a new, empty chat. Cancelling goes back to the chat.",
+          "opening": "In Chat, the menu should have an option to delete your chat history, and it should ask you to confirm first",
+          "pass": true,
+          "endedBy": "handed over",
+          "turns": 2,
+          "checks": [
+            {
+              "name": "Pages load",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Elements are the library's, or custom in components/",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Links go somewhere",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Custom styles use only tokens, on the grid",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Required parts are there",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "The journey works, clicked through",
+              "pass": true,
+              "note": null,
+              "problems": []
+            }
+          ],
+          "conversation": {
+            "oneQuestion": {
+              "pass": true,
+              "note": "2 turns, at most one question each"
+            },
+            "plan": {
+              "pass": true,
+              "note": "not needed for a small change"
+            },
+            "consent": {
+              "pass": true,
+              "note": "nothing installed"
+            },
+            "jargon": {
+              "pass": true,
+              "total": 0,
+              "counts": {},
+              "note": "none"
+            }
+          },
+          "judge": {
+            "looksLikeApp": {
+              "score": 5,
+              "reason": "The confirmation sheet uses the same layout as the app's sign-out sheet: close button, large bold question, body text, red primary button and Cancel link. The chat screens match the reference chat in their bubbles, input bar, … button and tab bar."
+            },
+            "hierarchy": {
+              "score": 4,
+              "reason": "The confirmation screen is clear, with one heading, a short line saying the questions and answers can't be got back, one red Delete chat history button and a quieter Cancel. But no screenshot shows the … menu open, so the new Delete chat history option can't be seen."
+            },
+            "darkMode": {
+              "score": 5,
+              "reason": "Dark versions match the references: white text on navy, cyan links and Cancel, a coral button with dark text and a visible close button. Nothing is lost or only works on white."
+            },
+            "matchesDesign": {
+              "score": null,
+              "reason": "No design given"
+            }
+          },
+          "excerpt": [
+            {
+              "role": "designer",
+              "text": "In Chat, the menu should have an option to delete your chat history, and it should ask you to confirm first"
+            },
+            {
+              "role": "claude",
+              "text": "The relative path went wrong; I'll use the full paths instead.\n\nNow the confirmation screen.\n\nNow list it on the start page.\n\nTo be safe I'll use the same bin icon as Clear chat, since I can't be sure the other icon is included.\n\nI've added a Delete chat history option to the Chat menu, and it now asks you to confirm before anything is deleted.\n\nTo try it, open the answer screen: http://localhost:3000/screens/chat/answer.html (use the number your prototype started on, if it isn't 3000).\n\n- In the menu: tap the \"…\" button by the question box. Delete chat history is in red, just under Clear …"
+            },
+            {
+              "role": "designer",
+              "text": "Thanks, that sounds good! Can the confirm screen also say that their questions and answers will be deleted and can't be got back, not just that it can't be undone? Leave Clear chat as it is, and it's fine to have the option only on the answer screen."
+            },
+            {
+              "role": "claude",
+              "text": "I've changed the wording on the confirm screen. Under the question, it now says:\nAll your questions and GOV.UK Chat's answers will be deleted. You will not be able to get them back.\n\nIt's easy to read in both light and dark. Clear chat hasn't changed, and Delete chat history is still only on the answer screen.\n\nTo see it, open http://localhost:3000/screens/chat/delete-history.html, or tap the \"…\" button on the answer screen and choose Delete chat history."
+            }
+          ],
+          "screens": [
+            {
+              "name": "chat answer",
+              "light": "/evals/images/2026-11-26T17-03-21Z/delete-chat-history-chat-answer-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/delete-chat-history-chat-answer-dark.webp"
+            },
+            {
+              "name": "chat delete history",
+              "light": "/evals/images/2026-11-26T17-03-21Z/delete-chat-history-chat-delete-history-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/delete-chat-history-chat-delete-history-dark.webp"
+            }
+          ],
+          "references": [
+            {
+              "name": "chat index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-chat-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-chat-index-dark.webp"
+            },
+            {
+              "name": "home index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-home-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-home-index-dark.webp"
+            },
+            {
+              "name": "settings index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-settings-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-settings-index-dark.webp"
+            },
+            {
+              "name": "settings sign out",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-settings-sign-out-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-settings-sign-out-dark.webp"
+            }
+          ],
+          "design": null,
+          "tokens": 1008868,
+          "minutes": 2
+        },
+        {
+          "id": "onboarding",
+          "title": "Onboarding that asks about notifications",
+          "showcase": false,
+          "kind": "prototype",
+          "brief": "When someone opens the app for the first time, a screen asks whether they'd like notifications, saying what they'd be told about. Yes goes to a screen where they turn notifications on, then on to Home. No (or Not now) goes straight to Home. It doesn't need to come from anywhere in the prototype: it's the first screen of the app.",
+          "opening": "I need the first-time onboarding to ask if people want notifications. If they say yes they go to a screen to turn them on, if they say no they go straight to Home.",
+          "pass": true,
+          "endedBy": "handed over",
+          "turns": 2,
+          "checks": [
+            {
+              "name": "Pages load",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Elements are the library's, or custom in components/",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Links go somewhere",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Custom styles use only tokens, on the grid",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "The journey works, clicked through",
+              "pass": true,
+              "note": null,
+              "problems": []
+            }
+          ],
+          "conversation": {
+            "oneQuestion": {
+              "pass": false,
+              "note": "turn 1: 2 questions"
+            },
+            "plan": {
+              "pass": true,
+              "note": "plan in turn 1, building from turn 2"
+            },
+            "consent": {
+              "pass": true,
+              "note": "nothing installed"
+            },
+            "jargon": {
+              "pass": true,
+              "total": 0,
+              "counts": {},
+              "note": "none"
+            }
+          },
+          "judge": {
+            "looksLikeApp": {
+              "score": 5,
+              "reason": "Both screens match the app's own type, pale-blue background, round back button, and the fixed footer with a green button and text link from the sign-out screen; nothing looks like a web page, and leaving out the tab bar is right for onboarding."
+            },
+            "hierarchy": {
+              "score": 4,
+              "reason": "Each screen has a clear heading, short text and one main action, with 'Not now' as the lesser option; the turn-on screen repeats the first screen's list, and the large empty middle on both leaves them a little sparse."
+            },
+            "darkMode": {
+              "score": 5,
+              "reason": "Dark navy background, white text, a bright green button with dark text and a cyan link and back chevron match the dark references, and everything stays readable."
+            },
+            "matchesDesign": {
+              "score": null,
+              "reason": "No design given"
+            }
+          },
+          "excerpt": [
+            {
+              "role": "designer",
+              "text": "I need the first-time onboarding to ask if people want notifications. If they say yes they go to a screen to turn them on, if they say no they go straight to Home."
+            },
+            {
+              "role": "claude",
+              "text": "The prototype hasn't got any onboarding screens yet, so I'd make them new. Here's what I'd build:\nNotifications in onboarding: 2 new screens, ending at Home\n1. Get notifications from GOV.UK: the first screen someone sees when they open the app. A short line on what notifications are for, then two buttons: Yes, get notifications, which opens 2, and Not now, which goes straight to Home.\n2. Turn on notifications: says what they'll be told about, with a Turn on notifications button. That goes on to Home, and there's a back button to 1.\nBoth are laid out like screens the app already has, using its …"
+            },
+            {
+              "role": "designer",
+              "text": "Yes, that's right, thanks. Just make sure the first screen says what they'd be told about, not only the second one. A simple Turn on button on screen 2 is fine, no switches needed."
+            },
+            {
+              "role": "claude",
+              "text": "Now add them to the start page, first in the list since onboarding comes first.\n\nI've added the two onboarding screens. Start here: http://localhost:3000/screens/onboarding/index.html\n\n- Get notifications from GOV.UK: says what they'd be told about (car tax or MOT due dates, changes to services they use, and emergency alerts near them). Yes, get notifications opens the next screen. Not now goes straight to Home.\n- Turn on notifications: lists the same three things, says their phone will ask them to allow notifications, and has one Turn on notifications button that goes to Home. Its back …"
+            }
+          ],
+          "screens": [
+            {
+              "name": "onboarding index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/onboarding-onboarding-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/onboarding-onboarding-index-dark.webp"
+            },
+            {
+              "name": "onboarding turn on",
+              "light": "/evals/images/2026-11-26T17-03-21Z/onboarding-onboarding-turn-on-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/onboarding-onboarding-turn-on-dark.webp"
+            }
+          ],
+          "references": [
+            {
+              "name": "chat index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-chat-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-chat-index-dark.webp"
+            },
+            {
+              "name": "home index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-home-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-home-index-dark.webp"
+            },
+            {
+              "name": "settings index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-settings-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-settings-index-dark.webp"
+            },
+            {
+              "name": "settings sign out",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-settings-sign-out-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-settings-sign-out-dark.webp"
+            }
+          ],
+          "design": null,
+          "tokens": 638185,
+          "minutes": 2
+        },
+        {
+          "id": "bin-collections-from-screenshot",
+          "title": "Make a screen from a screenshot: bin collections",
+          "showcase": false,
+          "kind": "prototype",
+          "brief": "You want the screen in the screenshot bin-collections.webp: the collection schedule, with the address, then what's collected today and tomorrow, each bin with its colour. It opens from a new Bin collections row or link in Your local services on Home. Cancel goes back to Home.",
+          "opening": "I've put a screenshot in this folder called bin-collections.webp. Can you make that screen in my prototype? It should open from Your local services on Home.",
+          "pass": true,
+          "endedBy": "handed over",
+          "turns": 1,
+          "checks": [
+            {
+              "name": "Pages load",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Elements are the library's, or custom in components/",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Links go somewhere",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Custom styles use only tokens, on the grid",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Required parts are there",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "The journey works, clicked through",
+              "pass": true,
+              "note": null,
+              "problems": []
+            }
+          ],
+          "conversation": {
+            "oneQuestion": {
+              "pass": true,
+              "note": "1 turns, at most one question each"
+            },
+            "plan": {
+              "pass": true,
+              "note": "not needed for a small change"
+            },
+            "consent": {
+              "pass": true,
+              "note": "nothing installed"
+            },
+            "jargon": {
+              "pass": true,
+              "total": 0,
+              "counts": {},
+              "note": "none"
+            }
+          },
+          "judge": {
+            "looksLikeApp": {
+              "score": 4,
+              "reason": "The sheet, Cancel pill, large bold title, grouped rows and the Bin collections row on Home all use the app's own parts. One flaw: in light mode the bin rows sit in a white card on a white sheet, so they look oddly indented from the headings."
+            },
+            "hierarchy": {
+              "score": 4,
+              "reason": "The order is clear: title, then the put-out time, the address, Today and Tomorrow. Cancel is the only action, which suits a read-only schedule. Bin names are regular weight rather than bold, so they stand out less from their descriptions."
+            },
+            "darkMode": {
+              "score": 5,
+              "reason": "In dark mode the rows become visible navy cards and all text is readable. The black general waste circle has a grey outline so it shows on navy, and Cancel and the Home row use the app's dark colours."
+            },
+            "matchesDesign": {
+              "score": 4,
+              "reason": "The content, order, bin colours and dashed plastics circle all match the design. The design's blue address button is now plain text with a pin icon, and bin names are not bold as they are in the design."
+            }
+          },
+          "excerpt": [
+            {
+              "role": "designer",
+              "text": "I've put a screenshot in this folder called bin-collections.webp. Can you make that screen in my prototype? It should open from Your local services on Home."
+            },
+            {
+              "role": "claude",
+              "text": "Quick update: I've looked at your screenshot and the Home screen, and I'm now choosing which of the app's parts to build it from.\n\nWrong path count; I'll use the Read tool instead.\n\nI'm building it now: the bin collections screen as a sheet over Home, plus a way in from Home.\n\nNow the way in from Home, and the start page listing.\n\nThe Cancel button shows as the word \"NONE\" instead of \"Cancel\". I'll fix that.\n\nLooks right in light and dark now. Saving a version.\n\nI've made your bin collections screen. To try it, open Home, then tap Bin collections under \"Your local services\": …"
+            }
+          ],
+          "screens": [
+            {
+              "name": "home index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/bin-collections-from-screenshot-home-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/bin-collections-from-screenshot-home-index-dark.webp"
+            },
+            {
+              "name": "bin collections index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/bin-collections-from-screenshot-bin-collections-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/bin-collections-from-screenshot-bin-collections-index-dark.webp"
+            }
+          ],
+          "references": [
+            {
+              "name": "chat index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-chat-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-chat-index-dark.webp"
+            },
+            {
+              "name": "home index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-home-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-home-index-dark.webp"
+            },
+            {
+              "name": "settings index",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-settings-index-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-settings-index-dark.webp"
+            },
+            {
+              "name": "settings sign out",
+              "light": "/evals/images/2026-11-26T17-03-21Z/app-settings-sign-out-light.webp",
+              "dark": "/evals/images/2026-11-26T17-03-21Z/app-settings-sign-out-dark.webp"
+            }
+          ],
+          "design": "/evals/images/2026-11-26T17-03-21Z/bin-collections-from-screenshot-design.webp",
+          "tokens": 848536,
+          "minutes": 2
+        },
+        {
+          "id": "library-divider",
+          "title": "Contribute a component to the library: a divider",
+          "showcase": false,
+          "kind": "library",
+          "brief": "You're a designer who wants a divider in the library: the thin grey line the GOV.UK app draws between items, such as between sections of a screen (iOS calls it DividerView, Android ListDivider, but you only know it as 'the divider'). It's in the app today, on iOS and Android. You'd use it to separate parts of a screen that aren't in a grouped list. You don't have a Figma link. You're happy for it to be made, checked and sent for review.",
+          "opening": "I'd like the library to have a divider, the thin line the app puts between things",
+          "pass": true,
+          "endedBy": "reached push or pull request",
+          "turns": 2,
+          "checks": [
+            {
+              "name": "A new component was made",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "npm run build passes",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "The rule checker finds no must-fixes",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Committed on a branch, with good messages",
+              "pass": true,
+              "note": null,
+              "problems": []
+            },
+            {
+              "name": "Got as far as sending it for review",
+              "pass": true,
+              "note": "yes",
+              "problems": []
+            }
+          ],
+          "conversation": {
+            "oneQuestion": {
+              "pass": true,
+              "note": "2 turns, at most one question each"
+            },
+            "plan": {
+              "pass": true,
+              "note": "not needed for a small change"
+            },
+            "consent": {
+              "pass": true,
+              "note": "nothing installed"
+            },
+            "jargon": {
+              "pass": true,
+              "total": 0,
+              "counts": {},
+              "note": "none"
+            }
+          },
+          "judge": null,
+          "excerpt": [
+            {
+              "role": "designer",
+              "text": "I'd like the library to have a divider, the thin line the app puts between things"
+            },
+            {
+              "role": "claude",
+              "text": "I've been looking through the library and the app to see what's already there.\n\nThe library has no divider of its own yet. Lines between things are only drawn inside other components: between the rows of a list, above the buttons pinned to the bottom of a screen, and between side-by-side columns. The app does have a divider on its own: DividerView on iOS, and ListDivider on Android.\n\nHere's what I think you want: a thin line you can put anywhere on a screen to separate one thing from the next, the same as the app's DividerView. It would sit beside the lines that are already inside the list …"
+            },
+            {
+              "role": "designer",
+              "text": "Yes, that's exactly it, a thin line I can put anywhere to separate parts of a screen that aren't in a grouped list. I don't have one particular screen in mind, so please pick one where it shows up in the app. Go ahead and make it, check it and send it for review."
+            },
+            {
+              "role": "claude",
+              "text": "I've found the divider in both apps' code and am reading how it's drawn and where it's used.\n\nI'm now setting up a separate copy of the work to build the divider in.\n\nFound the app's own screenshots of the driving licence category screen, which has dividers. Fetching them to look.\n\nI have what I need. Writing the divider's files now.\n\nThe files are written. Running the library's build checks now.\n\nThe build passed. Taking screenshots of the divider in light and dark.\n\nThe screenshots match the app's: a hairline in the same grey across the full width, faint in dark mode, as in the reference. …"
+            }
+          ],
+          "screens": [],
+          "references": [],
+          "design": null,
+          "tokens": 2579576,
+          "minutes": 5
+        }
+      ]
+    }
+  },
+  "updated": "2026-11-26T17-03-21Z"
+}

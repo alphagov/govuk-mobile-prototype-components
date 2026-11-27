@@ -33,7 +33,7 @@ Then open <http://localhost:8080>. The site reloads when you change a component,
 | `src/schemas/` | What a component’s, pattern’s and template’s definition must say |
 | `src/starter/`, `src/bin/` | What a new prototype starts from, and the command that makes one |
 
-Around it are `examples/`, `docs/` (this site), `scripts/`, and `inventory/`, the survey of every component in the iOS and Android apps. This site publishes `src/` at the same paths, so a link that works in the repository works here.
+Around it are `examples/`, `docs/` (this site), `scripts/`, `evals/`, and `inventory/`, the survey of every component in the iOS and Android apps. This site publishes `src/` at the same paths, so a link that works in the repository works here.
 
 ## Check your changes
 
@@ -73,6 +73,18 @@ With Claude Code, two skills in this repository do this for you:
 
 - **library-contribute** adds or changes a component, pattern or template, from the app’s source, a Figma design or screenshots, and opens a pull request.
 - **library-review** checks a change, yours or a pull request, against the rules in AGENTS.md, and reports what to fix in plain words.
+
+## Check the skills
+
+The skills, these two and the ones every prototype gets, have [evals](/evals/): tests of whether Claude starts the right skill, chooses the right parts, finds what's wrong in a review, and does a whole job well with a designer. Run them on your own computer, with Claude Code signed in, after changing a skill:
+
+```sh
+npm run evals                # triggering, choosing and reviewing, a few minutes
+npm run evals -- --full      # and whole tasks, after an estimate
+npm run evals -- --publish   # and publish the results to the Evals page
+```
+
+They write a report to `evals-out/`, which git ignores. [evals/README.md](https://github.com/alphagov/govuk-mobile-prototype-components/blob/main/evals/README.md) says how to add a case and read the report.
 
 ## Patterns and templates
 
