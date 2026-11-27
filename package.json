@@ -1,6 +1,6 @@
 {
   "name": "govuk-mobile-prototype-components",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "Web components that look and behave like the GOV.UK app's own, for prototyping app journeys in HTML.",
