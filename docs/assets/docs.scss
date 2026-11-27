@@ -140,3 +140,43 @@
 .docs-references__heading:not(:first-child) {
   @include govuk-responsive-margin(6, "top");
 }
+
+// Something to paste, from copy-box.njk: the text, then a button to copy it,
+// side by side where there's room. A request to Claude is in the page's own
+// font, as it's words; a command is in the code font, as on the examples.
+.docs-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: govuk-spacing(3);
+  @include govuk-responsive-margin(6, "bottom");
+  padding: govuk-spacing(3);
+  // White, with a border, so the grey secondary button shows against it.
+  border: 1px solid $govuk-border-colour;
+  border-left-width: 5px;
+}
+
+.docs-copy__text {
+  flex: 1 1 20em;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.docs-copy--request .docs-copy__text {
+  @include govuk-font($size: 19);
+}
+
+.docs-copy--command .docs-copy__text {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.docs-copy__button {
+  margin: 0;
+}

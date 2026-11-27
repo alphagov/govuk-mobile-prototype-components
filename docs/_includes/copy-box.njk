@@ -1,0 +1,7 @@
+{#- Something to paste, in a box with a button that copies it: a command for
+    the Terminal, or a request to Claude. The text goes into a <pre>, with
+    each line break written as &#10;, so Markdown sees one line of HTML and
+    leaves it alone, even where the text has a blank line in it. -#}
+{% macro copyBox(text, kind = "request") %}
+<div class="docs-copy docs-copy--{{ kind }}"><pre class="docs-copy__text">{{ text | trim | escape | replace("\n", "&#10;") | safe }}</pre><button type="button" class="govuk-button govuk-button--secondary docs-copy__button">Copy</button><span class="govuk-visually-hidden docs-copy__status" role="status"></span></div>
+{% endmacro %}
