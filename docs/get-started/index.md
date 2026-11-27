@@ -11,8 +11,8 @@ order: 1
     <p class="govuk-body govuk-!-margin-bottom-0">Ask Claude Code for a prototype of the GOV.UK app in plain words, and it makes one that opens in your browser as an iPhone. You don’t need to write any code. Start here if you’re a designer.</p>
   </li>
   <li class="govuk-!-margin-bottom-6">
-    <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link" href="/get-started/use-the-components/">Use the components</a></h2>
-    <p class="govuk-body govuk-!-margin-bottom-0">Install a release and write a prototype’s pages yourself, in HTML, with the components, patterns and templates. For developers, and for tools that build prototypes.</p>
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link" href="/get-started/build-in-html/">Build a prototype in HTML</a></h2>
+    <p class="govuk-body govuk-!-margin-bottom-0">Write a prototype’s pages yourself, with the components, patterns and templates, in a project of your own. For developers, and for tools that build prototypes.</p>
   </li>
   <li class="govuk-!-margin-bottom-6">
     <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><a class="govuk-link" href="/get-started/work-on-the-library/">Work on the library</a></h2>
