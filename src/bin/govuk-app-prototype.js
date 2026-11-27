@@ -4,8 +4,12 @@
 //   npx --yes <a release's download> new "Renew a passport"
 //   npx --yes <a release's download> new "Renew a passport" --from settings
 //   npx --yes <a release's download> new "Renew a passport" --from blank
+//   npx --yes <a release's download> new "Renew a passport" --here
 //
-// It makes a folder for the prototype in the current one, installs the
+// It makes a folder for the prototype in the current one, or with --here
+// uses the current one, if it's empty. That way Claude Code, opened in an
+// empty folder, can make the prototype where it is, with no need to quit
+// and open it again in another folder. Then it installs the
 // components into it at the latest release, copies in the starter (the
 // server, the start page, prototype.js, CLAUDE.md and the skills Claude uses
 // to work on it) and the screens it starts from, and saves a first version
@@ -22,7 +26,7 @@ import { compareVersions, downloadUrl, latestRelease, parseVersion } from '../st
 
 const packageRoot = path.resolve(import.meta.dirname, '..', '..')
 const ownStarter = path.resolve(import.meta.dirname, '..', 'starter')
-const usage = `Usage: govuk-app-prototype new "<name>" [--from settings,home,chat | blank]`
+const usage = `Usage: govuk-app-prototype new "<name>" [--from settings,home,chat | blank] [--here]`
 
 // Home, Settings and Chat's tab bars link to each other, so they come together.
 const tabs = ['home', 'settings', 'chat']
@@ -42,11 +46,13 @@ if (command !== 'new') stop(usage)
 let name
 let from = ['settings']
 let components
+let here = false
 for (let i = 0; i < rest.length; i++) {
   if (rest[i] === '--from') from = (rest[++i] ?? '').split(',').map(part => part.trim().toLowerCase()).filter(Boolean)
   // A download of the components to use instead of the latest release, such
   // as one being tested before it's released.
   else if (rest[i] === '--components') components = rest[++i]
+  else if (rest[i] === '--here') here = true
   else if (!name) name = rest[i]
   else stop(usage)
 }
@@ -55,9 +61,13 @@ if (!from.length) stop(usage)
 if (from.some(choice => tabs.includes(choice))) from = [...new Set([...from, ...tabs])]
 
 const slug = name.trim().toLowerCase().normalize('NFKD').replace(/[^\w\s-]/g, '').replace(/[\s_]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') || 'prototype'
-const folder = path.resolve(slug)
-if (fs.existsSync(folder) && fs.readdirSync(folder).length) {
-  stop(`There's already a folder called ${slug} here, with things in it. Choose another name, or remove that folder first.`)
+const folder = here ? process.cwd() : path.resolve(slug)
+// Finder leaves .DS_Store in a folder it has shown, so that doesn't count.
+const contents = fs.existsSync(folder) ? fs.readdirSync(folder).filter(entry => entry !== '.DS_Store') : []
+if (contents.length) {
+  stop(here
+    ? `This folder has things in it already, so the prototype can't go here. Use an empty folder, or leave out --here to make a new folder for it.`
+    : `There's already a folder called ${slug} here, with things in it. Choose another name, or remove that folder first.`)
 }
 
 console.log(`\nMaking your prototype, ${name.trim()}, in ${folder}\n`)
@@ -136,7 +146,13 @@ if (hasGit()) {
   if (git('commit', '--quiet', '--message', 'Start the prototype').status === 0) step('Saving the first version')
 }
 
-console.log(`
+console.log(here
+  ? `
+Your prototype is ready, in ${folder}
+
+Next, say “open my prototype” to Claude Code in this folder.
+`
+  : `
 Your prototype is ready, in ${folder}
 
 Next, open Claude Code in that folder and say “open my prototype”:

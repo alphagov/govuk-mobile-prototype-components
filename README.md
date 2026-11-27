@@ -72,14 +72,20 @@ Someone has asked you to make a prototype of the GOV.UK app with this library. T
    ```
 
    That's the latest long-term support version, checked against nodejs.org's checksums. Use it by starting each command with `export PATH="$HOME/.local/node/bin:$PATH";`.
-3. **Make it**, in the folder Claude Code is open in (if that's their home folder, suggest their Documents folder instead), with the name and starting point they gave: `--from settings`, `home`, `chat` or `blank`.
+3. **Make it**, with the name and starting point they gave: `--from settings`, `home`, `chat` or `blank`. If the folder Claude Code is open in is empty (apart from `.DS_Store`), make it right there, with `--here`:
 
    ```sh
-   npx --yes https://github.com/alphagov/govuk-mobile-prototype-components/releases/latest/download/govuk-mobile-prototype-components.tgz new "My prototype" --from settings
+   npx --yes https://github.com/alphagov/govuk-mobile-prototype-components/releases/latest/download/govuk-mobile-prototype-components.tgz new "My prototype" --from settings --here
    ```
 
-   It makes a folder named after the prototype, downloads the latest release of the components into it, and adds the starter, the screens and the skills Claude uses to work on it, in `.claude/skills/`. If it fails, say what it said in plain words: it's usually the network.
-4. **Open it.** Read the new folder's `CLAUDE.md`, and follow its `.claude/skills/prototype-setup/SKILL.md`, in that folder, to start the prototype and open it in their browser. Then tell them what they can ask for, and that next time they should open Claude Code in the prototype's folder and say "open my prototype", so its skills are there.
+   If the folder has things in it, leave out `--here`, and it makes a folder named after the prototype inside this one. If that's their home folder, suggest their Documents folder instead.
+
+   It downloads the latest release of the components, and adds the starter, the screens and the skills Claude uses to work on it, in `.claude/skills/`. If it fails, say what it said in plain words: it's usually the network.
+4. **Open it.** Read the prototype's `CLAUDE.md`, and follow its `.claude/skills/prototype-setup/SKILL.md`, in the prototype's folder, to start the prototype and open it in their browser. Then tell them what they can ask for.
+
+   If you made it with `--here`, carry on working on it with them: `CLAUDE.md` says where each skill is, for any you can't see yet. Next time, they open Claude Code in this same folder and say "open my prototype".
+
+   If you made a new folder for it, tell them that next time they should open Claude Code in that folder and say "open my prototype", so its skills are there.
 
 ## Licence
 
