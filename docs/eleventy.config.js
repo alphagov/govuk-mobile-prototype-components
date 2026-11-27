@@ -24,7 +24,8 @@ export default async function (eleventyConfig) {
         { text: 'Components', href: '/components/' },
         { text: 'Patterns', href: '/patterns/' },
         { text: 'Examples', href: '/examples/' },
-        { text: 'Templates', href: '/templates/' }
+        { text: 'Templates', href: '/templates/' },
+        { text: 'Evals', href: '/evals/' }
       ]
     },
     markdown: {
@@ -64,6 +65,13 @@ export default async function (eleventyConfig) {
   // card for each thing, and all of it as data. `npm run build` writes it
   // before it gets here.
   eleventyConfig.addPassthroughCopy('catalogue')
+
+  // The evals' published screenshots, which only the Evals page shows. Its
+  // numbers are in _data/evals/, written by `npm run evals -- --publish`.
+  eleventyConfig.addPassthroughCopy({ 'docs/evals/images': 'evals/images' })
+  eleventyConfig.addFilter('evalPercent', value => (typeof value === 'number' ? `${Math.round(value * 100)}%` : '–'))
+  eleventyConfig.addFilter('evalMillions', value => (typeof value === 'number' && value ? `${(value / 1e6).toFixed(1)} million` : '–'))
+  eleventyConfig.addFilter('evalMillionsShort', value => (typeof value === 'number' && value ? `${(value / 1e6).toFixed(1)}M` : '–'))
 
   // The docs' own script, for the examples' "Copy code" buttons.
   eleventyConfig.addPassthroughCopy({ 'docs/assets/docs.js': 'assets/docs.js' })

@@ -1,0 +1,76 @@
+[
+  {
+    "stamp": "2026-11-26T17-03-21Z",
+    "commit": null,
+    "dirty": false,
+    "case": null,
+    "covered": "All four layers",
+    "note": "First published run",
+    "layers": {
+      "triggering": {
+        "passRate": 1,
+        "runs": 40,
+        "perSkill": {
+          "library-contribute": {
+            "precision": 1,
+            "recall": 1
+          },
+          "library-review": {
+            "precision": 1,
+            "recall": 1
+          },
+          "prototype-add-screens": {
+            "precision": 1,
+            "recall": 1
+          },
+          "prototype-build": {
+            "precision": 1,
+            "recall": 1
+          },
+          "prototype-propose-component": {
+            "precision": 1,
+            "recall": 1
+          },
+          "prototype-setup": {
+            "precision": 1,
+            "recall": 1
+          },
+          "prototype-update-library": {
+            "precision": 1,
+            "recall": 1
+          }
+        }
+      },
+      "choosing": {
+        "passRate": 1,
+        "runs": 17,
+        "meanBytesRead": 29883.470588235294,
+        "baseline": null
+      },
+      "reviewing": {
+        "recall": 1,
+        "found": 14,
+        "planted": 14,
+        "falseAlarms": 0,
+        "cleanRuns": 3,
+        "checkerRecall": 0.8571428571428571,
+        "baseline": null
+      },
+      "tasks": {
+        "passRate": 1,
+        "runs": 6,
+        "judge": {
+          "looksLikeApp": 4.6,
+          "hierarchy": 4.2,
+          "darkMode": 4.8,
+          "matchesDesign": 4
+        },
+        "jargon": 0,
+        "baseline": null
+      }
+    },
+    "tokens": 11550087,
+    "costUsd": 12.2106192,
+    "durationMs": 1036012
+  }
+]

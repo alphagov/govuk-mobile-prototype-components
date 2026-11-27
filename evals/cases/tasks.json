@@ -1,0 +1,148 @@
+[
+  {
+    "id": "local-council",
+    "kind": "prototype",
+    "showcase": true,
+    "skill": "prototype-build",
+    "title": "Set your local council",
+    "opening": "I'd like a journey for setting your local council. You type your postcode, choose your address from a list, confirm it, and then Home shows a card with your bin collections.",
+    "brief": "You're designing how someone sets their local council in the GOV.UK app. It starts from the Your local services part of Home (the council card there, or a link to set it). They type their postcode, such as BS15 3LL; choose their address from a short list (1, 2 and 3 Malpass Court, BS15 3LL); see a screen confirming the address they chose and that their council is South Gloucestershire Council, with a button to confirm; then they're back on Home, which now shows a card with their next bin collections. The postcode and address they gave should show again on the confirm screen. You don't mind the exact wording.",
+    "plan": true,
+    "maxTurns": 12,
+    "estimate": { "minutes": 4, "tokens": 1200000 },
+    "checks": {
+      "requires": [
+        { "selector": "govuk-app-text-field", "why": "a question for the postcode" },
+        { "selector": "govuk-app-screen", "page": "/screens/home/index.html", "text": "bin", "why": "Home shows the bin collections" }
+      ],
+      "journey": [
+        { "goto": "/screens/home/index.html" },
+        { "until": "field", "clicking": ["(set|change|choose|add|find).*council", "local services", "edit", "council"], "max": 3 },
+        { "fill": "BS15 3LL" },
+        { "until": "Malpass Court", "clicking": ["continue", "find", "search", "next"], "max": 2 },
+        { "click": "1,? Malpass Court" },
+        { "until": "confirm", "clicking": ["continue", "next"], "max": 2 },
+        { "expectText": "1,? Malpass Court" },
+        { "click": "confirm" },
+        { "until": "bin", "clicking": ["done", "continue", "go to home", "home"], "max": 2 },
+        { "expectPath": "/screens/home/" }
+      ]
+    }
+  },
+  {
+    "id": "notifications",
+    "kind": "prototype",
+    "skill": "prototype-build",
+    "title": "Choose your notifications, in Settings",
+    "opening": "Can you make the Notifications row in Settings open a screen where you choose your notifications, with a switch for each topic? And a screen that explains notifications.",
+    "brief": "In the app's Settings, the Notifications row should open a screen where the user chooses which notifications they get, with a switch for each topic: Local council, Benefits and Travel. From that screen, a link such as How notifications work opens a short screen explaining what notifications are and that they can change them at any time. A switch they turn on should still be on when they come back. You don't mind the exact wording.",
+    "plan": true,
+    "maxTurns": 10,
+    "estimate": { "minutes": 3, "tokens": 1100000 },
+    "checks": {
+      "requires": [
+        { "selector": "govuk-app-grouped-list-row[type=\"toggle\"]", "min": 3, "why": "a switch for each of three topics" }
+      ],
+      "journey": [
+        { "goto": "/screens/settings/index.html" },
+        { "click": "^notifications$|notifications" },
+        { "expectText": "benefits" },
+        { "expectText": "travel" },
+        { "check": "benefits" },
+        { "goto": "/screens/settings/index.html" },
+        { "click": "^notifications$|notifications" },
+        { "expectChecked": "benefits" },
+        { "click": "how notifications|about notifications|what (are )?notifications|more about|find out" },
+        { "expectText": "notification" }
+      ]
+    }
+  },
+  {
+    "id": "delete-chat-history",
+    "kind": "prototype",
+    "skill": "prototype-build",
+    "title": "Delete your chat history, from Chat's menu",
+    "opening": "In Chat, the menu should have an option to delete your chat history, and it should ask you to confirm first",
+    "brief": "In GOV.UK Chat, the menu by the question box (the round … button) gets a new option, Delete chat history. Choosing it shows a screen asking if they're sure, saying their questions and answers will be deleted and can't be got back, with a way to delete and a way to cancel. Deleting goes back to a new, empty chat. Cancelling goes back to the chat.",
+    "plan": false,
+    "maxTurns": 8,
+    "estimate": { "minutes": 2, "tokens": 700000 },
+    "checks": {
+      "requires": [
+        { "selector": "govuk-app-button[variant=\"destructive\"]", "why": "the delete button is destructive, as the Confirmation pattern has it" },
+        { "selector": "govuk-app-button-stack govuk-app-button[variant=\"grouped-secondary\"], govuk-app-nav-bar-item", "why": "a way to cancel, as the Confirmation pattern has it" }
+      ],
+      "forbids": [
+        { "selector": "govuk-app-button:not([variant]), govuk-app-button[variant=\"primary\"]", "withSelector": "govuk-app-button[variant=\"destructive\"]", "why": "a primary button on the confirmation, beside the destructive one" }
+      ],
+      "journey": [
+        { "goto": "/screens/chat/answer.html" },
+        { "click": "more options" },
+        { "click": "delete" },
+        { "expectText": "sure|delete" },
+        { "click": "^delete|delete chat|yes" },
+        { "expectPath": "/screens/chat/" }
+      ]
+    }
+  },
+  {
+    "id": "onboarding",
+    "kind": "prototype",
+    "skill": "prototype-build",
+    "title": "Onboarding that asks about notifications",
+    "opening": "I need the first-time onboarding to ask if people want notifications. If they say yes they go to a screen to turn them on, if they say no they go straight to Home.",
+    "brief": "When someone opens the app for the first time, a screen asks whether they'd like notifications, saying what they'd be told about. Yes goes to a screen where they turn notifications on, then on to Home. No (or Not now) goes straight to Home. It doesn't need to come from anywhere in the prototype: it's the first screen of the app.",
+    "plan": true,
+    "maxTurns": 10,
+    "estimate": { "minutes": 3, "tokens": 900000 },
+    "checks": {
+      "requires": [],
+      "journey": [
+        { "goto": "first-new" },
+        { "click": "^yes|turn on|allow|get notifications" },
+        { "expectText": "notification" },
+        { "expectNotPath": "/screens/home/" },
+        { "goto": "first-new" },
+        { "click": "^no|not now|skip|no thanks" },
+        { "expectPath": "/screens/home/" }
+      ]
+    }
+  },
+  {
+    "id": "bin-collections-from-screenshot",
+    "kind": "prototype",
+    "skill": "prototype-build",
+    "title": "Make a screen from a screenshot: bin collections",
+    "design": "inventory/screenshots/ios-localwastescheduleviewcontrollersnapshottests-test-loadinnavigationcontroller-light-renderscorrectly-3x.webp",
+    "designName": "bin-collections.webp",
+    "opening": "I've put a screenshot in this folder called bin-collections.webp. Can you make that screen in my prototype? It should open from Your local services on Home.",
+    "brief": "You want the screen in the screenshot bin-collections.webp: the collection schedule, with the address, then what's collected today and tomorrow, each bin with its colour. It opens from a new Bin collections row or link in Your local services on Home. Cancel goes back to Home.",
+    "plan": false,
+    "maxTurns": 8,
+    "estimate": { "minutes": 4, "tokens": 1300000 },
+    "checks": {
+      "requires": [
+        { "selector": "govuk-app-screen", "text": "general waste", "why": "the collection schedule" }
+      ],
+      "journey": [
+        { "goto": "/screens/home/index.html" },
+        { "click": "bin collections?|collection schedule|bins" },
+        { "expectText": "collection" },
+        { "expectText": "general waste" },
+        { "expectText": "tomorrow" }
+      ]
+    }
+  },
+  {
+    "id": "library-divider",
+    "kind": "library",
+    "skill": "library-contribute",
+    "title": "Contribute a component to the library: a divider",
+    "opening": "I'd like the library to have a divider, the thin line the app puts between things",
+    "brief": "You're a designer who wants a divider in the library: the thin grey line the GOV.UK app draws between items, such as between sections of a screen (iOS calls it DividerView, Android ListDivider, but you only know it as 'the divider'). It's in the app today, on iOS and Android. You'd use it to separate parts of a screen that aren't in a grouped list. You don't have a Figma link. You're happy for it to be made, checked and sent for review.",
+    "plan": false,
+    "maxTurns": 12,
+    "estimate": { "minutes": 6, "tokens": 2200000 },
+    "checks": { "component": "divider" }
+  }
+]

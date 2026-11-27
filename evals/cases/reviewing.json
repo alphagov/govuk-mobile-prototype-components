@@ -1,0 +1,105 @@
+[
+  {
+    "id": "address-colour-and-grid",
+    "prompt": "I've changed the address component a bit. Can you review my changes?",
+    "edits": [
+      { "file": "src/components/address/address.css", "find": ".govuk-app-address__name {\n", "replace": ".govuk-app-address__name {\n  color: #0b0c0c;\n" },
+      { "file": "src/components/address/address.css", "find": "  gap: var(--app-space-small);\n", "replace": "  gap: 10px;\n" }
+    ],
+    "faults": [
+      { "id": "raw-colour", "file": "address.css", "rule": "--app-* tokens only, no raw colours", "match": "#0b0c0c|raw colou?r|hex" },
+      { "id": "off-grid", "file": "address.css", "rule": "Spacing on the 8pt grid", "match": "10px|off the (8pt )?grid|8pt grid" }
+    ]
+  },
+  {
+    "id": "summary-columns-selectors",
+    "prompt": "review my changes please, it's a small tweak to summary columns",
+    "edits": [
+      { "file": "src/components/summary-columns/summary-columns.css", "find": ".govuk-app-summary-columns {\n  display: grid;", "replace": "govuk-app-summary-columns {\n  display: contents;\n}\n\n.govuk-app-summary-columns {\n  display: grid;" },
+      { "file": "src/components/summary-columns/summary-columns.css", "find": "/* The divider before", "replace": "/* Labels in a column wrap, as the app's do. */\n.govuk-app-labelled-icon__label {\n  white-space: normal;\n}\n\n/* The divider before" }
+    ],
+    "faults": [
+      { "id": "display-contents", "file": "summary-columns.css", "rule": "No display: contents on the component's element", "match": "display:? contents" },
+      { "id": "other-components-class", "file": "summary-columns.css", "rule": "Styles only its own classes", "match": "labelled-icon|another component|own class" }
+    ]
+  },
+  {
+    "id": "section-heading-bare-and-avoid",
+    "prompt": "Is my change to the section heading ready to merge?",
+    "edits": [
+      { "file": "src/components/section-heading/section-heading.css", "find": ".govuk-app-section-heading__action {", "replace": ".govuk-app-section-heading h2 {\n  margin: 0;\n}\n\n.govuk-app-section-heading__action {" },
+      { "file": "src/components/section-heading/section-heading.json", "find": "    { \"when\": \"For a heading with no action\", \"instead\": \"govuk-app-heading\" },\n", "replace": "" }
+    ],
+    "faults": [
+      { "id": "bare-element", "file": "section-heading.css", "rule": "Never a bare element", "match": "bare|\\bh2\\b" },
+      { "id": "missing-avoid", "file": "section-heading.json", "rule": "avoid lists look-alikes", "match": "avoid|govuk-app-heading" }
+    ]
+  },
+  {
+    "id": "labelled-icon-icons-and-reference",
+    "prompt": "Can you check my changes to labelled icon before I open a PR?",
+    "edits": [
+      { "file": "src/components/labelled-icon/labelled-icon.json", "find": "icon=\\\"local_gas_station\\\" layout=\\\"inline\\\"", "replace": "icon=\\\"fuelpump.fill\\\" layout=\\\"inline\\\"" },
+      { "file": "src/components/labelled-icon/labelled-icon.json", "find": "    { \"platform\": \"ios\", \"image\": \"reference/ios-vehicle-spec-dark.webp\", \"description\": \"The same, in dark mode\", \"from\": \"VehicleDetailViewSnapshotTests at 8f1fe5da\" }\n", "replace": "    { \"platform\": \"ios\", \"image\": \"reference/ios-vehicle-spec-dark.webp\", \"description\": \"The same, in dark mode\", \"from\": \"VehicleDetailViewSnapshotTests at 8f1fe5da\" },\n    { \"platform\": \"ios\", \"image\": \"reference/ios-vehicle-spec-inline-light.webp\", \"description\": \"Inline, on a narrow screen, in light mode\", \"from\": \"VehicleDetailViewSnapshotTests at 8f1fe5da\" }\n" },
+      { "file": "src/components/labelled-icon/labelled-icon.html", "find": "class=\"govuk-app-labelled-icon__icon govuk-app-icon\"", "replace": "class=\"govuk-app-labelled-icon__icon\"" }
+    ],
+    "faults": [
+      { "id": "sf-symbol", "file": "labelled-icon.json", "rule": "Material Symbols, never SF Symbols", "match": "fuelpump|SF Symbol" },
+      { "id": "missing-reference", "file": "labelled-icon.json", "rule": "Every listed reference exists", "match": "inline-light|reference" },
+      { "id": "icon-class", "file": "labelled-icon.html", "rule": "Icons have govuk-app-icon", "match": "govuk-app-icon" }
+    ]
+  },
+  {
+    "id": "toggle-event-source-shadow",
+    "prompt": "review my changes to the toggle",
+    "edits": [
+      { "file": "src/components/toggle/toggle.css", "find": "box-shadow: 0 3px 8px var(--app-switch-knob-shadow);", "replace": "box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);" },
+      { "file": "src/components/toggle/toggle.json", "find": "        \"symbol\": \"ToggleRowView\",\n        \"ref\": \"8a7641e\"\n", "replace": "        \"symbol\": \"ToggleRowView\"\n" },
+      { "file": "src/components/toggle/toggle.js", "append": "\n// Tells the page when it's switched, so a prototype can listen for it.\ndocument.addEventListener('change', event => {\n  if (event.target.matches?.('.govuk-app-toggle')) {\n    event.target.dispatchEvent(new CustomEvent('govuk-app-toggle-change', { bubbles: true, detail: { checked: event.target.checked } }))\n  }\n})\n" }
+    ],
+    "faults": [
+      { "id": "raw-colour", "file": "toggle.css", "rule": "--app-* tokens only, no raw colours", "match": "rgba|raw colou?r" },
+      { "id": "source-ref", "file": "toggle.json", "rule": "Sources pinned to a commit", "match": "\\bref\\b|commit" },
+      { "id": "custom-event", "file": "toggle.js", "rule": "No events of its own", "match": "CustomEvent|event" }
+    ]
+  },
+  {
+    "id": "stack-layer-and-font",
+    "prompt": "I've tidied the stack component's styles. Could you review it?",
+    "edits": [
+      { "file": "src/components/stack/stack.css", "find": ".govuk-app-stack {\n  display: flex;", "replace": "@layer components {\n.govuk-app-stack {\n  font-size: 15px;\n  display: flex;" },
+      { "file": "src/components/stack/stack.css", "find": "  min-width: 0;\n}\n", "replace": "  min-width: 0;\n}\n}\n" }
+    ],
+    "faults": [
+      { "id": "layer", "file": "stack.css", "rule": "No cascade layers", "match": "@layer|layer" },
+      { "id": "raw-type", "file": "stack.css", "rule": "Type from --app-font-* tokens", "match": "15px|font-size|type" }
+    ]
+  },
+  {
+    "id": "clean-stack-rule",
+    "clean": true,
+    "prompt": "Can you review my changes? Just a small wording fix.",
+    "edits": [
+      { "file": "src/components/stack/stack.json", "find": "\"Keep a row to a few short items, so they fit side by side on a phone.\"", "replace": "\"Keep a row to a few short items, so they fit side by side on a phone, even with larger text.\"" }
+    ],
+    "faults": []
+  },
+  {
+    "id": "clean-heading-rule",
+    "clean": true,
+    "prompt": "review my changes to the heading's guidance, I've just reworded a rule",
+    "edits": [
+      { "file": "src/components/heading/heading.json", "find": "\"Don't skip levels: a level 3 heading goes inside a section with a level 2 one.\"", "replace": "\"Don't skip levels: put a level 3 heading only inside a section with a level 2 one.\"" }
+    ],
+    "faults": []
+  },
+  {
+    "id": "clean-address-comment",
+    "clean": true,
+    "prompt": "I've made the comment in the address styles clearer. Is it ready?",
+    "edits": [
+      { "file": "src/components/address/address.css", "find": "   It has no padding of its own: whatever it's in spaces it, such as a\n   screen or a grouped list's content row. */", "replace": "   It has no padding of its own, as the app's has none: whatever it's in\n   spaces it, such as a screen or a grouped list's content row. */" }
+    ],
+    "faults": []
+  }
+]

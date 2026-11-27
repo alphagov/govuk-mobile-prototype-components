@@ -1,0 +1,104 @@
+[
+  {
+    "id": "confirm-delete",
+    "brief": "Before the user's chat history is deleted, ask them if they're sure.",
+    "require": ["pattern:confirmation", "govuk-app-button[variant=destructive]"],
+    "forbid": ["govuk-app-button[variant=primary|]"]
+  },
+  {
+    "id": "saved-addresses-list",
+    "brief": "A screen listing the addresses the user has saved, each opening its own details, with a way to add another address.",
+    "require": ["govuk-app-grouped-list-row[type=navigation|]", "govuk-app-grouped-list-row[type=action]"],
+    "forbid": ["govuk-app-button[variant=primary|]"]
+  },
+  {
+    "id": "ask-postcode",
+    "brief": "Ask the user for their postcode, so the app can find their local council.",
+    "require": ["govuk-app-text-field"],
+    "forbid": ["govuk-app-search-field", "govuk-app-search-box"]
+  },
+  {
+    "id": "council-saved",
+    "brief": "Tell the user their local council has been saved, with a way to go on.",
+    "require": ["pattern:outcome"],
+    "forbid": ["pattern:confirmation"]
+  },
+  {
+    "id": "notifications-setting",
+    "brief": "In Settings, a setting the user can turn on or off straight away: MOT reminders.",
+    "require": ["govuk-app-grouped-list-row[type=toggle]"],
+    "forbid": ["govuk-app-segmented-control", "govuk-app-button", "pattern:confirmation"]
+  },
+  {
+    "id": "chat-answer",
+    "brief": "Show GOV.UK Chat answering a question the user asked about renewing their passport.",
+    "require": [["template:chat", "govuk-app-chat-answer"], "govuk-app-chat-question"],
+    "forbid": ["govuk-app-sheet", "custom"]
+  },
+  {
+    "id": "explain-location-data",
+    "brief": "Explain, in a few paragraphs, what the app does with the user's location, reached from a row in Settings.",
+    "require": ["pattern:information-page"],
+    "forbid": ["pattern:confirmation", "pattern:outcome"]
+  },
+  {
+    "id": "tax-mot-status",
+    "brief": "Show whether a vehicle's tax and MOT are valid, and how long until each runs out.",
+    "require": ["govuk-app-status"],
+    "forbid": ["govuk-app-count", "custom"]
+  },
+  {
+    "id": "registration-plate",
+    "brief": "Show the vehicle's registration number as it looks on the car itself.",
+    "require": ["govuk-app-number-plate"],
+    "forbid": ["custom"]
+  },
+  {
+    "id": "vehicles-or-licence",
+    "brief": "On the driving account screen, let the user switch between their vehicles and their driving licence.",
+    "require": ["govuk-app-segmented-control"],
+    "forbid": ["govuk-app-tab-bar", "govuk-app-toggle"]
+  },
+  {
+    "id": "points-at-a-glance",
+    "brief": "Show a driver's offences and penalty points, side by side, big enough to take in at a glance.",
+    "require": ["govuk-app-count", "govuk-app-summary-columns"],
+    "forbid": ["govuk-app-status", "custom"]
+  },
+  {
+    "id": "no-tax-warning",
+    "brief": "On a vehicle's screen, warn that driving without tax can invalidate the user's insurance.",
+    "require": ["govuk-app-banner"],
+    "forbid": ["pattern:confirmation", "custom"]
+  },
+  {
+    "id": "edit-whole-screen",
+    "brief": "On a screen of the user's saved addresses, an Edit action for the whole screen.",
+    "require": ["govuk-app-nav-bar-item"],
+    "forbid": ["govuk-app-button"]
+  },
+  {
+    "id": "registered-to",
+    "brief": "Show who a vehicle is registered to: their name and postal address.",
+    "require": ["govuk-app-address"],
+    "forbid": ["govuk-app-text-field", "custom"]
+  },
+  {
+    "id": "add-account-takeover",
+    "brief": "A journey to add a driver and vehicles account that takes over the app until it's finished or closed.",
+    "require": ["govuk-app-full-screen-cover"],
+    "forbid": ["govuk-app-sheet"]
+  },
+  {
+    "id": "choose-country-sheet",
+    "brief": "Over the screen they're on, let the user choose a country from a long list they can filter, then go back.",
+    "require": ["govuk-app-sheet", "govuk-app-search-field"],
+    "forbid": ["govuk-app-full-screen-cover", "govuk-app-search-box"]
+  },
+  {
+    "id": "start-from-home",
+    "brief": "A prototype that starts from the app's Home screen as users see it today, with one new widget added.",
+    "require": ["template:home"],
+    "forbid": []
+  }
+]

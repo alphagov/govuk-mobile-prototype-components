@@ -41,7 +41,7 @@ npm install
 npm start
 ```
 
-Then open <http://localhost:8080>. Read [AGENTS.md](AGENTS.md) for the rules we've agreed, and [Work on the library](https://alphagov.github.io/govuk-mobile-prototype-components/get-started/work-on-the-library/) for the build, screenshots and releasing.
+Then open <http://localhost:8080>. Read [AGENTS.md](AGENTS.md) for the rules we've agreed, and [Work on the library](https://alphagov.github.io/govuk-mobile-prototype-components/get-started/work-on-the-library/) for the build, screenshots, releasing and the [evals](https://alphagov.github.io/govuk-mobile-prototype-components/evals/) of Claude's skills.
 
 ## What's where
 
@@ -51,6 +51,7 @@ Then open <http://localhost:8080>. Read [AGENTS.md](AGENTS.md) for the rules we'
 | [examples/](examples/) | Screens of the app built from the components, to see them working together |
 | [docs/](docs/) | The documentation site |
 | [scripts/](scripts/) | The catalogue and the screenshots |
+| [evals/](evals/README.md) | Tests of the skills Claude follows, run on our own computers. [Results](https://alphagov.github.io/govuk-mobile-prototype-components/evals/results/) |
 | [inventory/](inventory/COMPONENTS.md) | Every component in the iOS and Android apps today, with screenshots. The backlog |
 
 ## If you're Claude

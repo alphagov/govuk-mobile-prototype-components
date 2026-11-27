@@ -5,7 +5,7 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 ## Where things go
 
 - `src/` is the library, and only the library: components, patterns, templates, foundation, frame and schemas, with the prototype starter (`src/starter/`) and the command that makes a prototype from it (`src/bin/`). It's what the package ships, and the docs site publishes the library at the same paths.
-- Everything else sits around it: `examples/`, `docs/`, `scripts/`, and `inventory/` for the survey of the apps. Generated output (`_site/`, `catalogue/`, `screenshots-out/`) is never committed to a branch. Only a release's commit holds `catalogue/`.
+- Everything else sits around it: `examples/`, `docs/`, `scripts/`, `inventory/` for the survey of the apps, and `evals/` for the evals of the skills. Generated output (`_site/`, `catalogue/`, `screenshots-out/`, `evals-out/`) is never committed to a branch. Only a release's commit holds `catalogue/`.
 - Keep the root to these and the project's own files. Ask before adding a folder there.
 
 ## Components
@@ -68,6 +68,13 @@ Web components that look and behave like the GOV.UK app's own, for prototyping a
 - `npm run check` must pass too: it fails on anything the rule checker must have fixed, such as a raw colour.
 - Check each example in light and dark against the references before calling a component done.
 - Review a change, yours or a PR, with the `library-review` skill (`.claude/skills/library-review/`) before calling it done: it runs the build, its own checks and the screenshots, and reads the change against these rules.
+
+## Evals
+
+- `evals/` tests the skills, ours and the starter's: whether the right one starts, chooses well, reviews well, and does whole jobs well. Read [evals/README.md](evals/README.md).
+- Run them on your own computer, with the `claude` CLI signed in, never in CI: `npm run evals` for the cheap layers, `--full` for whole tasks. They work only in the temporary folder, never in this checkout.
+- After changing a skill or its description, run at least the layers it touches, and say what changed in the PR. Add a case for a mistake you've fixed, in `evals/cases/`.
+- Publish results to the docs site's Evals page with `--publish`, and commit them in a PR of their own. Only what the page shows is published: no transcripts.
 
 ## Writing
 
